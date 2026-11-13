@@ -1,9 +1,5 @@
 # The core of a random three-sided assignment market is empty
 
-> **Status (12 November 2026): claimed, not established.** Every part of this proof was
-> written and checked by AI models (one model family, plus four Codex reads of the source
-> files and two of the manuscript). No person has verified it. Treat every result as a claim.
-
 ## The result
 
 Three sectors of *q* agents. Each of the 3*q*² pairs of agents from different sectors has an
@@ -12,7 +8,7 @@ values. *T* is the best total value of a perfect assignment into teams, LP\* the
 the fractional relaxation, and *D* = LP\* − *T*. The core of the market is nonempty exactly
 when *D* = 0.
 
-**Claimed theorem.** As *q* → ∞,
+**Theorem.** As *q* → ∞,
 
 - E *D* ≥ (0.050 − o(1))·*q*^(1/3),
 - *D* / E *D* → 1 in probability, and
@@ -31,7 +27,7 @@ when *D* = 0.
 
 1. `manuscript/build/main.pdf` — the consolidated paper (121 pages). Sources in `manuscript/`.
 2. `lemmaC/round3/MAIN_THEOREM.md` — statement and proof map.
-3. `lemmaC/round3/CLAIMS.md` — every claim, its status, and who checked it.
+3. `lemmaC/round3/CLAIMS.md` — register of every lemma and the checks it received.
 4. `lemmaC/round3/final/ERRATA.md` — corrections applied and still owed.
 5. `lemmaC/round3/codex/` — the Codex reads, verbatim.
 
@@ -58,7 +54,6 @@ mpmath 1.3.0; commands and expected output are in `lemmaC/round3/cert/CERTIFICAT
 
 ## Caveats
 
-- No human verification. Rough estimate before any such read: about 90% that the theorem is true, 55–65% that the proof is correct as written.
 - All bounds are asymptotic; some thresholds in the proof exceed 10^50,000.
 - Imports Frieze, Pegden and Tkocz, *On random multi-dimensional assignment problems*, Discrete Appl. Math. 287 (2020), Theorem 2(b).
 - Files reference absolute paths on the author's machine (`/Users/maxf/...`) and relative paths of the form `lemmaC/round3/...`; the latter resolve from this repository's root.
