@@ -1,0 +1,12 @@
+checks of theta_i <= g(t_i), shat_i >= g'(t_i): prefix /Users/maxf/projects/economics-research/game-theory/coopgpt/average_case_protection_2026-11-09/lemmaC/round3/v10/B
+ stage 1 (exact rationals, all 11995 points): max theta/g - 1 = -3.000e-09, min shat/g' - 1 = 3.000e-09
+ stage 1 -> 2: 229 of 12000 points; theta/g - 1 in [-1.040e-06, -9.136e-09] (need <= 0); shat/g' - 1 in [3.610e-09, 2.700e-07] (need >= 0); law: atom 1.266e-14, support 5.752193, E X = -4.142753255  [7s]
+ stage 2 -> 3: 229 of 11999 points; theta/g - 1 in [-9.342e-07, -9.043e-09] (need <= 0); shat/g' - 1 in [3.618e-09, 2.418e-07] (need >= 0); law: atom 1.266e-14, support 8.871064, E X = -4.505187498  [7s]
+ stage 3 -> 4: 229 of 11998 points; theta/g - 1 in [-8.813e-07, -9.011e-09] (need <= 0); shat/g' - 1 in [3.621e-09, 2.279e-07] (need >= 0); law: atom 1.266e-14, support 9.347181, E X = -4.670960466  [8s]
+ stage 4 -> 5: 229 of 12000 points; theta/g - 1 in [-8.644e-07, -8.999e-09] (need <= 0); shat/g' - 1 in [3.622e-09, 2.235e-07] (need >= 0); law: atom 1.266e-14, support 9.546741, E X = -4.728626799  [8s]
+ stage 5 -> 6: 229 of 11999 points; theta/g - 1 in [-8.584e-07, -8.995e-09] (need <= 0); shat/g' - 1 in [3.622e-09, 2.219e-07] (need >= 0); law: atom 1.266e-14, support 9.615595, E X = -4.749393425  [7s]
+ stage 6 -> 7: 229 of 12000 points; theta/g - 1 in [-8.563e-07, -8.993e-09] (need <= 0); shat/g' - 1 in [3.623e-09, 2.214e-07] (need >= 0); law: atom 1.266e-14, support 9.640056, E X = -4.756671689  [7s]
+ stage 7 -> 8: 229 of 11998 points; theta/g - 1 in [-8.556e-07, -8.993e-09] (need <= 0); shat/g' - 1 in [3.623e-09, 2.212e-07] (need >= 0); law: atom 1.266e-14, support 9.648614, E X = -4.759225357  [7s]
+ stage 8 -> 9: 229 of 11999 points; theta/g - 1 in [-8.553e-07, -8.993e-09] (need <= 0); shat/g' - 1 in [3.623e-09, 2.211e-07] (need >= 0); law: atom 1.266e-14, support 9.651614, E X = -4.760119148  [7s]
+ stage 9 -> 10: 229 of 11998 points; theta/g - 1 in [-8.552e-07, -8.993e-09] (need <= 0); shat/g' - 1 in [3.623e-09, 2.211e-07] (need >= 0); law: atom 1.266e-14, support 9.652663, E X = -4.760431759  [7s]
+ final law n=10: int exp(-g) = 10.2717120238 (Simpson dt=1/32: 10.2717120238, 1/64: 10.2717120238); E Q~ = -4.7605416831; c(Q~_10) = 2.25188597  [45s]

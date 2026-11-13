@@ -1,0 +1,6 @@
+grid nx=280: beta*=0.55729 e*=2.30248 Sigma=2.10e-08 L*=-3.849435 rho(0)=0.7691 norm=1.000000
+grid nx=560 at same beta: e=2.30248 Sigma=+4.955e-08 L=-3.849435
+grid nx=1400 at same beta: e=2.30248 Sigma=+1.233e-08 L=-3.849435
+MC check: E ln W quad=-1.31105 MC=-1.31190+-0.00145 | max|rho_quad-rho_MC| (xi<6)=0.0002
+Hessian eigenvalues of L in ln w: max=6.538e-17, 2nd max=-3.190e-09, min=-1.679e-02 (max should be ~0: scale mode)
+lambda_max(R^-1/2 M R^-1/2)=1.0000 (local max of Sigma-3 beta e in rho iff < 1.5)

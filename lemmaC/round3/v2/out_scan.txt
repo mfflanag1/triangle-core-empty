@@ -1,0 +1,7 @@
+reference: beta*=0.55729 e*=2.30248 Sigma*=2.1e-08 L*=-3.849435
+random profiles: 3000 ; max over all of L-L* = -5.319e-06 (family 1, Sigma=-0.0038, e=2.3002)
+  per-family max L-L*: 0:-1.22e+00 1:-5.32e-06 2:-2.79e-05 3:-5.85e-06 4:-2.67e-05 5:-5.78e-06
+  lowest e among profiles with Sigma>=0: 2.30250 (family 3, Sigma=0.0000)  vs e*=2.30248
+SLSQP start 0 (amp 0.5: e=2.3408 Sigma=+0.0575) -> e=2.30248 Sigma=+7.68e-09  [Iteration limit reached, 400 it]
+SLSQP start 1 (amp 2.0: e=2.7158 Sigma=+0.0934) -> e=2.30286 Sigma=-1.29e-06  [Iteration limit reached, 400 it]
+SLSQP start 2 (amp 5.0: e=2.2978 Sigma=-1.0893) -> e=2.30384 Sigma=+2.78e-05  [Iteration limit reached, 400 it]

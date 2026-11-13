@@ -1,0 +1,100 @@
+{"q": 6, "idx": 0, "empty": true, "gap": 0.12059453229836414, "mu_star": 0.04691119316430559, "k_eff": 4, "disrupted": 2.5, "nfrac": 8, "frac_inv": [2.0], "gain_at_threshold": 0.11727788291276653}
+{"q": 6, "idx": 1, "empty": true, "gap": 0.03231511436415424, "mu_star": 0.009232918388988764, "k_eff": 5, "disrupted": 3.5, "nfrac": 10, "frac_inv": [2.0], "gain_at_threshold": 0.03231511436415424}
+{"q": 6, "idx": 2, "empty": false}
+{"q": 6, "idx": 3, "empty": false}
+{"q": 6, "idx": 4, "empty": false}
+{"q": 6, "idx": 5, "empty": false}
+{"q": 6, "idx": 6, "empty": false}
+{"q": 6, "idx": 7, "empty": false}
+{"q": 6, "idx": 8, "empty": false}
+{"q": 6, "idx": 9, "empty": false}
+{"q": 6, "idx": 10, "empty": false}
+{"q": 6, "idx": 11, "empty": false}
+{"q": 6, "idx": 12, "empty": false}
+{"q": 6, "idx": 13, "empty": false}
+{"q": 6, "idx": 14, "empty": false}
+{"q": 6, "idx": 15, "empty": false}
+{"q": 6, "idx": 16, "empty": false}
+{"q": 6, "idx": 17, "empty": false}
+{"q": 6, "idx": 18, "empty": true, "gap": 0.045676570306095954, "mu_star": 0.012585921806930855, "k_eff": 4, "disrupted": 2.666666666666667, "nfrac": 10, "frac_inv": [1.5, 3.0], "gain_at_threshold": 0.03356235815384245}
+{"q": 6, "idx": 19, "empty": false}
+{"q": 6, "idx": 20, "empty": false}
+{"q": 6, "idx": 21, "empty": false}
+{"q": 6, "idx": 22, "empty": false}
+{"q": 6, "idx": 23, "empty": true, "gap": 0.05200725376359472, "mu_star": 0.017335734587504703, "k_eff": 5, "disrupted": 3.0, "nfrac": 10, "frac_inv": [2.0], "gain_at_threshold": 0.052007253763596495}
+{"q": 6, "idx": 24, "empty": false}
+{"q": 6, "idx": 25, "empty": false}
+{"q": 6, "idx": 26, "empty": false}
+{"q": 6, "idx": 27, "empty": false}
+{"q": 6, "idx": 28, "empty": false}
+{"q": 6, "idx": 29, "empty": false}
+{"q": 6, "idx": 30, "empty": false}
+{"q": 6, "idx": 31, "empty": false}
+{"q": 6, "idx": 32, "empty": false}
+{"q": 6, "idx": 33, "empty": false}
+{"q": 6, "idx": 34, "empty": false}
+{"q": 6, "idx": 35, "empty": false}
+{"q": 6, "idx": 36, "empty": false}
+{"q": 6, "idx": 37, "empty": false}
+{"q": 6, "idx": 38, "empty": false}
+{"q": 6, "idx": 39, "empty": true, "gap": 0.04441198487180209, "mu_star": 0.01665453182613419, "k_eff": 5, "disrupted": 2.6666666666666665, "nfrac": 11, "frac_inv": [1.5, 3.0], "gain_at_threshold": 0.04441198487180387}
+{"q": 6, "idx": 40, "empty": false}
+{"q": 6, "idx": 41, "empty": false}
+{"q": 6, "idx": 42, "empty": false}
+{"q": 6, "idx": 43, "empty": true, "gap": 0.047969961956880525, "mu_star": 0.019188024782124558, "k_eff": 4, "disrupted": 2.5, "nfrac": 8, "frac_inv": [2.0], "gain_at_threshold": 0.0479699619568823}
+{"q": 6, "idx": 44, "empty": false}
+{"q": 6, "idx": 45, "empty": false}
+{"q": 6, "idx": 46, "empty": false}
+{"q": 6, "idx": 47, "empty": true, "gap": 0.006309257530851653, "mu_star": 0.0025237430118068005, "k_eff": 4, "disrupted": 2.5, "nfrac": 8, "frac_inv": [2.0], "gain_at_threshold": 0.006309257530851653}
+{"q": 6, "idx": 48, "empty": false}
+{"q": 6, "idx": 49, "empty": true, "gap": 0.1033614091409003, "mu_star": 0.027471586940919224, "k_eff": 6, "disrupted": 3.6666666666666665, "nfrac": 14, "frac_inv": [1.5, 3.0], "gain_at_threshold": 0.10072905211712602}
+{"q": 6, "idx": 50, "empty": false}
+{"q": 6, "idx": 51, "empty": false}
+{"q": 6, "idx": 52, "empty": false}
+{"q": 6, "idx": 53, "empty": false}
+{"q": 6, "idx": 54, "empty": false}
+{"q": 6, "idx": 55, "empty": false}
+{"q": 6, "idx": 56, "empty": false}
+{"q": 6, "idx": 57, "empty": false}
+{"q": 6, "idx": 58, "empty": false}
+{"q": 6, "idx": 59, "empty": true, "gap": 0.0905943158000202, "mu_star": 0.02588407594248565, "k_eff": 6, "disrupted": 3.5, "nfrac": 12, "frac_inv": [2.0], "gain_at_threshold": 0.0905943158000202}
+{"q": 6, "idx": 60, "empty": true, "gap": 0.00872340286366935, "mu_star": 0.0024924293893491267, "k_eff": 6, "disrupted": 3.5, "nfrac": 12, "frac_inv": [2.0], "gain_at_threshold": 0.00872340286366935}
+{"q": 6, "idx": 61, "empty": false}
+{"q": 6, "idx": 62, "empty": false}
+{"q": 6, "idx": 63, "empty": false}
+{"q": 6, "idx": 64, "empty": false}
+{"q": 6, "idx": 65, "empty": false}
+{"q": 6, "idx": 66, "empty": false}
+{"q": 6, "idx": 67, "empty": false}
+{"q": 6, "idx": 68, "empty": false}
+{"q": 6, "idx": 69, "empty": true, "gap": 0.07485339130004576, "mu_star": 0.024951163766672835, "k_eff": 5, "disrupted": 3.0, "nfrac": 10, "frac_inv": [2.0], "gain_at_threshold": 0.07485339130004398}
+{"q": 6, "idx": 70, "empty": false}
+{"q": 6, "idx": 71, "empty": false}
+{"q": 6, "idx": 72, "empty": false}
+{"q": 6, "idx": 73, "empty": false}
+{"q": 6, "idx": 74, "empty": false}
+{"q": 6, "idx": 75, "empty": false}
+{"q": 6, "idx": 76, "empty": false}
+{"q": 6, "idx": 77, "empty": false}
+{"q": 6, "idx": 78, "empty": false}
+{"q": 6, "idx": 79, "empty": false}
+{"q": 6, "idx": 80, "empty": false}
+{"q": 6, "idx": 81, "empty": false}
+{"q": 6, "idx": 82, "empty": false}
+{"q": 6, "idx": 83, "empty": false}
+{"q": 6, "idx": 84, "empty": true, "gap": 0.03952106953561696, "mu_star": 0.019760509767365875, "k_eff": 3, "disrupted": 2.0, "nfrac": 6, "frac_inv": [2.0], "gain_at_threshold": 0.03952106953561696}
+{"q": 6, "idx": 85, "empty": true, "gap": 0.07646421318139929, "mu_star": 0.025488054393463244, "k_eff": 5, "disrupted": 3.0, "nfrac": 10, "frac_inv": [2.0], "gain_at_threshold": 0.07646421318139751}
+{"q": 6, "idx": 86, "empty": false}
+{"q": 6, "idx": 87, "empty": false}
+{"q": 6, "idx": 88, "empty": false}
+{"q": 6, "idx": 89, "empty": false}
+{"q": 6, "idx": 90, "empty": false}
+{"q": 6, "idx": 91, "empty": false}
+{"q": 6, "idx": 92, "empty": false}
+{"q": 6, "idx": 93, "empty": false}
+{"q": 6, "idx": 94, "empty": false}
+{"q": 6, "idx": 95, "empty": true, "gap": 0.007907658658728778, "mu_star": 0.0022593167595914565, "k_eff": 6, "disrupted": 3.5, "nfrac": 12, "frac_inv": [2.0], "gain_at_threshold": 0.007907658658727001}
+{"q": 6, "idx": 96, "empty": false}
+{"q": 6, "idx": 97, "empty": false}
+{"q": 6, "idx": 98, "empty": false}
+{"q": 6, "idx": 99, "empty": false}

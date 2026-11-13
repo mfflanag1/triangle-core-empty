@@ -1,0 +1,218 @@
+\section{The model}\label{sec:model}
+
+This section fixes the market, the two optimisation problems, the core, the scaling and the
+comparison model. A table of notation is at the end.
+
+\subsection{The market}\label{sec:model-market}
+
+There are three sectors $A$, $B$, $C$, each with $q$ agents, written $a_i$, $b_j$, $c_k$ for
+$1\le i,j,k\le q$; when no index is needed we write $a$, $b$, $c$ for agents of the three
+sectors. A \emph{pair} is a set of two agents from different sectors. There are $3q^2$ pairs.
+Each pair $p$ has a \emph{value} $w(p)$, and the $3q^2$ values are independent and uniform on
+$[0,1]$. The \emph{deficit} of a pair is
+\begin{equation}\label{eq:model-pairdeficit}
+\defi(p)=1-w(p),
+\end{equation}
+so the pair deficits are again independent and uniform on $[0,1]$.
+
+A \emph{team} is a triple $e=(a,b,c)$ with one agent from each sector. It contains the three
+pairs $\{a,b\}$, $\{b,c\}$, $\{a,c\}$. Its \emph{value} and its \emph{deficit} are
+\begin{equation}\label{eq:model-teamdeficit}
+\begin{aligned}
+v(e)&=w(a,b)+w(b,c)+w(a,c),\\
+\Defi(e)&=\defi(a,b)+\defi(b,c)+\defi(a,c)=3-v(e).
+\end{aligned}
+\end{equation}
+There are $q^3$ teams. Two teams that share a pair have dependent values; two teams that share
+no pair have independent values. Since $\Defi(e)$ is a sum of three independent uniform
+variables,
+\begin{equation}\label{eq:model-oneteam}
+\P(\Defi(e)\le t)=\frac{t^3}{6}\qquad(0\le t\le1),
+\end{equation}
+and the density of $\Defi(e)$ is $t^2/2$ on $[0,1]$ and at most $t^2/2$ on $[0,3]$.
+
+\subsection{Assignments and the fractional relaxation}\label{sec:model-lp}
+
+A \emph{perfect assignment} is a set of $q$ pairwise disjoint teams; it covers every agent
+exactly once. Its value is the sum of the values of its teams. We write
+\begin{equation}\label{eq:model-T}
+\Tq=\max_N\sum_{e\in N}v(e),\qquad
+\Phiq=3q-\Tq=\min_N\sum_{e\in N}\Defi(e),
+\end{equation}
+where $N$ ranges over the perfect assignments.
+A perfect assignment is determined by its set of $3q$ pairs, so two different assignments have
+equal value only on a null set, and the maximiser is almost surely unique. We call it the
+\emph{optimal assignment} and write $\Mopt$ for it.
+
+A \emph{fractional assignment} is a vector $x=(x_e)$ of nonnegative weights on the teams with
+\begin{equation}\label{eq:model-load}
+\sum_{e\ni i}x_e=1\qquad\text{for every agent } i .
+\end{equation}
+The \emph{fractional relaxation} is the linear programme
+\begin{equation}\label{eq:model-LP}
+\LPq=\max_x\sum_e v(e)\,x_e,\qquad
+\PhiLP=3q-\LPq=\min_x\sum_e\Defi(e)\,x_e ,
+\end{equation}
+where $x$ ranges over the fractional assignments and the second form uses $\sum_e x_e=q$. The indicator vector of a perfect assignment is a
+fractional assignment, so $\LPq\ge\Tq$. The \emph{gap} is
+\begin{equation}\label{eq:model-gap}
+\Dq=\LPq-\Tq=\Phiq-\PhiLP\ \ge\ 0 .
+\end{equation}
+The \emph{support} of a fractional assignment $x$ is the set of teams with $x_e>0$.
+
+The dual of \eqref{eq:model-LP} has one variable $u_i$ for each agent, unrestricted in sign
+because the constraints \eqref{eq:model-load} are equations. Writing $u(e)=u_a+u_b+u_c$ for
+$e=(a,b,c)$, it is
+\begin{equation}\label{eq:model-dual}
+\min\Bigl\{\sum_i u_i:\ u(e)\ge v(e)\text{ for every team } e\Bigr\}.
+\end{equation}
+The programme \eqref{eq:model-LP} is feasible and bounded. By the duality theorem of linear
+programming the minimum in \eqref{eq:model-dual} is attained and equals $\LPq$, and for every
+optimal $x$ and every optimal $u$,
+\begin{equation}\label{eq:model-cs}
+x_e>0\quad\Longrightarrow\quad u(e)=v(e).
+\end{equation}
+
+\subsection{The core}\label{sec:model-core}
+
+The market defines a cooperative game with transferable utility on the set $I$ of the $3q$
+agents. A coalition $S\subseteq I$ can form disjoint teams from its own members, and its worth
+$v(S)$ is the largest total value of a set of pairwise disjoint teams contained in $S$ (zero if
+$S$ contains no team). In particular $v(I)=\Tq$, because all values are nonnegative and the
+sectors have equal size, so that a set of disjoint teams extends to a perfect assignment
+without loss of value.
+
+\begin{definition}\label{def:model-core}
+The \emph{core} is the set of payoff vectors $p\in\R^I$ with $\sum_{i\in I}p_i=v(I)$ and
+$\sum_{i\in S}p_i\ge v(S)$ for every coalition $S\subseteq I$.
+\end{definition}
+
+\begin{lemma}\label{lem:model-coreform}
+A vector $p\in\R^I$ is in the core if and only if
+\begin{equation}\label{eq:model-coreform}
+p_i\ge0\ \text{ for every agent } i,\quad p(e)\ge v(e)\ \text{ for every team } e,\quad
+\sum_{i\in I}p_i=\Tq ,
+\end{equation}
+where $p(e)=p_a+p_b+p_c$ for $e=(a,b,c)$.
+\end{lemma}
+
+\begin{proof}
+If $p$ is in the core, apply the definition to $S=\{i\}$, whose worth is $0$, to
+$S=\{a,b,c\}$, whose worth is $v(e)$, and to $S=I$. Conversely, let $p$ satisfy
+\eqref{eq:model-coreform} and let $S$ be a coalition. Choose disjoint teams
+$e_1,\dots,e_k\subseteq S$ with $v(S)=\sum_j v(e_j)$. Since $p\ge0$,
+$\sum_{i\in S}p_i\ge\sum_j p(e_j)\ge\sum_j v(e_j)=v(S)$.
+\end{proof}
+
+\begin{proposition}\label{prop:model-core}
+The core is nonempty if and only if $\Dq=0$.
+\end{proposition}
+
+\begin{proof}
+Let $p$ be in the core. By Lemma~\ref{lem:model-coreform}, $p$ is feasible for the dual
+\eqref{eq:model-dual} and has total $\Tq$. By weak duality $\LPq\le\sum_i p_i=\Tq\le\LPq$, so
+$\Dq=0$.
+
+Conversely, let $\Dq=0$ and let $u$ be an optimal solution of \eqref{eq:model-dual}, so that
+$\sum_i u_i=\LPq=\Tq$ and $u(e)\ge v(e)\ge0$ for every team. The vector $u$ may have negative
+entries, and we shift it sector by sector. Put $m_A=\min_{a\in A}u_a$ and define $m_B$, $m_C$ in
+the same way. Every triple is a team, so $s:=m_A+m_B+m_C=\min_e u(e)\ge0$. Define
+\[
+p_a=u_a-m_A+\tfrac{s}{3},\qquad p_b=u_b-m_B+\tfrac{s}{3},\qquad p_c=u_c-m_C+\tfrac{s}{3}.
+\]
+Then $p_i\ge s/3\ge0$ for every agent, $p(e)=u(e)-s+s=u(e)\ge v(e)$ for every team, and, since
+each sector has $q$ agents, $\sum_i p_i=\sum_i u_i-qs+qs=\Tq$. By
+Lemma~\ref{lem:model-coreform}, $p$ is in the core.
+\end{proof}
+
+Thus the statement ``the core is empty'' is the statement $\Dq>0$: the optimal assignment is
+not an optimal solution of the fractional relaxation. From here on the game plays no role, and
+the paper is about the random variable $\Dq$.
+
+\subsection{Deficits and the scaling}\label{sec:model-scaling}
+
+A fixed agent lies in $q^2$ teams. By \eqref{eq:model-oneteam} the expected number of these
+with deficit at most $t$ is $q^2t^3/6$ for $t\le1$, which is of order one when $t$ is of order
+$q^{-2/3}$. We therefore measure team deficits on that scale and define the \emph{rescaled
+cost}
+\begin{equation}\label{eq:model-cost}
+\cost_e=q^{2/3}\,\Defi(e).
+\end{equation}
+For $K\le q^{2/3}$ the expected number of teams $e$ at a given agent with $\cost_e\le K$ is
+exactly $K^3/6=\Lam([0,K])$, where
+\begin{equation}\label{eq:model-Lam}
+\Lam(\dd\xi)=\frac{\xi^2}{2}\dd\xi\qquad\text{on }[0,\infty).
+\end{equation}
+A perfect assignment whose teams have rescaled costs of order one has total deficit of order
+$q\cdot q^{-2/3}=q^{1/3}$. This is the order of $\Phiq$: by \cite{FPT20}, Theorem~2,
+$\E\Phiq$ lies between two constant multiples of $q^{1/3}$. All the constants of this paper
+are constants in front of $q^{1/3}$:
+\[
+\frac{\Phiq}{q^{1/3}}=\frac1q\sum_{e\in\Mopt}\cost_e ,
+\qquad
+\frac{\PhiLP}{q^{1/3}}=\frac1q\sum_e\cost_e\,x_e\quad\text{for an optimal } x .
+\]
+Each is an average cost per team, equivalently per agent of one sector.
+
+For $K>0$ the \emph{near-tight hypergraph} $H_q(K)$ has the $3q$ agents as vertices and the
+teams with $\cost_e\le K$ as hyperedges, each marked by its cost $\cost_e$. Its local limit is
+the Poisson hypertree $\tree$ of Section~\ref{sec:tree} restricted to teams of cost at most
+$K$. In $\tree$ every agent has countably many teams whose costs form a Poisson process of
+intensity $\Lam$, every team has three agents, and the incidence graph is a tree; after the
+restriction an agent has a Poisson number of teams with mean $K^3/6$. The precise statement
+is Theorem~\ref{thm:localconv}.
+
+\subsection{The independent-team model}\label{sec:model-iid}
+
+In the market, teams that share a pair have dependent deficits. The \emph{independent-team
+model} removes this dependence and keeps everything else. It has the same $3q$ agents and
+$q^3$ teams, and the team deficits $\Defi(e)$ are independent, each distributed as the sum of
+three independent uniform variables on $[0,1]$. So a single team has the same law
+\eqref{eq:model-oneteam} in both models, and there are no pair values. Perfect assignments,
+rescaled costs and the near-tight hypergraph are defined as in the market. Where both models
+appear together, $\P$ and $\E$ refer to the market and $\P'$ and $\E'$ to the independent-team
+model.
+
+The integer lower bound is first proved in the independent-team model (Theorem~\ref{thm:iid})
+and then carried to the market by a comparison inequality (Theorem~\ref{thm:transfer}). In the
+market, a team with $\cost_e\le K$ shares a pair with about $\tfrac{9}{10}K^2q^{-1/3}$ other
+such teams on average. This tends to zero, but slowly, and it is the reason why the two models
+agree only at very large $q$ (Section~\ref{sec:discussion}).
+
+\subsection{Notation}\label{sec:model-notation}
+
+Table~\ref{tab:model-notation} lists the symbols used throughout. Logarithms are natural.
+``With high probability'' means with probability tending to $1$ as $q\to\infty$.
+
+\begin{table}[ht]
+\caption{Notation.}\label{tab:model-notation}
+\small
+\begin{tabular}{@{}ll@{}}
+\toprule
+Symbol & Meaning \\
+\midrule
+$A$, $B$, $C$; $a_i$, $b_j$, $c_k$ & the three sectors; their agents \\
+$w(p)$, $\defi(p)=1-w(p)$ & value and deficit of a pair $p$ \\
+$v(e)$, $\Defi(e)=3-v(e)$ & value and deficit of a team $e$ \\
+$\Tq$ & best total value of a perfect assignment \\
+$\Mopt$ & the optimal assignment (almost surely unique) \\
+$\Phiq=3q-\Tq$ & integer deficit \\
+$\LPq$ & optimum of the fractional relaxation \\
+$\PhiLP=3q-\LPq$ & fractional deficit \\
+$\Dq=\LPq-\Tq$ & the gap; the core is nonempty iff $\Dq=0$ \\
+$u$ & a solution of the dual \eqref{eq:model-dual} \\
+$\cost_e=q^{2/3}\Defi(e)$ & rescaled cost of a team \\
+$H_q(K)$ & near-tight hypergraph: teams with $\cost_e\le K$ \\
+$\P'$, $\E'$ & probability, expectation in the independent-team model \\
+$\Lam$ & the measure $\tfrac12\xi^2\dd\xi$ on $[0,\infty)$ \\
+$\tree$ & the Poisson hypertree (Section~\ref{sec:tree}) \\
+$\RDE$ & $\RDE(\mu)$ is the law of $\min_k(\xi_k-X_k'-X_k'')$; see \eqref{eq:intro-rde} \\
+$\disp$ & dispersive order (Section~\ref{sec:existence}) \\
+IFR & increasing failure rate \\
+$\betaint=2.302$ & integer constant (Theorems~\ref{thm:iid}, \ref{thm:integer}) \\
+$\alphalp=2.2519$ & bound on the tree cost (Theorem~\ref{thm:existence}) \\
+$c_2$ & the constant of \cite{FPT20}, Theorem~2(b) \\
+$C_0$ & $\sup_n\E\Phi_n/n^{1/3}$ \\
+\bottomrule
+\end{tabular}
+\end{table}

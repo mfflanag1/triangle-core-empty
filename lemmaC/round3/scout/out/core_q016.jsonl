@@ -1,0 +1,60 @@
+{"q": 16, "idx": 0, "core": true, "eps": 0.001373950032822202, "eps_scaled": 0.008724038909814822, "tight_at_centre": 0, "width_scaled": 0.6710701217367373, "ncand": 105, "nfacets": 45, "facet_keep1": 21, "facet_keep0": 24, "facet_def_scaled_mean": 2.868184783902783, "secs": 5.338622808456421}
+{"q": 16, "idx": 1, "core": true, "eps": 0.004926790989566889, "eps_scaled": 0.0312831727986637, "tight_at_centre": 0, "width_scaled": 1.710468607235656, "ncand": 442, "nfacets": 77, "facet_keep1": 32, "facet_keep0": 45, "facet_def_scaled_mean": 3.2003220079749233, "secs": 15.6457679271698}
+{"q": 16, "idx": 2, "core": false}
+{"q": 16, "idx": 3, "core": false}
+{"q": 16, "idx": 4, "core": false}
+{"q": 16, "idx": 5, "core": false}
+{"q": 16, "idx": 6, "core": true, "eps": 0.014570977065237505, "eps_scaled": 0.09251993728625009, "tight_at_centre": 0, "width_scaled": 2.1541757640087154, "ncand": 703, "nfacets": 140, "facet_keep1": 64, "facet_keep0": 76, "facet_def_scaled_mean": 3.793003739798805, "secs": 18.457415103912354}
+{"q": 16, "idx": 7, "core": true, "eps": 0.0026855206793858642, "eps_scaled": 0.017051993406157897, "tight_at_centre": 0, "width_scaled": 1.1001355997545663, "ncand": 200, "nfacets": 56, "facet_keep1": 26, "facet_keep0": 30, "facet_def_scaled_mean": 3.5425509177141663, "secs": 8.730633974075317}
+{"q": 16, "idx": 8, "core": true, "eps": 0.0214265436993662, "eps_scaled": 0.136050072033666, "tight_at_centre": 0, "width_scaled": 2.309284193423205, "ncand": 850, "nfacets": 170, "facet_keep1": 83, "facet_keep0": 87, "facet_def_scaled_mean": 3.9536958231073642, "secs": 25.70826482772827}
+{"q": 16, "idx": 9, "core": true, "eps": 0.010268495185164067, "eps_scaled": 0.06520088023623932, "tight_at_centre": 0, "width_scaled": 2.915321482704914, "ncand": 1269, "nfacets": 135, "facet_keep1": 62, "facet_keep0": 73, "facet_def_scaled_mean": 3.6366634158752857, "secs": 47.87434983253479}
+{"q": 16, "idx": 10, "core": false}
+{"q": 16, "idx": 11, "core": true, "eps": 0.0057083426466279915, "eps_scaled": 0.03624571648900884, "tight_at_centre": 0, "width_scaled": 0.8535487739280334, "ncand": 172, "nfacets": 73, "facet_keep1": 33, "facet_keep0": 40, "facet_def_scaled_mean": 3.073434998680982, "secs": 7.630818128585815}
+{"q": 16, "idx": 12, "core": false}
+{"q": 16, "idx": 13, "core": true, "eps": 0.007788416140241977, "eps_scaled": 0.04945335989674487, "tight_at_centre": 0, "width_scaled": 1.6757632600063974, "ncand": 536, "nfacets": 123, "facet_keep1": 55, "facet_keep0": 68, "facet_def_scaled_mean": 3.912447166331342, "secs": 19.81432294845581}
+{"q": 16, "idx": 14, "core": false}
+{"q": 16, "idx": 15, "core": true, "eps": 0.0028304484286186607, "eps_scaled": 0.017972227252523995, "tight_at_centre": 0, "width_scaled": 1.4900899719904526, "ncand": 324, "nfacets": 89, "facet_keep1": 37, "facet_keep0": 52, "facet_def_scaled_mean": 4.193835978646974, "secs": 10.93217396736145}
+{"q": 16, "idx": 16, "core": false}
+{"q": 16, "idx": 17, "core": true, "eps": 0.007343678988422121, "eps_scaled": 0.04662945500615215, "tight_at_centre": 0, "width_scaled": 1.7512464679830475, "ncand": 435, "nfacets": 102, "facet_keep1": 43, "facet_keep0": 59, "facet_def_scaled_mean": 3.938926619680948, "secs": 15.388056755065918}
+{"q": 16, "idx": 18, "core": true, "eps": 0.00934865243700397, "eps_scaled": 0.05936024285194069, "tight_at_centre": 0, "width_scaled": 2.1388654473604474, "ncand": 584, "nfacets": 103, "facet_keep1": 51, "facet_keep0": 52, "facet_def_scaled_mean": 3.7395521668980907, "secs": 19.86672616004944}
+{"q": 16, "idx": 19, "core": false}
+{"q": 16, "idx": 20, "core": false}
+{"q": 16, "idx": 21, "core": false}
+{"q": 16, "idx": 22, "core": false}
+{"q": 16, "idx": 23, "core": true, "eps": 0.0019510982956182296, "eps_scaled": 0.012388701947830955, "tight_at_centre": 0, "width_scaled": 1.6221567930834784, "ncand": 385, "nfacets": 99, "facet_keep1": 45, "facet_keep0": 54, "facet_def_scaled_mean": 3.2304087943694997, "secs": 14.749130964279175}
+{"q": 16, "idx": 24, "core": false}
+{"q": 16, "idx": 25, "core": true, "eps": 0.0036719903420119357, "eps_scaled": 0.02331568532690726, "tight_at_centre": 0, "width_scaled": 2.092798854511885, "ncand": 527, "nfacets": 77, "facet_keep1": 43, "facet_keep0": 34, "facet_def_scaled_mean": 3.8411311505176986, "secs": 23.889239072799683}
+{"q": 16, "idx": 26, "core": false}
+{"q": 16, "idx": 27, "core": true, "eps": 0.010114335189202534, "eps_scaled": 0.06422202527719632, "tight_at_centre": 0, "width_scaled": 1.6885291316415663, "ncand": 538, "nfacets": 123, "facet_keep1": 69, "facet_keep0": 54, "facet_def_scaled_mean": 3.3919067042183237, "secs": 20.834216833114624}
+{"q": 16, "idx": 28, "core": false}
+{"q": 16, "idx": 29, "core": false}
+{"q": 16, "idx": 30, "core": true, "eps": 0.010030619067682791, "eps_scaled": 0.06369046103972777, "tight_at_centre": 0, "width_scaled": 2.0143489434514406, "ncand": 557, "nfacets": 87, "facet_keep1": 47, "facet_keep0": 40, "facet_def_scaled_mean": 3.2061446132560776, "secs": 21.504945755004883}
+{"q": 16, "idx": 31, "core": true, "eps": 0.012989467122042598, "eps_scaled": 0.08247797509614703, "tight_at_centre": 0, "width_scaled": 1.5170282346007657, "ncand": 376, "nfacets": 110, "facet_keep1": 51, "facet_keep0": 59, "facet_def_scaled_mean": 3.3533864573553656, "secs": 13.98823881149292}
+{"q": 16, "idx": 32, "core": false}
+{"q": 16, "idx": 33, "core": false}
+{"q": 16, "idx": 34, "core": true, "eps": 0.0024064862223469197, "eps_scaled": 0.015280235043601913, "tight_at_centre": 0, "width_scaled": 1.529078606996975, "ncand": 400, "nfacets": 58, "facet_keep1": 29, "facet_keep0": 29, "facet_def_scaled_mean": 3.214788875787367, "secs": 17.256199836730957}
+{"q": 16, "idx": 35, "core": false}
+{"q": 16, "idx": 36, "core": false}
+{"q": 16, "idx": 37, "core": false}
+{"q": 16, "idx": 38, "core": false}
+{"q": 16, "idx": 39, "core": true, "eps": 0.01740965849135408, "eps_scaled": 0.11054444081433025, "tight_at_centre": 0, "width_scaled": 3.1033750134841624, "ncand": 1183, "nfacets": 152, "facet_keep1": 66, "facet_keep0": 86, "facet_def_scaled_mean": 4.125128555004579, "secs": 49.96381402015686}
+{"q": 16, "idx": 40, "core": false}
+{"q": 16, "idx": 41, "core": true, "eps": 0.015608311843102057, "eps_scaled": 0.09910660255675163, "tight_at_centre": 0, "width_scaled": 1.973024295681628, "ncand": 660, "nfacets": 167, "facet_keep1": 78, "facet_keep0": 89, "facet_def_scaled_mean": 4.057101955646595, "secs": 21.263204097747803}
+{"q": 16, "idx": 42, "core": true, "eps": 0.0037413611891607772, "eps_scaled": 0.023756162749867245, "tight_at_centre": 0, "width_scaled": 1.52047635789609, "ncand": 354, "nfacets": 71, "facet_keep1": 39, "facet_keep0": 32, "facet_def_scaled_mean": 3.5852712621482747, "secs": 14.58596396446228}
+{"q": 16, "idx": 43, "core": false}
+{"q": 16, "idx": 44, "core": true, "eps": 0.0031122192274825405, "eps_scaled": 0.019761360302645765, "tight_at_centre": 0, "width_scaled": 1.7970998086490095, "ncand": 558, "nfacets": 83, "facet_keep1": 34, "facet_keep0": 49, "facet_def_scaled_mean": 3.5363308199342094, "secs": 30.002557039260864}
+{"q": 16, "idx": 45, "core": true, "eps": 0.00013655811966569766, "eps_scaled": 0.0008670900112485109, "tight_at_centre": 0, "width_scaled": 0.7697225719879432, "ncand": 148, "nfacets": 80, "facet_keep1": 41, "facet_keep0": 39, "facet_def_scaled_mean": 3.976351969525449, "secs": 10.058390140533447}
+{"q": 16, "idx": 46, "core": true, "eps": 0.0023066026068668927, "eps_scaled": 0.014646013618452386, "tight_at_centre": 0, "width_scaled": 0.7910438411591697, "ncand": 133, "nfacets": 63, "facet_keep1": 26, "facet_keep0": 37, "facet_def_scaled_mean": 3.666873155427207, "secs": 9.041482210159302}
+{"q": 16, "idx": 47, "core": false}
+{"q": 16, "idx": 48, "core": true, "eps": 0.004610483493771121, "eps_scaled": 0.029274745392377184, "tight_at_centre": 0, "width_scaled": 1.2458943398823987, "ncand": 263, "nfacets": 75, "facet_keep1": 33, "facet_keep0": 42, "facet_def_scaled_mean": 3.1191063265993564, "secs": 13.7674880027771}
+{"q": 16, "idx": 49, "core": false}
+{"q": 16, "idx": 50, "core": false}
+{"q": 16, "idx": 51, "core": true, "eps": 0.007580657394961766, "eps_scaled": 0.048134174093491265, "tight_at_centre": 0, "width_scaled": 1.5147169422052722, "ncand": 383, "nfacets": 98, "facet_keep1": 46, "facet_keep0": 52, "facet_def_scaled_mean": 3.6351065586497913, "secs": 14.442394971847534}
+{"q": 16, "idx": 52, "core": true, "eps": 0.008710679620229301, "eps_scaled": 0.05530936797003979, "tight_at_centre": 0, "width_scaled": 3.1758671402511407, "ncand": 1540, "nfacets": 111, "facet_keep1": 41, "facet_keep0": 70, "facet_def_scaled_mean": 4.2333186849682125, "secs": 60.902262926101685}
+{"q": 16, "idx": 53, "core": false}
+{"q": 16, "idx": 54, "core": true, "eps": 0.00013865047927682229, "eps_scaled": 0.0008803756666396909, "tight_at_centre": 0, "width_scaled": 0.28774677894026107, "ncand": 62, "nfacets": 47, "facet_keep1": 18, "facet_keep0": 29, "facet_def_scaled_mean": 3.283886074706693, "secs": 4.27200984954834}
+{"q": 16, "idx": 55, "core": true, "eps": 0.003542522832127754, "eps_scaled": 0.022493617881363847, "tight_at_centre": 0, "width_scaled": 2.7393117027214156, "ncand": 1022, "nfacets": 81, "facet_keep1": 37, "facet_keep0": 44, "facet_def_scaled_mean": 3.4861109579202214, "secs": 35.58515810966492}
+{"q": 16, "idx": 56, "core": true, "eps": 0.009170402169970776, "eps_scaled": 0.05822842420633227, "tight_at_centre": 0, "width_scaled": 1.5703527999120817, "ncand": 355, "nfacets": 96, "facet_keep1": 41, "facet_keep0": 55, "facet_def_scaled_mean": 2.8668186423992728, "secs": 12.549988985061646}
+{"q": 16, "idx": 57, "core": false}
+{"q": 16, "idx": 58, "core": false}
+{"q": 16, "idx": 59, "core": false}

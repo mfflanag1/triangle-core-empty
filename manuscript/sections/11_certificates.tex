@@ -1,0 +1,394 @@
+\section{The two computer-assisted steps}\label{sec:certificates}
+
+Two inequalities between explicit real numbers are established by computation: the bound on
+the functional $\Psi_0$ behind the integer constant (Theorems~\ref{thm:iid}
+and~\ref{thm:integer}) and the bound on the cost of a fixed point of $\RDE$
+(Theorem~\ref{thm:existence}). This section states, for each, the inequality that is
+certified, the scheme, which parts are computed in interval arithmetic and which in floating
+point, how to reproduce the run, and which independent recomputations were made. File paths
+are relative to the project folder. The scripts are in Python~3 and use \texttt{mpmath}
+version 1.3.0 (pure-Python backend) and, for the second certificate, \texttt{numpy}.
+
+No person has read the scripts. They were written and re-read by AI agents, as recorded below.
+
+\subsection{The trusted base}\label{sec:certificates-base}
+
+Both certificates rest on the following and on nothing else in the numerical libraries.
+\begin{enumerate}
+\item[(B1)] The interval type \texttt{mpmath.iv}: addition, subtraction, multiplication,
+division and comparison of intervals, and the conversion of integers and binary
+floating-point numbers to intervals. In \texttt{mpmath} these are computed from exact integer
+arithmetic with directed rounding.
+\item[(B2)] Python integers and the exact rationals of \texttt{fractions.Fraction}.
+\item[(B3)] For the second certificate only: IEEE~754 binary64 arithmetic, rounding to
+nearest, for the additions and multiplications inside sums of products of nonnegative
+numbers (computed by \texttt{numpy} and the linear-algebra library behind it).
+\item[(B4)] The logic of the scripts.
+\end{enumerate}
+The following library functions are \emph{not} used: the interval exponential
+\texttt{iv.exp}, the interval logarithm \texttt{iv.log}, the interval Euler constant
+\texttt{iv.euler}, interval powers, and the printing routine \texttt{iv.nstr}. The reason is
+given next. The four interval operations of (B1) were tested against exact rational
+arithmetic ($468{,}775$ containment checks at $80$ bits and $160{,}000$ at $120$ bits, no
+failure). This is evidence for (B1), not a proof of it.
+
+\subsection{The library's interval exponential and logarithm are not strict enclosures}
+\label{sec:certificates-defect}
+
+In \texttt{mpmath} 1.3.0 the interval exponential and logarithm can return an interval that
+does not contain the true value.
+\begin{itemize}
+\item At $80$ bits the upper endpoint of \texttt{iv.exp} was below the true value for $21$ of
+$100{,}000$ random arguments, with relative shortfall up to $2.0\cdot10^{-28}$, and the
+upper endpoint of \texttt{iv.log} was below the true value for $1$ of $1{,}000{,}000$
+arguments, with relative shortfall $3.0\cdot10^{-30}$. The lower endpoints did not fail in
+these samples. The reference values were computed at $600$ bits.
+\item At $120$ bits the upper endpoint of \texttt{iv.exp} was below a $400$-bit reference
+value for $5$ of $20{,}000$ random arguments, by a relative $10^{-40}$.
+\item One failure is established without any reference to the library's own elementary
+functions. For $x=-\mathtt{0x1.31c2c4b9c3ff0p{-}2}$ the verified exponential described below,
+run at $200$ bits, has lower bound $0.741860139211600604812658140023$, while \texttt{iv.exp}
+at $80$ bits returns the upper endpoint $0.741860139211600604812658139927$. A failure of
+\texttt{iv.log} at $x=\mathtt{0x1.5a6695e45d861p{+}0}$ is established in the same way.
+\end{itemize}
+The cause, read in the library source (\texttt{libmp/libmpi.py}), is that the interval
+routines call the scalar exponential and logarithm with directed rounding, and those compute
+an approximation with a few guard bits and round \emph{that} in the requested direction. When
+the approximation lies on the wrong side of a representable number, so does the result. The
+routine for Euler's constant has the same design. In addition, \texttt{iv.nstr} prints
+endpoints rounded to nearest, so a printed ``upper bound'' can be below the endpoint; on
+$20{,}000$ random endpoints this happened $10{,}055$ times.
+
+The defect is below $10^{-27}$ in relative size per call and is far too small to change any
+digit reported here: the first versions of both certificates used the library functions,
+and replacing them left the logs of the second certificate unchanged and moved the bound of
+the first by less than $2\cdot10^{-12}$. The certificates were nevertheless changed so that
+they do not rest on that estimate. Both now use the following replacements, built from (B1) only.
+
+\emph{Exponential.} Write $x=2^kr$ with $|r|\le2^{-10}$; the inequality is asserted on the
+interval endpoints. Then $e^r\in\sum_{j<12}r^j/j!+[-\rho,\rho]$, where $\rho$ is a fixed bound
+for the Lagrange remainder $|r|^{12}e^{|r|}/12!$, namely $\rho=2^{-119}/12!$. The sum is
+evaluated by Horner's rule in
+interval arithmetic, and $e^x$ is obtained by $k$ interval squarings.
+
+\emph{Logarithm} (first certificate only). For a point $p>0$ let $y_0$ be any real number; the
+script takes the floating-point logarithm of $p$, which is a guess and is not trusted. Then
+$\ln p=y_0+\ln(1+d)$ with $d=p\,e^{-y_0}-1$ enclosed by the verified exponential, and
+$d-d^2\le\ln(1+d)\le d$ for $|d|\le1/2$; the script asserts $|d|\le2^{-20}$. An interval is
+treated endpoint by endpoint, since the logarithm is increasing. The inequality holds because
+$\ln(1+d)\le d$ always, $\ln(1+d)\ge d-d^2/2$ for $d\ge0$, and for $s=-d\in(0,1/2]$,
+$-\ln(1-s)=s+s^2/2+s^3/3+\dots\le s+(s^2/2)/(1-s)\le s+s^2$.
+
+\emph{Euler's constant} (first certificate only). With $H_n$ the $n$th harmonic number,
+$\gamma=H_n-\ln(n+\tfrac12)-S_n$ with $0\le S_n\le2/(45n^2)$, and the script takes $n=2^{16}$
+and sums $H_n$ in interval arithmetic. Indeed $c_k=H_k-\ln(k+\tfrac12)\to\gamma$, and with
+$y=1/(2k)$, $c_{k-1}-c_k=\ln\frac{1+y}{1-y}-2y=2\sum_{j\ge1}y^{2j+1}/(2j+1)$, which lies
+between $0$ and $(2y^3/3)/(1-y^2)\le(16/15)/(12k^3)$ for $k\ge2$; and
+$\sum_{k>n}k^{-3}\le1/(2n^2)$. The result is
+$\gamma\in[0.57721566490088,\ 0.57721566491124]$.
+
+In tests at $80$ bits against $600$-bit reference values, the verified exponential and
+logarithm showed no failure in $100{,}000$ points and $60{,}000$ wide intervals each. These
+tests are evidence that the replacements are implemented as described; their correctness is
+the argument above together with (B1).
+
+\subsection{Certificate I: the integer constant}\label{sec:certificates-I}
+
+\subsubsection*{The inequality}
+The functional $\Psi_0(K,B,\theta,u)$ is defined in Definition~\ref{def:iid-psi0}. Let $K=5$,
+$B=50$, $\theta=1.6712$, and let $u^\ast\in\R^{51}$ be the weight vector listed in
+Proposition~\ref{prop:iid-certificate}; it is stored as five-decimal numbers in
+\path{lemmaC/round3/firstmoment/w_K5_e10.json}. All inputs are exact rationals. The script
+\path{lemmaC/round3/final/certI/certify_rigorous.py} certifies the inequality of
+Proposition~\ref{prop:iid-certificate}:
+\begin{equation}\label{eq:certificates-psi0bound}
+\Psi_0(5,50,1.6712,u^\ast)\ \le\ -\frac{1162839537350571633950917}{2^{78}}\ \le\
+-3.84751328322 .
+\end{equation}
+Consequently $-\Psi_0/\theta\ge2.30224586$, and
+\begin{equation}\label{eq:certificates-exponents}
+\theta\beta+\Psi_0\le
+\begin{cases}
+-0.0037532832,&\beta=2.30,\\
+-0.0004108832,&\beta=2.302,\\
+-0.0000766432,&\beta=2.3022,\\
+-0.0000097952,&\beta=2.30224.
+\end{cases}
+\end{equation}
+The second line is the criterion \eqref{eq:iid-criterion} of
+Proposition~\ref{prop:iid-criterion} for $\beta=\betaint=2.302$, which gives
+Theorem~\ref{thm:iid}. The certified threshold is $-\Psi_0/\theta\ge2.30224586$; the criterion
+fails at $\beta=2.30225$.
+
+For the market, Theorem~\ref{thm:integer} needs the exponent to stay negative after an
+explicit error term $\mathrm{Err}$ is added, which accounts for the enlargement of the
+typical event in the comparison (Section~\ref{sec:transfer},
+Proposition~\ref{prop:transfer-interface}).
+The script \path{constants_rigorous.py} in the same folder takes the eight-decimal
+consequence $\Psi_0\le-3.84751328$ of \eqref{eq:certificates-psi0bound}, asserts it in exact
+rational arithmetic against the exported endpoint, and certifies
+\begin{equation}\label{eq:certificates-perturbed}
+\theta\beta+\Psi_0+\mathrm{Err}\le
+\begin{cases}
+-0.0005929830\quad(\mathrm{Err}\le0.0031602970),&\beta=2.30,\\
+-0.0001648848\quad(\mathrm{Err}\le0.0002459952),&\beta=2.302,
+\end{cases}
+\end{equation}
+for the two parameter rows of the error budget (in the script's names: $c'=14$,
+$\delta_1=10^{-5}$, $\delta_2=1/5000$, $\tau=1/200000$ for $\beta=2.30$, and $c'=17$,
+$\delta_1=10^{-6}$, $\delta_2=1/50000$, $\tau=1/4000000$ for $\beta=2.302$).
+
+\subsubsection*{The scheme}
+Recall that $W=w_\infty+\sum_bD_bw_b$ with independent $D_b\sim\mathrm{Poisson}(\lambda_b)$,
+$w_b=e^{u_b}$ and $w_\infty=e^{u_\infty}$. The Poisson expectations are carried exactly by the
+Laplace transform
+\[
+\psi(t)=\E e^{-tW}=\exp\Bigl(-tw_\infty-\sum_b\lambda_b\bigl(1-e^{-tw_b}\bigr)\Bigr),
+\]
+so no truncation of the star size is needed. By Frullani's formula, with $\gamma$ Euler's
+constant,
+\begin{align*}
+\Phi(u)=\E\ln W&=-\gamma+\int_0^1\bigl(1-\psi(t)\bigr)\frac{\dd t}{t}
+-\int_1^\infty\psi(t)\frac{\dd t}{t},\\
+\rho_b(u)&=\int_0^\infty w_be^{-tw_b}\psi(t)\dd t,\qquad
+\eps_0(u)=\int_0^\infty w_\infty\psi(t)\dd t,
+\end{align*}
+and $\lambda_b$, $\kappa_b$, $J$ have closed forms. The functions $\psi$ and
+$e^{-tw_b}\psi$ are Laplace transforms of positive variables, hence convex and decreasing.
+The integrals are enclosed on a geometric mesh $t_0=2^{-27}$, $t_i=1.005\,t_{i-1}$ with
+$5{,}109$ cells, reaching $t\approx868$. On each cell a convex function lies between its
+tangent at the midpoint and its chord, which gives the midpoint and trapezoid rules as lower
+and upper bounds for the $\dd t$-integrals and the corresponding closed-form bounds for the
+$\dd t/t$-integrals. The head satisfies $0\le\int_0^{t_0}(1-\psi)\dd t/t\le t_0\,\E W$, and
+for $t\ge t_1$ (the last node) $\psi(t)\le\psi(t_1)e^{-(t-t_1)w_\infty}$, which bounds the
+tails; the mesh ends where these bounds are below $10^{-12}$. Finally,
+$r\mapsto(1-r)^3+Cr^3$ and $e\mapsto-3e+Ce^3$ are convex, so their maximum over an enclosing
+interval is at an endpoint, and the script takes the larger endpoint value.
+
+\subsubsection*{Interval arithmetic and floating point}
+Every quantity entering \eqref{eq:certificates-psi0bound}--\eqref{eq:certificates-perturbed}
+is computed in interval arithmetic at $80$ bits, with (B1), (B2) and the verified
+exponential, logarithm and Euler constant of Section~\ref{sec:certificates-defect}. The
+weights are parsed as exact decimals. Powers are written as products. Floating point occurs in
+three places, none of which affects validity: the mesh nodes are generated in floating point
+and then used as exact binary rationals (the script asserts that they increase); the guess
+$y_0$ in the verified logarithm; and the earlier search that produced the weights $u$, which
+is irrelevant because the theorem holds for every $u$. Printed bounds are produced from the
+exact binary endpoint by floor or ceiling at the stated number of decimals, and the
+inequality is asserted. The exact endpoint is exported as a rational, with the parameters and
+the SHA-256 hash of the weights file, to \path{psi0_export_w_K5_e10.json}; the second script
+reads it and checks the hash.
+
+\subsubsection*{Reproduction}
+From \path{lemmaC/round3/final/certI/}:
+{\footnotesize
+\begin{verbatim}
+python3 certify_rigorous.py ../../firstmoment/w_K5_e10.json 0.005   # 75 s
+python3 constants_rigorous.py                                       # 1 s
+python3 constants_rigorous.py --fresh                               # 80 s
+python3 test_defect_and_replacements.py 100000                      # 4 min
+\end{verbatim}}
+The first command should print, among other lines,
+{\footnotesize
+\begin{verbatim}
+Psi0 <= -3.84751328322   (8 decimals: Psi0 <= -3.84751328)
+beta_cert = -Psi0/theta >= 2.30224586119   (8 decimals: >= 2.30224586)
+  beta=2.302: theta*beta + Psi0 <= -0.0004108832  -> NEGATIVE (certified)
+\end{verbatim}}
+and the second, for $\beta=2.302$,
+{\footnotesize
+\begin{verbatim}
+   theta*beta+Psi0 <= -0.0004108799 (m >= 0.0004108799);
+   theta*beta+Psi0+Err <= -0.0001648848 (m - Err >= 0.0001648848)
+   -> NEGATIVE (certified)
+\end{verbatim}}
+(one line in the output; broken here). With \texttt{--fresh} the second script recomputes
+the endpoint in the same process instead of reading the export; both modes gave identical
+output. The last command reproduces the counts of Section~\ref{sec:certificates-defect}.
+
+\subsubsection*{Independent recomputations}
+\begin{itemize}
+\item A second certificate with other parameters ($K=5$, $B=20$, $\theta=1.6671$, weights
+\path{w_K5_e25.json}) gives $\Psi_0\le-3.83621828482$ and $-\Psi_0/\theta\ge2.30113267639$.
+\item A checking agent wrote its own interval enclosure and obtained $\beta\ge2.302028$, so
+that the exponent at $\beta=2.30$ is at most $-0.00339$. This is weaker than
+\eqref{eq:certificates-psi0bound} but independent. It still gives Theorem~\ref{thm:iid} with
+$\betaint=2.302$, and in the market it covers the row $\beta=2.30$ of
+\eqref{eq:certificates-perturbed} ($0.00339>0.0031603$) but not the row $\beta=2.302$.
+\item A second checking agent read \path{certify_rigorous.py} line by line, ran it again,
+and recomputed $\Psi_0=-3.847516394$ by two other methods (floating point).
+\item Two checking agents recomputed the perturbed exponent at $\beta=2.30$ in exact rational
+arithmetic and obtained at most $-0.0005929831$.
+\item A reader from a different model family ran the original certificate (before the
+replacements) and confirmed by direct interval comparison that $\Psi_0<-3.84751328$; it read
+the logic of the hardened scripts without running them.
+\item The original and the hardened scripts agree: the hardened bound is weaker by
+$1.94\cdot10^{-12}$, all of it from the wider enclosure of Euler's constant, which enters
+$\Psi_0$ with weight $3$.
+\end{itemize}
+Not done: a re-implementation in a different interval library.
+
+\subsection{Certificate II: the cost of the tree matching}\label{sec:certificates-II}
+
+\subsubsection*{The inequality}
+The mathematics of this step is in Section~\ref{subsec:existence-rounding}, and we use its
+notation: $\mathcal{Q}$ is the class of Definition~\ref{def:existence-Q}; for
+$Q\in\mathcal{Q}$, $g_Q(t)=\E(t+X'+X'')_+^3/6$ with $X'$, $X''$ independent copies of $Q(E)$;
+and $c(Q)=3\,\Gamma(Q)=3\bigl(\E\,\RDE(Q)(E)+2\,\E\,Q(E)\bigr)$ as in
+\eqref{eq:existence-Gamma}, so that $c(Q^*)=9\,\E X$ at a fixed point. Rounded laws are
+defined in Definition~\ref{def:existence-rounded}. The script
+\path{lemmaC/round3/cert/cert.py} certifies the statement of
+Proposition~\ref{prop:existence-certificate}: it produces rounded laws
+$\tilde Q_0=0,\tilde Q_1,\dots,\tilde Q_{10}$ such that, for $0\le n\le9$ and
+$g=g_{\tilde Q_n}$, the parameters $(\theta_i,\hat s_i)$ of $\tilde Q_{n+1}$ satisfy
+\begin{equation}\label{eq:certificates-onesided}
+\theta_i\le g(t_i),\qquad \hat s_i\ge g'(t_i)\qquad\text{at every mesh point } t_i,
+\end{equation}
+with $\theta_i$ strictly increasing and $\hat s_i$ nondecreasing, and it certifies
+\begin{equation}\label{eq:certificates-cost}
+c(\tilde Q_{10})\ \le\ 2.2519 .
+\end{equation}
+By Lemmas~\ref{lem:existence-rounding} and~\ref{lem:existence-chain}, the one-sided
+inequalities \eqref{eq:certificates-onesided} give $\tilde Q_n\disp Q^*$ for every fixed
+point $Q^*$, and then \eqref{eq:certificates-cost} gives $9\,\E X\le2.2519=\alphalp$, which
+is Theorem~\ref{thm:existence}(ii). Table~\ref{tab:certificates-stages} lists the bounds
+printed at all stages of the two recorded runs; only the last entry of run~B is used.
+
+\begin{table}[ht]
+\caption{Certified upper bounds on $c(\tilde Q_n)$, hence on the cost of every fixed
+point, as printed (run~A: $h=2^{-10}$, $4000$ levels; run~B: $h=2^{-12}$, $12000$ levels),
+and the exact iterates
+$c_n=c(\RDE^n(\delta_0))$ in floating point for comparison. The floating-point limit is
+$2.24954561$.}\label{tab:certificates-stages}
+\begin{tabular}{@{}rccc@{}}
+\toprule
+$n$ & run A & run B & $c_n$ (floating point) \\
+\midrule
+0 & 4.867956 & 4.867955 & 4.86795 \\
+1 & 3.417530 & 3.415996 & 3.41528213 \\
+2 & 2.665068 & 2.661760 & 2.66021540 \\
+3 & 2.404165 & 2.400021 & 2.39808802 \\
+4 & 2.308352 & 2.303815 & 2.30169894 \\
+5 & 2.274755 & 2.270053 & 2.26786005 \\
+6 & 2.262954 & 2.258185 & 2.25596056 \\
+7 & 2.258825 & 2.254029 & 2.25179199 \\
+8 & 2.257381 & 2.252574 & 2.25033206 \\
+9 & & 2.252065 & 2.24982093 \\
+10 & & 2.251887 & 2.24964199 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection*{The scheme}
+All bounds come from Lemma~\ref{lem:existence-enclosures}. Fix the lattice width $h=2^{-H}$
+($H=10$ in run~A, $H=12$ in run~B). For the current rounded law, with cell masses $p_k$,
+cell moments $D_k$ and chord weights $\nu_j$ as defined there:
+\begin{itemize}
+\item part (a) of the lemma, with termwise lower bounds
+$p^{\mathrm{lo}}$, $D^{\mathrm{lo}}$, gives lower bounds $\theta_i\le g(t_i)$ and
+$a_i\le g'(t_i)$ as sums over the lattice;
+\item part (b), with termwise upper bounds $\nu^{\mathrm{hi}}$, gives upper bounds
+$\hat s_i\ge g'(t_i)$;
+\item part (c) gives an upper bound on $\E\,\RDE(\tilde Q)(E)$ from the $\theta_i$ and
+$a_i$, and the exact formula for $\E\,\tilde Q(E)$ in terms of the cell integrals.
+\end{itemize}
+The script replaces $\hat s_i$ by the running maximum $\max_{k\le i}\hat s_k$, which keeps
+\eqref{eq:certificates-onesided} and makes the slopes monotone; in both runs this changed no
+entry. No tail estimate is needed: below $\theta_0$ the slope bound at $\theta_0$ is valid
+for all smaller levels, and above $\theta_N$ the rounded slope is $0$. Both one-sided bounds
+are of second order in $h$. The mesh points $t_i$ are multiples of $2^{-20}$, placed so that
+$g(t_i)$ is roughly log-spaced on $[10^{-6},32]$. The printed number at stage $n$ is the
+internal upper bound on $c(\tilde Q_n)$ rounded to nearest at six decimals
+(Remark~\ref{rem:certificates-digits}).
+
+\subsubsection*{Interval arithmetic and floating point}
+\begin{itemize}
+\item \emph{Interval arithmetic at $120$ bits} ((B1) and the verified exponential): everything
+about a rounded law (breakpoints, the order comparisons between breakpoints and lattice
+points, survival values, cell integrals, the mean) and the bound of
+Lemma~\ref{lem:existence-enclosures}(c) with the final combination. Double-precision numbers enter
+as exact rationals. An order comparison that the enclosures do not decide stops the program.
+Conversion from an interval to a double uses the neighbouring double in the safe direction
+and is asserted exactly.
+\item \emph{Double precision with a proved error bound} ((B3)): the convolutions and the sums
+of Lemma~\ref{lem:existence-enclosures}(a),(b). Every such quantity
+is a sum of at most $2^{17}$ products of nonnegative numbers; the arguments $t_i+mh$ are exact
+because both terms are multiples of $2^{-20}$ of size below $32$ (asserted); each term
+involves at most three rounded multiplications. For such a sum, evaluated in any order and
+with or without fused multiply-add,
+$|\text{computed}-\text{exact}|\le((1+2^{-53})^{n+3}-1)\cdot\text{exact}+n\eta$ with
+$n\le2^{17}$ terms and $\eta\le2^{-1022}$ for underflow. The relative error is below
+$3\cdot10^{-11}$ and the absolute part below $3\cdot10^{-303}$. Every lower bound is
+multiplied by $1-10^{-9}$ and reduced by $10^{-290}$ (and clamped at $0$); every upper bound
+is multiplied by $1+10^{-9}$ and increased by $10^{-290}$. The margin also covers the
+rounding of these adjustments and of the divisions by $2$ and $6$.
+\item \emph{Plain floating point}: only the choice of the mesh points $t_i$, which has no
+effect on validity, since Lemmas~\ref{lem:existence-rounding}
+and~\ref{lem:existence-enclosures} hold for any mesh.
+\end{itemize}
+
+\begin{remark}[The quoted digits]\label{rem:certificates-digits}
+The script prints its final bound with a round-to-nearest format, so the last printed digit
+of $2.251887$ is not itself certified. Any internal bound that prints as $2.251887$ is below
+$2.2518875$, and the bound quoted in this paper is $2.2519$. Three improvements are owed and
+have not been made: asserting the internal bound against an exact rational, as in
+Certificate~I; making the script refuse lattice parameters other than the two for which the
+exactness argument above is written ($h=2^{-10}$ and $h=2^{-12}$); and saving the stage
+parameters of run~B with the script's own output (regenerated copies are in
+\path{lemmaC/round3/v10/}). \todo{make these three changes to cert.py and re-run}
+\end{remark}
+
+\subsubsection*{Reproduction}
+From \path{lemmaC/round3/cert/}:
+{\footnotesize
+\begin{verbatim}
+python3 cert.py 10 1500 2500 8 stages/A   # run A, under 1 min
+python3 cert.py 12 4000 8000 10           # run B, about 4 min
+python3 check_float.py stages/A 8         # 7 s
+python3 test_small.py 4                   # 5 s
+python3 test_rexp.py                      # 15 s
+\end{verbatim}}
+The arguments of \texttt{cert.py} are $H$, two mesh sizes, the number of stages and an
+optional prefix for saving the stage parameters. Run~A should end with a line containing
+{\footnotesize
+\begin{verbatim}
+stage 8: ... CERTIFIED c* <= 3*Gamma(Q~_8) <= 2.257381
+\end{verbatim}}
+and run~B with
+{\footnotesize
+\begin{verbatim}
+stage 10: ... CERTIFIED c* <= 3*Gamma(Q~_10) <= 2.251887
+\end{verbatim}}
+The logs of the recorded runs are \path{run_A_h10.log} and \path{run_B_h12.log}. The mesh
+choice is deterministic but may differ between builds of the linear-algebra library; any mesh
+is valid, and the parameters of run~A are saved in \path{stages/}.
+
+\subsubsection*{Independent recomputations}
+\begin{itemize}
+\item A checking agent wrote its own code, recomputed $g$ and $g'$ at all $4{,}000$ points of
+all transitions of run~A (finding $\theta_i$ below $g$ and $\hat s_i$ above $g'$ everywhere),
+obtained $c=2.25188597$ for the last law of run~B, and reproduced both runs.
+\item A second checking agent computed the exact iterates $c_1,\dots,c_{10}$ with its own
+code, in agreement with the values of Table~\ref{tab:certificates-stages} to all digits
+shown, and reproduced both certificate runs digit for digit.
+\item The script \path{check_float.py} is an independent code path in plain floating point
+(cells of width $0.0007$ that are not dyadic, mass at cell midpoints, convolution by fast
+Fourier transform, trapezoid rule). On the saved laws of run~A it gives
+$c(\tilde Q_n)=4.867955$, $3.417527$, $2.665064$, $2.404162$, $2.308348$, $2.274751$,
+$2.262951$, $2.258822$, $2.257377$ for $n=0,\dots,8$; the certified bounds exceed these by at
+most $4\cdot10^{-6}$, and the certified parameters lie on the safe side of the floating-point
+values at every mesh point.
+\item The script \path{test_small.py} compares the bounds of
+Lemma~\ref{lem:existence-enclosures}(a),(b) with tensor
+Gauss--Legendre quadrature of the exact law on a $20$-piece example for $h=1/8$, $1/16$,
+$1/32$: they are one-sided as required and of second order in $h$.
+\item The certified values exceed the exact iterates $c_n$ at every stage, by $0.0007$ to
+$0.0022$ in run~B, and the loss shrinks with the mesh, as expected of a rounding that only
+loses dispersion. The final bound is $0.0023$ above the floating-point limit $2.24954561$ and
+$0.050$ below $\betaint$.
+\item A reader from a different model family audited the source of the script without
+running it and found the enclosure scheme sound for both runs; the remark on the quoted
+digits and the restriction on lattice parameters come from that audit.
+\end{itemize}
+An earlier version of the script used \texttt{iv.exp}; its logs are identical to those of the
+present version.

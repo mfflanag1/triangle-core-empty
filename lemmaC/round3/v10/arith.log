@@ -1,0 +1,7 @@
+1. rexp: 0 failures in 6000 point/interval arguments (incl. 20 specials)
+2. iv + - * / : 0 failures in 77497 interval operations; iv.mpf(float) exact: True
+3. stage-5 lattice (9825 cells): max(p_lo - p) = 0.0, max(D_lo - D) = 0.0, max(nu - nu_hi) = 0.0 (all must be <= 0); largest relative slack 4.4e-16 4.4e-16 2.2e-16
+   atom: p_lo - atom = -1.78e-30 (<= 0), nu_hi[0] - J_{-1} = 3.89e-31 (>= 0); E X: certified upper -4.741062882326110, mine -4.74106288232611141, diff 1.13e-15 (>= 0)
+4a. convolutions: 0 wrong-side results in 31 entries x 3; largest observed relative float error 8.40e-15 (bound used: 3e-11, deflation 1e-9)
+    stage-6 parameters reproduced from the stage-5 law: theta True, shat True
+4b. sums at 20 mesh points (exact rationals): 0 wrong-side results; smallest relative safety margins: g_lo 2.000e-09, g'_lo 2.000e-09, g'_hi 2.000e-09 (designed: about 2e-9, 2e-9, 2e-9)

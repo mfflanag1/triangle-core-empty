@@ -1,0 +1,10 @@
+/Users/maxf/miniforge3/bin/python3 sim.py 16 6 3000 0 0 1 lp.jsonl
+/Users/maxf/miniforge3/bin/python3 sim.py 32 6 2000 0 0 1 lp.jsonl
+/Users/maxf/miniforge3/bin/python3 sim.py 64 6 1000 0 0 1 lp.jsonl
+/Users/maxf/miniforge3/bin/python3 sim.py 128 6 400 0 0 1 lp.jsonl
+/Users/maxf/miniforge3/bin/python3 sim.py 256 6 200 0 0 1 lp.jsonl
+/Users/maxf/miniforge3/bin/python3 sim.py 64 8 200 0 0 1 lp.jsonl
+/Users/maxf/miniforge3/bin/python3 sim.py 256 8 40 0 0 1 lp.jsonl
+/Users/maxf/miniforge3/bin/python3 sim.py 512 6 60 0 0 1 lp.jsonl
+/Users/maxf/miniforge3/bin/python3 sim.py 1024 6 16 0 0 1 lp.jsonl
+/Users/maxf/miniforge3/bin/python3 sim.py 2048 6 4 0 0 1 lp.jsonl

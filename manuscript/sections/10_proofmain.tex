@@ -1,0 +1,137 @@
+\section{Proof of the main theorem}\label{sec:proofmain}
+
+Theorem~\ref{thm:main} follows from five results proved above: the variance bound
+(Theorem~\ref{thm:variance}), the integer lower bound (Theorem~\ref{thm:integer}), the tree
+bound for the fractional optimum (Theorem~\ref{thm:lp}), the tree process
+(Theorem~\ref{thm:process}) and the existence and cost of a fixed point
+(Theorem~\ref{thm:existence}). The section ends with a consequence of
+Theorems~\ref{thm:integer} and~\ref{thm:lp} for the tree itself.
+
+\subsection{The derivation}\label{sec:proofmain-derivation}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+\emph{The fractional deficit.} By Theorem~\ref{thm:existence} the map $\RDE$ has a fixed
+point $\mu$, and $9\,\E X\le\alphalp$ for $X\sim\mu$. By Theorem~\ref{thm:process} there is
+an invariant perfect matching $m$ on $\tree$ with cost $c(m)=9\,\E X\le\alphalp$. By
+Theorem~\ref{thm:lp},
+\[
+\E\PhiLP\le(\alphalp+o(1))\,q^{1/3}.
+\]
+
+\emph{The integer deficit.} By Theorem~\ref{thm:integer},
+$\P(\Phiq\ge\betaint q^{1/3})\to1$. Since $\Phiq\ge0$,
+\[
+\E\Phiq\ \ge\ \betaint\,q^{1/3}\,\P\bigl(\Phiq\ge\betaint q^{1/3}\bigr)
+=(\betaint-o(1))\,q^{1/3}.
+\]
+
+\emph{Part \textup{(i)}.} By \eqref{eq:model-gap}, $\Dq=\Phiq-\PhiLP$, so
+\[
+\E\Dq=\E\Phiq-\E\PhiLP\ \ge\ (\betaint-\alphalp-o(1))\,q^{1/3},
+\]
+and $\betaint-\alphalp=2.302-2.2519=0.0501$. In particular $\E\Dq\to\infty$.
+
+\emph{Part \textup{(ii)}.} By Theorem~\ref{thm:variance}(ii) with $\eps=1/12$, $\Var\Dq$ is
+bounded for large $q$ (it is $O(q^{-1/12})$). Fix $t>0$. By Chebyshev's inequality and
+part~(i),
+\[
+\P\bigl(|\Dq-\E\Dq|>t\,\E\Dq\bigr)\le\frac{\Var\Dq}{t^2(\E\Dq)^2}\longrightarrow0
+\qquad(q\to\infty).
+\]
+This holds for every fixed $t>0$, which is the statement $\Dq/\E\Dq\to1$ in probability.
+
+\emph{Part \textup{(iii)}.} By Proposition~\ref{prop:model-core} the core is nonempty
+exactly when $\Dq=0$. For large $q$ we have $\E\Dq>0$, and then the event $\{\Dq=0\}$ is
+contained in $\{|\Dq-\E\Dq|>\tfrac12\E\Dq\}$. Take $t=1/2$ in part~(ii).
+\end{proof}
+
+The argument gives $\P(\Dq=0)\le4\Var\Dq/(\E\Dq)^2=O(q^{-5/6+\eps})$ for every $\eps>0$, by
+Theorem~\ref{thm:variance}(ii) and part~(i); compare Corollary~\ref{cor:variance-core}. The
+implied constants and thresholds are those of Theorems~\ref{thm:variance},
+\ref{thm:integer} and~\ref{thm:lp}, and none of them is effective at any size that can be
+simulated.
+
+\subsection{The matching is not a function of the tree}\label{sec:proofmain-endogeny}
+
+The proof of Theorem~\ref{thm:lp} transfers to the market only the conditional expectation
+of the matching given the tree and its costs, and for that reason it bounds $\PhiLP$ and
+not $\Phiq$. If the matching were a function of the tree, the same construction would
+produce assignments, and Theorem~\ref{thm:integer} forbids this at cost below $\betaint$.
+
+\begin{corollary}\label{cor:proofmain-endogeny}
+Let $m$ be an invariant perfect matching on $\tree$ with $c(m)<\betaint$. Then $m$ is not a
+measurable function of the marked tree: with $\ell_1,\ell_2,\dots$ the teams at the root in
+increasing order of cost, there are no measurable functions $h_j$ with values in $\{0,1\}$
+such that $m_{\ell_j}=h_j(\tree,o,\xi)$ almost surely for every $j$. In particular the
+invariant perfect matching of Theorem~\ref{thm:process} built from a fixed point of $\RDE$,
+whose cost is at most $\alphalp<\betaint$ by Theorem~\ref{thm:existence}, uses randomness
+beyond the tree and its costs.
+\end{corollary}
+
+\begin{proof}
+Suppose that $m_{\ell_j}=h_j(\tree,o,\xi)$ almost surely with measurable $h_j$ with values in
+$\{0,1\}$, and that $c(m)<\infty$. We show $c(m)\ge\betaint$. We use the notation of
+Section~\ref{sec:lp}; the functions $h_j$ may be taken as the functions of
+Section~\ref{sec:lp-conditional}, since $\E[m_{\ell_j}\mid\tree,o,\xi]=h_j$.
+
+\emph{A thresholded rule.} Let $g_r$ be the rule of Lemma~\ref{lem:lp-condrule} and put
+\[
+\tilde g_{r,j}=\ind\{g_{r,j}>\tfrac12\},\qquad j\ge1 .
+\]
+Since $\sum_jg_{r,j}\le1$, at most one $\tilde g_{r,j}(B)$ equals $1$ for each ball $B$, and
+$\tilde g_{r,j}$ vanishes where $g_{r,j}$ does. So $\tilde g_r$ is a rule of range $r$ at
+level $r$ in the sense of Definition~\ref{def:lp-rule}, with values in $\{0,1\}$, and the
+weights $x^{\tilde g_r}$ of \eqref{eq:lp-minpacking} take values in $\{0,1\}$: a team is
+kept when its conditional probability exceeds $1/2$ from the point of view of each of its
+three agents.
+
+\emph{On the tree.} Write $G_{r,j}=g_{r,j}(B_r(\tree_r,o))$ and
+$\tilde G_{r,j}=\ind\{G_{r,j}>\tfrac12\}$. Almost surely exactly one $h_j$ equals $1$; let
+$J$ be its index, so that $\cost_{\ell_J}$ is the cost of the team of the root in $m$ and
+$\E\,\cost_{\ell_J}=c(m)$. By Lemma~\ref{lem:lp-condrule}(b), $G_{r,J}\to h_J=1$ almost
+surely. So almost surely, for all large $r$, $\tilde G_{r,J}=1$, hence $\tilde G_{r,j}=0$
+for $j\ne J$, that is, $\tilde G_{r,j}=h_j$ for every $j$. Two consequences follow.
+
+First, by Lemma~\ref{lem:lp-tree},
+\[
+\tilde\eps_r:=\E\,S^{\tilde g_r}\bigl(B_{r+1}(\tree_r,o)\bigr)
+\le3\,\E\sum_{j\ge1}\bigl(h_j-\tilde G_{r,j}\bigr)_+\longrightarrow0,
+\]
+by bounded convergence: the sum is at most $1$ and vanishes for large $r$.
+
+Secondly, by Lemma~\ref{lem:lp-tree},
+$\tilde c_r:=\E\,C^{\tilde g_r}(B_{r+1}(\tree_r,o))\le\E\,Y_r$ with
+$Y_r=\sum_j\cost_{\ell_j}\tilde G_{r,j}$, and $Y_r=\cost_{\ell_J}$ for all large $r$, almost
+surely. Moreover $\tilde G_{r,j}\le2G_{r,j}$, and by \eqref{eq:lp-condrule}, since
+$\cost_{\ell_j}\ind\{\cost_{\ell_j}\le r\}$ is nonnegative and $\mathcal F_r$-measurable,
+\[
+Y_r\le2\sum_{j\ge1}\cost_{\ell_j}G_{r,j}
+=2\,\E\Bigl[\sum_{j\ge1}\cost_{\ell_j}\ind\{\cost_{\ell_j}\le r\}\,m_{\ell_j}\Bigm|
+\mathcal F_r\Bigr]\le2\,\E\bigl[\cost_{\ell_J}\bigm|\mathcal F_r\bigr].
+\]
+The conditional expectations of the integrable variable $\cost_{\ell_J}$ form a uniformly
+integrable family. Hence $(Y_r)_r$ is uniformly integrable, and
+$\E\,Y_r\to\E\,\cost_{\ell_J}=c(m)$. So $\limsup_r\tilde c_r\le c(m)$.
+
+\emph{In the market.} Fix $r\ge1$, $\eta\in(0,1)$ and $q\ge r^{3/2}$, and repeat the proof
+of Theorem~\ref{thm:lp} with the rule $\tilde g_r$ in place of $g_r$. The vector
+$x=x^{\tilde g_r}$, computed in the market $u$, takes values in $\{0,1\}$, so the last
+statement of Lemma~\ref{lem:lp-patch} applies, and with Lemma~\ref{lem:lp-market} it gives
+\[
+\frac{\E\Phiq}{q^{1/3}}\le\frac{\tilde c_r+r\,\eps_1(q,r,r+1)}{1-\eta}
++\frac{C_0}{\eta}\bigl(\tilde\eps_r+\eps_1(q,r,r+1)\bigr)^{1/3}.
+\]
+Let $q\to\infty$, then $r\to\infty$, then $\eta\to0$:
+$\limsup_q\E\Phiq/q^{1/3}\le c(m)$.
+
+\emph{Conclusion.} By Theorem~\ref{thm:integer} and $\Phiq\ge0$, as in the proof of
+Theorem~\ref{thm:main}, $\liminf_q\E\Phiq/q^{1/3}\ge\betaint$. Hence $c(m)\ge\betaint$.
+\end{proof}
+
+\begin{remark}\label{rem:proofmain-endogeny}
+The matching of Theorem~\ref{thm:process} is a function of the tree, the costs and a family
+of messages that solve the recursion on the tree (Remark~\ref{rem:tree-factor}). By
+Corollary~\ref{cor:proofmain-endogeny} the messages cannot all be measurable functions of
+the marked tree: in the usual terminology, the recursive tree process attached to a fixed
+point of $\RDE$ is not endogenous. No statement in this paper relies on endogeny.
+\end{remark}

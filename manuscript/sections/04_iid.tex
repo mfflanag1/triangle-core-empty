@@ -1,0 +1,993 @@
+\section{The integer optimum in the independent-team model}\label{sec:iid}
+
+This section treats the independent-team model, in which the $q^3$ teams have independent
+deficits, each with the law of a sum of three independent $U[0,1]$ variables. It is the
+market of Section~\ref{sec:model} with the dependence between teams that share a pair
+removed; Section~\ref{sec:transfer} carries the conclusion back to the market.
+
+\begin{theorem}\label{thm:iid}
+In the independent-team model, with probability tending to $1$ as $q\to\infty$, every
+perfect assignment has deficit at least $\betaint\,q^{1/3}$, where $\betaint=2.302$.
+\end{theorem}
+
+The proof is a first-moment computation for the number of perfect assignments of small
+deficit, carried out conditionally on the stars of the agents (the numbers of cheap teams
+at each agent, recorded in bins of cost). The steps are: an exact formula for the conditional first moment in a
+configuration model (Subsection~\ref{subsec:iid-firstmoment}); exponential bounds and the
+passage to a limit functional on typical stars (Subsection~\ref{subsec:iid-exponent}); a
+concavity property of that functional, which bounds its supremum by its value on a tangent
+(Subsection~\ref{subsec:iid-concave}); and the evaluation of one explicit number in
+interval arithmetic (Subsection~\ref{subsec:iid-proof}). The analytic part is stated as a
+criterion, Proposition~\ref{prop:iid-criterion}, valid for every choice of the parameters;
+the computer-assisted part is Proposition~\ref{prop:iid-certificate}.
+
+\subsection{The model, the parameters and the criterion}\label{subsec:iid-model}
+
+\subsubsection*{The model}
+In this section the three sectors are written $V_1,V_2,V_3$; each has $q$ agents. A team is
+a triple $e\in V_1\times V_2\times V_3$. The $q^3$ team deficits $\Defi(e)$ are
+independent, and each is distributed as $U+U'+U''$ with $U,U',U''$ independent and uniform
+on $[0,1]$. Two facts about the density $f$ of $\Defi(e)$ are used, and nothing else about
+the one-team law:
+\begin{align}
+f(t)&=\tfrac12 t^2\quad\text{for }0\le t\le 1, \tag{F1}\label{eq:iid-F1}\\
+f(t)&\le\tfrac12 t^2\quad\text{for all }t\ge 0. \tag{F2}\label{eq:iid-F2}
+\end{align}
+Indeed $2f(t)=t^2-3(t-1)^2\le t^2$ on $[1,2]$, $2f(t)=(3-t)^2\le1\le t^2$ on $[2,3]$, and
+$f=0$ on $(3,\infty)$.
+
+As in Section~\ref{sec:model}, the rescaled cost of a team is $\cost_e=q^{2/3}\Defi(e)$.
+For a perfect assignment $N$ (a set of $q$ pairwise disjoint teams) put
+$\cost(N)=\sum_{e\in N}\cost_e$. The deficit of $N$ is $q^{-2/3}\cost(N)$, so $N$ has
+deficit below $\beta q^{1/3}$ if and only if $\cost(N)<\beta q$. For $\beta\in\R$ let
+\[
+Z_\beta=\#\{N:\ N\text{ a perfect assignment with }\cost(N)<\beta q\}.
+\]
+Recall $\Lam(\mathrm{d}x)=\tfrac12x^2\,\mathrm{d}x$. By \eqref{eq:iid-F1}, for every interval
+$I\subset[0,q^{2/3}]$,
+\begin{equation}\label{eq:iid-binprob}
+\P(\cost_e\in I)=\Lam(I)/q^2 .
+\end{equation}
+Each agent lies in $q^2$ teams, so the number of teams at a given agent with cost in $I$ is
+Binomial$(q^2,\Lam(I)/q^2)$, which converges to Poisson$(\Lam(I))$. This is the origin of
+the reference star below.
+
+\subsubsection*{Parameters}
+Fix a truncation level $K>0$, a number of bins $B\ge1$, and a tilt $\theta>0$. Put
+$\eta=K/B$ and $I_b=((b-1)\eta,b\eta]$ for $1\le b\le B$. A team $e$ is \emph{low of bin
+$b$} if $\cost_e\in I_b$, and \emph{high} if $\cost_e>K$ (the event $\cost_e=0$ has
+probability zero and is ignored). Put
+\[
+\lambda_b=\Lam(I_b)=\frac{\eta^3(3b^2-3b+1)}{6},\qquad
+\sum_{b=1}^B\lambda_b=\frac{K^3}{6},\qquad
+\lambda_{\max}=\max_b\lambda_b=\lambda_B,
+\]
+\[
+\kappa_b=\int_{I_b}\mathrm{e}^{-\theta x}\,\tfrac12x^2\dd x,\qquad
+J=\int_K^\infty \mathrm{e}^{-\theta x}\,\tfrac12x^2\dd x
+ =\mathrm{e}^{-\theta K}\Bigl(\frac{K^2}{2\theta}+\frac{K}{\theta^2}+\frac1{\theta^3}\Bigr).
+\]
+Vectors in $\R^{B+1}$ have coordinates indexed by $1,\dots,B,\infty$; for $x,y\in\R^{B+1}$
+write $\langle x,y\rangle=\sum_{b}x_by_b+x_\infty y_\infty$. The symbol $\ind$ also denotes
+the vector $(1,\dots,1)\in\R^{B+1}$. A \emph{weight vector} is any
+$u=(u_1,\dots,u_B,u_\infty)\in\R^{B+1}$; put $w_b=\mathrm{e}^{u_b}$ and
+$w_\infty=\mathrm{e}^{u_\infty}$. The \emph{reference star} is a random vector
+$D=(D_1,\dots,D_B)$ with independent coordinates, $D_b\sim$ Poisson$(\lambda_b)$; its law
+on $\N^B$ is denoted $\gamma$. Put
+\[
+W=W(u)=w_\infty+\sum_{b=1}^BD_bw_b .
+\]
+Since $w_\infty\le W\le w_\infty+|D|\max_bw_b$, where $|d|=\sum_bd_b$, the variable $\ln W$
+has finite moments of all orders.
+
+\begin{definition}\label{def:iid-psi0}
+For $u\in\R^{B+1}$ put
+\[
+\Phi(u)=\E\ln W,\qquad
+\rho_b(u)=\E\Bigl[\frac{w_b}{W+w_b}\Bigr]\ (1\le b\le B),\qquad
+\eps_0(u)=\E\Bigl[\frac{w_\infty}{W}\Bigr],
+\]
+\[
+C_b(u)=\mathrm{e}^{-3u_b}\,\frac{\kappa_b}{\lambda_b},\qquad
+C_\infty(u)=\mathrm{e}^{-3u_\infty}J,
+\]
+and
+\begin{equation}\label{eq:iid-psi0}
+\Psi_0(K,B,\theta,u)=3\,\Phi(u)+\sum_{b=1}^B\lambda_b\ln\bigl((1-\rho_b)^3+C_b\rho_b^3\bigr)
+ -3\,\eps_0+C_\infty\eps_0^3 ,
+\end{equation}
+with $\rho_b=\rho_b(u)$, $\eps_0=\eps_0(u)$, $C_b=C_b(u)$, $C_\infty=C_\infty(u)$.
+\end{definition}
+
+\begin{proposition}[The criterion]\label{prop:iid-criterion}
+Let $K>0$, $B\ge1$, $\theta>0$, $u\in\R^{B+1}$ and $\beta\in\R$ satisfy
+\begin{equation}\label{eq:iid-criterion}
+\theta\beta+\Psi_0(K,B,\theta,u)<0 .
+\end{equation}
+Then, in the independent-team model, $\P(Z_\beta\ge1)\to0$ as $q\to\infty$: with
+probability tending to $1$ every perfect assignment has deficit at least $\beta q^{1/3}$.
+More precisely, there are $\delta>0$ and $c>0$, depending only on $(K,B,\theta,u,\beta)$,
+such that for all large $q$
+\[
+\P(Z_\beta\ge1)\le\P\bigl(D(G)\notin\mathcal{T}_\delta\bigr)+\mathrm{e}^{-cq},
+\qquad \P\bigl(D(G)\notin\mathcal{T}_\delta\bigr)\to0,
+\]
+where $D(G)$ is the array of binned stars defined in
+Subsection~\ref{subsec:iid-firstmoment} and $\mathcal{T}_\delta$ is the set of typical
+arrays defined in \eqref{eq:iid-typical}. No rate is tracked for the first term.
+\end{proposition}
+
+The proof occupies Subsections~\ref{subsec:iid-firstmoment}--\ref{subsec:iid-concave} and
+is concluded in Subsection~\ref{subsec:iid-proof}. The following statement is the only
+computer-assisted step of this section.
+
+\begin{proposition}[What the computation certifies]\label{prop:iid-certificate}
+Let $K=5$, $B=50$ (so $\eta=1/10$), $\theta=1.6712$, and let $u^\ast\in\R^{51}$ be the
+vector whose coordinates $u^\ast_1,\dots,u^\ast_{50}$ are, in this order,
+\begin{quote}\small\raggedright
+$0.71406$, $0.58839$, $0.44812$, $0.30536$, $0.16226$, $0.01936$, $-0.12321$,
+$-0.26544$, $-0.40739$, $-0.54916$, $-0.69086$, $-0.83260$, $-0.97452$, $-1.11672$,
+$-1.25934$, $-1.40250$, $-1.54629$, $-1.69084$, $-1.83624$, $-1.98257$, $-2.12991$,
+$-2.27832$, $-2.42785$, $-2.57854$, $-2.73041$, $-2.88345$, $-3.03766$, $-3.19302$,
+$-3.34949$, $-3.50701$, $-3.66554$, $-3.82501$, $-3.98535$, $-4.14649$, $-4.30837$,
+$-4.47092$, $-4.63405$, $-4.79770$, $-4.96183$, $-5.12636$, $-5.29125$, $-5.45647$,
+$-5.62197$, $-5.78770$, $-5.95361$, $-6.11975$, $-6.28597$, $-6.45224$, $-6.61880$,
+$-6.78546$
+\end{quote}
+and $u^\ast_\infty=-4.61708$. Then
+\begin{equation}\label{eq:iid-psi0-certified}
+\Psi_0(5,50,1.6712,u^\ast)\le-3.84751328322 .
+\end{equation}
+Consequently $\Psi_0\le-3.84751328$, $-\Psi_0/\theta\ge2.30224586$, and
+$\theta\beta+\Psi_0\le-0.0004108832$ for $\beta=2.302$.
+\end{proposition}
+
+\begin{proof}
+Inequality \eqref{eq:iid-psi0-certified} is the output of the interval-arithmetic script
+\begin{center}
+\texttt{lemmaC/round3/final/certI/certify\_rigorous.py}
+\end{center}
+run on the weights file \texttt{lemmaC/round3/firstmoment/w\_K5\_e10.json} (paths
+relative to the lane folder) with mesh parameter $0.005$. The script
+encloses $\Phi(u^\ast)$, the $\rho_b(u^\ast)$ and $\eps_0(u^\ast)$ by quadrature of convex
+integrands with rigorous error bounds, evaluates \eqref{eq:iid-psi0} in outward-rounded
+arithmetic, and returns the upper endpoint of its enclosure of $\Psi_0$ as an exact binary
+rational,
+\[
+-\,\frac{1162839537350571633950917}{2^{78}}\ \le\ -3.84751328322 .
+\]
+How the enclosures are obtained, and what is trusted, is described in
+Section~\ref{sec:certificates}. The remaining statements follow by exact arithmetic:
+\begin{align*}
+1.6712\times2.30224586&=3.847513281232\le3.84751328322,\\
+1.6712\times2.302-3.84751328322&=-0.00041088322 .\qedhere
+\end{align*}
+\end{proof}
+
+Note that the bound $-\Psi_0/\theta\ge2.30224586$ uses the eleven-decimal form
+\eqref{eq:iid-psi0-certified}; the eight-decimal form $\Psi_0\le-3.84751328$ alone gives
+only $-\Psi_0/\theta\ge2.30224585$.
+
+\begin{proof}[Proof of Theorem~\ref{thm:iid}, given
+Propositions~\ref{prop:iid-criterion} and~\ref{prop:iid-certificate}]
+By Proposition~\ref{prop:iid-certificate}, condition \eqref{eq:iid-criterion} holds for
+$K=5$, $B=50$, $\theta=1.6712$, $u=u^\ast$ and $\beta=\betaint=2.302$. By
+Proposition~\ref{prop:iid-criterion}, $\P(Z_{\betaint}\ge1)\to0$. On the event
+$\{Z_{\betaint}=0\}$ every perfect assignment $N$ has $\cost(N)\ge\betaint q$, that is,
+deficit at least $\betaint q^{1/3}$.
+\end{proof}
+
+\begin{remark}\label{rem:iid-values}
+The same argument gives the conclusion of Theorem~\ref{thm:iid} for every
+$\beta<-\Psi_0/\theta$, and so for every $\beta\le2.30224586$. A second run of the same
+script (weights file \texttt{lemmaC/\allowbreak round3/\allowbreak firstmoment/\allowbreak
+w\_K5\_e25.json}: $K=5$, $B=20$, $\theta=1.6671$) certifies $\Psi_0\le-3.83621828$ and $-\Psi_0/\theta\ge2.30113267$; it is
+not used. In floating point, the largest value of $-\Psi_0/\theta$ found over $\theta$ and $u$ at $K=5$
+is about $2.30114$ for $B=20$ and $2.30225$ for $B=50$, and the corresponding continuum
+variational problem has value about $2.30246$ at $K=5$ and $2.30248$ without truncation.
+These floating-point values are not used in any proof; they suggest, without proving it,
+that the method does not give a constant above about $2.30248$.
+\end{remark}
+
+\begin{remark}\label{rem:iid-laws}
+The proof of Proposition~\ref{prop:iid-criterion} uses only \eqref{eq:iid-F1},
+\eqref{eq:iid-F2} and the independence of the teams.
+\end{remark}
+
+\subsection{The conditional first moment}\label{subsec:iid-firstmoment}
+
+Throughout this subsection and the next, $K$, $B$, $\theta$ and $\beta$ are fixed and
+$q^{2/3}\ge K$. Put
+\[
+p_b=\frac{\lambda_b}{q^2}\quad(1\le b\le B),\qquad p=\sum_{b=1}^Bp_b=\frac{K^3}{6q^2}.
+\]
+By \eqref{eq:iid-binprob}, $p_b=\P(\cost_e\in I_b)$ and $1-p=\P(\cost_e>K)$; moreover
+$p\le1/6$ because $q^2\ge K^3$.
+
+\subsubsection*{Tilting, and the split into low and high teams}
+Let $G$ be the \emph{labelled low hypergraph}: the set of pairs $(e,b)$ with
+$\cost_e\in I_b$. It is the hypergraph of teams of cost at most $K$, each marked by the bin
+of its cost. Write $e\in G$ if $e$ is low, and $b(e)$ for its bin. Conditionally on $G$ the
+costs are independent. By \eqref{eq:iid-F1} the density of $\cost_e$ is $x^2/(2q^2)$ on
+$[0,q^{2/3}]$, so a low team of bin $b$ has conditional density $x^2/(2\lambda_b)$ on
+$I_b$. A high team has conditional density $q^{-2/3}f(q^{-2/3}x)/(1-p)$ on $(K,\infty)$,
+which is at most $x^2/(2q^2(1-p))$ by \eqref{eq:iid-F2}. Hence
+\begin{equation}\label{eq:iid-laplace}
+\E\bigl[\mathrm{e}^{-\theta\cost_e}\,\big|\,G\bigr]=\frac{\kappa_b}{\lambda_b}
+\ \text{ if }(e,b)\in G,\qquad
+\E\bigl[\mathrm{e}^{-\theta\cost_e}\,\big|\,G\bigr]\le\frac{J}{q^2(1-p)}
+\ \text{ if $e$ is high.}
+\end{equation}
+Since $\ind\{\cost(N)<\beta q\}\le\exp(\theta(\beta q-\cost(N)))$, conditional independence
+and \eqref{eq:iid-laplace} give
+\begin{equation}\label{eq:iid-tilt}
+\E[Z_\beta\mid G]\le\mathrm{e}^{\theta\beta q}\sum_{N}\ \prod_{e\in N\cap G}
+\frac{\kappa_{b(e)}}{\lambda_{b(e)}}\cdot\Bigl(\frac{J}{q^2(1-p)}\Bigr)^{|N\setminus G|},
+\end{equation}
+the sum being over all perfect assignments $N$.
+
+A \emph{matching in $G$} is a set of pairwise disjoint low teams. A \emph{profile} is a
+vector $m=(m_1,\dots,m_B)\in\N^B$ with $|m|=\sum_bm_b\le q$; a matching has profile $m$ if
+it contains exactly $m_b$ teams of bin $b$ for every $b$. For a profile $m$ put
+$r=r(m)=q-|m|$, and let $Y_m(G)$ be the number of matchings in $G$ of profile $m$. There
+are at most $(q+1)^B$ profiles.
+
+Group the assignments in \eqref{eq:iid-tilt} according to the matching $N\cap G$. If
+$N\cap G$ has profile $m$, then $N\setminus G$ is a perfect assignment of the $r+r+r$
+agents not covered by $N\cap G$, and there are $(r!)^2$ perfect assignments of these
+agents. Dropping the requirement that the teams of $N\setminus G$ be high (a union bound
+over the teams above $K$) gives
+\begin{equation}\label{eq:iid-cond}
+\E[Z_\beta\mid G]\le\mathrm{e}^{\theta\beta q}\sum_{m}Y_m(G)\,
+\prod_{b=1}^B\Bigl(\frac{\kappa_b}{\lambda_b}\Bigr)^{m_b}\,(r!)^2
+\Bigl(\frac{J}{q^2(1-p)}\Bigr)^{r},
+\end{equation}
+the sum being over all profiles. An agent not covered by the matching is said to take the
+\emph{high option}. The high option cannot be omitted: an agent whose star is empty below
+$K$ is covered by no low team, and every perfect assignment uses a high team at it.
+
+\subsubsection*{Degree arrays and the configuration model}
+A \emph{degree array} is an array $D=(D^s_{v,b})$ of nonnegative integers, indexed by
+$s\in\{1,2,3\}$, $v\in V_s$ and $1\le b\le B$, such that for every $b$ the column sum
+\[
+n_b=n_b(D)=\sum_{v\in V_s}D^s_{v,b}
+\]
+is the same for $s=1,2,3$. Put $n=\sum_bn_b$ and $D^s=(D^s_{v,b})_{v\in V_s,\,b\le B}$.
+The degree array $D(G)$ of the labelled low hypergraph has $D^s_{v,b}(G)$ equal to the
+number of low teams of bin $b$ that contain the agent $v\in V_s$; its row
+$(D^s_{v,b}(G))_{b\le B}$ is the \emph{binned star} of $v$. For a degree array $D$ let
+$\mathcal{G}(D)$ be the set of labelled hypergraphs with degree array $D$: sets $g$ of
+pairs $(e,b)$, $e$ a team and $1\le b\le B$, in which no team occurs twice (neither twice
+with the same bin, which is automatic for a set, nor with two different bins), and with
+$D(g)=D$.
+
+\smallskip\noindent(a) The teams are independent, each is low of bin $b$ with probability
+$p_b$ and high with probability $1-p$. So every $g\in\mathcal{G}(D)$ has
+\begin{equation}\label{eq:iid-uniform}
+\P(G=g)=\prod_{b=1}^Bp_b^{n_b}\,(1-p)^{q^3-n},
+\end{equation}
+which depends on $g$ only through $D$: conditionally on $D(G)=D$, the hypergraph $G$ is
+uniform on $\mathcal{G}(D)$.
+
+\smallskip\noindent(b) \emph{Configurations.} For each $s$ and $b$ take half-edges
+$(v,b,i)$ with $v\in V_s$ and $1\le i\le D^s_{v,b}$; there are $n_b$ half-edges of bin $b$
+in each sector. A \emph{configuration} is a family $c=(\sigma_b,\tau_b)_{b\le B}$ in which
+$\sigma_b$ and $\tau_b$ are bijections from the half-edges of bin $b$ in sector~$1$ to the
+half-edges of bin $b$ in sectors $2$ and $3$ respectively. There are $\prod_b(n_b!)^2$
+configurations. The \emph{triples} of $c$ are the $n$ triples of half-edges
+$(x,\sigma_b(x),\tau_b(x))$, $x$ a half-edge of bin $b$ in sector~$1$; such a triple has
+bin $b$, and its \emph{team} is the triple of agents carrying its three half-edges. A
+configuration is \emph{simple} if the teams of its $n$ triples are pairwise distinct; that
+is, no two of its triples have the same team, whether the two triples lie in the same bin
+or in two different bins. The \emph{projection} of a simple configuration is the set of
+pairs (team, bin) of its triples, an element of $\mathcal{G}(D)$. A configuration that is
+not simple projects to no element of $\mathcal{G}(D)$.
+
+Every $g\in\mathcal{G}(D)$ is the projection of exactly $\prod_{s,v,b}D^s_{v,b}!$
+configurations. Indeed, a configuration projecting to $g$ is obtained by choosing, for
+every $s$, $v\in V_s$ and $b$, a bijection between the $D^s_{v,b}$ teams of $g$ of bin $b$
+through $v$ and the half-edges $(v,b,1),\dots,(v,b,D^s_{v,b})$; since the teams of $g$ are
+distinct, different choices give different sets of triples, hence different configurations.
+
+\smallskip\noindent(c) For a configuration $c$ and a profile $m$ let $\widetilde Y_m(c)$ be
+the number of sets of triples of $c$, containing exactly $m_b$ triples of bin $b$ for every
+$b$, whose teams are pairwise disjoint. If $c$ is simple with projection $g$, the triples
+of $c$ correspond bijectively to the elements of $g$, and $\widetilde Y_m(c)=Y_m(g)$.
+
+\smallskip
+For a profile $m$ and $s\in\{1,2,3\}$, a \emph{choice function} of sector $s$ is a
+selection of $m_b$ half-edges of bin $b$ in sector $s$, for every $b$, such that the
+$|m|$ selected half-edges are at pairwise distinct agents. Let $N_s(m;D^s)$ be the number
+of choice functions. Each agent of $V_s$ either has no selected half-edge or has exactly
+one, of some bin $b$, chosen among $D^s_{v,b}$; therefore
+\begin{equation}\label{eq:iid-genfn}
+N_s(m;D^s)=\bigl[z_1^{m_1}\cdots z_B^{m_B}z_\infty^{\,q-|m|}\bigr]\
+\prod_{v\in V_s}\Bigl(z_\infty+\sum_{b=1}^BD^s_{v,b}z_b\Bigr).
+\end{equation}
+
+\begin{lemma}[Exact count]\label{lem:iid-count}
+For every degree array $D$ and every profile $m$ with $m_b\le n_b$ for all $b$, the sum
+over all configurations with degree array $D$ is
+\[
+\sum_c\widetilde Y_m(c)=\prod_{s=1}^3N_s(m;D^s)\cdot\prod_{b=1}^B\bigl(m_b!\,(n_b-m_b)!\bigr)^2 .
+\]
+Equivalently, the average of $\widetilde Y_m$ over the $\prod_b(n_b!)^2$ configurations
+is
+\[
+\prod_{s=1}^3N_s(m;D^s)\cdot\prod_{b=1}^B\binom{n_b}{m_b}^{-2}.
+\]
+\end{lemma}
+
+\begin{proof}
+Count pairs $(c,S)$ with $S$ a set of triples of $c$ as in (c). The set $S$ determines, in
+each sector, the set of half-edges it uses; because the teams of $S$ are pairwise disjoint,
+this is a choice function. Conversely, a triple of choice functions (one per sector)
+together with, for every $b$, a bijection from the selected half-edges of bin $b$ in
+sector~$1$ to those in sector~$2$ and another to those in sector~$3$, is a set $S$ of
+triples of half-edges with pairwise disjoint teams. So there are
+$\prod_sN_s(m;D^s)\cdot\prod_b(m_b!)^2$ possible sets $S$. A given $S$ is a set of triples
+of exactly those configurations whose bijections extend the ones prescribed by $S$; the
+remaining $n_b-m_b$ half-edges of bin $b$ in each sector are matched arbitrarily, in
+$\prod_b((n_b-m_b)!)^2$ ways.
+\end{proof}
+
+\begin{lemma}[Simplicity conditioning]\label{lem:iid-simple}
+For a degree array $D$ put
+\[
+Q(D)=\prod_{b=1}^Bp_b^{n_b}\,(1-p)^{q^3-n}\cdot
+\frac{\prod_{b}(n_b!)^2}{\prod_{s,v,b}D^s_{v,b}!}.
+\]
+Then for every degree array $D$ and every profile $m$ with $m_b\le n_b$ for all $b$,
+\begin{equation}\label{eq:iid-simple}
+\E\bigl[Y_m(G);\,D(G)=D\bigr]\le Q(D)\cdot\prod_{s=1}^3N_s(m;D^s)\cdot
+\prod_{b=1}^B\binom{n_b}{m_b}^{-2},
+\end{equation}
+while $Y_m(G)=0$ on $\{D(G)=D\}$ if $m_b>n_b$ for some $b$. Moreover
+\begin{equation}\label{eq:iid-Qsum}
+\sum_DQ(D)\le\exp\Bigl(\frac{K^6}{36\,q\,(1-p)}\Bigr),
+\end{equation}
+the sum being over all degree arrays.
+\end{lemma}
+
+\begin{proof}
+A matching of profile $m$ contains $m_b$ distinct low teams of bin $b$, so $Y_m(G)=0$ if
+$m_b>n_b(D(G))$ for some $b$. Let $m_b\le n_b$ for all $b$. By \eqref{eq:iid-uniform}, (b)
+and (c),
+\begin{align*}
+\E\bigl[Y_m(G);\,D(G)=D\bigr]
+&=\prod_bp_b^{n_b}(1-p)^{q^3-n}\sum_{g\in\mathcal{G}(D)}Y_m(g)\\
+&=\frac{\prod_bp_b^{n_b}(1-p)^{q^3-n}}{\prod_{s,v,b}D^s_{v,b}!}
+ \sum_{c\text{ simple}}\widetilde Y_m(c).
+\end{align*}
+Since $\widetilde Y_m\ge0$, the sum over simple configurations is at most the sum over all
+configurations, which is given by Lemma~\ref{lem:iid-count}; this is \eqref{eq:iid-simple}.
+
+For \eqref{eq:iid-Qsum}, fix $(n_b)_{b\le B}\in\N^B$. By the multinomial theorem, for each
+$s$ and $b$ the sum of $1/\prod_{v\in V_s}D^s_{v,b}!$ over all $(D^s_{v,b})_{v\in V_s}$
+with sum $n_b$ equals $q^{n_b}/n_b!$. Hence the sum of $Q(D)$ over the degree arrays with
+column sums $(n_b)$ is
+\[
+(1-p)^{q^3-n}\prod_bp_b^{n_b}(n_b!)^2\Bigl(\frac{q^{n_b}}{n_b!}\Bigr)^3
+=(1-p)^{q^3}\prod_b\frac1{n_b!}\Bigl(\frac{q^3p_b}{1-p}\Bigr)^{n_b}.
+\]
+Summing over $(n_b)\in\N^B$ gives at most
+\[
+(1-p)^{q^3}\exp\Bigl(\frac{q^3p}{1-p}\Bigr)\le\exp\Bigl(-q^3p+\frac{q^3p}{1-p}\Bigr)
+=\exp\Bigl(\frac{q^3p^2}{1-p}\Bigr),
+\]
+and $q^3p^2=K^6/(36q)$.
+\end{proof}
+
+\begin{remark}\label{rem:iid-simple}
+If $\mathcal{G}(D)\neq\emptyset$ then $Q(D)$ is the ratio of $\P(D(G)=D)$ to the
+probability that a uniform configuration with degree array $D$ is simple.
+Lemma~\ref{lem:iid-simple} says that the conditional first moment given the stars is at
+most the configuration-model value divided by the probability of simplicity, and that this
+division costs a factor $1+o(1)$ after averaging over $D$. No lower bound on the
+probability of simplicity is needed.
+\end{remark}
+
+\begin{lemma}[Conditional first moment]\label{lem:iid-first-moment}
+Let $q^{2/3}\ge K$. For every set $\mathcal{T}$ of degree arrays,
+\begin{multline}\label{eq:iid-first-moment}
+\E\bigl[Z_\beta;\,D(G)\in\mathcal{T}\bigr]\le
+\exp\Bigl(\frac{K^6}{36\,q\,(1-p)}\Bigr)\,\mathrm{e}^{\theta\beta q}\\
+\times\sum_{m}\ \sup_{D\in\mathcal{T}:\ n(D)\ge m}\ \Bigl[\,\prod_{s=1}^3N_s(m;D^s)\cdot
+\prod_{b=1}^B\binom{n_b}{m_b}^{-2}\Bigr]\\
+\times\prod_{b=1}^B\Bigl(\frac{\kappa_b}{\lambda_b}\Bigr)^{m_b}(r!)^2
+\Bigl(\frac{J}{q^2(1-p)}\Bigr)^{r},
+\end{multline}
+where the sum is over all profiles $m$, $r=q-|m|$, the condition $n(D)\ge m$ means
+$n_b(D)\ge m_b$ for all $b$, and the supremum of the empty set is $0$.
+\end{lemma}
+
+\begin{proof}
+Multiply \eqref{eq:iid-cond} by $\ind\{D(G)=D\}$, take expectations, and sum over
+$D\in\mathcal{T}$. For each profile $m$ this gives the factor
+$\sum_{D\in\mathcal{T}}\E[Y_m(G);D(G)=D]$, which by \eqref{eq:iid-simple} is at most
+$\sum_DQ(D)$ times the supremum, over $D\in\mathcal{T}$ with $n(D)\ge m$, of the bracket.
+Apply \eqref{eq:iid-Qsum}.
+\end{proof}
+
+\subsection{Exponential bounds and the limit functional}\label{subsec:iid-exponent}
+
+\subsubsection*{Choice functions}
+For a degree array $D$, $s\in\{1,2,3\}$ and $u\in\R^{B+1}$ put
+\[
+\widehat\Phi_s(u)=\widehat\Phi_s(u;D)=\frac1q\sum_{v\in V_s}
+\ln\Bigl(\mathrm{e}^{u_\infty}+\sum_{b=1}^BD^s_{v,b}\,\mathrm{e}^{u_b}\Bigr).
+\]
+For a profile $m$ write $\mu_b=m_b/q$, $\eps=r/q=1-\sum_b\mu_b$, and
+$\langle\mu,u\rangle=\sum_b\mu_bu_b+\eps u_\infty$. The polynomial in \eqref{eq:iid-genfn}
+has nonnegative coefficients, so each coefficient is at most the value of the polynomial
+at a positive point divided by the corresponding monomial. Taking $z_b=\mathrm{e}^{u_b}$,
+$z_\infty=\mathrm{e}^{u_\infty}$ gives, for every $u\in\R^{B+1}$ and every profile $m$,
+\begin{equation}\label{eq:iid-choice}
+N_s(m;D^s)\le\exp\Bigl(q\bigl[\widehat\Phi_s(u)-\langle\mu,u\rangle\bigr]\Bigr).
+\end{equation}
+
+\subsubsection*{Binomials and factorials}
+Let $h(x)=-x\ln x-(1-x)\ln(1-x)$ be the binary entropy, and $g(x,y)=y\,h(x/y)$ for
+$0\le x\le y$, $y>0$, with $g(0,0)=0$; then $0\le g(x,y)\le y\ln2$ and $g$ is continuous on
+$\{0\le x\le y\}$. The following elementary bounds are used:
+$\binom nm\ge\exp(n\,h(m/n))/(n+1)$ for $0\le m\le n$, and
+$r!\le\mathrm{e}\,(r+1)(r/\mathrm{e})^r$ for $r\ge0$ (with $0^0=1$).
+
+\begin{lemma}[The exponent]\label{lem:iid-exponent}
+Let $q^{2/3}\ge K$. For a degree array $D$ and a profile $m$ with $m_b\le n_b(D)$ for all
+$b$, put $\nu_b=n_b/q$ and
+\begin{multline}\label{eq:iid-Xi}
+\Xi(\mu;D)=\theta\beta+\sum_{s=1}^3\inf_{u\in\R^{B+1}}
+\bigl[\widehat\Phi_s(u;D)-\langle\mu,u\rangle\bigr]-2\sum_{b=1}^Bg(\mu_b,\nu_b)\\
++\sum_{b=1}^B\mu_b\ln\frac{\kappa_b}{\lambda_b}+\eps\ln J+2\eps\ln\eps-2\eps
+\end{multline}
+(with $0\ln0=0$). Then for every set $\mathcal{T}$ of degree arrays
+\begin{equation}\label{eq:iid-exponent}
+\E\bigl[Z_\beta;\,D(G)\in\mathcal{T}\bigr]\le c_q\,(q+1)^{B+2}\
+\sup\ \Bigl[\,\prod_{b=1}^B(n_b+1)^2\cdot\exp\bigl(q\,\Xi(\mu;D)\bigr)\Bigr],
+\end{equation}
+where the supremum is over all $D\in\mathcal{T}$ and all profiles $m$ with $m_b\le n_b(D)$
+for all $b$, and
+\[
+c_q=\mathrm{e}^2\exp\Bigl(\frac{K^6}{36\,q\,(1-p)}\Bigr)(1-p)^{-q}
+\le\mathrm{e}^2\exp\Bigl(\frac{K^{9/2}}{30}+\frac{K^{3/2}}{5}\Bigr).
+\]
+The factor $\prod_b(n_b+1)^2$ depends on the degree array and stays inside the supremum.
+\end{lemma}
+
+\begin{proof}
+Fix $D$ and $m$ with $m_b\le n_b$. By \eqref{eq:iid-choice}, optimised over $u$ separately
+for each $s$,
+$\prod_sN_s(m;D^s)\le\exp(q\sum_s\inf_u[\widehat\Phi_s(u)-\langle\mu,u\rangle])$. By the
+bound on binomial coefficients,
+$\prod_b\binom{n_b}{m_b}^{-2}\le\prod_b(n_b+1)^2\exp(-2n_bh(m_b/n_b))
+=\prod_b(n_b+1)^2\cdot\exp(-2q\sum_bg(\mu_b,\nu_b))$. Next,
+$\prod_b(\kappa_b/\lambda_b)^{m_b}=\exp(q\sum_b\mu_b\ln(\kappa_b/\lambda_b))$. Finally, by
+the bound on $r!$ and $r=\eps q$,
+\begin{align*}
+(r!)^2\Bigl(\frac{J}{q^2(1-p)}\Bigr)^r
+&\le\mathrm{e}^2(r+1)^2(1-p)^{-r}\Bigl(\frac{r}{\mathrm{e}q}\Bigr)^{2r}J^r\\
+&\le\mathrm{e}^2(q+1)^2(1-p)^{-q}\exp\bigl(q[2\eps\ln\eps-2\eps+\eps\ln J]\bigr).
+\end{align*}
+So the term of \eqref{eq:iid-first-moment} belonging to $m$ and $D$, times
+$\mathrm{e}^{\theta\beta q}$, is at most
+$\mathrm{e}^2(q+1)^2(1-p)^{-q}\prod_b(n_b+1)^2\exp(q\,\Xi(\mu;D))$. There are at most
+$(q+1)^B$ profiles, which gives \eqref{eq:iid-exponent}. For the bound on $c_q$ use
+$p\le1/6$ and $q\ge K^{3/2}$: then $K^6/(36q(1-p))\le K^{9/2}/30$ and
+$(1-p)^{-q}\le\exp(qp/(1-p))\le\exp(K^3/(5q))\le\exp(K^{3/2}/5)$.
+\end{proof}
+
+\subsubsection*{Typical stars}
+For $s\in\{1,2,3\}$ let $\widehat\gamma_s$ be the empirical law on $\N^B$ of the $q$ binned
+stars of sector $s$: $\widehat\gamma_s(d)=q^{-1}\#\{v\in V_s:(D^s_{v,b})_{b\le B}=d\}$.
+Recall that $\gamma$ is the law of the reference star and $|d|=\sum_bd_b$. For $\delta>0$
+let $\mathcal{T}_\delta$ be the set of degree arrays $D$ with
+\begin{equation}\label{eq:iid-typical}
+\sum_{d\in\N^B}\bigl|\widehat\gamma_s(d)-\gamma(d)\bigr|\,(1+|d|)\le\delta
+\qquad\text{for }s=1,2,3 .
+\end{equation}
+
+\begin{lemma}[Stars are typical]\label{lem:iid-typical}
+For every $\delta>0$, $\P(D(G)\in\mathcal{T}_\delta)\to1$ as $q\to\infty$.
+\end{lemma}
+
+\begin{proof}
+Fix $s$. The binned star of $v\in V_s$ is a function of the costs of the $q^2$ teams
+containing $v$, and these sets of teams are disjoint for distinct agents of $V_s$. So the
+$q$ stars of sector $s$ are independent, with common law $\gamma_q$, the law of
+$\sum_{i\le q^2}\zeta_i$ where the $\zeta_i$ are independent, $\zeta_i=\mathbf{e}_b$ (the
+$b$th unit vector of $\N^B$) with probability $p_b$ and $\zeta_i=0$ with probability
+$1-p$.
+
+\emph{Total variation.} Let $\zeta'$ have independent Poisson$(p_b)$ coordinates. Then
+$\P(\zeta'=0)=\mathrm{e}^{-p}\ge1-p$ and
+$\P(\zeta'=\mathbf{e}_b)=p_b\mathrm{e}^{-p}\le p_b$, so the total variation distance
+between the laws of $\zeta_1$ and $\zeta'$ is
+$\sum_b(p_b-p_b\mathrm{e}^{-p})=p(1-\mathrm{e}^{-p})\le p^2$. The sum of $q^2$ independent
+copies of $\zeta'$ has law $\gamma$, because $q^2p_b=\lambda_b$. Coupling term by term,
+\[
+d_{\mathrm{TV}}(\gamma_q,\gamma)\le q^2p^2=\frac{K^6}{36q^2}.
+\]
+
+\emph{Small stars.} Let $R\ge1$. For each $d$, $q\widehat\gamma_s(d)$ is
+Binomial$(q,\gamma_q(d))$, so
+$\E|\widehat\gamma_s(d)-\gamma_q(d)|\le(\gamma_q(d)/q)^{1/2}$. Hence
+\begin{align*}
+\E\sum_{|d|\le R}\bigl|\widehat\gamma_s(d)-\gamma(d)\bigr|(1+|d|)
+&\le(1+R)\Bigl[\sum_{|d|\le R}\Bigl(\frac{\gamma_q(d)}{q}\Bigr)^{1/2}
+ +2\,d_{\mathrm{TV}}(\gamma_q,\gamma)\Bigr]\\
+&\le(1+R)\Bigl[\frac{(R+1)^B}{q^{1/2}}+\frac{K^6}{18q^2}\Bigr],
+\end{align*}
+because there are at most $(R+1)^B$ vectors $d\in\N^B$ with $|d|\le R$ and
+$\sum_d|\gamma_q(d)-\gamma(d)|=2\,d_{\mathrm{TV}}(\gamma_q,\gamma)$. The right side tends to
+$0$ as $q\to\infty$ for fixed $R$.
+
+\emph{Large stars.} Under $\gamma$ the total $|D|$ is Poisson$(K^3/6)$, and under
+$\gamma_q$ it is Binomial$(q^2,p)$, with the same mean $K^3/6$ and variance at most
+$K^3/6$. In both cases $\E(1+|D|)^2\le C:=(1+K^3/6)^2+K^3/6$, and so
+$\E[(1+|D|);|D|>R]\le C/(1+R)$. Therefore
+\begin{multline*}
+\E\sum_{|d|>R}\bigl|\widehat\gamma_s(d)-\gamma(d)\bigr|(1+|d|)\\
+\le\E_{\gamma_q}\bigl[(1+|D|);|D|>R\bigr]+\E_{\gamma}\bigl[(1+|D|);|D|>R\bigr]
+\le\frac{2C}{1+R},
+\end{multline*}
+uniformly in $q$.
+
+Given $\delta>0$ and $\omega>0$, choose $R$ with $2C/(1+R)\le\delta\omega/12$ and then
+$q_0$ so large that for $q\ge q_0$ the bound for small stars is at most $\delta\omega/12$.
+For $q\ge q_0$ the left side of \eqref{eq:iid-typical} has expectation at most
+$\delta\omega/6$, so by Markov's inequality it exceeds $\delta$ with probability at most
+$\omega/6$, and a union bound over $s=1,2,3$ gives
+$\P(D(G)\notin\mathcal{T}_\delta)\le\omega/2$.
+\end{proof}
+
+Two consequences of \eqref{eq:iid-typical} are used. Let $D\in\mathcal{T}_\delta$.
+\begin{itemize}
+\item[(T1)] $|\nu_b-\lambda_b|\le\delta$ for every $b$, because
+$\nu_b=\sum_d\widehat\gamma_s(d)\,d_b$ and $\lambda_b=\sum_d\gamma(d)\,d_b$. In particular
+$n_b+1\le1+(\lambda_{\max}+\delta)q$.
+\item[(T2)] Let $A>0$ and $u\in[-A,0]^{B+1}$. For every $d\in\N^B$,
+$\mathrm{e}^{-A}\le\mathrm{e}^{u_\infty}+\sum_bd_b\mathrm{e}^{u_b}\le1+|d|$, so the
+logarithm of the middle term is at most $A+|d|\le(A+1)(1+|d|)$ in absolute value. Since $\widehat\Phi_s(u;D)$ and $\Phi(u)$ are the integrals of
+$d\mapsto\ln(\mathrm{e}^{u_\infty}+\sum_bd_b\mathrm{e}^{u_b})$ against $\widehat\gamma_s$
+and $\gamma$ respectively,
+\begin{equation}\label{eq:iid-phihat}
+\bigl|\widehat\Phi_s(u;D)-\Phi(u)\bigr|\le(A+1)\,\delta\qquad
+\text{for all }u\in[-A,0]^{B+1},\ s=1,2,3 .
+\end{equation}
+\end{itemize}
+
+\subsubsection*{The limit functional}
+Let
+\[
+\mathcal{P}=\Bigl\{\mu=(\mu_1,\dots,\mu_B,\eps)\in\R^{B+1}:\ 0\le\mu_b\le\lambda_b,\
+\eps\ge0,\ \sum_{b=1}^B\mu_b+\eps=1\Bigr\}.
+\]
+For $\mu\in\R^{B+1}$ with coordinate sum $1$ (the last coordinate being written $\eps$)
+and $A>0$ define
+\begin{align*}
+H(\mu)&=\inf_{u\in\R^{B+1}}\bigl[\Phi(u)-\langle\mu,u\rangle\bigr],&
+H_A(\mu)&=\min_{u\in[-A,0]^{B+1}}\bigl[\Phi(u)-\langle\mu,u\rangle\bigr],
+\end{align*}
+and for $\mu\in\mathcal{P}$
+\begin{align*}
+S_0(\mu)&=\sum_{b=1}^B\lambda_b\,h\Bigl(\frac{\mu_b}{\lambda_b}\Bigr)-\eps\ln\eps+\eps,\\
+L(\mu)&=\theta\beta+3H(\mu)-2S_0(\mu)+\langle\ell,\mu\rangle,\qquad
+\ell_b=\ln\frac{\kappa_b}{\lambda_b},\quad\ell_\infty=\ln J .
+\end{align*}
+Put $L^\ast=\sup_{\mu\in\mathcal{P}}L(\mu)$. Here $H(\mu)\in[-\infty,\infty)$, and $H$ is
+concave, being an infimum of affine functions. Since
+$\Phi(u+t\ind)=\Phi(u)+t$ and $\langle\mu,\ind\rangle=1$, the bracket is invariant under
+$u\mapsto u+t\ind$; one may therefore restrict the infimum to $u$ with $\max u=0$, and
+consequently
+\begin{equation}\label{eq:iid-HA}
+H_A(\mu)\downarrow H(\mu)\quad\text{as }A\uparrow\infty .
+\end{equation}
+
+\begin{lemma}[Passage to the limit functional]\label{lem:iid-limit}
+For $\delta>0$ let $\mathcal{K}_\delta$ be the set of pairs $(\mu,\nu)$ with
+$\mu=(\mu_1,\dots,\mu_B,\eps)$ a probability vector, $\nu\in\R^B$,
+$|\nu_b-\lambda_b|\le\delta$ and $0\le\mu_b\le\nu_b$ for all $b$; and for $A>0$ put
+\[
+L_A(\mu,\nu)=\theta\beta+3H_A(\mu)-2\sum_{b=1}^Bg(\mu_b,\nu_b)+\langle\ell,\mu\rangle
++2\eps\ln\eps-2\eps .
+\]
+Then for all $A>0$ and $\delta>0$,
+\begin{equation}\label{eq:iid-limsup}
+\limsup_{q\to\infty}\frac1q\ln\E\bigl[Z_\beta;\,D(G)\in\mathcal{T}_\delta\bigr]
+\le\sup_{\mathcal{K}_\delta}L_A+3(A+1)\,\delta,
+\end{equation}
+and
+\begin{equation}\label{eq:iid-inf}
+\inf_{A>0}\ \inf_{\delta>0}\ \Bigl[\sup_{\mathcal{K}_\delta}L_A+3(A+1)\,\delta\Bigr]\le L^\ast .
+\end{equation}
+In particular, if $L^\ast<0$ there are $\delta>0$ and $c>0$ such that
+$\E[Z_\beta;D(G)\in\mathcal{T}_\delta]\le\mathrm{e}^{-cq}$ for all large $q$.
+\end{lemma}
+
+\begin{proof}
+The function $H_A$ is a minimum of affine functions over a compact set; it is finite and
+concave on $\R^{B+1}$, hence continuous. The functions $g$ and $\eps\mapsto\eps\ln\eps$ are
+continuous. So $L_A$ is continuous on the compact set $\mathcal{K}_\delta$, and its
+supremum is finite.
+
+\emph{Proof of \eqref{eq:iid-limsup}.} Let $D\in\mathcal{T}_\delta$ and let $m$ be a
+profile with $m_b\le n_b$ for all $b$. Then $(\mu,\nu)\in\mathcal{K}_\delta$ by (T1). By
+\eqref{eq:iid-phihat},
+\[
+\inf_{u\in\R^{B+1}}\bigl[\widehat\Phi_s(u;D)-\langle\mu,u\rangle\bigr]
+\le\min_{u\in[-A,0]^{B+1}}\bigl[\widehat\Phi_s(u;D)-\langle\mu,u\rangle\bigr]
+\le H_A(\mu)+(A+1)\,\delta
+\]
+for each $s$, so that $\Xi(\mu;D)\le L_A(\mu,\nu)+3(A+1)\delta$. By (T1),
+$\prod_b(n_b+1)^2\le(1+(\lambda_{\max}+\delta)q)^{2B}$, uniformly in
+$D\in\mathcal{T}_\delta$. Lemma~\ref{lem:iid-exponent} with
+$\mathcal{T}=\mathcal{T}_\delta$ now gives
+\begin{multline*}
+\E\bigl[Z_\beta;\,D(G)\in\mathcal{T}_\delta\bigr]\\
+\le c_q\,(q+1)^{B+2}\bigl(1+(\lambda_{\max}+\delta)q\bigr)^{2B}
+\exp\Bigl(q\Bigl[\sup_{\mathcal{K}_\delta}L_A+3(A+1)\,\delta\Bigr]\Bigr),
+\end{multline*}
+and the factor in front of the exponential is polynomial in $q$.
+
+\emph{Proof of \eqref{eq:iid-inf}.} Let $c>L^\ast$. On $\mathcal{P}$,
+$-2\sum_bg(\mu_b,\lambda_b)+2\eps\ln\eps-2\eps=-2S_0(\mu)$, so
+$L_A(\mu,\lambda)=\theta\beta+3H_A(\mu)-2S_0(\mu)+\langle\ell,\mu\rangle$, which by
+\eqref{eq:iid-HA} decreases to $L(\mu)$ as $A\uparrow\infty$, for every
+$\mu\in\mathcal{P}$. The sets $\{\mu\in\mathcal{P}:L_A(\mu,\lambda)\ge c\}$ are compact and
+decrease as $A$ increases; a common point $\mu$ would have $L(\mu)\ge c>L^\ast$, which is
+impossible. So one of them is empty: there is $A$ with
+$\sup_{\mu\in\mathcal{P}}L_A(\mu,\lambda)<c$. Fix this $A$. The compact sets
+$\mathcal{K}_\delta$ decrease, as $\delta\downarrow0$, to
+$\mathcal{K}_0=\mathcal{P}\times\{\lambda\}$. The compact sets
+$\{(\mu,\nu)\in\mathcal{K}_\delta:L_A(\mu,\nu)\ge c\}$ decrease with $\delta$ and have
+empty intersection, so one of them is empty: there is $\delta_0>0$ with
+$\sup_{\mathcal{K}_\delta}L_A<c$ for $\delta\le\delta_0$. Letting $\delta\downarrow0$, the
+left side of \eqref{eq:iid-inf} is at most $c$. As $c>L^\ast$ was arbitrary,
+\eqref{eq:iid-inf} follows. (If $L^\ast=-\infty$ the same argument applies to every real
+$c$.)
+
+The last assertion follows from \eqref{eq:iid-limsup} and \eqref{eq:iid-inf}: choose $A$
+and $\delta$ with $\sup_{\mathcal{K}_\delta}L_A+3(A+1)\delta<0$, and let $c$ be half the
+absolute value of this number.
+\end{proof}
+
+The argument is by compactness: it gives no explicit $A$ and $\delta$, and no rate.
+Lemmas~\ref{lem:iid-first-moment} and~\ref{lem:iid-exponent} are stated for an arbitrary
+set $\mathcal{T}$ of degree arrays, so that they can be applied to sets of arrays other
+than $\mathcal{T}_\delta$.
+
+\subsection{Concavity and the tangent inequality}\label{subsec:iid-concave}
+
+This subsection concerns only the reference star $D$ (independent Poisson$(\lambda_b)$
+coordinates) and is exact for finite $B$. Its outcome is
+Proposition~\ref{prop:iid-tangent-bound}: $L^\ast\le\theta\beta+\Psi_0(K,B,\theta,u_0)$ for
+every weight vector $u_0$.
+
+\subsubsection*{Notation}
+For $u\in\R^{B+1}$, with $w=\mathrm{e}^u$ and $W=w_\infty+\sum_bD_bw_b$ as before, define
+the random probability vector $\pi=\pi(u)$ on $\{1,\dots,B,\infty\}$ by
+\[
+\pi_b=\frac{D_bw_b}{W}\quad(1\le b\le B),\qquad\pi_\infty=\frac{w_\infty}{W}.
+\]
+The function $u\mapsto\ln W$ is smooth, with gradient $\pi$ and Hessian
+$\operatorname{diag}(\pi)-\pi\pi^{\mathsf T}$; all its partial derivatives of positive
+order are polynomials in the coordinates of $\pi$, hence bounded, so $\Phi$ is smooth and
+may be differentiated under the expectation:
+\[
+\nabla\Phi(u)=\E\,\pi=:\mu(u),\qquad
+\nabla^2\Phi(u)=\Sigma(u):=\E\bigl[\operatorname{diag}(\pi)-\pi\pi^{\mathsf T}\bigr].
+\]
+Let $\mathcal{H}_0=\{x\in\R^{B+1}:\langle x,\ind\rangle=0\}$ and
+$\mathcal{H}_1=\{x\in\R^{B+1}:\langle x,\ind\rangle=1\}$. Then $\mu(u)\in\mathcal{H}_1$,
+$\Sigma(u)\ind=0$, and for $x\in\R^{B+1}$
+\[
+x^{\mathsf T}\Sigma(u)\,x=\E\Bigl[\sum_i\pi_ix_i^2-\Bigl(\sum_i\pi_ix_i\Bigr)^2\Bigr]\ge0,
+\]
+the expected variance of $x$ under $\pi$. With positive probability all $D_b\ge1$, and then
+$\pi$ charges every coordinate; so $x^{\mathsf T}\Sigma(u)x>0$ unless $x$ is a multiple of
+$\ind$. Thus $\Sigma(u)$ maps $\mathcal{H}_0$ to itself and its restriction
+$\Sigma(u)|_{\mathcal{H}_0}$ is positive definite; $\Phi$ is convex on $\R^{B+1}$ and
+strictly convex on $\mathcal{H}_0$. Since $\Phi(u+t\ind)=\Phi(u)+t$, the quantities
+$\mu(u)$, $\Sigma(u)$, $\rho_b(u)$ and $\eps_0(u)$ are unchanged when $u$ is replaced by
+$u+t\ind$.
+
+\begin{lemma}[Poisson identities]\label{lem:iid-mecke}
+For every $u\in\R^{B+1}$: $\mu_b(u)=\lambda_b\rho_b(u)$ with $\rho_b(u)\in(0,1)$ for
+$1\le b\le B$; $\mu_\infty(u)=\eps_0(u)\in(0,1]$; and
+\begin{equation}\label{eq:iid-pipi}
+\E\bigl[\pi\pi^{\mathsf T}\bigr]=\int_0^\infty t\,\E\bigl[\mathrm{e}^{-tW}\bigr]\,
+v_tv_t^{\mathsf T}\dd t+\operatorname{diag}\Bigl(\lambda_b\,
+\E\Bigl[\Bigl(\frac{w_b}{W+w_b}\Bigr)^2\Bigr]\ (b\le B),\ 0\Bigr),
+\end{equation}
+where $v_t\in\R^{B+1}$ has coordinates $(v_t)_b=\lambda_bw_b\mathrm{e}^{-tw_b}$ and
+$(v_t)_\infty=w_\infty$.
+\end{lemma}
+
+\begin{proof}
+Let $\mathbf{e}_b$ be the $b$th unit vector of $\N^B$. For independent Poisson variables
+$D_b$ with means $\lambda_b$ and every bounded function $\chi$ on $\N^B$, the Mecke formula
+gives
+\begin{align*}
+\E[D_b\,\chi(D)]&=\lambda_b\,\E\,\chi(D+\mathbf{e}_b),\\
+\E[D_bD_c\,\chi(D)]&=\lambda_b\lambda_c\,\E\,\chi(D+\mathbf{e}_b+\mathbf{e}_c)\qquad(b\ne c),\\
+\E[D_b^2\,\chi(D)]&=\lambda_b^2\,\E\,\chi(D+2\mathbf{e}_b)+\lambda_b\,\E\,\chi(D+\mathbf{e}_b).
+\end{align*}
+Adding $\mathbf{e}_b$ to $D$ replaces $W$ by $W+w_b$. The first formula with
+$\chi=w_b/W$ gives $\mu_b(u)=\E[D_bw_b/W]=\lambda_b\E[w_b/(W+w_b)]$, and
+$0<w_b/(W+w_b)<1$. By definition $\mu_\infty(u)=\E[w_\infty/W]=\eps_0(u)$, and
+$0<w_\infty/W\le1$.
+
+For \eqref{eq:iid-pipi} apply the formulas to $\chi=w_bw_c/W^2$, $w_b^2/W^2$ and
+$w_bw_\infty/W^2$. Entry by entry, for $b\ne c$,
+\begin{align*}
+\E[\pi_b\pi_c]&=\lambda_b\lambda_cw_bw_c\,\E\bigl[(W+w_b+w_c)^{-2}\bigr],\\
+\E[\pi_b^2]&=\lambda_b^2w_b^2\,\E\bigl[(W+2w_b)^{-2}\bigr]
+ +\lambda_bw_b^2\,\E\bigl[(W+w_b)^{-2}\bigr],\\
+\E[\pi_b\pi_\infty]&=\lambda_bw_bw_\infty\,\E\bigl[(W+w_b)^{-2}\bigr],\qquad
+\E[\pi_\infty^2]=w_\infty^2\,\E\bigl[W^{-2}\bigr].
+\end{align*}
+Now insert $x^{-2}=\int_0^\infty t\,\mathrm{e}^{-tx}\dd t$ for $x>0$ into every term
+except the second term of $\E[\pi_b^2]$, and exchange expectation and integral (the
+integrands are nonnegative). For instance
+\[
+\lambda_b\lambda_cw_bw_c\,\E\bigl[(W+w_b+w_c)^{-2}\bigr]
+=\int_0^\infty t\,\E\bigl[\mathrm{e}^{-tW}\bigr]\,(v_t)_b(v_t)_c\dd t .
+\]
+The four families of terms
+are the entries of $\int_0^\infty t\,\E[\mathrm{e}^{-tW}]\,v_tv_t^{\mathsf T}\dd t$, and
+the second term of $\E[\pi_b^2]$ is the diagonal matrix in \eqref{eq:iid-pipi}. The
+integral converges because $W\ge w_\infty>0$.
+\end{proof}
+
+\begin{lemma}[Covariance domination]\label{lem:iid-domination}
+For every $u\in\R^{B+1}$, in the positive semidefinite order,
+\[
+\Sigma(u)\preceq\Gamma(u):=\operatorname{diag}\bigl(\lambda_b\rho_b(1-\rho_b)\ (b\le B),\
+\eps_0\bigr),\qquad\rho_b=\rho_b(u),\ \eps_0=\eps_0(u).
+\]
+\end{lemma}
+
+\begin{proof}
+The integral in \eqref{eq:iid-pipi} is positive semidefinite, and
+$\E[(w_b/(W+w_b))^2]\ge\rho_b^2$ by Jensen's inequality. So
+$\E[\pi\pi^{\mathsf T}]\succeq\operatorname{diag}(\lambda_b\rho_b^2,\,0)$. By
+Lemma~\ref{lem:iid-mecke},
+$\E\operatorname{diag}(\pi)=\operatorname{diag}(\lambda_b\rho_b,\eps_0)$. Hence
+\[
+\Sigma(u)=\operatorname{diag}(\lambda_b\rho_b,\eps_0)-\E\bigl[\pi\pi^{\mathsf T}\bigr]
+\preceq\operatorname{diag}\bigl(\lambda_b\rho_b-\lambda_b\rho_b^2,\ \eps_0\bigr).\qedhere
+\]
+\end{proof}
+
+\begin{lemma}[Legendre facts]\label{lem:iid-legendre}
+Let $\mathcal{D}=\nabla\Phi(\R^{B+1})=\nabla\Phi(\mathcal{H}_0)$.
+\begin{itemize}
+\item[(i)] $\nabla\Phi$ is a $C^\infty$ diffeomorphism from $\mathcal{H}_0$ onto
+$\mathcal{D}$, and $\mathcal{D}$ is a relatively open subset of $\mathcal{H}_1$ contained
+in $\{\mu:0<\mu_b<\lambda_b\ (b\le B),\ \eps>0\}$. For $\mu=\mu(u)\in\mathcal{D}$,
+\[
+H(\mu(u))=\Phi(u)-\langle\mu(u),u\rangle .
+\]
+On $\mathcal{D}$ the function $H$ is $C^2$; at $\mu=\mu(u)$ its derivative in a direction
+$x\in\mathcal{H}_0$ is $-\langle u,x\rangle$ and its second derivative in that direction is
+$-x^{\mathsf T}(\Sigma(u)|_{\mathcal{H}_0})^{-1}x$.
+\item[(ii)] If $\mu_0\in\mathcal{D}$, $\mu\in\mathcal{H}_1$ and $H(\mu)>-\infty$, then
+$\mu_t=\mu_0+t(\mu-\mu_0)\in\mathcal{D}$ for every $t\in[0,1)$.
+\end{itemize}
+\end{lemma}
+
+\begin{proof}
+(i) The two descriptions of $\mathcal{D}$ agree because $\nabla\Phi(u+t\ind)=\nabla\Phi(u)$.
+The restriction of $\Phi$ to $\mathcal{H}_0$ is smooth and strictly convex, so for
+$u\ne u'$ in $\mathcal{H}_0$,
+$\langle\nabla\Phi(u)-\nabla\Phi(u'),u-u'\rangle>0$; thus $\nabla\Phi$ is injective on
+$\mathcal{H}_0$. Its derivative at $u$, as a map from $\mathcal{H}_0$ to the direction
+space $\mathcal{H}_0$ of $\mathcal{H}_1$, is $\Sigma(u)|_{\mathcal{H}_0}$, which is
+invertible. By the inverse function theorem $\nabla\Phi$ is a local diffeomorphism from
+$\mathcal{H}_0$ to $\mathcal{H}_1$; being injective, it is a diffeomorphism onto its
+image, which is open in $\mathcal{H}_1$. The inclusion is Lemma~\ref{lem:iid-mecke}.
+
+Let $\mu=\mu(u)$. The convex function $u'\mapsto\Phi(u')-\langle\mu,u'\rangle$ on
+$\R^{B+1}$ has gradient $\nabla\Phi(u)-\mu=0$ at $u$, so it is minimised there, and
+$H(\mu)=\Phi(u)-\langle\mu,u\rangle$. Write $u=u(\mu)\in\mathcal{H}_0$ for the inverse
+map, which is smooth. Differentiating $H(\mu)=\Phi(u(\mu))-\langle\mu,u(\mu)\rangle$ in a
+direction $x\in\mathcal{H}_0$ gives
+$\langle\nabla\Phi(u)-\mu,\partial_xu\rangle-\langle x,u\rangle=-\langle u,x\rangle$.
+Differentiating once more gives $-\langle\partial_xu,x\rangle
+=-x^{\mathsf T}(\Sigma(u)|_{\mathcal{H}_0})^{-1}x$, because the derivative of
+$\mu\mapsto u(\mu)$ is the inverse of $\Sigma(u)|_{\mathcal{H}_0}$.
+
+(ii) Let $\varphi_0(u)=\Phi(u)-\langle\mu_0,u\rangle$ for $u\in\mathcal{H}_0$. It is
+strictly convex and, by (i), has a minimiser $u_0$, which is therefore unique. Let
+$a>0$ be the minimum of $\varphi_0-\varphi_0(u_0)$ on the unit sphere of $\mathcal{H}_0$
+centred at $u_0$; by convexity, $\varphi_0(u)-\varphi_0(u_0)\ge a\,|u-u_0|$ whenever
+$|u-u_0|\ge1$. Fix $t\in[0,1)$. For $u\in\mathcal{H}_0$,
+\[
+\Phi(u)-\langle\mu_t,u\rangle=(1-t)\,\varphi_0(u)+t\bigl[\Phi(u)-\langle\mu,u\rangle\bigr]
+\ge(1-t)\,\varphi_0(u)+t\,H(\mu),
+\]
+which tends to $+\infty$ as $|u|\to\infty$ in $\mathcal{H}_0$. So the continuous function
+$u\mapsto\Phi(u)-\langle\mu_t,u\rangle$ attains its minimum over $\mathcal{H}_0$ at some
+$u_t$. There the vector $\nabla\Phi(u_t)-\mu_t$ is orthogonal to $\mathcal{H}_0$; it also
+lies in $\mathcal{H}_0$, because both $\nabla\Phi(u_t)$ and $\mu_t$ lie in $\mathcal{H}_1$.
+Hence $\nabla\Phi(u_t)=\mu_t$ and $\mu_t\in\mathcal{D}$.
+\end{proof}
+
+\begin{proposition}[Tangent inequality]\label{prop:iid-tangent}
+Let $u_0\in\R^{B+1}$ and write $\rho_b=\rho_b(u_0)$, $\eps_0=\eps_0(u_0)$. For every
+$\mu=(\mu_1,\dots,\mu_B,\eps)\in\mathcal{P}$,
+\begin{multline}\label{eq:iid-tangent}
+H(\mu)-S_0(\mu)\le\Phi(u_0)+\sum_{b=1}^B\lambda_b\ln(1-\rho_b)-\eps_0\\
+-\sum_{b=1}^B\mu_b\Bigl[u_{0,b}+\ln\frac{1-\rho_b}{\rho_b}\Bigr]
+-\eps\bigl[u_{0,\infty}-\ln\eps_0\bigr].
+\end{multline}
+\end{proposition}
+
+\begin{proof}
+Both sides of \eqref{eq:iid-tangent} are unchanged when $u_0$ is replaced by $u_0+t\ind$
+(the terms $\Phi(u_0)$ and $-\langle\mu,u_0\rangle$ change by $t$ and $-t$), so one may
+assume $u_0\in\mathcal{H}_0$. If $H(\mu)=-\infty$ there is nothing to prove. Otherwise let
+$\mu_0=\mu(u_0)\in\mathcal{D}$, $x=\mu-\mu_0\in\mathcal{H}_0$,
+$\mu_t=\mu_0+tx$ and $\varphi(t)=H(\mu_t)$ for $t\in[0,1]$. The function $\varphi$ is
+concave and finite at both ends, hence finite on $[0,1]$. By
+Lemma~\ref{lem:iid-legendre}(ii), $\mu_t\in\mathcal{D}$ for $t\in[0,1)$; let
+$u_t\in\mathcal{H}_0$ be the point with $\mu(u_t)=\mu_t$. Since $\mathcal{D}\subset
+\{0<\mu_b<\lambda_b,\ \eps>0\}$ and $\mathcal{P}$ is convex, $\mu_t\in\mathcal{P}$ for all
+$t\in[0,1]$, and both $\varphi$ and $t\mapsto S_0(\mu_t)$ are $C^2$ on $[0,1)$.
+
+\emph{Second derivatives.} By Lemma~\ref{lem:iid-legendre}(i),
+$\varphi''(t)=-x^{\mathsf T}(\Sigma(u_t)|_{\mathcal{H}_0})^{-1}x$. The function $S_0$ is a
+sum of functions of the single coordinates, with
+\begin{align*}
+\frac{\partial S_0}{\partial\mu_b}&=\ln\frac{1-\mu_b/\lambda_b}{\mu_b/\lambda_b},&
+\frac{\partial^2S_0}{\partial\mu_b^2}&=-\frac{1}{\lambda_b\,(\mu_b/\lambda_b)(1-\mu_b/\lambda_b)},\\
+\frac{\partial S_0}{\partial\eps}&=-\ln\eps,&
+\frac{\partial^2S_0}{\partial\eps^2}&=-\frac1\eps .
+\end{align*}
+At $\mu_t=\mu(u_t)$ one has $\mu_{t,b}/\lambda_b=\rho_b(u_t)$ and
+$\eps_t=\eps_0(u_t)$ by Lemma~\ref{lem:iid-mecke}, so the Hessian of $S_0$ at $\mu_t$ is
+$-\Gamma(u_t)^{-1}$ and
+$\frac{\mathrm{d}^2}{\mathrm{d}t^2}S_0(\mu_t)=-x^{\mathsf T}\Gamma(u_t)^{-1}x$.
+
+\emph{The matrix inequality.} Write $\Sigma=\Sigma(u_t)$, $\Gamma=\Gamma(u_t)$. Since
+$x\in\mathcal{H}_0$ and $\Sigma\ind=0$,
+\[
+x^{\mathsf T}(\Sigma|_{\mathcal{H}_0})^{-1}x
+=\sup_{y\in\R^{B+1}}\bigl[2\langle x,y\rangle-y^{\mathsf T}\Sigma y\bigr]
+\ge\sup_{y\in\R^{B+1}}\bigl[2\langle x,y\rangle-y^{\mathsf T}\Gamma y\bigr]
+=x^{\mathsf T}\Gamma^{-1}x .
+\]
+The first equality holds because the bracket depends on $y$ only through its projection to
+$\mathcal{H}_0$, and on $\mathcal{H}_0$ the supremum of
+$2\langle x,y\rangle-y^{\mathsf T}\Sigma y$ is attained at
+$y=(\Sigma|_{\mathcal{H}_0})^{-1}x$. The inequality is Lemma~\ref{lem:iid-domination}. The
+last equality holds because $\Gamma$ is diagonal with positive entries.
+
+\emph{The tangent at $t=0$.} Consequently
+$t\mapsto\varphi(t)-S_0(\mu_t)$ has nonpositive second derivative on $[0,1)$, so it is
+concave there and lies below its tangent at $t=0$. By Lemma~\ref{lem:iid-legendre}(i),
+$\varphi'(0)=-\langle u_0,x\rangle$. Hence for $t\in[0,1)$
+\begin{equation}\label{eq:iid-tangent-t}
+\varphi(t)-S_0(\mu_t)\le H(\mu_0)-S_0(\mu_0)-t\,\bigl\langle u_0+\nabla S_0(\mu_0),\,x\bigr\rangle,
+\end{equation}
+where $\nabla S_0(\mu_0)$ has coordinates $\ln((1-\rho_b)/\rho_b)$ for $b\le B$ and
+$-\ln\eps_0$.
+
+\emph{The boundary.} Let $t\uparrow1$ in \eqref{eq:iid-tangent-t}. The function $S_0$ is
+continuous on $\mathcal{P}$, so $S_0(\mu_t)\to S_0(\mu)$. Since $\varphi$ is concave and
+finite on $[0,1]$, $\varphi(t)\ge(1-t)\varphi(0)+t\varphi(1)$, so
+$\liminf_{t\uparrow1}\varphi(t)\ge\varphi(1)=H(\mu)$. Therefore
+\[
+H(\mu)-S_0(\mu)\le H(\mu_0)-S_0(\mu_0)-\bigl\langle u_0+\nabla S_0(\mu_0),\,\mu-\mu_0\bigr\rangle .
+\]
+
+\emph{Evaluation.} By Lemma~\ref{lem:iid-legendre}(i),
+$H(\mu_0)+\langle u_0,\mu_0\rangle=\Phi(u_0)$. Using $h(r)-r\,h'(r)=-\ln(1-r)$ and
+$\mu_{0,b}=\lambda_b\rho_b$,
+\begin{multline*}
+S_0(\mu_0)-\langle\nabla S_0(\mu_0),\mu_0\rangle
+=\sum_b\lambda_b\bigl[h(\rho_b)-\rho_bh'(\rho_b)\bigr]
+ +\bigl[-\eps_0\ln\eps_0+\eps_0+\eps_0\ln\eps_0\bigr]\\
+=-\sum_b\lambda_b\ln(1-\rho_b)+\eps_0 .
+\end{multline*}
+Substituting these two identities gives \eqref{eq:iid-tangent}.
+\end{proof}
+
+\begin{proposition}[Tangent bound]\label{prop:iid-tangent-bound}
+For every $K>0$, $B\ge1$, $\theta>0$, $\beta\in\R$ and $u_0\in\R^{B+1}$,
+\[
+L^\ast=\sup_{\mu\in\mathcal{P}}L(\mu)\le\theta\beta+\Psi_0(K,B,\theta,u_0).
+\]
+\end{proposition}
+
+\begin{proof}
+Write $L(\mu)-\theta\beta=3\,(H(\mu)-S_0(\mu))+S_0(\mu)+\langle\ell,\mu\rangle$ and insert
+\eqref{eq:iid-tangent}:
+\begin{equation}\label{eq:iid-after-tangent}
+L(\mu)-\theta\beta\le3\Bigl[\Phi(u_0)+\sum_b\lambda_b\ln(1-\rho_b)-\eps_0\Bigr]
++S_0(\mu)+\langle a,\mu\rangle,
+\end{equation}
+with
+\[
+a_b=\ell_b-3u_{0,b}-3\ln\frac{1-\rho_b}{\rho_b}\quad(b\le B),\qquad
+a_\infty=\ell_\infty-3u_{0,\infty}+3\ln\eps_0 .
+\]
+Now drop the constraint $\sum_b\mu_b+\eps=1$ and maximise coordinate by coordinate. For
+real $a$, $\sup_{0\le r\le1}[h(r)+ar]=\ln(1+\mathrm{e}^a)$ and
+$\sup_{\eps\ge0}[-\eps\ln\eps+\eps+a\eps]=\mathrm{e}^a$. With $r=\mu_b/\lambda_b$ this
+gives
+\begin{align*}
+S_0(\mu)+\langle a,\mu\rangle
+&=\sum_b\lambda_b\Bigl[h\Bigl(\frac{\mu_b}{\lambda_b}\Bigr)+a_b\frac{\mu_b}{\lambda_b}\Bigr]
++\bigl[-\eps\ln\eps+\eps+a_\infty\eps\bigr]\\
+&\le\sum_b\lambda_b\ln\bigl(1+\mathrm{e}^{a_b}\bigr)+\mathrm{e}^{a_\infty}.
+\end{align*}
+Finally $\mathrm{e}^{a_b}=C_b(u_0)\,\rho_b^3/(1-\rho_b)^3$, so
+$(1-\rho_b)^3(1+\mathrm{e}^{a_b})=(1-\rho_b)^3+C_b\rho_b^3$, and
+$\mathrm{e}^{a_\infty}=C_\infty(u_0)\,\eps_0^3$. The right side of
+\eqref{eq:iid-after-tangent} is therefore at most
+$3\Phi(u_0)+\sum_b\lambda_b\ln((1-\rho_b)^3+C_b\rho_b^3)-3\eps_0+C_\infty\eps_0^3
+=\Psi_0(K,B,\theta,u_0)$.
+\end{proof}
+
+\begin{remark}\label{rem:iid-binning}
+The tilt uses the exact conditional Laplace transform $\kappa_b/\lambda_b$ of the cost
+within a bin, see \eqref{eq:iid-laplace}, so the binning causes no error in the
+accounting of costs; the only loss is that the conditioning is on coarser stars. Every
+$B\ge1$ gives a valid bound. Likewise Proposition~\ref{prop:iid-tangent-bound} holds for
+every weight vector $u_0$, so the certificate does not need an exact stationary point: the
+vector $u^\ast$ of Proposition~\ref{prop:iid-certificate} was found by a floating-point
+search, and how it was found is irrelevant to the proof.
+\end{remark}
+
+\subsection{Proof of the criterion}\label{subsec:iid-proof}
+
+\begin{proof}[Proof of Proposition~\ref{prop:iid-criterion}]
+Let $K,B,\theta,u,\beta$ satisfy \eqref{eq:iid-criterion}. By
+Proposition~\ref{prop:iid-tangent-bound} with $u_0=u$,
+$L^\ast\le\theta\beta+\Psi_0(K,B,\theta,u)<0$. By Lemma~\ref{lem:iid-limit} there are
+$\delta>0$ and $c>0$, depending only on $(K,B,\theta,u,\beta)$, such that
+$\E[Z_\beta;D(G)\in\mathcal{T}_\delta]\le\mathrm{e}^{-cq}$ for all large $q$. By Markov's
+inequality,
+\[
+\P(Z_\beta\ge1)\le\P\bigl(D(G)\notin\mathcal{T}_\delta\bigr)
++\E\bigl[Z_\beta;\,D(G)\in\mathcal{T}_\delta\bigr]
+\le\P\bigl(D(G)\notin\mathcal{T}_\delta\bigr)+\mathrm{e}^{-cq},
+\]
+and the first term tends to $0$ by Lemma~\ref{lem:iid-typical}.
+\end{proof}
+
+\begin{remark}[The certificate]\label{rem:iid-certificate}
+For the parameters of Proposition~\ref{prop:iid-certificate} the script reports the
+following outward-rounded enclosures, which are intermediate quantities and are not used
+elsewhere:
+\begin{align*}
+\Phi(u^\ast)&\in[-0.522226313363,\,-0.522223198517],\\
+\eps_0(u^\ast)&\in[0.02081077388,\,0.02081090331],\\
+\rho_1(u^\ast)&\in[0.7564957391,\,0.7565004438],\\
+\textstyle\sum_b\lambda_b\rho_b(u^\ast)+\eps_0(u^\ast)&\in[0.99999792704,\,1.00000414596].
+\end{align*}
+The last interval contains $1$, as it must by Lemma~\ref{lem:iid-mecke}. The certified
+upper bounds for $\theta\beta+\Psi_0$ are $-0.0037532832$ at $\beta=2.30$,
+$-0.0004108832$ at $\beta=2.302$, $-0.0000766432$ at $\beta=2.3022$ and $-0.0000097952$
+at $\beta=2.30224$. The enclosure of $\Psi_0$ is rigorous given the correctness of the
+script, of exact integer and rational arithmetic, and of the four interval operations and
+the comparisons of the interval library (mpmath~1.3.0). The library's interval exponential
+and logarithm are not used, because they are not strict enclosures; see
+Section~\ref{sec:certificates}.
+\end{remark}
+
+\begin{remark}[Checks that carry no weight in the proof]\label{rem:iid-checks}
+Lemma~\ref{lem:iid-count} was compared with an exact enumeration of all $20{,}736$
+configurations of an instance with three agents per sector and two bins, for all ten
+profiles (\texttt{lemmaC/\allowbreak round3/\allowbreak firstmoment/\allowbreak
+check\_partial.py}).
+Lemma~\ref{lem:iid-domination} and inequality \eqref{eq:iid-tangent} were tested in
+floating point on random instances with one to three bins
+(\texttt{lemmaC/\allowbreak round3/\allowbreak firstmoment/\allowbreak
+check\_concave.py}): the largest eigenvalue of
+$\Gamma^{-1/2}\Sigma\,\Gamma^{-1/2}$ found over $60$ instances was $0.999999$, and the
+largest value of the left side of \eqref{eq:iid-tangent} minus its right side over $360$
+pairs $(u_0,\mu)$ was $-1.3\times10^{-11}$.
+\end{remark}

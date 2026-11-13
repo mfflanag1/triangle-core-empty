@@ -1,0 +1,200 @@
+{"q": 10, "idx": 0, "core": false}
+{"q": 10, "idx": 1, "core": false}
+{"q": 10, "idx": 2, "core": false}
+{"q": 10, "idx": 3, "core": true, "deficit": 4.8330511828092675, "cheb_r_scaled": 0.05558891200179995, "width_mean": 1.6784415831157398, "width_geomean": 1.5990091156076633, "lp_vertices_distinct": 27, "lp_solves": 36, "tight_union": 49, "tight_per_vertex": 18.0, "secs": 0.22783422470092773}
+{"q": 10, "idx": 4, "core": false}
+{"q": 10, "idx": 5, "core": true, "deficit": 5.578656410333625, "cheb_r_scaled": 0.05561948964815839, "width_mean": 2.805047899169153, "width_geomean": 2.7097383766759617, "lp_vertices_distinct": 28, "lp_solves": 36, "tight_union": 62, "tight_per_vertex": 18.0, "secs": 0.25347208976745605}
+{"q": 10, "idx": 6, "core": false}
+{"q": 10, "idx": 7, "core": true, "deficit": 5.1384344968067275, "cheb_r_scaled": 0.08326556977957458, "width_mean": 2.4716183651617305, "width_geomean": 2.018111688062387, "lp_vertices_distinct": 30, "lp_solves": 36, "tight_union": 73, "tight_per_vertex": 18.0, "secs": 0.3067140579223633}
+{"q": 10, "idx": 8, "core": true, "deficit": 3.7855977505758993, "cheb_r_scaled": 0.017951683927745345, "width_mean": 0.8159171905873316, "width_geomean": 0.5963660032059678, "lp_vertices_distinct": 25, "lp_solves": 36, "tight_union": 38, "tight_per_vertex": 18.0, "secs": 0.21962213516235352}
+{"q": 10, "idx": 9, "core": true, "deficit": 6.006000455048934, "cheb_r_scaled": 0.029515630571415, "width_mean": 1.3119142508278516, "width_geomean": 1.1835821653382936, "lp_vertices_distinct": 22, "lp_solves": 36, "tight_union": 40, "tight_per_vertex": 18.0, "secs": 0.3284642696380615}
+{"q": 10, "idx": 10, "core": true, "deficit": 5.3307925816666, "cheb_r_scaled": 0.03999694697418606, "width_mean": 3.7930254191048487, "width_geomean": 3.7611149825987584, "lp_vertices_distinct": 31, "lp_solves": 36, "tight_union": 61, "tight_per_vertex": 18.0, "secs": 0.27042269706726074}
+{"q": 10, "idx": 11, "core": true, "deficit": 5.74169519503463, "cheb_r_scaled": 0.14335716641435833, "width_mean": 4.098172708054475, "width_geomean": 4.018426560662352, "lp_vertices_distinct": 29, "lp_solves": 36, "tight_union": 74, "tight_per_vertex": 18.0, "secs": 0.38087010383605957}
+{"q": 10, "idx": 12, "core": true, "deficit": 4.969501232513391, "cheb_r_scaled": 0.016107833099048965, "width_mean": 1.2363336608489985, "width_geomean": 1.0505634882403065, "lp_vertices_distinct": 21, "lp_solves": 36, "tight_union": 35, "tight_per_vertex": 18.0, "secs": 0.32486891746520996}
+{"q": 10, "idx": 13, "core": false}
+{"q": 10, "idx": 14, "core": true, "deficit": 4.732314682244414, "cheb_r_scaled": 0.024182738835361522, "width_mean": 0.9745865759025664, "width_geomean": 0.8345264335417705, "lp_vertices_distinct": 24, "lp_solves": 36, "tight_union": 39, "tight_per_vertex": 18.0, "secs": 0.2848780155181885}
+{"q": 10, "idx": 15, "core": true, "deficit": 5.313391505252596, "cheb_r_scaled": 0.004379248263334601, "width_mean": 0.8655169325375848, "width_geomean": 0.6870642122515188, "lp_vertices_distinct": 25, "lp_solves": 36, "tight_union": 35, "tight_per_vertex": 18.0, "secs": 0.36105799674987793}
+{"q": 10, "idx": 16, "core": true, "deficit": 4.6443095766286895, "cheb_r_scaled": 0.017193031683064814, "width_mean": 0.9900485926513025, "width_geomean": 0.9047329103470632, "lp_vertices_distinct": 22, "lp_solves": 36, "tight_union": 36, "tight_per_vertex": 18.0, "secs": 0.35181188583374023}
+{"q": 10, "idx": 17, "core": false}
+{"q": 10, "idx": 18, "core": false}
+{"q": 10, "idx": 19, "core": true, "deficit": 4.649089601607656, "cheb_r_scaled": 0.12057327250558957, "width_mean": 2.334441071139901, "width_geomean": 2.1228759025640893, "lp_vertices_distinct": 28, "lp_solves": 36, "tight_union": 68, "tight_per_vertex": 18.0, "secs": 0.27414703369140625}
+{"q": 10, "idx": 20, "core": false}
+{"q": 10, "idx": 21, "core": false}
+{"q": 10, "idx": 22, "core": true, "deficit": 6.829810810260767, "cheb_r_scaled": 0.018091371211489495, "width_mean": 0.6908964219322988, "width_geomean": 0.6119360332561111, "lp_vertices_distinct": 21, "lp_solves": 36, "tight_union": 39, "tight_per_vertex": 18.0, "secs": 0.3126332759857178}
+{"q": 10, "idx": 23, "core": true, "deficit": 4.425126696255745, "cheb_r_scaled": 0.06937031077718853, "width_mean": 3.65459855243253, "width_geomean": 3.5939750255205225, "lp_vertices_distinct": 30, "lp_solves": 36, "tight_union": 55, "tight_per_vertex": 18.0, "secs": 0.33782410621643066}
+{"q": 10, "idx": 24, "core": true, "deficit": 5.785117269726108, "cheb_r_scaled": 0.023061342882440293, "width_mean": 2.2736819496871927, "width_geomean": 2.147272802056276, "lp_vertices_distinct": 25, "lp_solves": 36, "tight_union": 41, "tight_per_vertex": 18.0, "secs": 0.255295991897583}
+{"q": 10, "idx": 25, "core": true, "deficit": 5.485300710039532, "cheb_r_scaled": 0.13804229481292213, "width_mean": 2.7001187677042306, "width_geomean": 2.5763175987817473, "lp_vertices_distinct": 33, "lp_solves": 36, "tight_union": 63, "tight_per_vertex": 18.0, "secs": 0.42431211471557617}
+{"q": 10, "idx": 26, "core": true, "deficit": 6.001514996509105, "cheb_r_scaled": 0.01299722433659128, "width_mean": 0.38592039277349455, "width_geomean": 0.31392327489008287, "lp_vertices_distinct": 20, "lp_solves": 36, "tight_union": 28, "tight_per_vertex": 18.0, "secs": 0.27201414108276367}
+{"q": 10, "idx": 27, "core": false}
+{"q": 10, "idx": 28, "core": false}
+{"q": 10, "idx": 29, "core": false}
+{"q": 10, "idx": 30, "core": true, "deficit": 4.345965477417767, "cheb_r_scaled": 0.09797040808915823, "width_mean": 2.961348290391579, "width_geomean": 2.857352456466743, "lp_vertices_distinct": 30, "lp_solves": 36, "tight_union": 54, "tight_per_vertex": 18.0, "secs": 0.3630330562591553}
+{"q": 10, "idx": 31, "core": true, "deficit": 5.052720601710281, "cheb_r_scaled": 0.08036342638931952, "width_mean": 2.9491204024151774, "width_geomean": 2.7944295151719243, "lp_vertices_distinct": 35, "lp_solves": 36, "tight_union": 65, "tight_per_vertex": 18.0, "secs": 0.31272315979003906}
+{"q": 10, "idx": 32, "core": true, "deficit": 5.720841348736265, "cheb_r_scaled": 0.06904357117257921, "width_mean": 2.0502724064719304, "width_geomean": 1.9834792750179646, "lp_vertices_distinct": 28, "lp_solves": 36, "tight_union": 57, "tight_per_vertex": 18.0, "secs": 0.2692587375640869}
+{"q": 10, "idx": 33, "core": false}
+{"q": 10, "idx": 34, "core": false}
+{"q": 10, "idx": 35, "core": true, "deficit": 4.78886644744221, "cheb_r_scaled": 0.01716263768035903, "width_mean": 1.1285802764273094, "width_geomean": 0.7411971052260572, "lp_vertices_distinct": 19, "lp_solves": 36, "tight_union": 38, "tight_per_vertex": 18.0, "secs": 0.3370349407196045}
+{"q": 10, "idx": 36, "core": true, "deficit": 5.384135340720565, "cheb_r_scaled": 0.006579513196765141, "width_mean": 2.6022431538924056, "width_geomean": 2.573226684464824, "lp_vertices_distinct": 23, "lp_solves": 36, "tight_union": 42, "tight_per_vertex": 18.0, "secs": 0.3073410987854004}
+{"q": 10, "idx": 37, "core": false}
+{"q": 10, "idx": 38, "core": false}
+{"q": 10, "idx": 39, "core": false}
+{"q": 10, "idx": 40, "core": true, "deficit": 5.0044819396695885, "cheb_r_scaled": 0.14701943445965795, "width_mean": 2.426948499530961, "width_geomean": 2.3390816511670693, "lp_vertices_distinct": 29, "lp_solves": 36, "tight_union": 60, "tight_per_vertex": 18.0, "secs": 0.4037160873413086}
+{"q": 10, "idx": 41, "core": true, "deficit": 5.332871225543283, "cheb_r_scaled": 0.027202387975188858, "width_mean": 1.5360506988378329, "width_geomean": 1.4849519135693903, "lp_vertices_distinct": 31, "lp_solves": 36, "tight_union": 42, "tight_per_vertex": 18.0, "secs": 0.4097018241882324}
+{"q": 10, "idx": 42, "core": true, "deficit": 5.309617422798009, "cheb_r_scaled": 0.03018092006465774, "width_mean": 1.9133012798490177, "width_geomean": 1.7350281191030643, "lp_vertices_distinct": 23, "lp_solves": 36, "tight_union": 45, "tight_per_vertex": 18.0, "secs": 0.3818681240081787}
+{"q": 10, "idx": 43, "core": true, "deficit": 5.7779796340992995, "cheb_r_scaled": 0.035848705299037636, "width_mean": 1.568647101695945, "width_geomean": 1.4024964501484982, "lp_vertices_distinct": 30, "lp_solves": 36, "tight_union": 42, "tight_per_vertex": 18.0, "secs": 0.28925204277038574}
+{"q": 10, "idx": 44, "core": true, "deficit": 5.817843926363427, "cheb_r_scaled": 0.0387358199267436, "width_mean": 1.6473869508438352, "width_geomean": 1.3563802571831838, "lp_vertices_distinct": 28, "lp_solves": 36, "tight_union": 49, "tight_per_vertex": 18.0, "secs": 0.3305857181549072}
+{"q": 10, "idx": 45, "core": false}
+{"q": 10, "idx": 46, "core": false}
+{"q": 10, "idx": 47, "core": true, "deficit": 5.8224087752139155, "cheb_r_scaled": 0.012276190216818571, "width_mean": 1.1676799426651305, "width_geomean": 1.1080954296171233, "lp_vertices_distinct": 21, "lp_solves": 36, "tight_union": 32, "tight_per_vertex": 18.0, "secs": 0.33553409576416016}
+{"q": 10, "idx": 48, "core": true, "deficit": 5.636609871706511, "cheb_r_scaled": 0.058394807385908076, "width_mean": 1.564497664377672, "width_geomean": 1.2606149739138695, "lp_vertices_distinct": 21, "lp_solves": 36, "tight_union": 47, "tight_per_vertex": 18.0, "secs": 0.2980189323425293}
+{"q": 10, "idx": 49, "core": false}
+{"q": 10, "idx": 50, "core": false}
+{"q": 10, "idx": 51, "core": false}
+{"q": 10, "idx": 52, "core": false}
+{"q": 10, "idx": 53, "core": false}
+{"q": 10, "idx": 54, "core": false}
+{"q": 10, "idx": 55, "core": true, "deficit": 5.476823488995734, "cheb_r_scaled": 0.09364193861189962, "width_mean": 2.0183427512389263, "width_geomean": 1.839702937591036, "lp_vertices_distinct": 30, "lp_solves": 36, "tight_union": 60, "tight_per_vertex": 18.0, "secs": 0.2873051166534424}
+{"q": 10, "idx": 56, "core": false}
+{"q": 10, "idx": 57, "core": true, "deficit": 4.926161177318054, "cheb_r_scaled": 0.08059152450935969, "width_mean": 4.41947058263739, "width_geomean": 4.308295629534913, "lp_vertices_distinct": 30, "lp_solves": 36, "tight_union": 56, "tight_per_vertex": 18.0, "secs": 0.32979607582092285}
+{"q": 10, "idx": 58, "core": true, "deficit": 5.3168258112638895, "cheb_r_scaled": 0.05066414284641374, "width_mean": 3.240397998292309, "width_geomean": 3.2127196712178354, "lp_vertices_distinct": 31, "lp_solves": 36, "tight_union": 53, "tight_per_vertex": 18.0, "secs": 0.3179149627685547}
+{"q": 10, "idx": 59, "core": true, "deficit": 5.1824590825563135, "cheb_r_scaled": 0.009375397498486232, "width_mean": 2.831933671168011, "width_geomean": 2.598710637193675, "lp_vertices_distinct": 25, "lp_solves": 36, "tight_union": 41, "tight_per_vertex": 18.0, "secs": 0.35899782180786133}
+{"q": 10, "idx": 60, "core": false}
+{"q": 10, "idx": 61, "core": true, "deficit": 6.020553667645768, "cheb_r_scaled": 0.08517505272927241, "width_mean": 1.9493842579668883, "width_geomean": 1.784872749093554, "lp_vertices_distinct": 32, "lp_solves": 36, "tight_union": 47, "tight_per_vertex": 18.0, "secs": 0.34506797790527344}
+{"q": 10, "idx": 62, "core": true, "deficit": 4.909692309402509, "cheb_r_scaled": 0.0012786799435548918, "width_mean": 0.7515403171198294, "width_geomean": 0.7134956800810506, "lp_vertices_distinct": 20, "lp_solves": 36, "tight_union": 30, "tight_per_vertex": 18.0, "secs": 0.29453301429748535}
+{"q": 10, "idx": 63, "core": true, "deficit": 6.455608079286996, "cheb_r_scaled": 0.10653273347585762, "width_mean": 1.883685506749073, "width_geomean": 1.7558330621614482, "lp_vertices_distinct": 32, "lp_solves": 36, "tight_union": 62, "tight_per_vertex": 18.0, "secs": 0.30874204635620117}
+{"q": 10, "idx": 64, "core": false}
+{"q": 10, "idx": 65, "core": true, "deficit": 5.846191263509137, "cheb_r_scaled": 0.030183625703708104, "width_mean": 1.1308116115690976, "width_geomean": 1.05405904995802, "lp_vertices_distinct": 32, "lp_solves": 36, "tight_union": 42, "tight_per_vertex": 18.0, "secs": 0.3268730640411377}
+{"q": 10, "idx": 66, "core": true, "deficit": 5.285876849136763, "cheb_r_scaled": 0.03856507634835022, "width_mean": 1.4483021716132816, "width_geomean": 1.2430633074312305, "lp_vertices_distinct": 31, "lp_solves": 36, "tight_union": 44, "tight_per_vertex": 18.0, "secs": 0.283494234085083}
+{"q": 10, "idx": 67, "core": true, "deficit": 5.196278157498316, "cheb_r_scaled": 0.07039696118034608, "width_mean": 2.351127381247119, "width_geomean": 2.307811191649741, "lp_vertices_distinct": 31, "lp_solves": 36, "tight_union": 59, "tight_per_vertex": 18.0, "secs": 0.287139892578125}
+{"q": 10, "idx": 68, "core": true, "deficit": 5.570326296163191, "cheb_r_scaled": 0.1726317345196655, "width_mean": 2.926009638557484, "width_geomean": 2.7452557519279703, "lp_vertices_distinct": 33, "lp_solves": 36, "tight_union": 67, "tight_per_vertex": 18.0, "secs": 0.32747793197631836}
+{"q": 10, "idx": 69, "core": true, "deficit": 5.149349529631554, "cheb_r_scaled": 0.08623646060026824, "width_mean": 3.075996350219968, "width_geomean": 2.970486809363341, "lp_vertices_distinct": 24, "lp_solves": 36, "tight_union": 48, "tight_per_vertex": 18.0, "secs": 0.3332631587982178}
+{"q": 10, "idx": 70, "core": false}
+{"q": 10, "idx": 71, "core": true, "deficit": 5.1538301600457075, "cheb_r_scaled": 5.581191073758237e-05, "width_mean": 1.442113091406546, "width_geomean": 1.3789298038033584, "lp_vertices_distinct": 18, "lp_solves": 36, "tight_union": 37, "tight_per_vertex": 18.0, "secs": 0.23749518394470215}
+{"q": 10, "idx": 72, "core": false}
+{"q": 10, "idx": 73, "core": true, "deficit": 5.058161395937081, "cheb_r_scaled": 0.0053229160824778765, "width_mean": 0.6373674635524849, "width_geomean": 0.46076921511136437, "lp_vertices_distinct": 20, "lp_solves": 36, "tight_union": 31, "tight_per_vertex": 18.0, "secs": 0.24035024642944336}
+{"q": 10, "idx": 74, "core": false}
+{"q": 10, "idx": 75, "core": true, "deficit": 5.229959654620007, "cheb_r_scaled": 0.009389309975639502, "width_mean": 1.7885676915259623, "width_geomean": 1.6159576923707122, "lp_vertices_distinct": 26, "lp_solves": 36, "tight_union": 41, "tight_per_vertex": 18.0, "secs": 0.3802478313446045}
+{"q": 10, "idx": 76, "core": true, "deficit": 5.300632506915235, "cheb_r_scaled": 0.0369607560775725, "width_mean": 1.1052546763081972, "width_geomean": 1.024553885704339, "lp_vertices_distinct": 16, "lp_solves": 36, "tight_union": 33, "tight_per_vertex": 18.0, "secs": 0.3436439037322998}
+{"q": 10, "idx": 77, "core": true, "deficit": 4.357738602513816, "cheb_r_scaled": 0.014623210509142334, "width_mean": 0.9216873447128235, "width_geomean": 0.8021701472841586, "lp_vertices_distinct": 27, "lp_solves": 36, "tight_union": 32, "tight_per_vertex": 18.0, "secs": 0.34986186027526855}
+{"q": 10, "idx": 78, "core": true, "deficit": 5.131363448119874, "cheb_r_scaled": 0.04691573397351094, "width_mean": 1.8625575926846791, "width_geomean": 1.7997141377238817, "lp_vertices_distinct": 24, "lp_solves": 36, "tight_union": 47, "tight_per_vertex": 18.0, "secs": 0.239548921585083}
+{"q": 10, "idx": 79, "core": true, "deficit": 6.243870992923032, "cheb_r_scaled": 0.013480731047124056, "width_mean": 0.6073132749677204, "width_geomean": 0.5342409000012929, "lp_vertices_distinct": 26, "lp_solves": 36, "tight_union": 30, "tight_per_vertex": 18.0, "secs": 0.42984604835510254}
+{"q": 10, "idx": 80, "core": true, "deficit": 4.995866183588504, "cheb_r_scaled": 0.2007936685087904, "width_mean": 3.5960260560307344, "width_geomean": 3.413941186029684, "lp_vertices_distinct": 28, "lp_solves": 36, "tight_union": 74, "tight_per_vertex": 18.0, "secs": 0.30332517623901367}
+{"q": 10, "idx": 81, "core": true, "deficit": 4.754700346131031, "cheb_r_scaled": 0.0022155968896056654, "width_mean": 1.0193909177980955, "width_geomean": 0.7741619908731409, "lp_vertices_distinct": 27, "lp_solves": 36, "tight_union": 33, "tight_per_vertex": 18.0, "secs": 0.29875993728637695}
+{"q": 10, "idx": 82, "core": true, "deficit": 6.7459345284144625, "cheb_r_scaled": 0.05302061103471034, "width_mean": 1.558806462093549, "width_geomean": 1.3596949670475567, "lp_vertices_distinct": 29, "lp_solves": 36, "tight_union": 44, "tight_per_vertex": 18.0, "secs": 0.2692549228668213}
+{"q": 10, "idx": 83, "core": true, "deficit": 5.19597181698801, "cheb_r_scaled": 0.07860544673362597, "width_mean": 2.250392064020838, "width_geomean": 1.993814715984863, "lp_vertices_distinct": 34, "lp_solves": 36, "tight_union": 55, "tight_per_vertex": 18.0, "secs": 0.34829068183898926}
+{"q": 10, "idx": 84, "core": true, "deficit": 6.245783897922642, "cheb_r_scaled": 0.0009092035570545194, "width_mean": 0.49398781882253573, "width_geomean": 0.2907214601484287, "lp_vertices_distinct": 16, "lp_solves": 36, "tight_union": 31, "tight_per_vertex": 18.0, "secs": 0.3166179656982422}
+{"q": 10, "idx": 85, "core": true, "deficit": 5.200300201481735, "cheb_r_scaled": 0.045806256928567345, "width_mean": 3.9649725681576005, "width_geomean": 3.793096797858227, "lp_vertices_distinct": 32, "lp_solves": 36, "tight_union": 91, "tight_per_vertex": 18.0, "secs": 0.3545551300048828}
+{"q": 10, "idx": 86, "core": true, "deficit": 4.2557617398007, "cheb_r_scaled": 0.11601524228369338, "width_mean": 2.2121999355550748, "width_geomean": 1.9985161396123032, "lp_vertices_distinct": 26, "lp_solves": 36, "tight_union": 70, "tight_per_vertex": 18.0, "secs": 0.2530651092529297}
+{"q": 10, "idx": 87, "core": false}
+{"q": 10, "idx": 88, "core": true, "deficit": 6.048156616935238, "cheb_r_scaled": 0.01770151418236072, "width_mean": 1.1550414527794526, "width_geomean": 1.080137080603808, "lp_vertices_distinct": 25, "lp_solves": 36, "tight_union": 44, "tight_per_vertex": 18.0, "secs": 0.3438141345977783}
+{"q": 10, "idx": 89, "core": true, "deficit": 5.721768106341695, "cheb_r_scaled": 0.13610829635134275, "width_mean": 3.0790511379716743, "width_geomean": 2.9924946027968944, "lp_vertices_distinct": 30, "lp_solves": 36, "tight_union": 64, "tight_per_vertex": 18.0, "secs": 0.35155606269836426}
+{"q": 10, "idx": 90, "core": true, "deficit": 6.2245974427471324, "cheb_r_scaled": 0.022845526775306702, "width_mean": 0.816334461654725, "width_geomean": 0.710424468349447, "lp_vertices_distinct": 18, "lp_solves": 36, "tight_union": 38, "tight_per_vertex": 18.0, "secs": 0.30806493759155273}
+{"q": 10, "idx": 91, "core": true, "deficit": 5.382497536359384, "cheb_r_scaled": 0.017045817743186625, "width_mean": 1.268732717427322, "width_geomean": 1.01361834163431, "lp_vertices_distinct": 17, "lp_solves": 36, "tight_union": 41, "tight_per_vertex": 18.0, "secs": 0.3607192039489746}
+{"q": 10, "idx": 92, "core": true, "deficit": 5.4093520459449955, "cheb_r_scaled": 0.03507637500839449, "width_mean": 1.8594431644339433, "width_geomean": 1.6859999224901854, "lp_vertices_distinct": 28, "lp_solves": 36, "tight_union": 44, "tight_per_vertex": 18.0, "secs": 0.3201761245727539}
+{"q": 10, "idx": 93, "core": true, "deficit": 4.82880849361592, "cheb_r_scaled": 0.027257915698927184, "width_mean": 2.0324133038058285, "width_geomean": 1.7947094620635557, "lp_vertices_distinct": 32, "lp_solves": 36, "tight_union": 48, "tight_per_vertex": 18.0, "secs": 0.3078958988189697}
+{"q": 10, "idx": 94, "core": false}
+{"q": 10, "idx": 95, "core": false}
+{"q": 10, "idx": 96, "core": false}
+{"q": 10, "idx": 97, "core": true, "deficit": 5.758897035330346, "cheb_r_scaled": 0.042410758944273236, "width_mean": 1.4689213331199236, "width_geomean": 1.3515915011369906, "lp_vertices_distinct": 28, "lp_solves": 36, "tight_union": 40, "tight_per_vertex": 18.0, "secs": 0.27684473991394043}
+{"q": 10, "idx": 98, "core": true, "deficit": 5.868743190129415, "cheb_r_scaled": 0.03235560238557364, "width_mean": 1.5874296983804375, "width_geomean": 1.4634514219231944, "lp_vertices_distinct": 26, "lp_solves": 36, "tight_union": 39, "tight_per_vertex": 18.0, "secs": 0.3023850917816162}
+{"q": 10, "idx": 99, "core": false}
+{"q": 10, "idx": 100, "core": true, "deficit": 5.015021378869694, "cheb_r_scaled": 0.04316941146638552, "width_mean": 1.8954317584493618, "width_geomean": 1.7051662335297126, "lp_vertices_distinct": 29, "lp_solves": 36, "tight_union": 52, "tight_per_vertex": 18.0, "secs": 0.3450477123260498}
+{"q": 10, "idx": 101, "core": false}
+{"q": 10, "idx": 102, "core": false}
+{"q": 10, "idx": 103, "core": false}
+{"q": 10, "idx": 104, "core": false}
+{"q": 10, "idx": 105, "core": true, "deficit": 5.394736670067751, "cheb_r_scaled": 0.02619946074002734, "width_mean": 0.9769594580126449, "width_geomean": 0.8378560043708235, "lp_vertices_distinct": 25, "lp_solves": 36, "tight_union": 37, "tight_per_vertex": 18.0, "secs": 0.30805397033691406}
+{"q": 10, "idx": 106, "core": false}
+{"q": 10, "idx": 107, "core": false}
+{"q": 10, "idx": 108, "core": true, "deficit": 5.102854084000803, "cheb_r_scaled": 0.035837408603985446, "width_mean": 2.21914263528656, "width_geomean": 2.0227027848562487, "lp_vertices_distinct": 17, "lp_solves": 36, "tight_union": 54, "tight_per_vertex": 18.0, "secs": 0.310701847076416}
+{"q": 10, "idx": 109, "core": true, "deficit": 4.638993639585184, "cheb_r_scaled": 0.006034091246818577, "width_mean": 0.6606427972375423, "width_geomean": 0.41487104263871866, "lp_vertices_distinct": 21, "lp_solves": 36, "tight_union": 30, "tight_per_vertex": 18.0, "secs": 0.21769928932189941}
+{"q": 10, "idx": 110, "core": false}
+{"q": 10, "idx": 111, "core": false}
+{"q": 10, "idx": 112, "core": true, "deficit": 6.154756500546853, "cheb_r_scaled": 0.013964984830036074, "width_mean": 0.7272194222256715, "width_geomean": 0.6995354974431893, "lp_vertices_distinct": 24, "lp_solves": 36, "tight_union": 33, "tight_per_vertex": 18.0, "secs": 0.27773118019104004}
+{"q": 10, "idx": 113, "core": true, "deficit": 5.310002068018214, "cheb_r_scaled": 0.020342452874824703, "width_mean": 0.9144827840562437, "width_geomean": 0.840741132297914, "lp_vertices_distinct": 21, "lp_solves": 36, "tight_union": 37, "tight_per_vertex": 18.0, "secs": 0.28502917289733887}
+{"q": 10, "idx": 114, "core": true, "deficit": 5.547301369005211, "cheb_r_scaled": 0.0019810460042626026, "width_mean": 0.7430855395877554, "width_geomean": 0.48137572812411866, "lp_vertices_distinct": 25, "lp_solves": 36, "tight_union": 34, "tight_per_vertex": 18.0, "secs": 0.37010812759399414}
+{"q": 10, "idx": 115, "core": false}
+{"q": 10, "idx": 116, "core": true, "deficit": 4.372932991540928, "cheb_r_scaled": 0.005306672713784104, "width_mean": 0.37944296460079646, "width_geomean": 0.24883084610769662, "lp_vertices_distinct": 16, "lp_solves": 36, "tight_union": 26, "tight_per_vertex": 18.0, "secs": 0.26683473587036133}
+{"q": 10, "idx": 117, "core": true, "deficit": 6.5109802297909205, "cheb_r_scaled": 0.0013072498738621108, "width_mean": 0.8163422127713406, "width_geomean": 0.707556305602348, "lp_vertices_distinct": 27, "lp_solves": 36, "tight_union": 33, "tight_per_vertex": 18.0, "secs": 0.3071322441101074}
+{"q": 10, "idx": 118, "core": false}
+{"q": 10, "idx": 119, "core": false}
+{"q": 10, "idx": 120, "core": true, "deficit": 5.946917644855333, "cheb_r_scaled": 0.018612182988415073, "width_mean": 0.9697705732374156, "width_geomean": 0.7454196794340449, "lp_vertices_distinct": 25, "lp_solves": 36, "tight_union": 40, "tight_per_vertex": 18.0, "secs": 0.3035287857055664}
+{"q": 10, "idx": 121, "core": false}
+{"q": 10, "idx": 122, "core": false}
+{"q": 10, "idx": 123, "core": true, "deficit": 5.683450371381348, "cheb_r_scaled": 0.08209656919937522, "width_mean": 2.088496030375898, "width_geomean": 1.9356010132405448, "lp_vertices_distinct": 32, "lp_solves": 36, "tight_union": 56, "tight_per_vertex": 18.0, "secs": 0.3497898578643799}
+{"q": 10, "idx": 124, "core": false}
+{"q": 10, "idx": 125, "core": true, "deficit": 5.897621438608834, "cheb_r_scaled": 0.0031217070724269044, "width_mean": 2.1919136790068348, "width_geomean": 2.1041239611550866, "lp_vertices_distinct": 23, "lp_solves": 36, "tight_union": 45, "tight_per_vertex": 18.0, "secs": 0.27061009407043457}
+{"q": 10, "idx": 126, "core": false}
+{"q": 10, "idx": 127, "core": true, "deficit": 5.5619577959609, "cheb_r_scaled": 0.1071020512530112, "width_mean": 2.59634547956749, "width_geomean": 2.5298994554088168, "lp_vertices_distinct": 29, "lp_solves": 36, "tight_union": 63, "tight_per_vertex": 18.0, "secs": 0.32655882835388184}
+{"q": 10, "idx": 128, "core": false}
+{"q": 10, "idx": 129, "core": true, "deficit": 5.174243186635639, "cheb_r_scaled": 0.04851259613053154, "width_mean": 1.1556819378406074, "width_geomean": 1.0382855311863126, "lp_vertices_distinct": 31, "lp_solves": 36, "tight_union": 41, "tight_per_vertex": 18.0, "secs": 0.2471449375152588}
+{"q": 10, "idx": 130, "core": false}
+{"q": 10, "idx": 131, "core": false}
+{"q": 10, "idx": 132, "core": true, "deficit": 5.574095072496803, "cheb_r_scaled": 0.006892849680154957, "width_mean": 1.6359046138766393, "width_geomean": 1.5029525011182723, "lp_vertices_distinct": 20, "lp_solves": 36, "tight_union": 38, "tight_per_vertex": 18.0, "secs": 0.39107608795166016}
+{"q": 10, "idx": 133, "core": true, "deficit": 6.005386381110604, "cheb_r_scaled": 0.03541912102164628, "width_mean": 3.492152162662124, "width_geomean": 3.4042873296264755, "lp_vertices_distinct": 32, "lp_solves": 36, "tight_union": 75, "tight_per_vertex": 18.0, "secs": 0.3707540035247803}
+{"q": 10, "idx": 134, "core": true, "deficit": 5.514508738782862, "cheb_r_scaled": 0.031134674157449974, "width_mean": 2.2097752847201244, "width_geomean": 2.131400128091603, "lp_vertices_distinct": 21, "lp_solves": 36, "tight_union": 41, "tight_per_vertex": 18.0, "secs": 0.23634004592895508}
+{"q": 10, "idx": 135, "core": false}
+{"q": 10, "idx": 136, "core": true, "deficit": 5.185255312337635, "cheb_r_scaled": 0.09059748993054763, "width_mean": 1.941214624243328, "width_geomean": 1.800593015983809, "lp_vertices_distinct": 24, "lp_solves": 36, "tight_union": 57, "tight_per_vertex": 18.0, "secs": 0.31961822509765625}
+{"q": 10, "idx": 137, "core": true, "deficit": 5.358674356801529, "cheb_r_scaled": 0.007671079288832239, "width_mean": 0.6202920230567727, "width_geomean": 0.5543141464987549, "lp_vertices_distinct": 24, "lp_solves": 36, "tight_union": 37, "tight_per_vertex": 18.0, "secs": 0.30597400665283203}
+{"q": 10, "idx": 138, "core": true, "deficit": 5.765185941387138, "cheb_r_scaled": 0.07776274044487379, "width_mean": 2.200266445809912, "width_geomean": 2.010491487481186, "lp_vertices_distinct": 26, "lp_solves": 36, "tight_union": 65, "tight_per_vertex": 18.0, "secs": 0.40156078338623047}
+{"q": 10, "idx": 139, "core": true, "deficit": 6.389309289403489, "cheb_r_scaled": 0.004430237144391556, "width_mean": 1.8391978333154873, "width_geomean": 1.6666351930375247, "lp_vertices_distinct": 27, "lp_solves": 36, "tight_union": 53, "tight_per_vertex": 18.0, "secs": 0.328369140625}
+{"q": 10, "idx": 140, "core": false}
+{"q": 10, "idx": 141, "core": false}
+{"q": 10, "idx": 142, "core": false}
+{"q": 10, "idx": 143, "core": true, "deficit": 5.332261722333527, "cheb_r_scaled": 0.036389629879363485, "width_mean": 1.6384600180269546, "width_geomean": 1.6016993127622587, "lp_vertices_distinct": 33, "lp_solves": 36, "tight_union": 50, "tight_per_vertex": 18.0, "secs": 0.3085627555847168}
+{"q": 10, "idx": 144, "core": true, "deficit": 6.7740572047628405, "cheb_r_scaled": 0.0066417324880178015, "width_mean": 1.0179097644880208, "width_geomean": 0.8279117703651111, "lp_vertices_distinct": 27, "lp_solves": 36, "tight_union": 32, "tight_per_vertex": 18.0, "secs": 0.3348710536956787}
+{"q": 10, "idx": 145, "core": true, "deficit": 6.016056953798536, "cheb_r_scaled": 0.057005145118950475, "width_mean": 1.4812220843899846, "width_geomean": 1.3797683281614221, "lp_vertices_distinct": 15, "lp_solves": 36, "tight_union": 37, "tight_per_vertex": 18.0, "secs": 0.3069431781768799}
+{"q": 10, "idx": 146, "core": true, "deficit": 5.108138746346356, "cheb_r_scaled": 0.016485865234167358, "width_mean": 2.0083895496772457, "width_geomean": 1.9008028563229393, "lp_vertices_distinct": 19, "lp_solves": 36, "tight_union": 35, "tight_per_vertex": 18.0, "secs": 0.30876612663269043}
+{"q": 10, "idx": 147, "core": true, "deficit": 5.0287483848853896, "cheb_r_scaled": 0.0666461016189102, "width_mean": 2.3832973462299902, "width_geomean": 2.1902149498715233, "lp_vertices_distinct": 27, "lp_solves": 36, "tight_union": 48, "tight_per_vertex": 18.0, "secs": 0.4182262420654297}
+{"q": 10, "idx": 148, "core": true, "deficit": 4.9488903956848915, "cheb_r_scaled": 0.04524512038856396, "width_mean": 1.27560955241096, "width_geomean": 1.0186700461437381, "lp_vertices_distinct": 19, "lp_solves": 36, "tight_union": 40, "tight_per_vertex": 18.0, "secs": 0.26753687858581543}
+{"q": 10, "idx": 149, "core": false}
+{"q": 10, "idx": 150, "core": false}
+{"q": 10, "idx": 151, "core": false}
+{"q": 10, "idx": 152, "core": true, "deficit": 5.595081693076139, "cheb_r_scaled": 0.09816374007121419, "width_mean": 2.1910265075838975, "width_geomean": 2.0316914230026586, "lp_vertices_distinct": 31, "lp_solves": 36, "tight_union": 68, "tight_per_vertex": 18.0, "secs": 0.22719407081604004}
+{"q": 10, "idx": 153, "core": false}
+{"q": 10, "idx": 154, "core": true, "deficit": 5.7061983442224715, "cheb_r_scaled": 0.11842537435988126, "width_mean": 2.2069457704264153, "width_geomean": 2.0975355363606787, "lp_vertices_distinct": 23, "lp_solves": 36, "tight_union": 62, "tight_per_vertex": 18.0, "secs": 0.35193610191345215}
+{"q": 10, "idx": 155, "core": true, "deficit": 5.533860309310075, "cheb_r_scaled": 0.025965557214347554, "width_mean": 2.0745757132649434, "width_geomean": 2.012760096464562, "lp_vertices_distinct": 26, "lp_solves": 36, "tight_union": 40, "tight_per_vertex": 18.0, "secs": 0.3223421573638916}
+{"q": 10, "idx": 156, "core": false}
+{"q": 10, "idx": 157, "core": false}
+{"q": 10, "idx": 158, "core": false}
+{"q": 10, "idx": 159, "core": false}
+{"q": 10, "idx": 160, "core": false}
+{"q": 10, "idx": 161, "core": true, "deficit": 6.03891340289983, "cheb_r_scaled": 0.05842550345663583, "width_mean": 2.253696134843001, "width_geomean": 2.1067347013190503, "lp_vertices_distinct": 27, "lp_solves": 36, "tight_union": 48, "tight_per_vertex": 18.0, "secs": 0.3482370376586914}
+{"q": 10, "idx": 162, "core": true, "deficit": 4.177105444416213, "cheb_r_scaled": 0.1853475944139548, "width_mean": 3.0575117629756567, "width_geomean": 2.7436005416932803, "lp_vertices_distinct": 31, "lp_solves": 36, "tight_union": 73, "tight_per_vertex": 18.0, "secs": 0.2522470951080322}
+{"q": 10, "idx": 163, "core": true, "deficit": 5.47826892256613, "cheb_r_scaled": 0.03556470130912824, "width_mean": 2.12400843782709, "width_geomean": 2.0868414233041137, "lp_vertices_distinct": 27, "lp_solves": 36, "tight_union": 38, "tight_per_vertex": 18.0, "secs": 0.3457069396972656}
+{"q": 10, "idx": 164, "core": true, "deficit": 5.0850139658941735, "cheb_r_scaled": 0.000958150681684931, "width_mean": 1.0315926013506393, "width_geomean": 0.7724209458020557, "lp_vertices_distinct": 22, "lp_solves": 36, "tight_union": 33, "tight_per_vertex": 18.0, "secs": 0.269791841506958}
+{"q": 10, "idx": 165, "core": true, "deficit": 5.076961719382666, "cheb_r_scaled": 0.015242520072168884, "width_mean": 1.3469005921622947, "width_geomean": 1.1431834678993595, "lp_vertices_distinct": 22, "lp_solves": 36, "tight_union": 39, "tight_per_vertex": 18.0, "secs": 0.3082869052886963}
+{"q": 10, "idx": 166, "core": true, "deficit": 5.058950401415274, "cheb_r_scaled": 0.01489763151478906, "width_mean": 1.182927673199118, "width_geomean": 1.1230498309768355, "lp_vertices_distinct": 13, "lp_solves": 36, "tight_union": 36, "tight_per_vertex": 18.0, "secs": 0.2963399887084961}
+{"q": 10, "idx": 167, "core": true, "deficit": 4.642462493401954, "cheb_r_scaled": 0.004252354161649304, "width_mean": 2.4318686488903705, "width_geomean": 2.314301773280214, "lp_vertices_distinct": 28, "lp_solves": 36, "tight_union": 41, "tight_per_vertex": 18.0, "secs": 0.28840088844299316}
+{"q": 10, "idx": 168, "core": false}
+{"q": 10, "idx": 169, "core": true, "deficit": 6.5374801823029145, "cheb_r_scaled": 0.017451322600216253, "width_mean": 0.46033670477105687, "width_geomean": 0.33698868980344016, "lp_vertices_distinct": 26, "lp_solves": 36, "tight_union": 33, "tight_per_vertex": 18.0, "secs": 0.23180818557739258}
+{"q": 10, "idx": 170, "core": true, "deficit": 5.522684656819628, "cheb_r_scaled": 0.010559730696900858, "width_mean": 0.9348546387244075, "width_geomean": 0.706904380758033, "lp_vertices_distinct": 16, "lp_solves": 36, "tight_union": 37, "tight_per_vertex": 18.0, "secs": 0.29871702194213867}
+{"q": 10, "idx": 171, "core": true, "deficit": 6.0357459899777055, "cheb_r_scaled": 0.010954189278420637, "width_mean": 0.49431496638663575, "width_geomean": 0.43146607930039677, "lp_vertices_distinct": 20, "lp_solves": 36, "tight_union": 35, "tight_per_vertex": 18.0, "secs": 0.31518077850341797}
+{"q": 10, "idx": 172, "core": true, "deficit": 4.652643661295972, "cheb_r_scaled": 0.07620391454167157, "width_mean": 1.8429479496208176, "width_geomean": 1.7022817539492525, "lp_vertices_distinct": 23, "lp_solves": 36, "tight_union": 46, "tight_per_vertex": 18.0, "secs": 0.2667689323425293}
+{"q": 10, "idx": 173, "core": false}
+{"q": 10, "idx": 174, "core": true, "deficit": 5.092731914582735, "cheb_r_scaled": 0.037619083850589395, "width_mean": 1.6191602632236852, "width_geomean": 1.3567507475688374, "lp_vertices_distinct": 26, "lp_solves": 36, "tight_union": 50, "tight_per_vertex": 18.0, "secs": 0.24045300483703613}
+{"q": 10, "idx": 175, "core": true, "deficit": 4.90448615275589, "cheb_r_scaled": 0.034374623357383075, "width_mean": 2.707583886809492, "width_geomean": 2.632198735145546, "lp_vertices_distinct": 32, "lp_solves": 36, "tight_union": 51, "tight_per_vertex": 18.0, "secs": 0.3039381504058838}
+{"q": 10, "idx": 176, "core": true, "deficit": 5.199436644947369, "cheb_r_scaled": 0.08144006098023478, "width_mean": 2.0533848593393635, "width_geomean": 1.944880397068164, "lp_vertices_distinct": 21, "lp_solves": 36, "tight_union": 47, "tight_per_vertex": 18.0, "secs": 0.27359485626220703}
+{"q": 10, "idx": 177, "core": true, "deficit": 4.622611788801681, "cheb_r_scaled": 0.11031255611143327, "width_mean": 2.7997926960482813, "width_geomean": 2.595245324240794, "lp_vertices_distinct": 27, "lp_solves": 36, "tight_union": 56, "tight_per_vertex": 18.0, "secs": 0.3016939163208008}
+{"q": 10, "idx": 178, "core": false}
+{"q": 10, "idx": 179, "core": true, "deficit": 4.7699345997026725, "cheb_r_scaled": 0.020810067826964523, "width_mean": 1.6261350389487559, "width_geomean": 1.0959008754121276, "lp_vertices_distinct": 27, "lp_solves": 36, "tight_union": 49, "tight_per_vertex": 18.0, "secs": 0.2771449089050293}
+{"q": 10, "idx": 180, "core": false}
+{"q": 10, "idx": 181, "core": true, "deficit": 4.875070205119776, "cheb_r_scaled": 0.10834802812746813, "width_mean": 2.204840976632093, "width_geomean": 2.119532541881483, "lp_vertices_distinct": 27, "lp_solves": 36, "tight_union": 56, "tight_per_vertex": 18.0, "secs": 0.43026208877563477}
+{"q": 10, "idx": 182, "core": false}
+{"q": 10, "idx": 183, "core": true, "deficit": 5.426585484719745, "cheb_r_scaled": 0.01611290768999246, "width_mean": 1.8812809387367042, "width_geomean": 1.601790681996218, "lp_vertices_distinct": 19, "lp_solves": 36, "tight_union": 43, "tight_per_vertex": 18.0, "secs": 0.28792405128479004}
+{"q": 10, "idx": 184, "core": false}
+{"q": 10, "idx": 185, "core": false}
+{"q": 10, "idx": 186, "core": true, "deficit": 5.812503738981448, "cheb_r_scaled": 0.016933875825688772, "width_mean": 0.8466927408430613, "width_geomean": 0.6721127070741513, "lp_vertices_distinct": 20, "lp_solves": 36, "tight_union": 43, "tight_per_vertex": 18.0, "secs": 0.2668590545654297}
+{"q": 10, "idx": 187, "core": true, "deficit": 5.044124351917159, "cheb_r_scaled": 0.018238335585763776, "width_mean": 1.3255046121029004, "width_geomean": 0.853352918670523, "lp_vertices_distinct": 23, "lp_solves": 36, "tight_union": 44, "tight_per_vertex": 18.0, "secs": 0.24625515937805176}
+{"q": 10, "idx": 188, "core": true, "deficit": 5.334483136061667, "cheb_r_scaled": 0.001962704297450906, "width_mean": 1.2132871814513606, "width_geomean": 1.0237201657275314, "lp_vertices_distinct": 21, "lp_solves": 36, "tight_union": 32, "tight_per_vertex": 18.0, "secs": 0.31643009185791016}
+{"q": 10, "idx": 189, "core": true, "deficit": 5.061762785976644, "cheb_r_scaled": 0.0065836090330157904, "width_mean": 0.9818099147096748, "width_geomean": 0.7632934072287187, "lp_vertices_distinct": 20, "lp_solves": 36, "tight_union": 40, "tight_per_vertex": 18.0, "secs": 0.34288787841796875}
+{"q": 10, "idx": 190, "core": false}
+{"q": 10, "idx": 191, "core": true, "deficit": 5.385061218384493, "cheb_r_scaled": 0.17279881924341145, "width_mean": 3.396561045080086, "width_geomean": 3.1756258316214665, "lp_vertices_distinct": 26, "lp_solves": 36, "tight_union": 75, "tight_per_vertex": 18.0, "secs": 0.23950695991516113}
+{"q": 10, "idx": 192, "core": true, "deficit": 5.101907329487528, "cheb_r_scaled": 0.03589768494262181, "width_mean": 1.4873474186334625, "width_geomean": 1.3718514146631273, "lp_vertices_distinct": 29, "lp_solves": 36, "tight_union": 45, "tight_per_vertex": 18.0, "secs": 0.2527010440826416}
+{"q": 10, "idx": 193, "core": true, "deficit": 6.0324214879253475, "cheb_r_scaled": 0.013266279314003733, "width_mean": 1.685265799701077, "width_geomean": 1.5200710979324228, "lp_vertices_distinct": 23, "lp_solves": 36, "tight_union": 50, "tight_per_vertex": 18.0, "secs": 0.2578549385070801}
+{"q": 10, "idx": 194, "core": true, "deficit": 6.127995175706509, "cheb_r_scaled": 0.008229862880197909, "width_mean": 1.48564810427521, "width_geomean": 1.4378977761016196, "lp_vertices_distinct": 25, "lp_solves": 36, "tight_union": 35, "tight_per_vertex": 18.0, "secs": 0.30957627296447754}
+{"q": 10, "idx": 195, "core": true, "deficit": 5.397327708157835, "cheb_r_scaled": 0.014027858777445106, "width_mean": 0.5695292547874385, "width_geomean": 0.375307573254187, "lp_vertices_distinct": 24, "lp_solves": 36, "tight_union": 31, "tight_per_vertex": 18.0, "secs": 0.31776881217956543}
+{"q": 10, "idx": 196, "core": false}
+{"q": 10, "idx": 197, "core": true, "deficit": 6.096111278543443, "cheb_r_scaled": 0.03973462675139978, "width_mean": 1.8038333946403218, "width_geomean": 1.6242706254078163, "lp_vertices_distinct": 24, "lp_solves": 36, "tight_union": 39, "tight_per_vertex": 18.0, "secs": 0.2551300525665283}
+{"q": 10, "idx": 198, "core": false}
+{"q": 10, "idx": 199, "core": false}

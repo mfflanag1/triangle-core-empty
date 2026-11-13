@@ -1,0 +1,11 @@
+checks of theta_i <= g(t_i), shat_i >= g'(t_i): prefix ../cert/stages/A
+ stage 1 (exact rationals, all 3999 points): max theta/g - 1 = -3.000e-09, min shat/g' - 1 = 3.000e-09
+ stage 1 -> 2: 527 of 4000 points; theta/g - 1 in [-1.656e-05, -1.012e-07] (need <= 0); shat/g' - 1 in [1.275e-08, 4.281e-06] (need >= 0); law: atom 1.266e-14, support 5.744385, E X = -4.136525066  [5s]
+ stage 2 -> 3: 527 of 4000 points; theta/g - 1 in [-1.489e-05, -9.969e-08] (need <= 0); shat/g' - 1 in [1.289e-08, 3.831e-06] (need >= 0); law: atom 1.266e-14, support 8.853099, E X = -4.497929723  [5s]
+ stage 3 -> 4: 527 of 4000 points; theta/g - 1 in [-1.404e-05, -9.918e-08] (need <= 0); shat/g' - 1 in [1.293e-08, 3.608e-06] (need >= 0); law: atom 1.266e-14, support 9.327337, E X = -4.663030201  [5s]
+ stage 4 -> 5: 527 of 4000 points; theta/g - 1 in [-1.378e-05, -9.899e-08] (need <= 0); shat/g' - 1 in [1.295e-08, 3.538e-06] (need >= 0); law: atom 1.266e-14, support 9.525898, E X = -4.720414644  [5s]
+ stage 5 -> 6: 527 of 4000 points; theta/g - 1 in [-1.368e-05, -9.892e-08] (need <= 0); shat/g' - 1 in [1.296e-08, 3.513e-06] (need >= 0); law: atom 1.266e-14, support 9.594351, E X = -4.741062882  [5s]
+ stage 6 -> 7: 527 of 4000 points; theta/g - 1 in [-1.365e-05, -9.889e-08] (need <= 0); shat/g' - 1 in [1.296e-08, 3.504e-06] (need >= 0); law: atom 1.266e-14, support 9.618647, E X = -4.748292697  [5s]
+ stage 7 -> 8: 527 of 4000 points; theta/g - 1 in [-1.363e-05, -9.888e-08] (need <= 0); shat/g' - 1 in [1.296e-08, 3.501e-06] (need >= 0); law: atom 1.266e-14, support 9.627146, E X = -4.750829134  [5s]
+ final law n=5: int exp(-g) = 10.2403758485 (Simpson dt=1/32: 10.2403758485, 1/64: 10.2403758485); E Q~ = -4.7410628823; c(Q~_5) = 2.27475025  [15s]
+ final law n=8: int exp(-g) = 10.2558892936 (Simpson dt=1/32: 10.2558892936, 1/64: 10.2558892936); E Q~ = -4.7517152691; c(Q~_8) = 2.25737627  [15s]

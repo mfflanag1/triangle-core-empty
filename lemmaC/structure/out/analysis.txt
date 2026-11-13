@@ -1,0 +1,126 @@
+## T1 scalars
+| q | n | P(mu*>0) | mean mu* | sd mu* | mean/sd | mean(LP*-T) | mean(LP*-T given >0) | mean(3q-T) | sd(3q-T) | mean(3q-LP*) | M pair deficit x q^(2/3) | secs |
+| 8 | 200 | 0.255 | -0.01188 | 0.02260 | -0.53 | 0.0110 | 0.0433 | 4.894 | 0.597 | 4.883 | 0.816 | 0.0 |
+| 12 | 200 | 0.385 | -0.00352 | 0.01596 | -0.22 | 0.0215 | 0.0558 | 5.892 | 0.584 | 5.870 | 0.858 | 0.0 |
+| 16 | 200 | 0.645 | 0.00425 | 0.01107 | 0.38 | 0.0389 | 0.0603 | 6.438 | 0.517 | 6.400 | 0.852 | 0.1 |
+| 24 | 200 | 0.875 | 0.00759 | 0.00648 | 1.17 | 0.0694 | 0.0793 | 7.477 | 0.476 | 7.408 | 0.864 | 0.4 |
+| 32 | 200 | 0.965 | 0.00952 | 0.00502 | 1.90 | 0.1082 | 0.1122 | 8.207 | 0.460 | 8.099 | 0.862 | 2.1 |
+| 40 | 200 | 0.985 | 0.00897 | 0.00376 | 2.39 | 0.1273 | 0.1293 | 8.897 | 0.459 | 8.769 | 0.867 | 6.5 |
+| 48 | 120 | 1.000 | 0.00878 | 0.00300 | 2.92 | 0.1564 | 0.1564 | 9.346 | 0.425 | 9.190 | 0.857 | 13.0 |
+
+## T1b fits (log-log slope vs q; 90% bootstrap band); q >= 16
+- mean mu*: values [np.float64(0.00425), np.float64(0.00759), np.float64(0.00952), np.float64(0.00897), np.float64(0.00878)], slope 0.66, band [0.45 1.01]
+- sd mu*: values [np.float64(0.01107), np.float64(0.00648), np.float64(0.00502), np.float64(0.00376), np.float64(0.003)], slope -1.17, band [-1.3  -1.04]
+- mean/sd mu*: values [np.float64(0.38389), np.float64(1.17101), np.float64(1.89655), np.float64(2.38736), np.float64(2.92463)], slope 1.82, band [1.55 2.19]
+- median mu*: values [np.float64(0.00318), np.float64(0.00755), np.float64(0.00935), np.float64(0.009), np.float64(0.00876)], slope 0.90, band [0.5  1.16]
+- mean LP*-T: slope 1.271, band [1.162 1.399]; ratio to q^(1/3): [np.float64(0.015), np.float64(0.024), np.float64(0.034), np.float64(0.037), np.float64(0.043)]
+- mean 3q-T: slope 0.341, band [0.331 0.349]; ratio to q^(1/3): [np.float64(2.555), np.float64(2.592), np.float64(2.585), np.float64(2.601), np.float64(2.572)]
+- mean 3q-LP*: slope 0.332, band [0.322 0.339]; ratio to q^(1/3): [np.float64(2.54), np.float64(2.568), np.float64(2.551), np.float64(2.564), np.float64(2.529)]
+- sd 3q-T: [np.float64(0.517), np.float64(0.476), np.float64(0.46), np.float64(0.459), np.float64(0.425)] slope -0.16
+- sd LP*-T: [np.float64(0.0462), np.float64(0.0534), np.float64(0.0544), np.float64(0.0528), np.float64(0.0537)] slope 0.12
+  q=8 mu* quantiles 5/10/25/50/75/90%: [-0.0531 -0.0419 -0.0213 -0.0083  0.0001  0.0119]
+  q=12 mu* quantiles 5/10/25/50/75/90%: [-0.0323 -0.0212 -0.012  -0.0024  0.0076  0.016 ]
+  q=16 mu* quantiles 5/10/25/50/75/90%: [-0.0123 -0.0078 -0.0023  0.0032  0.0109  0.0195]
+  q=24 mu* quantiles 5/10/25/50/75/90%: [-0.0035 -0.001   0.0034  0.0076  0.0121  0.0161]
+  q=32 mu* quantiles 5/10/25/50/75/90%: [0.0012 0.0034 0.0065 0.0093 0.0126 0.0159]
+  q=40 mu* quantiles 5/10/25/50/75/90%: [0.0025 0.0045 0.0065 0.009  0.0114 0.0138]
+  q=48 mu* quantiles 5/10/25/50/75/90%: [0.004  0.0054 0.0071 0.0088 0.0103 0.0125]
+
+## T2 mu*-maximiser w (adjacent vertex of P at M), all instances (empty and nonempty)
+| q | ncomp=1 share | kM mean | kM/q mean | kM median | noff/kM | keep-M-pair share of off teams | newpairs/kM | aux 2-section non-bipartite | w half-integral | w denominators seen (top) |
+| 8 | 1.00 | 5.01 | 0.63 | 5 | 1.16 | 0.67 | 2.62 | 0.84 | 0.35 | [(2, 80), (3, 25), (4, 9)] |
+| 12 | 1.00 | 7.50 | 0.63 | 8 | 1.26 | 0.57 | 2.94 | 0.91 | 0.35 | [(2, 98), (3, 34), (4, 19), (5, 13), (7, 7), (6, 7)] |
+| 16 | 1.00 | 10.23 | 0.64 | 11 | 1.30 | 0.51 | 3.11 | 0.94 | 0.40 | [(2, 120), (3, 46), (4, 27), (6, 15), (5, 13), (9, 7)] |
+| 24 | 1.00 | 17.34 | 0.72 | 18 | 1.48 | 0.44 | 3.64 | 0.99 | 0.14 | [(2, 96), (3, 63), (4, 42), (5, 28), (-1, 27), (6, 25)] |
+| 32 | 1.00 | 24.19 | 0.76 | 26 | 1.61 | 0.39 | 4.00 | 1.00 | 0.07 | [(-1, 87), (2, 64), (4, 42), (3, 40), (5, 38), (7, 27)] |
+| 40 | 1.00 | 31.60 | 0.79 | 32 | 1.72 | 0.37 | 4.29 | 1.00 | 0.02 | [(-1, 150), (2, 53), (4, 40), (3, 39), (5, 24), (8, 23)] |
+| 48 | 1.00 | 39.40 | 0.82 | 40 | 1.79 | 0.33 | 4.51 | 1.00 | 0.01 | [(-1, 106), (2, 19), (3, 17), (4, 15), (11, 12), (8, 12)] |
+
+(empty-core subset of T2)
+  q=8 n_empty=51 kM/q mean 0.79 median kM 7 d(w) mean 3.81 min kM 4 max 8 half-integral 0.59
+  q=12 n_empty=77 kM/q mean 0.74 median kM 9 d(w) mean 4.93 min kM 3 max 12 half-integral 0.44
+  q=16 n_empty=129 kM/q mean 0.69 median kM 11 d(w) mean 5.89 min kM 3 max 16 half-integral 0.44
+  q=24 n_empty=175 kM/q mean 0.73 median kM 18 d(w) mean 7.81 min kM 5 max 24 half-integral 0.14
+  q=32 n_empty=193 kM/q mean 0.76 median kM 26 d(w) mean 9.26 min kM 6 max 32 half-integral 0.06
+  q=40 n_empty=197 kM/q mean 0.79 median kM 33 d(w) mean 11.05 min kM 6 max 39 half-integral 0.02
+  q=48 n_empty=120 kM/q mean 0.82 median kM 40 d(w) mean 12.58 min kM 7 max 47 half-integral 0.01
+
+## T3 LP-optimal vertex lam* - M, empty-core instances
+| q | n_empty | lam* half-integral | ncomp mean | ncomp dist | largest comp kM/q | 2nd comp kM (mean) | largest comp share of gain | any comp with gain<=0 | best comp ratio gain/d >0 share |
+| 8 | 51 | 0.65 | 1.00 | {np.int64(1): 51} | 0.80 | 0.00 | 1.000 | 0 | 1.00 |
+| 12 | 77 | 0.44 | 1.00 | {np.int64(1): 77} | 0.76 | 0.00 | 1.000 | 0 | 1.00 |
+| 16 | 129 | 0.39 | 1.00 | {np.int64(1): 129} | 0.72 | 0.00 | 1.000 | 0 | 1.00 |
+| 24 | 175 | 0.15 | 1.00 | {np.int64(1): 175} | 0.79 | 0.00 | 1.000 | 0 | 1.00 |
+| 32 | 193 | 0.02 | 1.00 | {np.int64(1): 193} | 0.84 | 0.00 | 1.000 | 0 | 1.00 |
+| 40 | 197 | 0.02 | 1.00 | {np.int64(1): 197} | 0.85 | 0.00 | 1.000 | 0 | 1.00 |
+| 48 | 120 | 0.00 | 1.00 | {np.int64(1): 120} | 0.89 | 0.00 | 1.000 | 0 | 1.00 |
+
+lam* denominators (empty instances):
+  q=8 [(2, 38), (3, 13), (4, 5)]  lcm>2 share 0.35
+  q=12 [(2, 50), (3, 20), (4, 11), (5, 7), (6, 5), (7, 4), (9, 3), (8, 2)]  lcm>2 share 0.56
+  q=16 [(2, 81), (3, 43), (4, 17), (6, 13), (5, 11), (7, 8), (8, 4), (9, 4)]  lcm>2 share 0.61
+  q=24 [(2, 85), (3, 61), (4, 33), (6, 30), (-1, 27), (5, 27), (7, 17), (8, 16)]  lcm>2 share 0.85
+  q=32 [(-1, 110), (2, 65), (3, 52), (4, 42), (7, 30), (5, 29), (6, 28), (8, 24)]  lcm>2 share 0.98
+  q=40 [(-1, 160), (2, 57), (4, 38), (3, 36), (8, 24), (6, 24), (11, 21), (7, 19)]  lcm>2 share 0.98
+  q=48 [(-1, 113), (7, 13), (5, 12), (2, 10), (15, 9), (4, 9), (9, 7), (19, 5)]  lcm>2 share 1.0
+
+## T4 near-tight off-M teams per agent (full-LP dual prices p_lp; reduced cost r_f = v_f - p_lp(f) > -eps)
+| q | eps=0.005 | eps=0.01 | eps=0.02 | eps=0.05 | eps=0.1 | eps=0.2 | eps=0.5q^-2/3 | eps=q^-2/3 | min per agent (eps=q^-2/3) |
+| 8 | 1.54 | 1.60 | 1.73 | 2.12 | 2.87 | 4.87 | 3.35 | 6.06 | 1.30 |
+| 12 | 1.95 | 2.03 | 2.19 | 2.75 | 3.86 | 6.99 | 3.73 | 6.65 | 1.07 |
+| 16 | 1.90 | 1.99 | 2.19 | 2.86 | 4.28 | 8.19 | 3.62 | 6.34 | 0.89 |
+| 24 | 2.14 | 2.27 | 2.55 | 3.52 | 5.63 | 11.78 | 3.90 | 6.64 | 0.74 |
+| 32 | 2.19 | 2.34 | 2.67 | 3.94 | 6.64 | 15.06 | 3.92 | 6.59 | 0.67 |
+| 40 | 2.20 | 2.38 | 2.79 | 4.27 | 7.67 | 18.66 | 3.86 | 6.55 | 0.54 |
+| 48 | 2.25 | 2.47 | 2.93 | 4.64 | 8.70 | 22.34 | 3.88 | 6.53 | 0.57 |
+slopes in q (q>=16): {'0.005': np.float64(0.14), '0.01': np.float64(0.18), '0.02': np.float64(0.25), '0.05': np.float64(0.43), '0.1': np.float64(0.64), '0.2': np.float64(0.91), '0.5q^-2/3': np.float64(0.05), 'q^-2/3': np.float64(0.02)}
+slope in eps at q=40 (or max q): 0.6
+
+(same with the cone dual p of the mu* LP)
+  q=8 [np.float64(1.92), np.float64(1.99), np.float64(2.12), np.float64(2.55), np.float64(3.41), np.float64(5.55)]
+  q=12 [np.float64(2.06), np.float64(2.15), np.float64(2.33), np.float64(2.9), np.float64(4.09), np.float64(7.26)]
+  q=16 [np.float64(1.99), np.float64(2.08), np.float64(2.29), np.float64(2.98), np.float64(4.42), np.float64(8.4)]
+  q=24 [np.float64(2.14), np.float64(2.27), np.float64(2.54), np.float64(3.52), np.float64(5.62), np.float64(11.8)]
+  q=32 [np.float64(2.18), np.float64(2.33), np.float64(2.68), np.float64(3.89), np.float64(6.58), np.float64(14.96)]
+  q=40 [np.float64(2.2), np.float64(2.38), np.float64(2.77), np.float64(4.23), np.float64(7.63), np.float64(18.52)]
+  q=48 [np.float64(2.22), np.float64(2.43), np.float64(2.87), np.float64(4.54), np.float64(8.54), np.float64(22.07)]
+
+## T5 M-team reduced costs
+| q | empty: #M-teams with r_lp<0 (mean) / q | empty: share of deficit on top 25% M teams | cone dual: #M-teams at r=-mu* (= supp z) mean / q |
+| 8 | 0.14 | 1.00 | 0.93 |
+| 12 | 0.11 | 1.00 | 0.93 |
+| 16 | 0.10 | 1.00 | 0.93 |
+| 24 | 0.09 | 1.00 | 0.94 |
+| 32 | 0.10 | 1.00 | 0.94 |
+| 40 | 0.10 | 1.00 | 0.95 |
+| 48 | 0.11 | 1.00 | 0.96 |
+
+checks: max dual feas violation 2.5311350237977592e-14  max |mu - mu_dual| 3.1988300897012323e-15  max |mu - ratio(w)| 8.586881206085195e-16  max |rc on supp(w)\M| 4.884981308350689e-15
+
+## T6 gap as its own concentrating scalar; maximiser size
+| q | n | mean gap | sd gap | mean/sd gap | P(gap>0) | mean mu* x q | maximiser d(w)/q (empty) | maximiser gain v.(w-M) (empty) |
+| 8 | 200 | 0.0110 | 0.0263 | 0.42 | 0.255 | -0.095 | 0.476 | 0.0418 |
+| 12 | 200 | 0.0215 | 0.0359 | 0.60 | 0.385 | -0.042 | 0.411 | 0.0528 |
+| 16 | 200 | 0.0389 | 0.0462 | 0.84 | 0.645 | 0.068 | 0.368 | 0.0557 |
+| 24 | 200 | 0.0694 | 0.0534 | 1.30 | 0.875 | 0.182 | 0.325 | 0.0688 |
+| 32 | 200 | 0.1082 | 0.0544 | 1.99 | 0.965 | 0.305 | 0.289 | 0.0890 |
+| 40 | 200 | 0.1273 | 0.0528 | 2.41 | 0.985 | 0.359 | 0.276 | 0.0971 |
+| 48 | 120 | 0.1564 | 0.0537 | 2.91 | 1.000 | 0.421 | 0.262 | 0.1077 |
+- mean/sd gap slope (q>=16): 1.15 band [1.03 1.27]
+
+## blocks
+  q=16 n=40 (empty 31): {'s4': {'share_pos_blocks': 0.0, 'P_any_pos_given_empty': np.float64(0.0), 'sum_over_gap': np.float64(0.0)}, 's6': {'share_pos_blocks': 0.0, 'P_any_pos_given_empty': np.float64(0.0), 'sum_over_gap': np.float64(0.0)}, 's8': {'share_pos_blocks': 0.0, 'P_any_pos_given_empty': np.float64(0.0), 'sum_over_gap': np.float64(0.0)}}
+  q=24 n=40 (empty 31): {'s4': {'share_pos_blocks': 0.0, 'P_any_pos_given_empty': np.float64(0.0), 'sum_over_gap': np.float64(0.0)}, 's6': {'share_pos_blocks': 0.0, 'P_any_pos_given_empty': np.float64(0.0), 'sum_over_gap': np.float64(0.0)}, 's8': {'share_pos_blocks': 0.0, 'P_any_pos_given_empty': np.float64(0.0), 'sum_over_gap': np.float64(0.0)}, 's12': {'share_pos_blocks': 0.0, 'P_any_pos_given_empty': np.float64(0.0), 'sum_over_gap': np.float64(0.0)}}
+  q=32 n=40 (empty 39): {'s4': {'share_pos_blocks': 0.0, 'P_any_pos_given_empty': np.float64(0.0), 'sum_over_gap': np.float64(0.0)}, 's6': {'share_pos_blocks': 0.0, 'P_any_pos_given_empty': np.float64(0.0), 'sum_over_gap': np.float64(0.0)}, 's8': {'share_pos_blocks': 0.0, 'P_any_pos_given_empty': np.float64(0.0), 'sum_over_gap': np.float64(0.0)}, 's12': {'share_pos_blocks': 0.0, 'P_any_pos_given_empty': np.float64(0.0), 'sum_over_gap': np.float64(0.0)}, 's16': {'share_pos_blocks': 0.0, 'P_any_pos_given_empty': np.float64(0.0), 'sum_over_gap': np.float64(0.0)}}
+
+## influence
+  q=12 n=16: mean ES_gap 0.08991 (sample Var gap 0.001155); mean ES_mu 0.008819 (sample Var mu 9.792e-05); S1 size 54, S1 E dgap^2 0.00171, S2 E dgap^2 0.00023, S1 E dmu^2 0.000181, S2 E dmu^2 2.43e-05, S2 share nonzero dgap 0.083
+  q=16 n=16: mean ES_gap 0.1282 (sample Var gap 0.002236); mean ES_mu 0.008508 (sample Var mu 7.29e-05); S1 size 83, S1 E dgap^2 0.00192, S2 E dgap^2 0.000151, S1 E dmu^2 7.03e-05, S2 E dmu^2 1.71e-05, S2 share nonzero dgap 0.078
+  q=24 n=16: mean ES_gap 0.2296 (sample Var gap 0.004938); mean ES_mu 0.004256 (sample Var mu 5.945e-05); S1 size 135, S1 E dgap^2 0.00232, S2 E dgap^2 0.000106, S1 E dmu^2 5.36e-05, S2 E dmu^2 1.54e-06, S2 share nonzero dgap 0.052
+
+## influence2 (Efron-Stein estimates for T, LP*, gap, mu*; Var columns from the 200-instance struct runs)
+| q | n | ES_T | Var T | ES_LP | Var LP* | ES_gap | Var gap | (mean gap)^2 | ES_mu | Var mu* | (mean mu*)^2 |
+| 12 | 12 | 0.542 | 0.341 | 0.462 | 0.334 | 0.0815 | 0.00129 | 0.000462 | 0.00805 | 0.000255 | 1.24e-05 |
+| 16 | 12 | 1.88 | 0.268 | 1.66 | 0.259 | 0.123 | 0.00213 | 0.00151 | 0.00637 | 0.000123 | 1.81e-05 |
+| 24 | 12 | 0.816 | 0.226 | 0.387 | 0.226 | 0.218 | 0.00285 | 0.00482 | 0.00591 | 4.2e-05 | 5.76e-05 |
+| 32 | 12 | 0.868 | 0.211 | 0.426 | 0.203 | 0.221 | 0.00295 | 0.0117 | 0.00111 | 2.52e-05 | 9.07e-05 |

@@ -1,0 +1,14 @@
+file=w_K5_e25.json delta=0.005 cells=5106 t1=855.3 prec=80 time=30s
+K=5.0 eta=0.25 B=20 theta=1.6671
+gamma in [0.57721566490088, 0.57721566491124]
+Phi in [-0.519019040570, -0.519015925717]  width <= 0.000003115
+eps in [0.02098715228, 0.02098728281]; rho_1 in [0.7263625018, 0.7263670190]; worst relative width of rho_b: 6.22e-06
+check sum_b lam_b rho_b + eps in [0.99999792704, 1.00000414596] (contains 1: asserted)
+ln J in [-6.082846342, -6.082846341]; m1 <= 0.72404035
+Psi0 <= -3.83621828482   (8 decimals: Psi0 <= -3.83621828)
+beta_cert = -Psi0/theta >= 2.30113267639   (8 decimals: >= 2.30113267)
+  beta=2.30: theta*beta + Psi0 <= -0.0018882848  -> NEGATIVE (certified)
+  beta=2.302: theta*beta + Psi0 <= 0.0014459152  -> not certified
+  beta=2.3022: theta*beta + Psi0 <= 0.0017793352  -> not certified
+  beta=2.30224: theta*beta + Psi0 <= 0.0018460192  -> not certified
+exported to psi0_export_w_K5_e25.json: Psi0 <= -3.83621828 (exact rational -1159425833549653397990239/302231454903657293676544), -Psi0/theta >= 2.30113267

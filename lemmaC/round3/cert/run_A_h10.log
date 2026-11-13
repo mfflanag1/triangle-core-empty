@@ -1,0 +1,11 @@
+cert.py HEXP=10 h=2^-10 N1=1500 N2=2500 levels [1e-06,32] EPS=1e-09 prec=120
+stage 0: lattice cells 0 (support width <= 0.0000), mesh 3999 points, levels [1.06e-06, 32], sum p_lo = 1.000000000000, sum nu_hi = 1.000000000000, E Q~ <= 0.000000000, E T(Q~) <= 1.622651865, CERTIFIED c* <= 3*Gamma(Q~_0) <= 4.867956   [1s]
+stage 1: lattice cells 5883 (support width <= 5.7444), mesh 4000 points, levels [1e-06, 32], sum p_lo = 1.000000000000, sum nu_hi = 1.000000000000, E Q~ <= -4.136525066, E T(Q~) <= 9.412226842, CERTIFIED c* <= 3*Gamma(Q~_1) <= 3.417530   [2s]
+stage 2: lattice cells 9066 (support width <= 8.8531), mesh 4000 points, levels [1e-06, 32], sum p_lo = 1.000000000000, sum nu_hi = 1.000000000000, E Q~ <= -4.497929723, E T(Q~) <= 9.884215400, CERTIFIED c* <= 3*Gamma(Q~_2) <= 2.665068   [3s]
+stage 3: lattice cells 9552 (support width <= 9.3273), mesh 4000 points, levels [1e-06, 32], sum p_lo = 1.000000000000, sum nu_hi = 1.000000000000, E Q~ <= -4.663030201, E T(Q~) <= 10.127448827, CERTIFIED c* <= 3*Gamma(Q~_3) <= 2.404165   [3s]
+stage 4: lattice cells 9755 (support width <= 9.5259), mesh 4000 points, levels [1e-06, 32], sum p_lo = 1.000000000000, sum nu_hi = 1.000000000000, E Q~ <= -4.720414644, E T(Q~) <= 10.210279833, CERTIFIED c* <= 3*Gamma(Q~_4) <= 2.308352   [3s]
+stage 5: lattice cells 9825 (support width <= 9.5944), mesh 4000 points, levels [1e-06, 32], sum p_lo = 1.000000000000, sum nu_hi = 1.000000000000, E Q~ <= -4.741062882, E T(Q~) <= 10.240377372, CERTIFIED c* <= 3*Gamma(Q~_5) <= 2.274755   [3s]
+stage 6: lattice cells 9850 (support width <= 9.6186), mesh 4000 points, levels [1e-06, 32], sum p_lo = 1.000000000000, sum nu_hi = 1.000000000000, E Q~ <= -4.748292697, E T(Q~) <= 10.250903519, CERTIFIED c* <= 3*Gamma(Q~_6) <= 2.262954   [3s]
+stage 7: lattice cells 9859 (support width <= 9.6271), mesh 4000 points, levels [1e-06, 32], sum p_lo = 1.000000000000, sum nu_hi = 1.000000000000, E Q~ <= -4.750829134, E T(Q~) <= 10.254600032, CERTIFIED c* <= 3*Gamma(Q~_7) <= 2.258825   [3s]
+stage 8: lattice cells 9862 (support width <= 9.6301), mesh 4000 points, levels [1e-06, 32], sum p_lo = 1.000000000000, sum nu_hi = 1.000000000000, E Q~ <= -4.751715269, E T(Q~) <= 10.255890818, CERTIFIED c* <= 3*Gamma(Q~_8) <= 2.257381   [3s]
+total time 46s

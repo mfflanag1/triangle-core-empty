@@ -1,0 +1,112 @@
+q=16 K=0.80 trials=40000  mu=1.365 Delta=0.146  E[Y]_PA=0.149 (Y = sharing pairs of teams; theory Delta)
+  void: P_PA(|H|=0)=0.28995  IT exact (1-p)^(q^3)=0.25524  Janson bound exp(-mu+Delta)=0.29551
+  P(s=0): PA=0.8847 IT=0.9889 ratio=0.89
+  P(s=1): PA=0.0931 IT=0.0109 ratio=8.50
+  P(s=2): PA=0.0174 IT=0.0002 ratio=87.00
+  max over n (cells with >=30 counts) of P_PA(|H|=n,s)/P_IT(|H|=n,s): s=0: 1.128 at n=0 (bound exp(Delta+K^3 n/2q) ~ 1.25);  s=1: 10.03 at n=2 (one-sharing factor 1.8 q^(2/3)/K = 14.29)
+  star size: TV(mean PA law, Poisson(0.085))=0.0090 ; mean per-instance TV(empirical, Poisson): PA=0.0602 IT=0.0583 ; Cov(1{deg_a=0},1{deg_a'=0})=0.00025
+q=16 K=1.00 trials=40000  mu=2.667 Delta=0.446  E[Y]_PA=0.450 (Y = sharing pairs of teams; theory Delta)
+  void: P_PA(|H|=0)=0.09725  IT exact (1-p)^(q^3)=0.06942  Janson bound exp(-mu+Delta)=0.10859
+  P(s=0): PA=0.7141 IT=0.9616 ratio=0.74
+  P(s=1): PA=0.1912 IT=0.0372 ratio=5.15
+  P(s=2): PA=0.0616 IT=0.0011 ratio=53.52
+  max over n (cells with >=30 counts) of P_PA(|H|=n,s)/P_IT(|H|=n,s): s=0: 1.394 at n=0 (bound exp(Delta+K^3 n/2q) ~ 2.01);  s=1: 10.75 at n=2 (one-sharing factor 1.8 q^(2/3)/K = 11.43)
+  star size: TV(mean PA law, Poisson(0.167))=0.0225 ; mean per-instance TV(empirical, Poisson): PA=0.0874 IT=0.0826 ; Cov(1{deg_a=0},1{deg_a'=0})=0.00008
+q=16 K=1.30 trials=40000  mu=5.859 Delta=1.658  E[Y]_PA=1.668 (Y = sharing pairs of teams; theory Delta)
+  void: P_PA(|H|=0)=0.00877  IT exact (1-p)^(q^3)=0.00284  Janson bound exp(-mu+Delta)=0.01498
+  P(s=0): PA=0.3524 IT=0.8381 ratio=0.42
+  P(s=1): PA=0.2551 IT=0.1396 ratio=1.83
+  P(s=2): PA=0.1638 IT=0.0197 ratio=8.31
+  max over n (cells with >=30 counts) of P_PA(|H|=n,s)/P_IT(|H|=n,s): s=0: 3.280 at n=0 (bound exp(Delta+K^3 n/2q) ~ 12.92);  s=1: 10.78 at n=3 (one-sharing factor 1.8 q^(2/3)/K = 8.79)
+  star size: TV(mean PA law, Poisson(0.366))=0.0546 ; mean per-instance TV(empirical, Poisson): PA=0.1303 IT=0.1159 ; Cov(1{deg_a=0},1{deg_a'=0})=-0.00010
+q=16 K=2.00 trials=40000  mu=21.333 Delta=14.287  E[Y]_PA=14.289 (Y = sharing pairs of teams; theory Delta)
+  void: P_PA(|H|=0)=0.00000  IT exact (1-p)^(q^3)=0.00000  Janson bound exp(-mu+Delta)=0.00087
+  P(s=0): PA=0.0035 IT=0.1247 ratio=0.03
+  P(s=1): PA=0.0120 IT=0.2226 ratio=0.05
+  P(s=2): PA=0.0199 IT=0.2271 ratio=0.09
+  max over n (cells with >=30 counts) of P_PA(|H|=n,s)/P_IT(|H|=n,s): s=0: 0.000 at n=None (bound exp(Delta+K^3 n/2q) ~ 2520493566.02);  s=1: 1.98 at n=10 (one-sharing factor 1.8 q^(2/3)/K = 5.71)
+  star size: TV(mean PA law, Poisson(1.333))=0.1507 ; mean per-instance TV(empirical, Poisson): PA=0.2480 IT=0.1962 ; Cov(1{deg_a=0},1{deg_a'=0})=0.00301
+q=24 K=0.80 trials=40000  mu=2.048 Delta=0.196  E[Y]_PA=0.196 (Y = sharing pairs of teams; theory Delta)
+  void: P_PA(|H|=0)=0.14952  IT exact (1-p)^(q^3)=0.12897  Janson bound exp(-mu+Delta)=0.15692
+  P(s=0): PA=0.8465 IT=0.9906 ratio=0.85
+  P(s=1): PA=0.1242 IT=0.0094 ratio=13.29
+  P(s=2): PA=0.0225 IT=0.0001 ratio=224.75
+  max over n (cells with >=30 counts) of P_PA(|H|=n,s)/P_IT(|H|=n,s): s=0: 1.142 at n=0 (bound exp(Delta+K^3 n/2q) ~ 1.30);  s=1: 18.70 at n=3 (one-sharing factor 1.8 q^(2/3)/K = 18.72)
+  star size: TV(mean PA law, Poisson(0.085))=0.0083 ; mean per-instance TV(empirical, Poisson): PA=0.0481 IT=0.0463 ; Cov(1{deg_a=0},1{deg_a'=0})=0.00048
+q=24 K=1.00 trials=40000  mu=4.000 Delta=0.598  E[Y]_PA=0.592 (Y = sharing pairs of teams; theory Delta)
+  void: P_PA(|H|=0)=0.02995  IT exact (1-p)^(q^3)=0.01831  Janson bound exp(-mu+Delta)=0.03331
+  P(s=0): PA=0.6296 IT=0.9598 ratio=0.66
+  P(s=1): PA=0.2389 IT=0.0385 ratio=6.20
+  P(s=2): PA=0.0862 IT=0.0016 ratio=53.02
+  max over n (cells with >=30 counts) of P_PA(|H|=n,s)/P_IT(|H|=n,s): s=0: 1.676 at n=0 (bound exp(Delta+K^3 n/2q) ~ 2.15);  s=1: 10.12 at n=3 (one-sharing factor 1.8 q^(2/3)/K = 14.98)
+  star size: TV(mean PA law, Poisson(0.167))=0.0210 ; mean per-instance TV(empirical, Poisson): PA=0.0720 IT=0.0680 ; Cov(1{deg_a=0},1{deg_a'=0})=0.00062
+q=24 K=1.30 trials=40000  mu=8.788 Delta=2.220  E[Y]_PA=2.222 (Y = sharing pairs of teams; theory Delta)
+  void: P_PA(|H|=0)=0.00105  IT exact (1-p)^(q^3)=0.00015  Janson bound exp(-mu+Delta)=0.00141
+  P(s=0): PA=0.2307 IT=0.8340 ratio=0.28
+  P(s=1): PA=0.2453 IT=0.1469 ratio=1.67
+  P(s=2): PA=0.1918 IT=0.0168 ratio=11.40
+  max over n (cells with >=30 counts) of P_PA(|H|=n,s)/P_IT(|H|=n,s): s=0: 4.239 at n=1 (bound exp(Delta+K^3 n/2q) ~ 18.40);  s=1: 13.09 at n=4 (one-sharing factor 1.8 q^(2/3)/K = 11.52)
+  star size: TV(mean PA law, Poisson(0.366))=0.0520 ; mean per-instance TV(empirical, Poisson): PA=0.1093 IT=0.0953 ; Cov(1{deg_a=0},1{deg_a'=0})=0.00163
+q=24 K=2.00 trials=40000  mu=32.000 Delta=19.137  E[Y]_PA=19.106 (Y = sharing pairs of teams; theory Delta)
+  void: P_PA(|H|=0)=0.00000  IT exact (1-p)^(q^3)=0.00000  Janson bound exp(-mu+Delta)=0.00000
+  P(s=0): PA=0.0003 IT=0.1066 ratio=0.00
+  P(s=1): PA=0.0016 IT=0.2115 ratio=0.01
+  P(s=2): PA=0.0037 IT=0.2353 ratio=0.02
+  max over n (cells with >=30 counts) of P_PA(|H|=n,s)/P_IT(|H|=n,s): s=0: 0.000 at n=None (bound exp(Delta+K^3 n/2q) ~ 146581180663.78);  s=1: 0.00 at n=None (one-sharing factor 1.8 q^(2/3)/K = 7.49)
+  star size: TV(mean PA law, Poisson(1.333))=0.1435 ; mean per-instance TV(empirical, Poisson): PA=0.2132 IT=0.1601 ; Cov(1{deg_a=0},1{deg_a'=0})=0.00117
+q=32 K=0.80 trials=30000  mu=2.731 Delta=0.240  E[Y]_PA=0.238 (Y = sharing pairs of teams; theory Delta)
+  void: P_PA(|H|=0)=0.08220  IT exact (1-p)^(q^3)=0.06517  Janson bound exp(-mu+Delta)=0.08285
+  P(s=0): PA=0.8149 IT=0.9902 ratio=0.82
+  P(s=1): PA=0.1472 IT=0.0097 ratio=15.18
+  P(s=2): PA=0.0299 IT=0.0001 ratio=299.33
+  max over n (cells with >=30 counts) of P_PA(|H|=n,s)/P_IT(|H|=n,s): s=0: 1.248 at n=0 (bound exp(Delta+K^3 n/2q) ~ 1.34);  s=1: 19.62 at n=3 (one-sharing factor 1.8 q^(2/3)/K = 22.68)
+  star size: TV(mean PA law, Poisson(0.085))=0.0078 ; mean per-instance TV(empirical, Poisson): PA=0.0437 IT=0.0420 ; Cov(1{deg_a=0},1{deg_a'=0})=-0.00041
+q=32 K=1.00 trials=30000  mu=5.333 Delta=0.732  E[Y]_PA=0.727 (Y = sharing pairs of teams; theory Delta)
+  void: P_PA(|H|=0)=0.00953  IT exact (1-p)^(q^3)=0.00483  Janson bound exp(-mu+Delta)=0.01004
+  P(s=0): PA=0.5614 IT=0.9618 ratio=0.58
+  P(s=1): PA=0.2694 IT=0.0366 ratio=7.36
+  P(s=2): PA=0.1083 IT=0.0016 ratio=69.13
+  max over n (cells with >=30 counts) of P_PA(|H|=n,s)/P_IT(|H|=n,s): s=0: 2.217 at n=0 (bound exp(Delta+K^3 n/2q) ~ 2.43);  s=1: 13.49 at n=4 (one-sharing factor 1.8 q^(2/3)/K = 18.14)
+  star size: TV(mean PA law, Poisson(0.167))=0.0195 ; mean per-instance TV(empirical, Poisson): PA=0.0629 IT=0.0584 ; Cov(1{deg_a=0},1{deg_a'=0})=0.00014
+q=32 K=1.30 trials=30000  mu=11.717 Delta=2.719  E[Y]_PA=2.684 (Y = sharing pairs of teams; theory Delta)
+  void: P_PA(|H|=0)=0.00007  IT exact (1-p)^(q^3)=0.00001  Janson bound exp(-mu+Delta)=0.00012
+  P(s=0): PA=0.1629 IT=0.8344 ratio=0.20
+  P(s=1): PA=0.2171 IT=0.1483 ratio=1.46
+  P(s=2): PA=0.1962 IT=0.0160 ratio=12.23
+  max over n (cells with >=30 counts) of P_PA(|H|=n,s)/P_IT(|H|=n,s): s=0: 2.384 at n=3 (bound exp(Delta+K^3 n/2q) ~ 26.38);  s=1: 13.22 at n=6 (one-sharing factor 1.8 q^(2/3)/K = 13.96)
+  star size: TV(mean PA law, Poisson(0.366))=0.0488 ; mean per-instance TV(empirical, Poisson): PA=0.0975 IT=0.0838 ; Cov(1{deg_a=0},1{deg_a'=0})=0.00190
+q=32 K=2.00 trials=30000  mu=42.667 Delta=23.435  E[Y]_PA=23.336 (Y = sharing pairs of teams; theory Delta)
+  void: P_PA(|H|=0)=0.00000  IT exact (1-p)^(q^3)=0.00000  Janson bound exp(-mu+Delta)=0.00000
+  P(s=0): PA=0.0001 IT=0.0966 ratio=0.00
+  P(s=1): PA=0.0003 IT=0.2092 ratio=0.00
+  P(s=2): PA=0.0006 IT=0.2371 ratio=0.00
+  max over n (cells with >=30 counts) of P_PA(|H|=n,s)/P_IT(|H|=n,s): s=0: 0.000 at n=None (bound exp(Delta+K^3 n/2q) ~ 8240540757445.38);  s=1: 0.00 at n=None (one-sharing factor 1.8 q^(2/3)/K = 9.07)
+  star size: TV(mean PA law, Poisson(1.333))=0.1363 ; mean per-instance TV(empirical, Poisson): PA=0.1916 IT=0.1390 ; Cov(1{deg_a=0},1{deg_a'=0})=0.00316
+q=48 K=0.80 trials=15000  mu=4.096 Delta=0.318  E[Y]_PA=0.317 (Y = sharing pairs of teams; theory Delta)
+  void: P_PA(|H|=0)=0.02180  IT exact (1-p)^(q^3)=0.01664  Janson bound exp(-mu+Delta)=0.02286
+  P(s=0): PA=0.7584 IT=0.9893 ratio=0.77
+  P(s=1): PA=0.1870 IT=0.0107 ratio=17.42
+  P(s=2): PA=0.0421 IT=0.0000 ratio=nan
+  max over n (cells with >=30 counts) of P_PA(|H|=n,s)/P_IT(|H|=n,s): s=0: 1.248 at n=0 (bound exp(Delta+K^3 n/2q) ~ 1.43);  s=1: 16.25 at n=5 (one-sharing factor 1.8 q^(2/3)/K = 29.72)
+  star size: TV(mean PA law, Poisson(0.085))=0.0069 ; mean per-instance TV(empirical, Poisson): PA=0.0357 IT=0.0343 ; Cov(1{deg_a=0},1{deg_a'=0})=0.00062
+q=48 K=1.00 trials=15000  mu=8.000 Delta=0.970  E[Y]_PA=0.975 (Y = sharing pairs of teams; theory Delta)
+  void: P_PA(|H|=0)=0.00053  IT exact (1-p)^(q^3)=0.00034  Janson bound exp(-mu+Delta)=0.00088
+  P(s=0): PA=0.4509 IT=0.9590 ratio=0.47
+  P(s=1): PA=0.3074 IT=0.0395 ratio=7.78
+  P(s=2): PA=0.1425 IT=0.0015 ratio=97.18
+  max over n (cells with >=30 counts) of P_PA(|H|=n,s)/P_IT(|H|=n,s): s=0: 2.029 at n=1 (bound exp(Delta+K^3 n/2q) ~ 2.99);  s=1: 15.51 at n=6 (one-sharing factor 1.8 q^(2/3)/K = 23.77)
+  star size: TV(mean PA law, Poisson(0.167))=0.0173 ; mean per-instance TV(empirical, Poisson): PA=0.0521 IT=0.0482 ; Cov(1{deg_a=0},1{deg_a'=0})=0.00034
+q=48 K=1.30 trials=15000  mu=17.576 Delta=3.601  E[Y]_PA=3.612 (Y = sharing pairs of teams; theory Delta)
+  void: P_PA(|H|=0)=0.00000  IT exact (1-p)^(q^3)=0.00000  Janson bound exp(-mu+Delta)=0.00000
+  P(s=0): PA=0.0763 IT=0.8262 ratio=0.09
+  P(s=1): PA=0.1469 IT=0.1541 ratio=0.95
+  P(s=2): PA=0.1845 IT=0.0177 ratio=10.40
+  max over n (cells with >=30 counts) of P_PA(|H|=n,s)/P_IT(|H|=n,s): s=0: 1.209 at n=8 (bound exp(Delta+K^3 n/2q) ~ 60.80);  s=1: 5.97 at n=11 (one-sharing factor 1.8 q^(2/3)/K = 18.29)
+  star size: TV(mean PA law, Poisson(0.366))=0.0437 ; mean per-instance TV(empirical, Poisson): PA=0.0812 IT=0.0687 ; Cov(1{deg_a=0},1{deg_a'=0})=0.00328
+q=48 K=2.00 trials=15000  mu=64.000 Delta=31.038  E[Y]_PA=31.194 (Y = sharing pairs of teams; theory Delta)
+  void: P_PA(|H|=0)=0.00000  IT exact (1-p)^(q^3)=0.00000  Janson bound exp(-mu+Delta)=0.00000
+  P(s=0): PA=0.0000 IT=0.0917 ratio=0.00
+  P(s=1): PA=0.0000 IT=0.2009 ratio=0.00
+  P(s=2): PA=0.0000 IT=0.2443 ratio=0.00
+  max over n (cells with >=30 counts) of P_PA(|H|=n,s)/P_IT(|H|=n,s): s=0: 0.000 at n=None (bound exp(Delta+K^3 n/2q) ~ 11623668978005422.00);  s=1: 0.00 at n=None (one-sharing factor 1.8 q^(2/3)/K = 11.89)
+  star size: TV(mean PA law, Poisson(1.333))=0.1256 ; mean per-instance TV(empirical, Poisson): PA=0.1653 IT=0.1144 ; Cov(1{deg_a=0},1{deg_a'=0})=0.00151

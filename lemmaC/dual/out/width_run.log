@@ -1,0 +1,24 @@
+6 nonempty 102/120 wmax 0.6650 wmed 0.3999 depth 0.03755 gapMmean 0.7248 nslack.01 2.5 .03 6.3 .1 14.1
+10 nonempty 85/120 wmax 0.6173 wmed 0.3222 depth 0.01796 gapMmean 0.5394 nslack.01 8.2 .03 16.9 .1 33.2
+16 nonempty 38/120 wmax 0.4926 wmed 0.2252 depth 0.00744 gapMmean 0.3972 nslack.01 23.0 .03 38.1 .1 69.6
+/Users/maxf/miniforge3/bin/python3 width.py --q 6 10 16 --n 120  89.57s user 3.21s system 234% cpu 39.640 total
+24 nonempty 20/160 wmax 0.4313 wmed 0.1785 depth 0.00331 gapMmean 0.3054 nslack.01 47.2 .03 63.5 .1 128.2
+/Users/maxf/miniforge3/bin/python3 width.py --q 24 --n 160  210.71s user 15.64s system 282% cpu 1:20.26 total
+4 0 P(empty)=0.040
+4 1 P(empty)=0.018
+4 2 P(empty)=0.010
+4 4 P(empty)=0.003
+4 8 P(empty)=0.003
+4 16 P(empty)=0.000
+8 0 P(empty)=0.225
+8 1 P(empty)=0.195
+8 2 P(empty)=0.165
+8 4 P(empty)=0.110
+8 8 P(empty)=0.030
+8 16 P(empty)=0.007
+12 0 P(empty)=0.405
+12 1 P(empty)=0.385
+12 2 P(empty)=0.352
+12 4 P(empty)=0.253
+12 8 P(empty)=0.130
+12 16 P(empty)=0.025

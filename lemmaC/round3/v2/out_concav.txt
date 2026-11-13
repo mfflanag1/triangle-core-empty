@@ -1,0 +1,28 @@
+== two-bin scan: lambda = m (1/R_A + 1/R_B)
+  max lambda over scan = 1.0000 at a=20 b=20 ln w=-8 rhoA=0.050 rhoB=0.000  (concave iff <= 1.5)
+== continuum model, random (non-stationary) profiles
+  trial  0 kind 0: e=1.814 Sigma=-1.525 rho_max=0.9990 lambda_max=1.0000
+  trial  1 kind 1: e=1.634 Sigma=-2.878 rho_max=0.9987 lambda_max=1.0000
+  trial  2 kind 2: e=1.829 Sigma=-1.456 rho_max=0.9351 lambda_max=1.0000
+  trial  3 kind 3: e=2.126 Sigma=-0.880 rho_max=0.9616 lambda_max=1.0000
+  trial  4 kind 0: e=5.145 Sigma=+2.212 rho_max=0.9958 lambda_max=1.0000
+  trial  5 kind 1: e=1.890 Sigma=-1.734 rho_max=0.9956 lambda_max=1.0000
+  trial  6 kind 2: e=1.873 Sigma=-1.013 rho_max=0.9779 lambda_max=1.0000
+  trial  7 kind 3: e=2.488 Sigma=-0.576 rho_max=0.8970 lambda_max=1.0000
+  trial  8 kind 0: e=2.529 Sigma=+0.010 rho_max=0.9991 lambda_max=1.0000
+  trial  9 kind 1: e=1.638 Sigma=-2.826 rho_max=0.9535 lambda_max=1.0000
+  trial 10 kind 2: e=1.769 Sigma=-1.559 rho_max=0.9279 lambda_max=1.0000
+  trial 11 kind 3: e=2.328 Sigma=-0.876 rho_max=0.9483 lambda_max=1.0000
+  trial 12 kind 0: e=2.009 Sigma=-1.462 rho_max=0.9864 lambda_max=1.0000
+  trial 13 kind 1: e=2.130 Sigma=-1.161 rho_max=0.9495 lambda_max=1.0000
+  trial 14 kind 2: e=1.758 Sigma=-1.738 rho_max=0.9418 lambda_max=1.0000
+  trial 15 kind 3: e=2.132 Sigma=-1.848 rho_max=0.9894 lambda_max=1.0000
+  trial 16 kind 0: e=1.765 Sigma=-1.673 rho_max=0.9996 lambda_max=1.0000
+  trial 17 kind 1: e=1.632 Sigma=-3.083 rho_max=0.9976 lambda_max=1.0000
+  trial 18 kind 2: e=2.008 Sigma=-1.201 rho_max=0.6392 lambda_max=1.0000
+  trial 19 kind 3: e=2.143 Sigma=-1.519 rho_max=0.9848 lambda_max=1.0000
+  trial 20 kind 0: e=1.812 Sigma=-1.795 rho_max=0.9290 lambda_max=1.0000
+  trial 21 kind 1: e=8.125 Sigma=+1.775 rho_max=0.4511 lambda_max=1.0000
+  trial 22 kind 2: e=2.218 Sigma=-0.684 rho_max=0.3683 lambda_max=0.9996
+  trial 23 kind 3: e=2.069 Sigma=-1.631 rho_max=0.9759 lambda_max=1.0000
+  max lambda_max over random profiles = 1.0000

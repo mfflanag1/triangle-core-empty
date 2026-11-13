@@ -1,0 +1,199 @@
+\documentclass[11pt]{amsart}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{hyperref}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\numberwithin{equation}{section}
+
+\input{macros}
+
+% Section files are written separately; a missing file leaves a visible placeholder.
+\newcommand{\inputsection}[1]{%
+  \IfFileExists{sections/#1.tex}{\input{sections/#1}}{%
+    \section*{[Section file \texttt{\detokenize{#1}} not yet written]}}}
+
+\title{The core of a random three-sided assignment market is empty}
+\author{Draft --- author to be determined}
+\date{12 November 2026}
+
+\begin{document}
+
+\begin{abstract}
+Take three sectors of $q$ agents each. Every pair of agents from different sectors has an
+independent value, uniform on $[0,1]$, and a team of one agent from each sector is worth the sum
+of its three pair values. We show that the core of the resulting three-sided assignment game is
+empty with probability tending to $1$ as $q\to\infty$. The core is nonempty exactly when the gap
+$\Dq$ between the optimum of the fractional relaxation of the assignment problem and the value of
+the best assignment is zero, and we prove that $\E\Dq\ge(0.050-o(1))\,q^{1/3}$ and that
+$\Dq/\E\Dq\to1$ in probability. The proof compares two constants on the scale $q^{1/3}$. With
+high probability every assignment falls short of the trivial bound $3q$ by at least
+$\betaint q^{1/3}$, $\betaint=2.302$, by a first moment conditioned on the local stars of all
+agents. The fractional
+optimum falls short in expectation by at most $(\alphalp+o(1))q^{1/3}$, $\alphalp=2.2519$,
+because a random
+perfect matching on the limiting Poisson hypertree, built from a solution of a recursive
+distributional equation, can be carried to the finite market as a fractional solution. The
+solution exists by a monotonicity property of the recursion in the dispersive order. Both
+constants rest on computations in interval arithmetic. All statements are asymptotic and say
+nothing at any size that can be simulated.
+\end{abstract}
+
+\maketitle
+
+\begin{center}
+\fbox{\parbox{0.92\textwidth}{\small\textbf{Status, 12 November 2026:} this manuscript was
+produced by AI agents. Every part was checked by further AI agents; no person has verified it.
+Treat every result as a claim.}}
+\end{center}
+\medskip
+
+\inputsection{01_intro}
+\inputsection{02_model}
+\inputsection{03_variance}
+\inputsection{04_iid}
+\inputsection{05_transfer}
+\inputsection{06_tree}
+\inputsection{07_existence}
+\inputsection{08_localconv}
+\inputsection{09_lp}
+\inputsection{10_proofmain}
+\inputsection{11_certificates}
+\inputsection{12_discussion}
+
+% One entry per citation key of NOTATION.md. Details are given only where a project file
+% records them; everything else is marked TODO. Surnames and years without further details
+% come from the citation keys themselves.
+\begin{thebibliography}{99}
+% Details below were taken from Crossref records on 12 November 2026 unless marked otherwise.
+% "Opened" status of each source is recorded in Section~\ref{sec:intro}; a Crossref record is
+% not a reading of the paper.
+
+\bibitem{Aldous92}
+D.~Aldous, \emph{Asymptotics in the random assignment problem}, Probab.\ Theory Related
+Fields \textbf{93} (1992), 507--534. doi:10.1007/BF01192719.
+
+\bibitem{Aldous01}
+D.~J. Aldous, \emph{The $\zeta(2)$ limit in the random assignment problem}, Random
+Structures Algorithms \textbf{18} (2001), 381--418. doi:10.1002/rsa.1015.
+
+\bibitem{AldousLyons07}
+D.~Aldous and R.~Lyons, \emph{Processes on unimodular random networks}, Electron.\ J.\
+Probab.\ \textbf{12} (2007), 1454--1508. doi:10.1214/EJP.v12-463.
+
+\bibitem{AldousSteele04}
+D.~Aldous and J.~M. Steele, \emph{The objective method: probabilistic combinatorial
+optimization and local weak convergence}, in: Probability on Discrete Structures,
+Encyclopaedia Math.\ Sci., Springer, 2004, pp.~1--72. doi:10.1007/978-3-662-09444-0\_1.
+
+\bibitem{BobkovLedoux97}
+S.~Bobkov and M.~Ledoux, \emph{Poincar\'e's inequalities and Talagrand's concentration
+phenomenon for the exponential distribution}, Probab.\ Theory Related Fields \textbf{107}
+(1997), 383--400. doi:10.1007/s004400050090. The Poincar\'e inequality for the exponential
+measure with constant $4$ is inequality (1.7) there.
+
+\bibitem{BoppanaSpencer89}
+R.~Boppana and J.~Spencer, \emph{A useful elementary correlation inequality}, J.\ Combin.\
+Theory Ser.~A \textbf{50} (1989), 305--307. doi:10.1016/0097-3165(89)90022-8.
+
+\bibitem{BLM13}
+S.~Boucheron, G.~Lugosi and P.~Massart, \emph{Concentration Inequalities: A Nonasymptotic
+Theory of Independence}, Oxford University Press, 2013.
+doi:10.1093/acprof:oso/9780199535255.001.0001.
+
+\bibitem{DevlinKahn17}
+P.~Devlin and J.~Kahn, \emph{Perfect fractional matchings in $k$-out hypergraphs}, Electron.\
+J.\ Combin.\ \textbf{24}(3) (2017), P3.60. arXiv:1703.03513.
+
+\bibitem{FPT20}
+A.~Frieze, W.~Pegden and T.~Tkocz, \emph{On random multi-dimensional assignment problems},
+Discrete Appl.\ Math.\ \textbf{287} (2020), 1--9. doi:10.1016/j.dam.2020.07.013.
+arXiv:1901.07167.
+
+\bibitem{FriezeSorkin15}
+A.~Frieze and G.~B. Sorkin, \emph{Efficient algorithms for three-dimensional axial and planar
+random assignment problems}, Random Structures Algorithms \textbf{46} (2015), 160--196.
+doi:10.1002/rsa.20525. arXiv:1008.0390.
+
+\bibitem{FHO74}
+D.~R. Fulkerson, A.~J. Hoffman and R.~Oppenheim, \emph{On balanced matrices}, Math.\
+Programming Stud.\ \textbf{1} (1974), 120--132. doi:10.1007/BFb0121244.
+
+\bibitem{Harris60}
+T.~E. Harris, \emph{A lower bound for the critical probability in a certain percolation
+process}, Proc.\ Cambridge Philos.\ Soc.\ \textbf{56} (1960), 13--20.
+doi:10.1017/S0305004100034241.
+
+\bibitem{HassidimRomm15}
+A.~Hassidim and A.~Romm, \emph{An approximate ``law of one price'' in random assignment
+games}, arXiv:1404.6103 (2014); abstract in Proc.\ 16th ACM Conf.\ on Economics and
+Computation (EC'15), pp.~279--280. doi:10.1145/2764468.2764531.
+
+\bibitem{HesslerWastlund08}
+M.~Hessler and J.~W\"astlund, \emph{Concentration of the cost of a random matching problem},
+preprint dated 20 August 2008, \url{https://www.math.chalmers.se/~wastlund/martingale.pdf}.
+\todo{published version, if any}
+
+\bibitem{Kahn19}
+J.~Kahn, \emph{Asymptotics for Shamir's problem}, Adv.\ Math.\ \textbf{422} (2023), 109019.
+doi:10.1016/j.aim.2023.109019. arXiv:1909.06834.
+
+\bibitem{Kallenberg21}
+O.~Kallenberg, \emph{Foundations of Modern Probability}, 3rd ed., Springer, 2021.
+doi:10.1007/978-3-030-61871-1. \todo{theorem numbers for the extension theorems and for
+L\'evy's upward theorem}
+
+\bibitem{KanekoWooders82}
+M.~Kaneko and M.~H. Wooders, \emph{Cores of partitioning games}, Math.\ Social Sci.\
+\textbf{3} (1982), 313--327. doi:10.1016/0165-4896(82)90015-4.
+
+\bibitem{KSS18}
+Y.~Kanoria, D.~Saban and J.~Sethuraman, \emph{Convergence of the core in assignment
+markets}, Oper.\ Res.\ \textbf{66} (2018), 620--636. doi:10.1287/opre.2017.1691. Conference
+version: \emph{The size of the core in assignment markets}, Proc.\ SODA 2015,
+pp.~1916--1924. arXiv:1407.2576.
+
+\bibitem{LastPenrose17}
+G.~Last and M.~Penrose, \emph{Lectures on the Poisson Process}, Cambridge University Press,
+2017. doi:10.1017/9781316104477. \todo{theorem numbers for marking, mapping, restriction,
+simplicity and Mecke's formula}
+
+\bibitem{Lucas95}
+W.~F. Lucas, \emph{Core theory for multiple-sided assignment games}, Duke Math.\ J.\
+\textbf{81} (1995), 55--65. doi:10.1215/S0012-7094-95-08106-X.
+
+\bibitem{MMR05}
+O.~C. Martin, M.~M\'ezard and O.~Rivoire, \emph{Random multi-index matching problems}, J.\
+Stat.\ Mech.\ (2005), P09006. doi:10.1088/1742-5468/2005/09/P09006. arXiv:cond-mat/0507180.
+See also the same authors, \emph{Frozen glass phase in the multi-index matching problem},
+Phys.\ Rev.\ Lett.\ \textbf{93} (2004), 217205. doi:10.1103/PhysRevLett.93.217205.
+arXiv:cond-mat/0407623.
+
+\bibitem{Prekopa73}
+A.~Pr\'ekopa, \emph{On logarithmic concave measures and functions}, Acta Sci.\ Math.\
+(Szeged) \textbf{34} (1973), 335--343. \todo{no Crossref record found; check the details
+against the journal}
+
+\bibitem{Quint91}
+T.~Quint, \emph{The core of an $m$-sided assignment game}, Games Econom.\ Behav.\ \textbf{3}
+(1991), 487--503. doi:10.1016/0899-8256(91)90017-9.
+
+\bibitem{ShakedShanthikumar07}
+M.~Shaked and J.~G. Shanthikumar, \emph{Stochastic Orders}, Springer Series in Statistics,
+Springer, 2007. doi:10.1007/978-0-387-34675-5.
+
+\bibitem{ShapleyShubik71}
+L.~S. Shapley and M.~Shubik, \emph{The assignment game I: the core}, Internat.\ J.\ Game
+Theory \textbf{1} (1971), 111--130. doi:10.1007/BF01753437.
+
+\end{thebibliography}
+
+\end{document}

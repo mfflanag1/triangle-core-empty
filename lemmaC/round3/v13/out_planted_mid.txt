@@ -1,0 +1,68 @@
+q=12 K=0.80 mode=cheap samples=150410  mu=1.024 Delta=0.1181 W=235.9
+   void, full family: emp=0.39585 (+-0.00126)  IT=(1-p)^{q^3}=0.35905  Lemma2 bound exp(-mu+Delta)=0.40417
+   void, family F (no pair of N), |F|=1320: emp=0.48759  IT=0.45728  bound exp(-|F|p+Delta)=0.51471
+   n=1 x=1 s=0: emp=1.135e-01  P'(n,x)=8.491e-02  emp/P'=1.336e+00  (3q^(2/3)/K)^x=1.966e+01  W^x=2.359e+02  emp/bound=3.813e-03
+   n=2 x=2 s=0: emp=1.124e-01  P'(n,x)=9.943e-03  emp/P'=1.131e+01  (3q^(2/3)/K)^x=3.863e+02  W^x=5.563e+04  emp/bound=1.339e-04
+   n=3 x=3 s=0: emp=7.080e-02  P'(n,x)=7.743e-04  emp/P'=9.144e+01  (3q^(2/3)/K)^x=7.594e+03  W^x=1.312e+07  emp/bound=4.494e-06
+   n=0 x=0 s=0: emp=5.375e-02  P'(n,x)=3.616e-01  emp/P'=1.486e-01  (3q^(2/3)/K)^x=1.000e+00  W^x=1.000e+00  emp/bound=1.022e-01
+   n=2 x=1 s=0: emp=5.034e-02  P'(n,x)=6.646e-02  emp/P'=7.575e-01  (3q^(2/3)/K)^x=1.966e+01  W^x=2.359e+02  emp/bound=2.116e-03
+   n=3 x=2 s=0: emp=4.728e-02  P'(n,x)=7.782e-03  emp/P'=6.076e+00  (3q^(2/3)/K)^x=3.863e+02  W^x=5.563e+04  emp/bound=7.043e-05
+   max over classes (>=100 events) of (emp-3se)/bound = 9.8775e-02
+q=12 K=0.80 mode=zero samples=150410  mu=1.024 Delta=0.1181 W=235.9
+   void, full family: emp=0.39633 (+-0.00126)  IT=(1-p)^{q^3}=0.35905  Lemma2 bound exp(-mu+Delta)=0.40417
+   void, family F (no pair of N), |F|=1320: emp=0.48777  IT=0.45728  bound exp(-|F|p+Delta)=0.51471
+   n=3 x=3 s=0: emp=6.859e-02  P'(n,x)=7.743e-04  emp/P'=8.858e+01  (3q^(2/3)/K)^x=7.594e+03  W^x=1.312e+07  emp/bound=4.354e-06
+   n=2 x=2 s=0: emp=6.119e-02  P'(n,x)=9.943e-03  emp/P'=6.154e+00  (3q^(2/3)/K)^x=3.863e+02  W^x=5.563e+04  emp/bound=7.288e-05
+   n=4 x=4 s=0: emp=5.578e-02  P'(n,x)=4.511e-05  emp/P'=1.237e+03  (3q^(2/3)/K)^x=1.493e+05  W^x=3.095e+09  emp/bound=2.522e-07
+   n=1 x=1 s=0: emp=3.498e-02  P'(n,x)=8.491e-02  emp/P'=4.120e-01  (3q^(2/3)/K)^x=1.966e+01  W^x=2.359e+02  emp/bound=1.176e-03
+   n=5 x=5 s=0: emp=3.419e-02  P'(n,x)=2.097e-06  emp/P'=1.631e+04  (3q^(2/3)/K)^x=2.934e+06  W^x=7.300e+11  emp/bound=1.380e-08
+   n=4 x=3 s=0: emp=2.302e-02  P'(n,x)=6.060e-04  emp/P'=3.798e+01  (3q^(2/3)/K)^x=7.594e+03  W^x=1.312e+07  emp/bound=1.827e-06
+   max over classes (>=100 events) of (emp-3se)/bound = 1.7638e-02
+q=16 K=1.00 mode=cheap samples=100528  mu=2.667 Delta=0.4465 W=228.6
+   void, full family: emp=0.09686 (+-0.00093)  IT=(1-p)^{q^3}=0.06942  Lemma2 bound exp(-mu+Delta)=0.10859
+   void, family F (no pair of N), |F|=3360: emp=0.14327  IT=0.11212  bound exp(-|F|p+Delta)=0.17534
+   n=4 x=3 s=0: emp=2.337e-02  P'(n,x)=2.630e-03  emp/P'=8.884e+00  (3q^(2/3)/K)^x=6.912e+03  W^x=1.194e+07  emp/bound=2.543e-07
+   n=3 x=3 s=0: emp=2.153e-02  P'(n,x)=1.202e-03  emp/P'=1.792e+01  (3q^(2/3)/K)^x=6.912e+03  W^x=1.194e+07  emp/bound=5.291e-07
+   n=5 x=4 s=0: emp=2.040e-02  P'(n,x)=3.071e-04  emp/P'=6.643e+01  (3q^(2/3)/K)^x=1.317e+05  W^x=2.730e+09  emp/bound=8.063e-09
+   n=3 x=2 s=0: emp=2.038e-02  P'(n,x)=1.687e-02  emp/P'=1.208e+00  (3q^(2/3)/K)^x=3.629e+02  W^x=5.225e+04  emp/bound=8.158e-06
+   n=4 x=4 s=0: emp=1.860e-02  P'(n,x)=1.403e-04  emp/P'=1.326e+02  (3q^(2/3)/K)^x=1.317e+05  W^x=2.730e+09  emp/bound=1.660e-08
+   n=2 x=2 s=0: emp=1.790e-02  P'(n,x)=7.706e-03  emp/P'=2.322e+00  (3q^(2/3)/K)^x=3.629e+02  W^x=5.225e+04  emp/bound=1.618e-05
+   max over classes (>=100 events) of (emp-3se)/bound = 1.0087e-02
+q=16 K=1.00 mode=zero samples=100528  mu=2.667 Delta=0.4465 W=228.6
+   void, full family: emp=0.09810 (+-0.00094)  IT=(1-p)^{q^3}=0.06942  Lemma2 bound exp(-mu+Delta)=0.10859
+   void, family F (no pair of N), |F|=3360: emp=0.14383  IT=0.11212  bound exp(-|F|p+Delta)=0.17534
+   n=6 x=6 s=0: emp=8.843e-03  P'(n,x)=1.016e-06  emp/P'=8.702e+03  (3q^(2/3)/K)^x=4.778e+07  W^x=1.427e+14  emp/bound=1.959e-11
+   n=5 x=5 s=0: emp=8.555e-03  P'(n,x)=1.309e-05  emp/P'=6.536e+02  (3q^(2/3)/K)^x=2.508e+06  W^x=6.241e+11  emp/bound=3.470e-10
+   n=6 x=5 s=0: emp=8.008e-03  P'(n,x)=2.865e-05  emp/P'=2.795e+02  (3q^(2/3)/K)^x=2.508e+06  W^x=6.241e+11  emp/bound=1.438e-10
+   n=7 x=6 s=0: emp=7.192e-03  P'(n,x)=2.224e-06  emp/P'=3.233e+03  (3q^(2/3)/K)^x=4.778e+07  W^x=1.427e+14  emp/bound=7.056e-12
+   n=4 x=4 s=0: emp=7.162e-03  P'(n,x)=1.403e-04  emp/P'=5.105e+01  (3q^(2/3)/K)^x=1.317e+05  W^x=2.730e+09  emp/bound=6.393e-09
+   n=7 x=7 s=0: emp=7.073e-03  P'(n,x)=6.752e-08  emp/P'=1.047e+05  (3q^(2/3)/K)^x=9.101e+08  W^x=3.261e+16  emp/bound=1.000e-12
+   max over classes (>=100 events) of (emp-3se)/bound = 1.3767e-06
+q=24 K=1.00 mode=cheap samples=50286  mu=4.000 Delta=0.5980 W=299.5
+   void, full family: emp=0.02826 (+-0.00074)  IT=(1-p)^{q^3}=0.01831  Lemma2 bound exp(-mu+Delta)=0.03331
+   void, family F (no pair of N), |F|=12144: emp=0.04212  IT=0.02977  bound exp(-|F|p+Delta)=0.05416
+   n=7 x=5 s=0: emp=1.082e-02  P'(n,x)=2.386e-05  emp/P'=4.535e+02  (3q^(2/3)/K)^x=9.690e+06  W^x=2.411e+12  emp/bound=5.415e-11
+   n=5 x=4 s=0: emp=1.056e-02  P'(n,x)=1.420e-04  emp/P'=7.438e+01  (3q^(2/3)/K)^x=3.882e+05  W^x=8.050e+09  emp/bound=2.774e-09
+   n=6 x=4 s=0: emp=1.040e-02  P'(n,x)=2.495e-04  emp/P'=4.169e+01  (3q^(2/3)/K)^x=3.882e+05  W^x=8.050e+09  emp/bound=1.523e-09
+   n=6 x=5 s=0: emp=1.012e-02  P'(n,x)=1.358e-05  emp/P'=7.456e+02  (3q^(2/3)/K)^x=9.690e+06  W^x=2.411e+12  emp/bound=9.092e-11
+   n=4 x=3 s=0: emp=8.273e-03  P'(n,x)=1.187e-03  emp/P'=6.970e+00  (3q^(2/3)/K)^x=1.555e+04  W^x=2.687e+07  emp/bound=7.950e-08
+   n=7 x=6 s=0: emp=8.074e-03  P'(n,x)=1.081e-06  emp/P'=7.467e+03  (3q^(2/3)/K)^x=2.419e+08  W^x=7.222e+14  emp/bound=2.977e-12
+   max over classes (>=100 events) of (emp-3se)/bound = 2.8599e-05
+q=24 K=1.00 mode=zero samples=50286  mu=4.000 Delta=0.5980 W=299.5
+   void, full family: emp=0.02844 (+-0.00074)  IT=(1-p)^{q^3}=0.01831  Lemma2 bound exp(-mu+Delta)=0.03331
+   void, family F (no pair of N), |F|=12144: emp=0.04200  IT=0.02977  bound exp(-|F|p+Delta)=0.05416
+   n=9 x=8 s=0: emp=3.520e-03  P'(n,x)=4.401e-09  emp/P'=7.998e+05  (3q^(2/3)/K)^x=1.507e+11  W^x=6.480e+19  emp/bound=3.409e-15
+   n=8 x=7 s=0: emp=3.043e-03  P'(n,x)=7.376e-08  emp/P'=4.125e+04  (3q^(2/3)/K)^x=6.037e+09  W^x=2.163e+17  emp/bound=5.377e-14
+   n=10 x=9 s=0: emp=2.864e-03  P'(n,x)=2.332e-10  emp/P'=1.228e+07  (3q^(2/3)/K)^x=3.761e+12  W^x=1.941e+22  emp/bound=1.711e-16
+   n=10 x=8 s=0: emp=2.744e-03  P'(n,x)=7.733e-09  emp/P'=3.549e+05  (3q^(2/3)/K)^x=1.507e+11  W^x=6.480e+19  emp/bound=1.481e-15
+   n=9 x=7 s=0: emp=2.724e-03  P'(n,x)=1.296e-07  emp/P'=2.102e+04  (3q^(2/3)/K)^x=6.037e+09  W^x=2.163e+17  emp/bound=2.683e-14
+   n=7 x=6 s=0: emp=2.685e-03  P'(n,x)=1.081e-06  emp/P'=2.483e+03  (3q^(2/3)/K)^x=2.419e+08  W^x=7.222e+14  emp/bound=9.900e-13
+   max over classes (>=100 events) of (emp-3se)/bound = 7.3436e-13
+q=24 K=1.30 mode=cheap samples=50286  mu=8.788 Delta=2.2204 W=230.4
+   void, full family: emp=0.00064 (+-0.00011)  IT=(1-p)^{q^3}=0.00015  Lemma2 bound exp(-mu+Delta)=0.00141
+   void, family F (no pair of N), |F|=12144: emp=0.00181  IT=0.00044  bound exp(-|F|p+Delta)=0.00409
+   max over classes (>=100 events) of (emp-3se)/bound = 0.0000e+00
+q=24 K=1.30 mode=zero samples=50286  mu=8.788 Delta=2.2204 W=230.4
+   void, full family: emp=0.00060 (+-0.00011)  IT=(1-p)^{q^3}=0.00015  Lemma2 bound exp(-mu+Delta)=0.00141
+   void, family F (no pair of N), |F|=12144: emp=0.00153  IT=0.00044  bound exp(-|F|p+Delta)=0.00409
+   max over classes (>=100 events) of (emp-3se)/bound = 0.0000e+00

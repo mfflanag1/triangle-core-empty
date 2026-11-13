@@ -1,0 +1,19 @@
+/Users/maxf/projects/economics-research/game-theory/coopgpt/average_case_protection_2026-11-09/gate1_ext/out/triangle_unif_q24.jsonl: 500 new in 325.7s
+/Users/maxf/projects/economics-research/game-theory/coopgpt/average_case_protection_2026-11-09/gate1_ext/out/triangle_unif_q24.jsonl: 0 new in 0.0s
+--- relaunch Wed Nov 11 19:28:40 EST 2026 with --lp-only for q>=28 ---
+/Users/maxf/projects/economics-research/game-theory/coopgpt/average_case_protection_2026-11-09/gate1_ext/out/triangle_unif_q24.jsonl: 0 new in 0.0s
+/Users/maxf/projects/economics-research/game-theory/coopgpt/average_case_protection_2026-11-09/gate1_ext/out/triangle_unif_q40.jsonl: 150 new in 24.9s
+/Users/maxf/projects/economics-research/game-theory/coopgpt/average_case_protection_2026-11-09/gate1_ext/out/triangle_unif_q32.jsonl: 300 new in 18.4s
+/Users/maxf/projects/economics-research/game-theory/coopgpt/average_case_protection_2026-11-09/gate1_ext/out/triangle_unif_q28.jsonl: 300 new in 11.7s
+--- rerun Wed Nov 11 19:29:47 EST 2026: counts raised to 500 (resume) ---
+/Users/maxf/projects/economics-research/game-theory/coopgpt/average_case_protection_2026-11-09/gate1_ext/out/triangle_unif_q24.jsonl: 0 new in 0.0s
+/Users/maxf/projects/economics-research/game-theory/coopgpt/average_case_protection_2026-11-09/gate1_ext/out/triangle_unif_q40.jsonl: 350 new in 54.7s
+/Users/maxf/projects/economics-research/game-theory/coopgpt/average_case_protection_2026-11-09/gate1_ext/out/triangle_unif_q32.jsonl: 200 new in 11.8s
+/Users/maxf/projects/economics-research/game-theory/coopgpt/average_case_protection_2026-11-09/gate1_ext/out/triangle_unif_q28.jsonl: 200 new in 7.6s
+--- rerun Wed Nov 11 19:31:17 EST 2026: q=40 to 2000, q=48 1000 (resume) ---
+/Users/maxf/projects/economics-research/game-theory/coopgpt/average_case_protection_2026-11-09/gate1_ext/out/triangle_unif_q24.jsonl: 0 new in 0.0s
+/Users/maxf/projects/economics-research/game-theory/coopgpt/average_case_protection_2026-11-09/gate1_ext/out/triangle_unif_q40.jsonl: 0 new in 0.0s
+/Users/maxf/projects/economics-research/game-theory/coopgpt/average_case_protection_2026-11-09/gate1_ext/out/triangle_unif_q32.jsonl: 0 new in 0.0s
+/Users/maxf/projects/economics-research/game-theory/coopgpt/average_case_protection_2026-11-09/gate1_ext/out/triangle_unif_q28.jsonl: 0 new in 0.0s
+/Users/maxf/projects/economics-research/game-theory/coopgpt/average_case_protection_2026-11-09/gate1_ext/out/triangle_unif_q40.jsonl: 1500 new in 190.8s
+/Users/maxf/projects/economics-research/game-theory/coopgpt/average_case_protection_2026-11-09/gate1_ext/out/triangle_unif_q48.jsonl: 1000 new in 264.0s

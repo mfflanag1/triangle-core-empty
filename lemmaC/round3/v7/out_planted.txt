@@ -1,0 +1,43 @@
+q=16 K=0.80 d_N=0.00*t each  trials PA=60000 IT=240000  E[X]: PA=5.72 (theory 5.71) IT=0.240  Delta=0.146 W=285.7 3/t=23.8
+   j=0: max_n ratio PA/IT = 0.0102 (at n=0), bound there = 1.5, (3/t)^j=1
+   j=1: max_n ratio PA/IT = 0.182 (at n=1), bound there = 434, (3/t)^j=23.8
+   j=2: max_n ratio PA/IT = 3.46 (at n=2), bound there = 1.26e+05, (3/t)^j=567
+   j=3: max_n ratio PA/IT = 69.3 (at n=3), bound there = 3.66e+07, (3/t)^j=1.35e+04
+   all n, j=0: P_PA=0.00465 P_IT=0.78082 ratio=0.00596
+   all n, j=1: P_PA=0.02108 P_IT=0.19116 ratio=0.11
+   all n, j=2: P_PA=0.05073 P_IT=0.02542 ratio=2
+   all n, j=3: P_PA=0.08440 P_IT=0.00235 ratio=36
+   all n, j=4: P_PA=0.10870 P_IT=0.00022 ratio=483
+   max log(ratio/bound) over classes with >=25 counts: -4.99 (must be <= 0)
+q=16 K=0.80 d_N=0.50*t each  trials PA=60000 IT=240000  E[X]: PA=1.43 (theory 1.43) IT=0.239  Delta=0.146 W=285.7 3/t=23.8
+   j=0: max_n ratio PA/IT = 0.42 (at n=0), bound there = 1.5, (3/t)^j=1
+   j=1: max_n ratio PA/IT = 2.03 (at n=1), bound there = 434, (3/t)^j=23.8
+   j=2: max_n ratio PA/IT = 11.6 (at n=2), bound there = 1.26e+05, (3/t)^j=567
+   j=3: max_n ratio PA/IT = 63.6 (at n=3), bound there = 3.66e+07, (3/t)^j=1.35e+04
+   all n, j=0: P_PA=0.23782 P_IT=0.78225 ratio=0.304
+   all n, j=1: P_PA=0.28672 P_IT=0.19050 ratio=1.51
+   all n, j=2: P_PA=0.20643 P_IT=0.02466 ratio=8.37
+   all n, j=3: P_PA=0.12373 P_IT=0.00234 ratio=52.8
+   all n, j=4: P_PA=0.06915 P_IT=0.00023 ratio=296
+   max log(ratio/bound) over classes with >=25 counts: -1.27 (must be <= 0)
+q=24 K=0.80 d_N=0.00*t each  trials PA=30000 IT=120000  E[X]: PA=7.64 (theory 7.65) IT=0.247  Delta=0.196 W=374.4 3/t=31.2
+   j=1: max_n ratio PA/IT = 0.0507 (at n=1), bound there = 595, (3/t)^j=31.2
+   j=2: max_n ratio PA/IT = 1.27 (at n=2), bound there = 2.25e+05, (3/t)^j=974
+   j=3: max_n ratio PA/IT = 30.1 (at n=3), bound there = 8.52e+07, (3/t)^j=3.04e+04
+   all n, j=1: P_PA=0.00413 P_IT=0.19723 ratio=0.021
+   all n, j=2: P_PA=0.01393 P_IT=0.02599 ratio=0.536
+   all n, j=3: P_PA=0.03070 P_IT=0.00246 ratio=12.5
+   max log(ratio/bound) over classes with >=25 counts: -9.37 (must be <= 0)
+q=16 K=1.00 d_N=0.30*t each  trials PA=60000 IT=240000  E[X]: PA=4.38 (theory 4.38) IT=0.469  Delta=0.446 W=228.6 3/t=19.0
+   j=0: max_n ratio PA/IT = 0.0577 (at n=0), bound there = 2.58, (3/t)^j=1
+   j=1: max_n ratio PA/IT = 0.442 (at n=1), bound there = 609, (3/t)^j=19
+   j=2: max_n ratio PA/IT = 3.21 (at n=2), bound there = 1.44e+05, (3/t)^j=363
+   j=3: max_n ratio PA/IT = 21.1 (at n=3), bound there = 3.39e+07, (3/t)^j=6.91e+03
+   j=4: max_n ratio PA/IT = 175 (at n=4), bound there = 7.99e+09, (3/t)^j=1.32e+05
+   all n, j=0: P_PA=0.01420 P_IT=0.60772 ratio=0.0234
+   all n, j=1: P_PA=0.04798 P_IT=0.29855 ratio=0.161
+   all n, j=2: P_PA=0.08912 P_IT=0.07682 ratio=1.16
+   all n, j=3: P_PA=0.11690 P_IT=0.01444 ratio=8.1
+   all n, j=4: P_PA=0.12885 P_IT=0.00215 ratio=59.8
+   all n, j=5: P_PA=0.12493 P_IT=0.00029 ratio=428
+   max log(ratio/bound) over classes with >=25 counts: -3.80 (must be <= 0)

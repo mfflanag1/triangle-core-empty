@@ -1,0 +1,15 @@
+1. **GAP — certificate output rounding (nonblocking after verification).** `firstmoment/certify.py:70–75` and `interface/constants.py:30–32` print interval endpoints using `iv.nstr`, which does not guarantee rounding in the direction indicated by “≤” or “≥”. Printed decimal enclosures therefore need a separate outward-rounding check.  
+   **Verification:** I reconstructed the inputs from Theorem I §5 and reran the certificate with mesh parameter `0.005`. A direct interval comparison verified `Psi0_up < −3.84751328`, so the exact decimal imported by `constants.py:14` is safe. Repair the reporting by exporting outward-rounded decimals or asserting each exported rational against the internal endpoint. I found no corresponding leak in the integration: floating-point mesh nodes are legitimate exact binary endpoints.
+
+2. **GAP — prefactor uniformity stated too broadly.** `interface/THEOREM_I_PA.md:92–93` says the prefactor constant depends “only on K, B”. Its derivation at lines 117–118 contains `(1 + max_b ν_b)^(2B)`, subsequently bounded using `ν_b ≤ λ_max + δ_1 + 2τ`. Thus the displayed derivation also permits dependence on the perturbation parameters. Moreover, equation (3.1) leaves a degree-dependent `P_q` outside the supremum over degree arrays.  
+   **Repair/verification:** take the supremum of the prefactor over the stated typical set and allow dependence on its fixed parameters, or impose a uniform bound on `δ_1 + 2τ`. This does not affect exponential decay or the assembled theorem.
+
+3. **COSMETIC — “equivalently” weakens the assertion.** `MAIN_THEOREM.md:44–46` calls the bound at constant `2.302` equivalent to the assertion for every `β ≤ 2.30224`. The latter implies the former; the converse does not follow. Replace “Equivalently” with “In particular”.
+
+**Overall verdict:** Theorem 2 is supported by the supplied proof, subject to the minor corrections above; I found no substantive mathematical error. Confidence: **95%**, conditional on the interval library’s correctness.
+
+I checked particularly carefully the covariance-domination/inverse inequality, the boundary passage in Proposition 4.4, the planted conditioning on assignment **pair values**, L2’s Harris inequality direction, P5’s mixed-star counting, and Lemmas L/Q. The interface fixes all parameters before taking `q → ∞`; I found no probability-space conflation or harmful order-of-limits interchange.
+
+I also verified an interval error budget at **β = 2.30224**, using `c′=22`, `δ₁=10⁻⁹`, `δ₂=10⁻⁸`, `τ=10⁻¹⁰`; the final exponent bound is below `−9.58×10⁻⁶`.
+
+The **single weakest step is the computational certificate and its decimal handoff**. My reproduction used the same code and mpmath 1.3.0, not an independent implementation. The referenced JSON/output artifacts were absent; their inputs were recoverable from the supplied text. No files were modified or controller acceptance checks run.

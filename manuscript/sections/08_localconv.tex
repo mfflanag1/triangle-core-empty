@@ -1,0 +1,505 @@
+\section{Local convergence to the tree}\label{sec:localconv}
+
+This section compares the neighbourhood of an agent in the near-tight hypergraph $H_q(K)$
+with the corresponding ball of the Poisson hypertree $\tree$ of Section~\ref{sec:tree}. The
+comparison is in total variation and the bound is explicit
+(Theorem~\ref{thm:localconv}). It is the only fact about the finite market, apart from the
+finiteness of $C_0$, that the tree bound of Section~\ref{sec:lp} uses. The leading error
+term is $\tfrac9{10}K^2q^{-1/3}$ for each team of the ball, and it comes from near-tight
+teams that share a pair.
+
+\subsection{Balls, shapes and the two laws}\label{sec:localconv-setting}
+
+Throughout the section $q\ge1$ and $r\ge1$ are integers and $K$ is a real number with
+$0<K\le q^{2/3}$. We put
+\[
+s=Kq^{-2/3}\le1,\qquad \lambda=\frac{K^3}{6}=\Lam([0,K]),\qquad
+S_r=\sum_{j=0}^{r-1}(2\lambda)^j .
+\]
+A team $e$ is \emph{near-tight} if $\cost_e\le K$, that is, if $\Defi(e)\le s$. The
+condition $s\le1$ makes \eqref{eq:model-oneteam} available for every $t\le s$.
+
+\begin{definition}\label{def:localconv-ball}
+Let $G$ be a hypergraph whose vertices are agents, each with its sector, and whose edges are
+teams, each marked by a cost. The \emph{distance} between two agents of $G$ is the least
+number of teams in a chain joining them. For an agent $v$ the \emph{ball} $B_r(G,v)$ is the
+rooted marked hypergraph formed by the root $v$, all teams of $G$ that contain an agent at
+distance at most $r-1$ from $v$, the agents of these teams, their sectors and the costs. It
+is taken up to bijections of the agents that preserve the root, the sectors, the teams and
+the costs. The agents at distance at most $r-1$ from $v$ are the \emph{interior} agents of
+the ball. For the near-tight hypergraph we write $B_r(o)=B_r(H_q(K),o)$.
+\end{definition}
+
+Let $\mathcal G_r$ be the set of finite rooted marked hypergraphs of this kind with costs in
+$[0,K]$, up to the same bijections. An element of $\mathcal G_r$ is an unmarked rooted
+hypergraph with sectors, of which there are countably many up to isomorphism, together with
+a vector of costs modulo the finite automorphism group of the unmarked hypergraph. So
+$\mathcal G_r$ is a countable disjoint union of quotients of cubes $[0,K]^n$ by finite
+groups, and it carries the corresponding Borel $\sigma$-field. For probability measures
+$\mu$, $\nu$ on a measurable space, $d_{\mathrm{TV}}(\mu,\nu)=\sup_{\mathcal A}
+|\mu(\mathcal A)-\nu(\mathcal A)|$.
+
+\emph{Tree shapes.} A \emph{tree shape} of radius $r$ with root sector $X$ is a finite
+rooted hypertree $t$ of the following kind. The root has sector $X$. Every agent of depth at
+most $r-1$ has a finite, linearly ordered set of child teams. Every team consists of its
+parent agent and two further agents, one in each of the two other sectors. Agents of depth
+$r$ have no child teams. There are countably many tree shapes. For a tree shape $t$ we write
+$E(t)$ for its set of teams, $|E|=|E(t)|$ for their number, $V=1+2|E|$ for the number of
+agents, and
+\begin{align*}
+m&=\#\{\text{agents of depth at most } r-1\},\\
+P_2&=\#\{\text{unordered pairs of distinct teams with a common agent}\}.
+\end{align*} Let $D_t\subseteq[0,K]^{E(t)}$ be the set of cost vectors
+with pairwise distinct coordinates that increase along the child teams of every agent.
+
+Let $\mathcal T_r\subseteq\mathcal G_r$ be the set of balls that are hypertrees (the
+incidence graph of agents and teams is a tree) with pairwise distinct costs. In such a ball
+the distance from the root is the depth, every team contains an interior agent, and so
+agents of depth $r$ have no child teams. Ordering the child teams of every agent by
+increasing cost, and telling the two further agents of a team apart by their sectors, we see
+that every element of $\mathcal T_r$ with root sector $X$ has exactly one representation
+$(t,\xi)$ with $t$ a tree shape and $\xi\in D_t$. We use two consequences. First, a
+bijection of the agents of $(t,\xi)$ that preserves the root, the sectors, the teams and the
+costs is the identity: it fixes the root, hence each child team of the root, since their
+costs are distinct, hence the two further agents of each such team, since their sectors
+differ, and so on by induction on the depth. Secondly, $\mathcal T_r$ carries the reference
+measure $\varrho$ whose restriction to each shape $t$ is Lebesgue measure on $D_t$. For a
+tree shape $t$ and a Borel set $A\subseteq D_t$ we write $[t,A]\subseteq\mathcal T_r$ for the
+set of balls with representation $(t,\xi)$, $\xi\in A$. Every measurable subset of
+$\mathcal T_r$ consisting of balls with root sector $X$ is a countable disjoint union of
+such sets.
+
+\emph{The two laws.} Let $X$ be a sector.
+\begin{itemize}
+\item $\mu=\mu_{q,K,r,X}$ is the law of $B_r(o)$ for an agent $o$ of sector $X$ of the
+market. By symmetry it does not depend on the choice of $o$.
+\item Let $\tree_K$ be the component of the root $o$ of the Poisson hypertree $\tree$
+(Definition~\ref{def:tree-poisson}) after all teams of cost above $K$ have been deleted, as
+in Remark~\ref{rem:tree-balls}, and let $\nu=\nu_{K,r,X}$ be the law of $B_r(\tree_K,o)$
+when the root has sector $X$. By Definition~\ref{def:tree-poisson} and the restriction
+theorem for Poisson processes, $\nu$ is the law of the following random marked
+hypertree: the root has sector $X$, and every agent of depth at most $r-1$ has, independently
+of everything else, child teams whose costs are the points of a Poisson process on $[0,K]$
+with intensity $\xi^2/2\dd\xi$, of total mass $\lambda$; every child team has two new
+agents, one in each of the two other sectors.
+\end{itemize}
+
+\subsection{The tree ball}\label{sec:localconv-treeball}
+
+The facts about Poisson processes used in this section (the restriction theorem, the
+density of the ordered points of a Poisson process of finite total mass, Campbell's formula)
+are standard; see \cite{LastPenrose17}.
+
+\begin{lemma}\label{lem:localconv-tree}
+\begin{enumerate}
+\item[\textup{(i)}] $\nu(\mathcal T_r)=1$, and $\nu$ has the density
+\begin{equation}\label{eq:localconv-treedensity}
+g(t,\xi)=e^{-m(t)\lambda}\prod_{e\in E(t)}\frac{\xi_e^2}{2}
+\end{equation}
+with respect to $\varrho$.
+\item[\textup{(ii)}] For every measurable $\varphi\colon[0,K]\to[0,\infty)$,
+\[
+\E_\nu\sum_{e\in E}\varphi(\xi_e)=S_r\int_0^K\varphi(\xi)\,\frac{\xi^2}{2}\dd\xi .
+\]
+In particular $\E_\nu|E|=\lambda S_r$. Moreover $\E_\nu m=S_r$.
+\item[\textup{(iii)}] $\E_\nu P_2=\dfrac{\lambda^2}{2}+\Bigl(\lambda+\dfrac{\lambda^2}{2}\Bigr)
+(S_r-1)\le\Bigl(\lambda+\dfrac{\lambda^2}{2}\Bigr)S_r$.
+\item[\textup{(iv)}] $Q_r:=\E_\nu V^2\le(r+1)^2(2r+1)\max(1,2\lambda)^{2r}$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(i) The points $\xi_1<\dots<\xi_n$ of a Poisson process on $[0,K]$ with intensity
+$\xi^2/2\dd\xi$, listed in increasing order, have density $e^{-\lambda}\prod_i\xi_i^2/2$ on
+$\{n\}\times\{\xi_1<\dots<\xi_n\}$; there is no factorial because the points are ordered.
+The processes at the $m$ agents of depth at most $r-1$ are independent, which gives
+\eqref{eq:localconv-treedensity} on the set where the child costs increase at every agent.
+The costs are almost surely pairwise distinct, so $\nu(\mathcal T_r)=1$.
+
+(ii) Let $Z_j$ be the number of agents of depth $j$, so $Z_0=1$. The variable $Z_j$ is a
+function of the Poisson processes attached to agents of depth less than $j$, and is
+independent of those attached to agents of depth $j$. Every agent has a Poisson($\lambda$)
+number of child teams and every team has two new agents, so $\E Z_j=(2\lambda)^j$. By
+Campbell's formula each agent of depth $j\le r-1$ contributes
+$\int_0^K\varphi(\xi)\xi^2/2\dd\xi$ to the expectation of the sum over its child teams.
+Summing over $j\le r-1$ gives the first formula; $\varphi\equiv1$ gives $\E_\nu|E|=\lambda
+S_r$; and $m=\sum_{j<r}Z_j$ gives $\E_\nu m=S_r$.
+
+(iii) Agents of depth $r$ lie in one team of the ball. The root, with $N$ child teams, lies
+in $N$ teams and contributes $\binom N2$ pairs; any other agent of depth at most $r-1$ lies
+in its parent team and $N$ child teams and contributes $\binom{N+1}2$. For a
+Poisson($\lambda$) variable $N$, $\E\binom N2=\lambda^2/2$ and
+$\E\binom{N+1}2=\lambda+\lambda^2/2$. The number of child teams of an agent is independent
+of the presence of the agent, and the expected number of agents of depth between $1$ and
+$r-1$ is $S_r-1$.
+
+(iv) $(Z_j)$ is a Galton--Watson process whose offspring number is twice a
+Poisson($\lambda$) variable, with mean $2\lambda$ and variance $4\lambda$. The conditional
+variance formula gives $\Var Z_j=(2\lambda)^2\Var Z_{j-1}+4\lambda(2\lambda)^{j-1}$, hence
+\[
+\E Z_j^2=(2\lambda)^{2j}+2\sum_{i=0}^{j-1}(2\lambda)^{j+i}\le(1+2j)\max(1,2\lambda)^{2j}.
+\]
+Since $V=\sum_{j=0}^rZ_j$, the Cauchy--Schwarz inequality gives
+$\E V^2\le(r+1)\sum_{j=0}^r\E Z_j^2\le(r+1)^2(2r+1)\max(1,2\lambda)^{2r}$.
+\end{proof}
+
+\subsection{One team and its neighbours}\label{sec:localconv-oneteam}
+
+\begin{lemma}\label{lem:localconv-oneteam}
+Let $e$ be a team with pair deficits $\defi_1,\defi_2,\defi_3$.
+\begin{enumerate}
+\item[\textup{(i)}] The cost $\cost_e$ has density $\xi^2/(2q^2)$ on $[0,K]$, and
+$\P(e\text{ is near-tight})=s^3/6=\lambda/q^2$. Conditionally on $e$ being near-tight,
+$\cost_e$ has density $3\xi^2/K^3$ on $[0,K]$, the vector $(\defi_1,\defi_2,\defi_3)$ is
+uniform on the solid simplex $\{x\in[0,\infty)^3:\ x_1+x_2+x_3\le s\}$, and $\defi_1$ has
+density $3(s-x)^2/s^3$ on $[0,s]$.
+\item[\textup{(ii)}] Let $\delta',\delta''$ be independent and uniform on $[0,1]$. For
+$x\in[0,s]$, $\P(x+\delta'+\delta''\le s)=(s-x)^2/2$. For $x,x'\ge0$,
+$\P(x+x'+\delta'\le s)\le s$.
+\item[\textup{(iii)}] $\E\bigl[(s-\defi_1)^2/2\bigm|e\text{ is near-tight}\bigr]=3s^2/10$.
+Consequently, if $\psi(\xi)=\E[(s-\defi_1)^2/2\mid\cost_e=\xi]$ for $\xi\in[0,K]$, then
+\begin{equation}\label{eq:localconv-psi}
+\int_0^K\psi(\xi)\,\frac{3\xi^2}{K^3}\dd\xi=\frac{3s^2}{10}.
+\end{equation}
+By symmetry $\psi$ is the same for $\defi_2$ and $\defi_3$.
+\item[\textup{(iv)}] \emph{(Pair-sharing rate.)} Given the pair deficits of $e$, the
+$3(q-1)$ teams that share a pair with $e$ are near-tight independently of each other, the
+one through the pair $p$ of $e$ with probability $(s-\defi(p))^2/2$ when $e$ is near-tight.
+Hence,
+if $\pi(e)$ denotes the number of near-tight teams other than $e$ that share a pair with
+$e$,
+\begin{equation}\label{eq:localconv-pairsharing}
+\E\bigl[\pi(e)\bigm|e\text{ is near-tight}\bigr]
+=3(q-1)\cdot\frac{3s^2}{10}=\frac9{10}\,K^2q^{-1/3}\Bigl(1-\frac1q\Bigr).
+\end{equation}
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(i) Since $s\le1$, for $t\le s$ the simplex $\{x\ge0,\ x_1+x_2+x_3\le t\}$ lies in the unit
+cube and has volume $t^3/6$; this is \eqref{eq:model-oneteam}. The density of
+$\cost_e=q^{2/3}\Defi(e)$ follows by differentiation, and the conditional statements because
+the deficits are uniform on the cube. The section of the simplex at $x_1=x$ has area
+$(s-x)^2/2$, and $\bigl((s-x)^2/2\bigr)/(s^3/6)=3(s-x)^2/s^3$.
+
+(ii) The triangle $\{\delta',\delta''\ge0,\ \delta'+\delta''\le s-x\}$ lies in the unit
+square and has area $(s-x)^2/2$. The second event is contained in $\{\delta'\le s\}$.
+
+(iii) By (i), $\int_0^s\frac{(s-x)^2}2\cdot\frac{3(s-x)^2}{s^3}\dd x=\frac{3}{2s^3}\cdot
+\frac{s^5}{5}=\frac{3s^2}{10}$. Formula \eqref{eq:localconv-psi} is the tower property,
+because $\cost_e$ has density $3\xi^2/K^3$ given that $e$ is near-tight.
+
+(iv) A team $\alpha\ne e$ that shares a pair with $e$ shares exactly one pair $p$ with it,
+and there are $q-1$ such teams for each of the three pairs of $e$. The other two pairs of
+$\alpha$ are not pairs of $e$, and for different $\alpha$ these pairs are different. So,
+given the deficits of $e$, the events $\{\alpha\text{ is near-tight}\}$ are independent,
+with the probabilities given by (ii). Take expectations with (iii).
+\end{proof}
+
+\subsection{The theorem}\label{sec:localconv-theorem}
+
+\begin{theorem}\label{thm:localconv}
+Let $q\ge1$, $r\ge1$, $0<K\le q^{2/3}$, and let $X$ be a sector. Then
+\begin{equation}\label{eq:localconv-bound}
+\begin{aligned}
+d_{\mathrm{TV}}\bigl(\mu_{q,K,r,X},\nu_{K,r,X}\bigr)&\le\eps_1(q,K,r),\\
+\eps_1(q,K,r)&:=\frac9{10}\,K^2q^{-1/3}\cdot\lambda S_r
++(2\lambda+\lambda^2)\,S_r\,Kq^{-2/3}\\
+&\qquad+\frac{Q_r}{q}
++\frac{\lambda^2S_r}{q^2},
+\end{aligned}
+\end{equation}
+where $\lambda=K^3/6$, $S_r=\sum_{j<r}(2\lambda)^j$ and
+$Q_r\le(r+1)^2(2r+1)\max(1,2\lambda)^{2r}$ is as in Lemma~\ref{lem:localconv-tree}. The four
+terms account, in this order, for a near-tight team that shares a pair with one team of the
+ball; a near-tight team that shares pairs with two teams of the ball; coincidences among the
+agents when the ball is placed in the market; and the replacement of a binomial count by a
+Poisson one. In particular, for an agent $o$ of the market,
+\[
+\P\bigl(B_r(o)\text{ is not a hypertree}\bigr)\le\eps_1(q,K,r),
+\]
+and $\eps_1(q,K,r)\to0$ as $q\to\infty$ for fixed $K$ and $r$. The same bound holds for the
+total variation distance between the law of $B_r(H_q(K),v)$, where $v$ is a uniformly random
+agent independent of the market, and the law of $B_r(\tree_K,o)$, where the root sector of
+$\tree$ is uniform.
+\end{theorem}
+
+The first term is the pair-sharing rate \eqref{eq:localconv-pairsharing} for one team,
+multiplied by the expected number $\lambda S_r$ of teams in the ball of the tree.
+
+\begin{proof}
+Fix an agent $o$ of sector $X$, a tree shape $t$ with root sector $X$ and a Borel set
+$A\subseteq D_t$.
+
+\emph{Step 1: the event $\{B_r(o)\in[t,A]\}$.} An \emph{embedding} is an injective map
+$\phi$ from the agents of $t$ to the agents of the market that preserves sectors and sends
+the root to $o$. For a team $e$ of $t$, $\phi(e)$ is the team formed by the images of its
+agents; these are the \emph{tree teams} of $\phi$, and the pairs contained in them are its
+\emph{tree pairs}. Put $\xi_\phi=(\cost_{\phi(e)})_{e\in E(t)}$, and let $W_\phi$ be the number
+of near-tight teams that are not tree teams and contain $\phi(a)$ for some agent $a$ of $t$
+of depth at most $r-1$. We claim that
+\begin{equation}\label{eq:localconv-union}
+\{B_r(o)\in[t,A]\}=\bigsqcup_{\phi}\ \{\xi_\phi\in A\}\cap\{W_\phi=0\},
+\end{equation}
+a disjoint union over all embeddings. Suppose $\xi_\phi\in A$ and $W_\phi=0$. Then the tree
+teams are near-tight, and by induction on $j\le r-1$ the agents at distance $j$ from $o$ in
+$H_q(K)$ are exactly the images of the agents of depth $j$, because every near-tight team
+that contains such an image is a tree team. Hence the teams of $B_r(o)$ are exactly the tree
+teams, and $B_r(o)$ has the representation $(t,\xi_\phi)$. Conversely, if $B_r(o)\in[t,A]$,
+an isomorphism from $(t,\xi)$ onto $B_r(o)$ is an embedding $\phi$ with $\xi_\phi=\xi\in A$,
+and every near-tight team containing an interior agent of $B_r(o)$ belongs to $B_r(o)$, so
+$W_\phi=0$. The union is disjoint because two embeddings for which the event holds differ by
+a bijection of the agents of $(t,\xi)$ that preserves the root, the sectors, the teams and
+the costs, and such a bijection is the identity.
+
+Two different tree teams share at most one agent, because $t$ is a hypertree. So the $3|E|$
+tree pairs are distinct, the triples of pair deficits of the tree teams are independent, and
+by Lemma~\ref{lem:localconv-oneteam}(i) the vector $\xi_\phi$ has density
+$\prod_e\xi_e^2/(2q^2)$ on $[0,K]^{E(t)}$. Write $\mathbf d_\phi$ for the family of deficits
+of the tree pairs. Then, by \eqref{eq:localconv-union},
+\begin{equation}\label{eq:localconv-mass}
+\mu([t,A])=\sum_\phi\E\bigl[\ind\{\xi_\phi\in A\}\,\P(W_\phi=0\mid\mathbf d_\phi)\bigr].
+\end{equation}
+The agents of $t$ other than the root are placed one at a time, and at each of the $2|E|$
+steps at least $q-V$ agents of the required sector are free. So the number of embeddings is
+at least
+\begin{equation}\label{eq:localconv-count}
+(q-V)_+^{2|E|}\ \ge\ q^{2|E|}\Bigl(1-\frac{2|E|V}{q}\Bigr)_+ ,
+\end{equation}
+by Bernoulli's inequality when $V\le q$; when $V>q$ the right-hand side is $0$.
+
+\emph{Step 2: the other teams.} Fix an embedding $\phi$ and let $F$ be the set of teams that
+are not tree teams and contain the image of an agent of depth at most $r-1$, so that
+$W_\phi$ is the number of near-tight teams in $F$. Classify the teams of $F$ by the number of
+tree pairs they contain.
+\begin{itemize}
+\item $F_0$: no tree pair. Each agent lies in $q^2$ teams, so $|F_0|\le mq^2$. Given
+$\mathbf d_\phi$, a team of $F_0$ is near-tight with probability $s^3/6=\lambda/q^2$.
+\item $F_1$: exactly one tree pair $p$, contained in the tree team $\phi(e)$. The team is one
+of the $q-1$ other teams through $p$, and its other two pairs are not tree pairs. Given
+$\mathbf d_\phi$, on the event $\{\xi_\phi\in A\}$ (where $\defi(p)\le s$) it is near-tight
+with probability $(s-\defi(p))^2/2$, by Lemma~\ref{lem:localconv-oneteam}(ii).
+\item $F_2$: exactly two tree pairs. Two pairs of a team have a common agent $b$. If both
+were contained in the same tree team, the team would be that tree team. So they lie in two
+different tree teams $\phi(e_1)$, $\phi(e_2)$ through $b$, and the team consists of $b$, one
+further agent of $\phi(e_1)$ and the agent of $\phi(e_2)$ in the remaining sector. There are
+two such teams for each pair $\{e_1,e_2\}$ of teams of $t$ with a common agent, so
+$|F_2|\le2P_2$. The third pair of the team is not a tree pair, so given $\mathbf d_\phi$ the
+team is near-tight with probability at most $s$, by Lemma~\ref{lem:localconv-oneteam}(ii).
+\item Three tree pairs: impossible. No two of them lie in the same tree team, so they would
+lie in three different tree teams that pairwise share an agent of the team, and this is a
+cycle of length six in the incidence graph of $\phi(t)$.
+\end{itemize}
+
+\emph{Step 3: Harris' inequality.} Conditionally on $\mathbf d_\phi$, the deficits of all
+other pairs are independent and uniform on $[0,1]$, and for each $\alpha\in F$ the event
+$\{\alpha\text{ is not near-tight}\}=\{\Defi(\alpha)>s\}$ is increasing in them. By Harris'
+inequality \cite{Harris60}, with $p_\alpha=\P(\alpha\text{ is near-tight}\mid\mathbf d_\phi)$,
+\[
+\P(W_\phi=0\mid\mathbf d_\phi)\ \ge\ \prod_{\alpha\in F}(1-p_\alpha).
+\]
+On the event $\{\xi_\phi\in A\}$ put
+\[
+Y_\phi=(q-1)\sum_{e\in E(t)}\ \sum_{p\subset\phi(e)}\frac{(s-\defi(p))^2}{2},
+\]
+the inner sum being over the three pairs of $\phi(e)$. By Step~2,
+$\sum_{\alpha\in F_1}p_\alpha\le Y_\phi$ and $\sum_{\alpha\in F_2}p_\alpha\le2P_2s$. We use
+$\prod_i(1-p_i)\ge1-\sum_ip_i$ for $p_i\in[0,1]$ on $F_1\cup F_2$, and on $F_0$ the
+inequality $\log(1-u)\ge-u-u^2$ with $u=\lambda/q^2\le1/6$ (recall $K\le q^{2/3}$), which
+gives $(1-\lambda/q^2)^{mq^2}\ge e^{-m\lambda}(1-m\lambda^2/q^2)$. Hence, on
+$\{\xi_\phi\in A\}$,
+\begin{equation}\label{eq:localconv-harris}
+\P(W_\phi=0\mid\mathbf d_\phi)\ \ge\ e^{-m\lambda}\Bigl(1-\frac{m\lambda^2}{q^2}\Bigr)_+
+\bigl(1-Y_\phi-2P_2s\bigr)_+ .
+\end{equation}
+(The positive parts may be taken because the left-hand side is nonnegative.)
+
+\emph{Step 4: a lower bound for the density of $\mu$ on $\mathcal T_r$.} The triples of pair
+deficits of the tree teams are independent, so for a pair $p$ of $\phi(e)$ we have
+$\E[(s-\defi(p))^2/2\mid\xi_\phi]=\psi(\cost_{\phi(e)})$, with $\psi$ as in
+Lemma~\ref{lem:localconv-oneteam}(iii). Therefore, with
+\[
+\omega_t(\xi)=1-3(q-1)\sum_{e\in E(t)}\psi(\xi_e)-2P_2Kq^{-2/3},
+\]
+and since $s=Kq^{-2/3}$,
+\begin{align*}
+\E\bigl[\ind\{\xi_\phi\in A\}\,(1-Y_\phi-2P_2s)_+\bigr]
+&\ge\E\bigl[\ind\{\xi_\phi\in A\}\,(1-Y_\phi-2P_2s)\bigr]\\
+&=\int_A\omega_t(\xi)\prod_{e\in E(t)}\frac{\xi_e^2}{2q^2}\dd\xi .
+\end{align*}
+Insert \eqref{eq:localconv-harris} into \eqref{eq:localconv-mass}. Every term of the sum
+over $\phi$ is then bounded below by the same nonnegative quantity, so the sum is at least
+that quantity times the lower bound \eqref{eq:localconv-count} for the number of embeddings;
+then apply the last display, whose left-hand side is multiplied by a nonnegative factor, and
+compare with \eqref{eq:localconv-treedensity}. With
+\begin{equation}\label{eq:localconv-ratio}
+\underline f(t,\xi)=\Bigl(1-\frac{2|E|V}{q}\Bigr)_+\Bigl(1-\frac{m\lambda^2}{q^2}\Bigr)_+
+\,\omega_t(\xi)
+\end{equation}
+we obtain $\mu([t,A])\ge\int_{[t,A]}\underline f\dd\nu$. Since the sets $[t,A]$ exhaust the
+measurable subsets of $\mathcal T_r$ with root sector $X$ up to countable disjoint unions,
+\begin{equation}\label{eq:localconv-lower}
+\mu(\mathcal A)\ \ge\ \int_{\mathcal A}\underline f_+\dd\nu\qquad\text{for every measurable }
+\mathcal A\subseteq\mathcal T_r
+\end{equation}
+(apply the bound to $\mathcal A\cap\{\underline f>0\}$). The first two factors of
+\eqref{eq:localconv-ratio} lie in $[0,1]$ and the third is at most $1$, so
+\begin{equation}\label{eq:localconv-oneminus}
+(1-\underline f)_+\ \le\ \frac{2|E|V}{q}+\frac{m\lambda^2}{q^2}+2P_2Kq^{-2/3}
++3(q-1)\sum_{e\in E(t)}\psi(\xi_e).
+\end{equation}
+Indeed, if the third factor is negative then $\underline f$ is at least that factor; and if
+it is nonnegative, $(1-a)_+(1-b)_+(1-c)\ge1-a-b-c$ for $a,b\ge0$ and $c\in[0,1]$.
+
+\emph{Step 5: total variation.} Only the lower bound \eqref{eq:localconv-lower} is needed.
+For measurable $\mathcal A\subseteq\mathcal G_r$, since $\nu(\mathcal T_r)=1$,
+\[
+\nu(\mathcal A)-\mu(\mathcal A)\le\nu(\mathcal A\cap\mathcal T_r)-\mu(\mathcal A\cap
+\mathcal T_r)\le\int_{\mathcal A\cap\mathcal T_r}(1-\underline f_+)\dd\nu
+\le\int(1-\underline f)_+\dd\nu ,
+\]
+and $d_{\mathrm{TV}}(\mu,\nu)=\sup_{\mathcal A}(\nu(\mathcal A)-\mu(\mathcal A))$ for
+probability measures. It remains to integrate \eqref{eq:localconv-oneminus} against $\nu$,
+with Lemma~\ref{lem:localconv-tree}.
+\begin{itemize}
+\item By Lemma~\ref{lem:localconv-tree}(ii) with $\varphi=\psi$ and by
+\eqref{eq:localconv-psi},
+\[
+\E_\nu\sum_e\psi(\xi_e)=S_r\int_0^K\psi(\xi)\,\frac{\xi^2}2\dd\xi=\lambda S_r\cdot
+\frac{3s^2}{10}.
+\]
+So the last term has $\nu$-mean
+$3(q-1)\cdot\frac{3s^2}{10}\cdot\lambda S_r\le\frac9{10}K^2q^{-1/3}\cdot\lambda S_r$.
+\item By Lemma~\ref{lem:localconv-tree}(iii),
+$\E_\nu\bigl[2P_2Kq^{-2/3}\bigr]\le(2\lambda+\lambda^2)S_rKq^{-2/3}$.
+\item $2|E|V\le V^2$, so $\E_\nu[2|E|V/q]\le Q_r/q$.
+\item $\E_\nu m=S_r$, so $\E_\nu[m\lambda^2/q^2]=\lambda^2S_r/q^2$.
+\end{itemize}
+The sum is $\eps_1(q,K,r)$. Every ball in $\mathcal T_r$ is a hypertree and
+$\nu(\mathcal T_r)=1$, so $\P(B_r(o)\text{ is not a hypertree})\le\mu(\mathcal G_r\setminus
+\mathcal T_r)\le d_{\mathrm{TV}}(\mu,\nu)\le\eps_1$. For fixed $K$ and $r$ every term of
+$\eps_1$ tends to $0$. Finally, a uniformly random agent has a uniformly random sector, and
+the total variation distance between two mixtures with the same weights is at most the
+largest distance between the components.
+\end{proof}
+
+\subsection{Two roots}\label{sec:localconv-two}
+
+\begin{proposition}\label{prop:localconv-two}
+Let $o\ne o'$ be agents with sectors $X$, $X'$, and let $\mu_2$ be the joint law of
+$(B_r(o),B_r(o'))$. Under the hypotheses of Theorem~\ref{thm:localconv},
+\[
+d_{\mathrm{TV}}\bigl(\mu_2,\ \nu_{K,r,X}\otimes\nu_{K,r,X'}\bigr)\ \le\
+2\,\eps_1(q,K,r)+\frac{2Q_r}{q}\ \le\ 4\,\eps_1(q,K,r).
+\]
+\end{proposition}
+
+\begin{proof}
+Repeat the proof of Theorem~\ref{thm:localconv} for a pair of tree shapes $t,t'$ with root
+sectors $X,X'$, a Borel set $A\subseteq D_t\times D_{t'}$ and pairs of embeddings
+$(\phi,\phi')$ of $t$ and $t'$ with $\phi(\text{root})=o$, $\phi'(\text{root})=o'$ and
+disjoint images. Quantities of $t'$ carry a prime. The tree teams are now those of $\phi$
+and of $\phi'$, and $W_{\phi,\phi'}$ counts the near-tight teams that are not tree teams and
+contain the image of an agent of depth at most $r-1$ of $t$ or of $t'$.
+
+\emph{Step 1.} If $(\xi_\phi,\xi_{\phi'})\in A$ and $W_{\phi,\phi'}=0$, then the induction
+of Step~1 above, started at $o$, stays inside the image of $\phi$, because a tree team that
+contains an agent of the image of $\phi$ is a tree team of $\phi$. So $B_r(o)$ has the
+representation $(t,\xi_\phi)$, and likewise $B_r(o')$ has the representation
+$(t',\xi_{\phi'})$. The events for different pairs $(\phi,\phi')$ are disjoint as before.
+Hence $\{(B_r(o),B_r(o'))\in[t,t',A]\}$ \emph{contains} the disjoint union of the events
+$\{(\xi_\phi,\xi_{\phi'})\in A\}\cap\{W_{\phi,\phi'}=0\}$. It may be larger, since the two
+balls may overlap; this is harmless, because only a lower bound for $\mu_2$ is needed. The
+number of pairs of embeddings with disjoint images is at least
+$q^{2|E|+2|E'|}\bigl(1-2(|E|+|E'|)(V+V')/q\bigr)_+$. Tree teams of the same embedding share
+at most one agent and tree teams of different embeddings share none, so the $3(|E|+|E'|)$
+tree pairs are distinct and the costs of the tree teams are independent.
+
+\emph{Step 2.} $|F_0|\le(m+m')q^2$. $F_1$ is as before for each tree team. A team with
+exactly two tree pairs contains their common agent $b$, and the two tree teams through $b$
+belong to the same embedding; so $|F_2|\le2(P_2+P_2')$. Three tree pairs are impossible as
+before.
+
+\emph{Steps 3 to 5.} Harris' inequality applies as before, and the density of $\mu_2$ with
+respect to $\nu_{K,r,X}\otimes\nu_{K,r,X'}$ on $\mathcal T_r\times\mathcal T_r$ is bounded
+below by a function $\underline f_2$ with
+\begin{align*}
+(1-\underline f_2)_+\le{}&\frac{2(|E|+|E'|)(V+V')}{q}+\frac{(m+m')\lambda^2}{q^2}
++2(P_2+P_2')Kq^{-2/3}\\
+&+3(q-1)\Bigl(\sum_{e\in E(t)}\psi(\xi_e)+\sum_{e\in E(t')}\psi(\xi'_e)\Bigr).
+\end{align*}
+The last three terms have mean at most twice the corresponding terms of $\eps_1$. For the
+first, $2(|E|+|E'|)(V+V')\le(V+V')^2\le2V^2+2V'^2$, with mean at most $4Q_r$.
+\end{proof}
+
+\begin{corollary}\label{cor:localconv-prob}
+Let $h\colon\mathcal G_r\to[-1,1]$ be measurable, let
+\[
+A_q=\frac1{3q}\sum_vh\bigl(B_r(H_q(K),v)\bigr)
+\]
+be its average over the $3q$ agents, and let $\bar\nu(h)$ be the mean of
+$h(B_r(\tree_K,o))$ when the root sector is uniform. Then
+\[
+|\E A_q-\bar\nu(h)|\le2\,\eps_1(q,K,r),\qquad\Var A_q\le\frac1{3q}+12\,\eps_1(q,K,r).
+\]
+In particular $A_q\to\bar\nu(h)$ in probability as $q\to\infty$ for fixed $K$ and $r$.
+\end{corollary}
+
+\begin{proof}
+If $|h|\le1$ and $\mu,\nu$ are probability measures, then
+$|\int h\dd\mu-\int h\dd\nu|\le2\,d_{\mathrm{TV}}(\mu,\nu)$. This and
+Theorem~\ref{thm:localconv} give the first bound. Let $o\ne o'$ be agents with sectors
+$X,X'$, and write $\nu_X(h)=\int h\dd\nu_{K,r,X}$, $h_o=h(B_r(o))$. By
+Proposition~\ref{prop:localconv-two} and Theorem~\ref{thm:localconv},
+\[
+\bigl|\E[h_oh_{o'}]-\nu_X(h)\nu_{X'}(h)\bigr|\le8\eps_1,\qquad
+\bigl|\E h_o\,\E h_{o'}-\nu_X(h)\nu_{X'}(h)\bigr|\le4\eps_1 .
+\]
+So the covariance of $h_o$ and $h_{o'}$ is at most $12\eps_1$ in absolute value. The $3q$
+diagonal terms of the variance of $\sum_vh_v$ are at most $1$ each.
+\end{proof}
+
+The corollary is not used in the sequel: Section~\ref{sec:lp} needs only expectations, that
+is, Theorem~\ref{thm:localconv}. Note the rates for fixed $K$ and $r$: the bias of $A_q$ is
+$O(q^{-1/3})$, and its fluctuation is $O(q^{-1/6})$ in probability.
+
+\subsection{Remarks}\label{sec:localconv-remarks}
+
+\begin{remark}[Reading the bound]\label{rem:localconv-reading}
+For fixed $K$ and $r$ the first term of $\eps_1$ is of order $q^{-1/3}$ and the other three
+are $O(q^{-2/3})$. For $K\ge2$ we have $2\lambda\ge8/3$ and $\lambda S_r\le\frac45
+(2\lambda)^r$, so the first term is at most
+\[
+0.72\,K^2\Bigl(\frac{K^3}{3}\Bigr)^{r}q^{-1/3}.
+\]
+The bound is therefore informative at radius $r$ only when $q^{1/3}$ is large compared with
+$K^{3r+2}/3^r$, and for a single team the requirement is that $q^{1/3}$ be large compared
+with $K^2$. The theorem is for fixed $K$ and $r$. Nothing here controls $K$ growing with
+$q$; by \eqref{eq:localconv-pairsharing}, when $K^2$ is comparable to $q^{1/3}$ a near-tight
+team shares a pair with a number of near-tight teams that is of order one in expectation.
+\end{remark}
+
+\begin{remark}[Where pairs enter]\label{rem:localconv-pairs}
+The fact that a near-tight team has small pair deficits, which favours the other teams
+through its pairs, enters the proof only through the classes $F_1$ and $F_2$. It produces
+the rate $K^2q^{-1/3}$. Teams that share only an agent with the ball contribute nothing
+beyond the last term of $\eps_1$.
+\end{remark}
+
+\begin{remark}[Floating point: how large $q$ must be]\label{rem:localconv-size}
+The numbers in this remark are floating-point evidence and are not used in any proof. The
+identity \eqref{eq:localconv-pairsharing} is exact, and it shows that the tree regime
+starts late: the expected number of near-tight partners of a near-tight team through a
+shared pair is below $1/10$ only when $q$ is at least about $(9K^2)^3$, that is, $3.0\cdot10^6$ for
+$K=4$ and $3.4\cdot10^7$ for $K=6$. Simulations of fresh markets with all $q^3$ teams
+enumerated (script \texttt{lemmaC/round3/localconv/pairshare.py}, output
+\texttt{out\_pairshare.txt} in the same folder; $300$, $80$ and $14$ markets at
+$q=32,64,128$) agree with \eqref{eq:localconv-pairsharing} to within sampling error: at
+$K=4$ the mean number of partners per near-tight team was $4.41$, $3.60$, $2.81$ against
+$4.39$, $3.54$, $2.84$ from the formula. In the same runs, at $K=4$ the fraction of
+near-tight teams with at least one such partner was $0.987$, $0.970$, $0.934$, and the
+fraction of agents whose ball of radius $1$ is not a hypertree was $0.952$, $0.952$,
+$0.945$; at $K=2$ the latter fraction was $0.235$, $0.210$, $0.185$. So at every size that
+can be simulated the near-tight hypergraph is far from a hypertree, and
+Theorem~\ref{thm:localconv}, like every bound that rests on it, says nothing at such sizes.
+\end{remark}

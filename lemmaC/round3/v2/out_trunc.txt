@@ -1,0 +1,8 @@
+K=0.0  e_1*(K)=2.14959  beta=0.46520  Sigma_K=-4.4e-16  eps(used above K)=1.00e+00  norm=1.000000
+K=1.0  e_1*(K)=2.19420  beta=0.49345  Sigma_K=-2.6e-08  eps(used above K)=9.14e-01  norm=1.000000
+K=2.0  e_1*(K)=2.26922  beta=0.54465  Sigma_K=-1.1e-07  eps(used above K)=5.73e-01  norm=1.000000
+K=3.0  e_1*(K)=2.29811  beta=0.55931  Sigma_K=-3.4e-09  eps(used above K)=2.36e-01  norm=1.000000
+K=4.0  e_1*(K)=2.30217  beta=0.55789  Sigma_K=-2.6e-07  eps(used above K)=7.45e-02  norm=1.000000
+K=5.0  e_1*(K)=2.30246  beta=0.55735  Sigma_K=+4.0e-10  eps(used above K)=2.08e-02  norm=1.000000
+K=6.0  e_1*(K)=2.30248  beta=0.55729  Sigma_K=+2.7e-08  eps(used above K)=5.41e-03  norm=1.000000
+K=8.0  e_1*(K)=2.30249  beta=0.55728  Sigma_K=+2.0e-05  eps(used above K)=3.23e-04  norm=1.000000

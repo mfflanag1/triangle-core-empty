@@ -1,0 +1,4 @@
+80 0 0.2488 223.6
+80 1 0.2015 253.5
+/Users/maxf/miniforge3/lib/python3.10/multiprocessing/resource_tracker.py:224: UserWarning: resource_tracker: There appear to be 5 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '

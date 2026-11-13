@@ -1,0 +1,11 @@
+reference: h=0.01 support [-6,7] bulk [-4.5,5] cells 950  E X0 = 0.2499495127  9EX0 = 2.24954561
+tail masses of mu_0 outside bulk: lower 7.870e-07 upper 1.615e-14
+defect displacement b-a: edges max|.| 1.086e-04, midpoints max|.| 2.330e-04
+specrad midpoint 2|P-q| = 0.3509 ; specrad envelope matrix = 0.4050 ; theta = 0.7
+resolvent weight W = (1 - Aenv/theta)^-1 1: range [1.336, 14.9]; at bulk edges 14.94 / 4.10
+Z (cell-wise worst-case envelope, shift <= h) = max_i 0.6531  (argmax x=-4.50); median 0.5148
+tail term tau0/E kappa (reference): max 2.419e-08 at x=4.99; max of tail0/W 5.899e-09
+max_i Y_i/W_i = 5.682e-05 ; radius r = max_i (Y_i + tail_i)/(W_i - Zsum_i) = 1.208e-04 (at x=4.99)
+envelope shift needed 6 r Wmax + 2 tail + defect = 1.093e-02  (must be <= h = 0.01): False
+sum p W = 2.562, sum q W = 1.991 ; |E X* - E X0 - m0/3| <= 4.696e-04 + tail integrals ; 9x = 4.227e-03
+=> (float, conditional on tail envelopes) c in [2.24532, 2.25377]

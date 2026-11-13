@@ -1,0 +1,18 @@
+coarse law Q~_1: 20 pieces, levels [1.1e-06, 32], h = 2^-3
+reference: total mass 1.000000000000, E X = -3.083253058 ; certified E X <= -3.083253058 ; sum p_lo = 1.000000000000, sum nu_hi = 1.000000000000
+max (p_lo - p_ref) = 1.53e-16 (want <= 0), max (D_lo - D_ref) = 2.19e-11 (want <= 0), min (nu_hi - nu_ref) = -1.36e-10 (want >= 0); max |p_lo - p_ref| = 1.5e-16, max |D_lo - D_ref| = 2.2e-11, max |nu_hi - nu_ref| = 1.9e-10  (reference accuracy about 1e-9)
+50 test points t in [2.753, 11.863]:  g_lo/g in [0.468841, 0.998434] (want <= 1);  g'_lo/g' in [0.431298, 0.999453] (want <= 1);  g'_hi/g' in [1.000158, 1.543042] (want >= 1)
+E T(Q~_1): reference 7.480335, certified upper bound 7.529277
+all direction checks passed
+coarse law Q~_1: 20 pieces, levels [1.1e-06, 32], h = 2^-4
+reference: total mass 1.000000000000, E X = -3.083253058 ; certified E X <= -3.083253058 ; sum p_lo = 1.000000000000, sum nu_hi = 1.000000000000
+max (p_lo - p_ref) = 1.46e-16 (want <= 0), max (D_lo - D_ref) = 6.94e-12 (want <= 0), min (nu_hi - nu_ref) = -1.19e-10 (want >= 0); max |p_lo - p_ref| = 1.5e-16, max |D_lo - D_ref| = 6.9e-12, max |nu_hi - nu_ref| = 1.4e-10  (reference accuracy about 1e-9)
+50 test points t in [2.753, 11.861]:  g_lo/g in [0.768923, 0.999600] (want <= 1);  g'_lo/g' in [0.762115, 0.999862] (want <= 1);  g'_hi/g' in [1.000040, 1.126460] (want >= 1)
+E T(Q~_1): reference 7.480335, certified upper bound 7.521645
+all direction checks passed
+coarse law Q~_1: 20 pieces, levels [1.1e-06, 32], h = 2^-5
+reference: total mass 1.000000000000, E X = -3.083253058 ; certified E X <= -3.083253058 ; sum p_lo = 1.000000000000, sum nu_hi = 1.000000000000
+max (p_lo - p_ref) = 1.34e-16 (want <= 0), max (D_lo - D_ref) = 2.02e-12 (want <= 0), min (nu_hi - nu_ref) = -7.00e-11 (want >= 0); max |p_lo - p_ref| = 1.3e-16, max |D_lo - D_ref| = 2.0e-12, max |nu_hi - nu_ref| = 7.8e-11  (reference accuracy about 1e-9)
+50 test points t in [2.752, 11.861]:  g_lo/g in [0.918941, 0.999899] (want <= 1);  g'_lo/g' in [0.920496, 0.999965] (want <= 1);  g'_hi/g' in [1.000010, 1.031363] (want >= 1)
+E T(Q~_1): reference 7.480335, certified upper bound 7.519584
+all direction checks passed

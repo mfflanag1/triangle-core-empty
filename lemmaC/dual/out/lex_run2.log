@@ -1,0 +1,6 @@
+3 P(empty)=0.000 median k/3q^2 of first frac=None vals []
+4 P(empty)=0.000 median k/3q^2 of first frac=None vals []
+/Users/maxf/miniforge3/bin/python3 lex.py --q 3 4 --n 2000  76.54s user 1.82s system 244% cpu 32.055 total
+10 P(empty)=0.000 median k/3q^2 of first frac=None vals []
+12 P(empty)=0.000 median k/3q^2 of first frac=None vals []
+/Users/maxf/miniforge3/bin/python3 lex.py --q 10 12 --n 60  55.87s user 2.28s system 241% cpu 24.111 total

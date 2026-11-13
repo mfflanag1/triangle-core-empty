@@ -1,0 +1,31 @@
+== A. exact enumeration over ALL pairings (n=3 per part, 2 bins)
+ pairings enumerated: 20736
+  profile (0, 3) exact 1 formula 1 EQUAL
+  profile (1, 2) exact 4/9 formula 4/9 EQUAL
+  profile (2, 1) exact 125/324 formula 125/324 EQUAL
+  profile (3, 0) exact 1/2 formula 1/2 EQUAL
+== B. Monte Carlo, random degree sequences
+  n=6 bins=2 samples=20000 profiles=3  total formula=0.11815  MC=0.11625  worst |z| over profiles=0.98
+  n=7 bins=3 samples=20000 profiles=14  total formula=0.17734  MC=0.17830  worst |z| over profiles=2.18
+  n=8 bins=3 samples=12000 profiles=25  total formula=0.15888  MC=0.16283  worst |z| over profiles=2.29
+  n=10 bins=2 samples=6000 profiles=1  total formula=0.00012  MC=0.00000  worst |z| over profiles=0.00
+== C. d-regular single bin
+  n=6 d=3 formula=1.12419 MC=1.12455 +- 0.00915 | (1/n)ln formula=0.0195, limit rate ln d-2(d-1)ln(d/(d-1))=-0.5232
+  n=8 d=3 formula=0.52213 MC=0.52525 +- 0.00973 | (1/n)ln formula=-0.0812, limit rate ln d-2(d-1)ln(d/(d-1))=-0.5232
+  n=6 d=4 formula=3.79329 MC=3.79438 +- 0.03046 | (1/n)ln formula=0.2222, limit rate ln d-2(d-1)ln(d/(d-1))=-0.3398
+  n=100 d=6 (1/n)ln E = 0.03117  vs rate -0.03146
+  n=100 d=7 (1/n)ln E = 0.15901  vs rate 0.09610
+  n=1000 d=6 (1/n)ln E = -0.02289  vs rate -0.03146
+  n=1000 d=7 (1/n)ln E = 0.10469  vs rate 0.09610
+  n=10000 d=6 (1/n)ln E = -0.03037  vs rate -0.03146
+  n=10000 d=7 (1/n)ln E = 0.09719  vs rate 0.09610
+== D. entropy rate: (1/q) ln N(m) vs inf_z [mean ln W(z) - sum p ln z], Poisson stars, 3 bins
+  q=60 m=(15, 24, 21) exact (1/q)lnN=0.57000  dual inf=0.62131  gap=0.05131  (ln q)/q=0.06824
+  q=60 m=(9, 21, 30) exact (1/q)lnN=0.75815  dual inf=0.81322  gap=0.05507  (ln q)/q=0.06824
+  q=60 m=(3, 18, 39) infeasible
+  q=120 m=(30, 48, 42) infeasible
+  q=120 m=(18, 42, 60) exact (1/q)lnN=0.77170  dual inf=0.80430  gap=0.03260  (ln q)/q=0.03990
+  q=120 m=(6, 36, 78) exact (1/q)lnN=0.78060  dual inf=0.81014  gap=0.02954  (ln q)/q=0.03990
+  q=240 m=(60, 96, 84) exact (1/q)lnN=0.59007  dual inf=0.60657  gap=0.01650  (ln q)/q=0.02284
+  q=240 m=(36, 84, 120) exact (1/q)lnN=0.87459  dual inf=0.89423  gap=0.01964  (ln q)/q=0.02284
+  q=240 m=(12, 72, 156) exact (1/q)lnN=0.87522  dual inf=0.89301  gap=0.01779  (ln q)/q=0.02284

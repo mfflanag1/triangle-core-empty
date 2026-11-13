@@ -1,0 +1,4 @@
+q=16 n=60 max over M's ab-pairs of cheapest rotation: mean 1.583 (x q^1/2: 6.33; x q^2/3: 10.05) | 2-swap only: 1.605 (x q^1/4: 3.21) | mean moves 2.16 | min slack (rotation - d_ab) 0.2191 | max used d_ab x q^2/3 2.64
+q=24 n=60 max over M's ab-pairs of cheapest rotation: mean 1.375 (x q^1/2: 6.74; x q^2/3: 11.44) | 2-swap only: 1.446 (x q^1/4: 3.20) | mean moves 2.29 | min slack (rotation - d_ab) 0.0724 | max used d_ab x q^2/3 2.58
+q=32 n=60 max over M's ab-pairs of cheapest rotation: mean 1.299 (x q^1/2: 7.35; x q^2/3: 13.09) | 2-swap only: 1.388 (x q^1/4: 3.30) | mean moves 2.35 | min slack (rotation - d_ab) 0.1883 | max used d_ab x q^2/3 3.00
+q=48 n=15 max over M's ab-pairs of cheapest rotation: mean 1.139 (x q^1/2: 7.89; x q^2/3: 15.04) | 2-swap only: 1.289 (x q^1/4: 3.39) | mean moves 2.42 | min slack (rotation - d_ab) 0.1656 | max used d_ab x q^2/3 3.21

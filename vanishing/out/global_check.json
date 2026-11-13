@@ -1,0 +1,42 @@
+{
+ "24": {
+  "n": 300,
+  "deficit_bip_mean": 4.544674472347897,
+  "deficit_LP_mean": 7.3865496295026185,
+  "deficit_T_mean": 7.457369002681239,
+  "S_minus_LP_mean": 2.8418751571547203,
+  "LP_minus_T_mean": 0.07081937317861996
+ },
+ "28": {
+  "n": 300,
+  "deficit_bip_mean": 4.638817757195932,
+  "deficit_LP_mean": 7.8271397810845915,
+  "deficit_T_mean": 7.768868178500572,
+  "S_minus_LP_mean": 3.188322023888657,
+  "LP_minus_T_mean": 1.556426944998315e-14
+ },
+ "32": {
+  "n": 300,
+  "deficit_bip_mean": 4.590828279455513,
+  "deficit_LP_mean": 8.103645023351753,
+  "deficit_T_mean": 8.010160608781435,
+  "S_minus_LP_mean": 3.5128167438962388,
+  "LP_minus_T_mean": 7.751375299201092e-15
+ },
+ "40": {
+  "n": 300,
+  "deficit_bip_mean": 4.672559809662411,
+  "deficit_LP_mean": 8.74528596778334,
+  "deficit_T_mean": 8.58072321054255,
+  "S_minus_LP_mean": 4.07272615812093,
+  "LP_minus_T_mean": -1.3926637620897965e-13
+ },
+ "48": {
+  "n": 300,
+  "deficit_bip_mean": 4.719639429895836,
+  "deficit_LP_mean": 9.224575104785897,
+  "deficit_T_mean": null,
+  "S_minus_LP_mean": 4.504935674890062,
+  "LP_minus_T_mean": null
+ }
+}

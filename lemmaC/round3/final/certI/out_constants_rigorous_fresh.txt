@@ -1,0 +1,9 @@
+Psi0 hand-off: source = fresh run of certify_rigorous.certify(w_K5_e10.json, delta=0.005)
+   exact upper endpoint = -1162839537350571633950917/302231454903657293676544  <=  -3.84751328322   (so Psi0 <= -3.84751328; asserted in exact rational arithmetic; slack >= 0.000000003226)
+lam_max in [1.225166666, 1.225166667], theta*K in [8.355999, 8.356001], ln J in [-6.10637801, -6.10637800], ln 2 in [0.693147180559, 0.693147180560]
+beta=2.30 c'=14 delta1=1/100000 delta2=1/5000 tau=1/200000   A <= 44.237334
+   delta1' <= 0.000020001  delta2' <= 0.000649304806  (6B+2)e^(-1-c') <= 0.000092382501  Err <= 0.0031602970
+   theta*beta+Psi0 <= -0.0037532799 (m >= 0.0037532799);  theta*beta+Psi0+Err <= -0.0005929830 (m - Err >= 0.0005929830)  -> NEGATIVE (certified)
+beta=2.302 c'=17 delta1=1/1000000 delta2=1/50000 tau=1/4000000   A <= 52.237334
+   delta1' <= 0.000001501  delta2' <= 0.000046465241  (6B+2)e^(-1-c') <= 0.000004599454  Err <= 0.0002459952
+   theta*beta+Psi0 <= -0.0004108799 (m >= 0.0004108799);  theta*beta+Psi0+Err <= -0.0001648848 (m - Err >= 0.0001648848)  -> NEGATIVE (certified)

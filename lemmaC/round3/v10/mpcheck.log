@@ -1,0 +1,3 @@
+point 0, t = 5.570079: g mp 1.00000028273782762e-6  float64 rel.diff 3.81e-17 | g' mp 5.08414600305865907e-6  float64 rel.diff -1.79e-16 | theta/g - 1 = -8.55208e-7, shat/g' - 1 = 2.21082e-7
+point 3999, t = 8.615984: g mp 0.0369850734048787023  float64 rel.diff -2.42e-16 | g' mp 0.080338804875555914  float64 rel.diff -2.81e-16 | theta/g - 1 = -1.45128e-7, shat/g' - 1 = 3.19724e-8
+point 11997, t = 15.036311: g mp 32.00001788324821  float64 rel.diff -1.59e-16 | g' mp 15.9543766000066787  float64 rel.diff -9.88e-17 | theta/g - 1 = -8.99256e-9, shat/g' - 1 = 3.62263e-9

@@ -1,0 +1,13 @@
+T1 split
+  delta=0.05: KS(d,U)=0.00087 (1.36/sqrt(n)=0.00096)  max(d-u/(1-delta))=-2.52e-15  max(d-w/delta)=-2.51e-12  P(d'>0.3)=0.7119 vs 0.7126  P(d''>0.3)=0.9822 vs 0.9823
+  delta=0.25: KS(d,U)=0.00073 (1.36/sqrt(n)=0.00096)  max(d-u/(1-delta))=-2.41e-15  max(d-w/delta)=-7.12e-13  P(d'>0.3)=0.7657 vs 0.7653  P(d''>0.3)=0.9149 vs 0.9147
+  delta=0.5: KS(d,U)=0.00054 (1.36/sqrt(n)=0.00096)  max(d-u/(1-delta))=-1.78e-12  max(d-w/delta)=-2.15e-13  P(d'>0.3)=0.8367 vs 0.8367  P(d''>0.3)=0.8365 vs 0.8367
+  delta=0.9: KS(d,U)=0.00104 (1.36/sqrt(n)=0.00096)  max(d-u/(1-delta))=-1.74e-11  max(d-w/delta)=-1.05e-14  P(d'>0.3)=0.9651 vs 0.9650  P(d''>0.3)=0.7259 vs 0.7254
+T2 rounding, exact in U
+  300 instances: sizes equal and in {floor,ceil} and no repeats: True; max|P(v in R)-s_v|=2.89e-15; max|EN-Sigma|=1.24e-14
+T3 patch, brute force, q=4, delta=0.25
+  40 runs: max|load(x+z)-1|=6.66e-16; LP(d)<=cost_d(x+z)<=bound in all: True
+T4 genuineness of the patch market, q=4, delta=0.5
+  Phi(n) by simulation: {0: (0.0, 0.0), 1: (1.5021, 0.0065), 2: (2.3781, 0.0074), 3: (3.0472, 0.0077), 4: (3.5675, 0.0158)}
+  rule reads u (as in the proof): mean[cost_w(M_R) - Phi(N)] = +0.0121 +- 0.0073
+  rule reads d (negative control): mean[cost_w(M_R) - Phi(N)] = +0.2794 +- 0.0070

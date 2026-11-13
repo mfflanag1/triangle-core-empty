@@ -1,0 +1,6 @@
+K=2 B=2 theta=1 A=8 c'=2.000: min Psi0 found -2.04243; tests so far 40; max|identity residual| 2.64e-08; max(lhs-rhs) -0.7167
+K=2 B=2 theta=1 A=14 c'=4.250: min Psi0 found -2.04243; tests so far 80; max|identity residual| 3.95e-08; max(lhs-rhs) -0.1222
+K=2.4 B=2 theta=1.5 A=12 c'=3.100: min Psi0 found -3.39701; tests so far 120; max|identity residual| 3.26e-06; max(lhs-rhs) -0.1222
+K=1.5 B=1 theta=2 A=10 c'=2.500: min Psi0 found -4.36595; tests so far 160; max|identity residual| 3.26e-06; max(lhs-rhs) -0.1222
+K=2.5 B=3 theta=1.2 A=14 c'=4.000: min Psi0 found -2.64357; tests so far 200; max|identity residual| 3.26e-06; max(lhs-rhs) -0.1222
+Lemma E: max of phi(a)-phi(b)-c|a-b|-exp(-1-c) over 200000 samples: -3.068e-08 (must be <= 0)

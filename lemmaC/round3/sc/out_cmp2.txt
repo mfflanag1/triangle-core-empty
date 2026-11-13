@@ -1,0 +1,14 @@
+q=32 K=1.0 PA trials=150000 IT trials=600000 Delta=0.7323 ; IT exact void=0.004826
+  n= 0 PA=  1227 IT=  2874 ratio=1.708 +- 0.058  bound=2.082  ok
+  n= 1 PA=  5557 IT= 15573 ratio=1.427 +- 0.022  bound=2.115  ok
+  n= 2 PA= 11667 IT= 41106 ratio=1.135 +- 0.012  bound=2.148  ok
+  n= 3 PA= 16254 IT= 72622 ratio=0.895 +- 0.008  bound=2.182  ok
+  n= 4 PA= 16807 IT= 95913 ratio=0.701 +- 0.006  bound=2.216  ok
+  n= 5 PA= 13788 IT=100534 ratio=0.549 +- 0.005  bound=2.251  ok
+  n= 6 PA=  9125 IT= 88876 ratio=0.411 +- 0.005  bound=2.286  ok
+  n= 7 PA=  5416 IT= 66598 ratio=0.325 +- 0.005  bound=2.322  ok
+  n= 8 PA=  2640 IT= 43500 ratio=0.243 +- 0.005  bound=2.359  ok
+  n= 9 PA=  1089 IT= 25205 ratio=0.173 +- 0.005  bound=2.396  ok
+  n=10 PA=   450 IT= 13194 ratio=0.136 +- 0.007  bound=2.434  ok
+  n=11 PA=   163 IT=  6274 ratio=0.104 +- 0.008  bound=2.472  ok
+  n=12 PA=    49 IT=  2636 ratio=0.074 +- 0.011  bound=2.511  ok

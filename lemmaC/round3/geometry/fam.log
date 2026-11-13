@@ -1,0 +1,13 @@
+done 12
+done 16
+done 20
+Traceback (most recent call last):
+  File "/Users/maxf/projects/economics-research/game-theory/coopgpt/average_case_protection_2026-11-09/lemmaC/round3/geometry/families.py", line 46, in <module>
+    for idx in range(a.n): f.write(json.dumps(run(q, idx)) + '\n')
+  File "/Users/maxf/projects/economics-research/game-theory/coopgpt/average_case_protection_2026-11-09/lemmaC/round3/geometry/families.py", line 21, in run
+    mi = milp(-vf, constraints=LinearConstraint(Ae, np.ones(n), np.ones(n)), integrality=np.ones(q ** 3), bounds=Bounds(0, 1),
+  File "/Users/maxf/miniforge3/lib/python3.10/site-packages/scipy/optimize/_milp.py", line 372, in milp
+    highs_res = _highs_wrapper(c, indptr, indices, data, b_l, b_u,
+  File "/Users/maxf/miniforge3/lib/python3.10/site-packages/scipy/optimize/_highspy/_highs_wrapper.py", line 206, in _highs_wrapper
+    run_status = highs.run()
+KeyboardInterrupt

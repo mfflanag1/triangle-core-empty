@@ -1,0 +1,1 @@
+runA.sh: line 7: 70837 Terminated: 15          /Users/maxf/miniforge3/bin/python3 sim.py 256 8 40 0 0 1 lp.jsonl

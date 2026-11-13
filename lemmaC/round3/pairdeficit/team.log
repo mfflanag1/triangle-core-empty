@@ -1,0 +1,4 @@
+q=16 n=100 max team deficit M: mean 4.94 max 7.02 (x q^2/3) | LP support: mean 5.21 max 8.03 | x q^1/2: M 3.11 LP 3.28 | price max-q10 2.99, max-min 3.65 (x q^2/3) | min chain-step slack -1.67e-15 | max |reduced cost| on support 4.9e-15
+q=24 n=100 max team deficit M: mean 5.07 max 7.49 (x q^2/3) | LP support: mean 5.46 max 7.78 | x q^1/2: M 2.98 LP 3.21 | price max-q10 3.08, max-min 3.86 (x q^2/3) | min chain-step slack -2.11e-15 | max |reduced cost| on support 1.3e-14
+q=32 n=100 max team deficit M: mean 5.36 max 7.03 (x q^2/3) | LP support: mean 5.91 max 7.68 | x q^1/2: M 3.01 LP 3.32 | price max-q10 3.17, max-min 4.20 (x q^2/3) | min chain-step slack -2.89e-15 | max |reduced cost| on support 5.8e-15
+q=48 n=20 max team deficit M: mean 5.50 max 6.77 (x q^2/3) | LP support: mean 6.03 max 8.54 | x q^1/2: M 2.88 LP 3.16 | price max-q10 3.35, max-min 4.36 (x q^2/3) | min chain-step slack -2.11e-15 | max |reduced cost| on support 2.4e-14

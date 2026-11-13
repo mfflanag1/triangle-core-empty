@@ -1,0 +1,5 @@
+K=2 B=1 theta=1.4: sup L-theta*beta = -3.125376715 ; min_u0 Psi0 = -3.125376715 ; diff 1.78e-15 ; max over 300 random (mu,u0) of L - Psi0(u0) = -5.405e-02 ; Mecke rho check 2.2e-16
+K=2 B=2 theta=1.7: sup L-theta*beta = -3.834940892 ; min_u0 Psi0 = -3.834940892 ; diff 3.11e-15 ; max over 300 random (mu,u0) of L - Psi0(u0) = -1.020e-01 ; Mecke rho check 1.6e-15
+K=3 B=2 theta=1.2: sup L-theta*beta = -2.642039624 ; min_u0 Psi0 = -2.642039624 ; diff 4.44e-15 ; max over 300 random (mu,u0) of L - Psi0(u0) = -1.157e-01 ; Mecke rho check 1.6e-15
+K=3 B=3 theta=1.67: sup L-theta*beta = -3.808865624 ; min_u0 Psi0 = -3.808865624 ; diff 2.44e-14 ; max over 300 random (mu,u0) of L - Psi0(u0) = -3.894e-01 ; Mecke rho check 3.4e-15
+K=2.4 B=3 theta=2.3: sup L-theta*beta = -5.110450248 ; min_u0 Psi0 = -5.055545513 ; diff -5.49e-02 ; max over 300 random (mu,u0) of L - Psi0(u0) = -4.673e-01 ; Mecke rho check 3.0e-15

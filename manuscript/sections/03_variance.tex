@@ -1,0 +1,858 @@
+\section{The gap is asymptotically deterministic}\label{sec:variance}
+
+This section shows that the gap $\Dq=\LPq-\Tq$ has variance $O(q^{-1/6+\eps})$ for every
+$\eps>0$. The proof has three parts. First, with high probability every optimal
+assignment uses only pairs of deficit $O(q^{-1/2+\eps})$, and every optimal solution of the
+fractional relaxation is supported on teams of deficit $O(q^{-1/2+\eps})$
+(Propositions~\ref{prop:variance-assignment} and~\ref{prop:variance-lpsupport}); both rest
+on an expansion property of the market that holds uniformly over all sets of positions
+(Lemmas~\ref{lem:variance-expansion} and~\ref{lem:variance-growth}). Second, when the pair
+deficits are written as functions of independent exponential variables, the gradient of
+$\Tq$ is the vector of deficits of the pairs used by the optimal assignment, and the
+gradient of $\LPq$ is the vector of deficits weighted by the pair loads
+(Lemma~\ref{lem:variance-gradient}). Third, the Poincar\'e inequality for the exponential
+measure (Lemma~\ref{lem:variance-poincare}) bounds the variance by the expected squared
+gradient, which is at most the largest deficit in use times the total deficit; the total
+deficit is $O(q^{1/3})$ in expectation by a theorem of Frieze, Pegden and Tkocz
+(Proposition~\ref{prop:variance-fpt}).
+
+Throughout the section logarithms are natural, and a team $e=(a,b,c)$ always has $a\in A$,
+$b\in B$, $c\in C$. A \emph{pair} is two agents from different sectors. The value of a team
+is $v(e)=3-\Defi(e)$, where $\Defi(e)=\defi(a,b)+\defi(b,c)+\defi(a,c)$. For a set
+$\mathcal M$ of disjoint teams we write $\Defi(\mathcal M)=\sum_{e\in\mathcal M}\Defi(e)$
+and call it the deficit of $\mathcal M$; it is the sum of the deficits of the pairs
+\emph{used} by $\mathcal M$, a pair being used if some team of $\mathcal M$ contains both
+of its agents. A perfect assignment is determined by the set of $3q$ pairs it uses. An
+\emph{optimal assignment} is a perfect assignment of least deficit, so that
+$\Phiq=3q-\Tq$ is the deficit of an optimal assignment. When the size of the market has to
+be shown we write $T_n$ and $\Phi_n$ for the market with $n$ agents in each sector.
+
+\subsection{Statement}\label{sec:variance-statement}
+
+The only input that is not elementary is the following.
+
+\begin{proposition}[Frieze, Pegden and Tkocz {\cite[Theorem~2(b)]{FPT20}}]\label{prop:variance-fpt}
+Consider the market with $n$ agents in each sector, the cost of a team being its deficit,
+that is, the sum of three pair costs, where the $3n^2$ pair costs are independent and
+uniform on $[0,1]$. There is a constant $c_2$ such that the greedy algorithm of
+\cite{FPT20}, run until $n-n^{1/4}$ disjoint teams have been chosen, finds a solution of
+expected cost at most $c_2n^{1/3}$; the last step of the algorithm, which completes the
+teams chosen greedily to a perfect assignment, may be carried out by an arbitrary
+completion. Consequently
+\begin{equation}\label{eq:variance-C0}
+C_0:=\sup_{n\ge1}\frac{\E\Phi_n}{n^{1/3}}<\infty .
+\end{equation}
+\end{proposition}
+
+\begin{proof}[Proof of \eqref{eq:variance-C0} from the cited statement]
+The completed output of the greedy algorithm is a perfect assignment, so $\Phi_n$ is at
+most its deficit. Whether or not the bound $c_2n^{1/3}$ is read as including the completion,
+the completion adds at most $n^{1/4}+1$ teams of deficit at most $3$ each, so
+\[
+\E\Phi_n\le c_2n^{1/3}+3n^{1/4}+3\le(c_2+6)\,n^{1/3}.
+\]
+If the cited statement is read as holding only for large $n$, then $C_0$ is still finite,
+because $\Phi_n\le 3n$ always.
+\end{proof}
+
+\todo{Proposition~\ref{prop:variance-fpt} was transcribed from version~1 of the arXiv
+preprint of \cite{FPT20}; compare with the published version before circulation.}
+
+\begin{remark}\label{rem:variance-fpt}
+Only the finiteness of $C_0$ is used, and only in Theorem~\ref{thm:variance}(ii) and
+Corollary~\ref{cor:variance-core}. The bound does not depend on the pair costs being
+uniform rather than exponential: if the pair costs are independent exponential variables
+$E_p$ of rate $1$, then $\defi(p):=1-e^{-E_p}$ is uniform on $[0,1]$ and
+$\defi(p)\le E_p$, so every assignment is cheaper for the uniform deficits, and a bound of
+the form $c_2n^{1/3}$ for exponential costs implies the same bound for uniform costs.
+\end{remark}
+
+For $\eps\in(0,1/2)$ put
+\begin{equation}\label{eq:variance-constants}
+r_A:=\Bigl\lceil\frac1{2\eps}\Bigr\rceil-1,\qquad
+r_B:=\Bigl\lceil\frac1{2\eps}\Bigr\rceil+1,\qquad
+\kappa:=\frac{0.3^{\,r_A}}{8\cdot4^{\,r_A+1}},\qquad
+C_\eps:=3\Bigl(\Bigl\lceil\frac1{2\eps}\Bigr\rceil+2\Bigr).
+\end{equation}
+Note that $r_A\ge1$, because $1/(2\eps)>1$. For $K\ge1$ let $q_0(\eps,K)$ be the least
+integer $q_0\ge2$ such that every $q\ge q_0$ satisfies
+\begin{align}
+q^{2\eps}&\ge 4\max\bigl(13(K+5),\,600\bigr)\log q, \tag{Q1}\label{eq:variance-Q1}\\
+q^{2\eps}&\ge (20/3)^{\lceil 1/(2\eps)\rceil}, \tag{Q2}\label{eq:variance-Q2}\\
+q^{-K}&\ge 3q^3\Bigl[3e^{-0.009(q-1)}+e^{-q^{2\eps}/32}+e^{-\kappa q^{2\eps}}\Bigr]
+        +3e^{-0.009q}. \tag{Q3}\label{eq:variance-Q3}
+\end{align}
+Each of the three conditions holds for all large $q$, so $q_0(\eps,K)$ is finite.
+
+\begin{theorem}\label{thm:variance}
+Fix $\eps\in(0,1/2)$ and put $s=q^{-1/2+\eps}$, with $C_\eps$ as in
+\eqref{eq:variance-constants}.
+\begin{enumerate}
+\item[\textup{(i)}] For every $K\ge1$ and every $q\ge q_0(\eps,K)$, with probability at
+least $1-150\cdot2^K q^{-K}$ the following two statements hold: no optimal assignment uses
+a pair of deficit at least $C_\eps s$; and every team in the support of every optimal
+solution of the fractional relaxation has deficit less than $C_\eps s$.
+\item[\textup{(ii)}] With $C_0$ as in \eqref{eq:variance-C0}, for every
+$q\ge q_0(\eps,2)$,
+\begin{align*}
+\Var\Tq&\le 4\,C_\eps C_0\,q^{-1/6+\eps}+\frac{7000}{q},\\
+\Var\LPq&\le 4\,C_\eps C_0\,q^{-1/6+\eps}+\frac{7000}{q},\\
+\Var\Dq&\le 16\,C_\eps C_0\,q^{-1/6+\eps}+\frac{28000}{q}.
+\end{align*}
+\end{enumerate}
+\end{theorem}
+
+The consequence for the core is Corollary~\ref{cor:variance-core} at the end of the
+section.
+
+\begin{remark}\label{rem:variance-range}
+For $\eps\ge1/2$ part (i) is trivial, since then $C_\eps s\ge 9$ while pair deficits are at
+most $1$ and team deficits at most $3$; and the bounds of part (ii) for $\eps\ge1/2$ follow
+from the case $\eps=1/4$, because $C_{1/4}\,q^{1/12}=12\,q^{1/12}\le 9\,q^{1/3}\le
+C_\eps\,q^{-1/6+\eps}$ for $q\ge4$. The thresholds $q_0(\eps,K)$ are astronomically large
+(for $\eps=1/4$, condition \eqref{eq:variance-Q1} alone requires $q>10^9$); the theorem is
+asymptotic only.
+\end{remark}
+
+\subsection{Preliminaries}\label{sec:variance-prelim}
+
+\subsubsection*{Loads}
+Let $\mathcal P$ be the polytope of fractional assignments: the vectors $x\ge0$ indexed by
+the $q^3$ teams with $\sum_{e\ni i}x_e=1$ for each agent $i$. Thus
+$\LPq=\max_{x\in\mathcal P}\sum_ev(e)x_e$, and the \emph{support} of $x$ is
+$\{e:x_e>0\}$. The \emph{load} of a pair $p$ under $x$ is
+\[
+\ell_p(x):=\sum_{e\supset p}x_e ,
+\]
+the sum over the teams containing both agents of $p$. Since every team contains three
+pairs and $\sum_ex_e=q$,
+\begin{equation}\label{eq:variance-loads}
+\begin{gathered}
+0\le\ell_p(x)\le1,\qquad \sum_p\ell_p(x)=3q,\\
+\sum_ev(e)x_e=\sum_p\ell_p(x)\bigl(1-\defi(p)\bigr),\qquad
+\sum_p\ell_p(x)\,\defi(p)=3q-\sum_ev(e)x_e .
+\end{gathered}
+\end{equation}
+
+\subsubsection*{Positions}
+A \emph{position} of type $\{X,Y\}$, where $X\ne Y$ are two of the sectors, is a pair
+$(x,y)$ with $x\in X$ and $y\in Y$; its \emph{third sector} is the remaining one. Fix
+$0<s\le1$. An agent $z$ of the third sector is \emph{$s$-close} to the position $(x,y)$ if
+$\defi(x,z)+\defi(y,z)<s$. This event has probability
+\[
+\pi:=s^2/2\le1/2 ,
+\]
+the probability that the sum of two independent uniform variables is below $s$. Positions
+are \emph{vertex-disjoint} if no two of them share an agent. For a set $S$ of positions of
+one type, $N(S)$ denotes the set of agents of the third sector that are $s$-close to at
+least one position of $S$. The map $N$ is monotone: $S'\subseteq S$ implies
+$N(S')\subseteq N(S)$.
+
+\subsubsection*{Standard facts}
+The following are used without proof.
+
+\begin{enumerate}
+\item[\textup{(C1)}] \emph{Chernoff bound, lower tail.} If $Y$ is binomial with parameters
+$n$ and $\varrho$, and $0\le\delta\le1$, then
+$\P(Y\le(1-\delta)n\varrho)\le\exp(-\delta^2n\varrho/2)$; see \cite{BLM13}.
+\item[\textup{(C2)}] \emph{Chernoff--Hoeffding bound.} If $Y$ is binomial with parameters
+$n$ and $\varrho$, and $0<a<\varrho$, then
+$\P(Y\le an)\le\exp\bigl(-n\,\mathrm{KL}(a\,\|\,\varrho)\bigr)$, where
+$\mathrm{KL}(a\,\|\,\varrho)=a\log(a/\varrho)+(1-a)\log\bigl((1-a)/(1-\varrho)\bigr)$; see
+\cite{BLM13}.
+\item[\textup{(C3)}] \emph{Monotonicity.} If $\varrho\ge\varrho_0$ then
+$\P(\mathrm{Bin}(n,\varrho)\le t)\le\P(\mathrm{Bin}(n,\varrho_0)\le t)$ for every $t$.
+\item[\textup{(M)}] \emph{Bipartite matchings.} If $y\ge0$ is a weighting of the edges of
+a bipartite graph in which the total weight of the edges at each vertex is at most $1$,
+then the graph has a matching with at least $\sum_{\text{edges}}y$ edges, hence, the size
+of a matching being an integer, with at least $\lceil\sum_{\text{edges}}y\rceil$ edges.
+(By K\H{o}nig's theorem there is a vertex cover with as many vertices as the largest
+matching has edges, and the total weight is at most the number of vertices in any vertex
+cover.)
+\item[\textup{(LP)}] \emph{Duality.} The fractional relaxation is feasible and bounded, so
+its dual,
+\[
+\min\sum_iu_i\quad\text{subject to}\quad u(e):=u_a+u_b+u_c\ge v(e)\ \text{for every team }
+e=(a,b,c),
+\]
+with $u$ unrestricted in sign, has an optimal solution, and for every optimal $x$ and every
+optimal $u$, $x_e>0$ implies $u(e)=v(e)$ (complementary slackness).
+\item[\textup{(ES)}] \emph{Efron--Stein inequality.} If $f$ is a square-integrable function
+of independent random variables $E_1,\dots,E_m$, then
+$\Var f\le\sum_{i=1}^m\E[\Var_if]$, where $\Var_i$ denotes the variance in $E_i$ with the
+other coordinates held fixed; see \cite{BLM13}.
+\end{enumerate}
+
+\subsection{Uniform expansion}\label{sec:variance-expansion}
+
+\begin{lemma}[Uniform expansion]\label{lem:variance-expansion}
+Consider the market with $n\ge2$ agents in each sector and independent uniform pair
+deficits. Let $K\ge1$, $0<s\le1$ and $\pi=s^2/2$, and assume
+\begin{align}
+n\pi&\ge13(K+2)\log n, \tag{U1}\label{eq:variance-U1}\\
+n\pi&\ge600\log n. \tag{U2}\label{eq:variance-U2}
+\end{align}
+Let $\mathcal U(n,s)$ be the event that, for each of the three position types and
+\emph{every} nonempty set $S$ of vertex-disjoint positions of that type,
+\begin{enumerate}
+\item[\textup{(a)}] $|N(S)|\ge0.3\,n\pi\,|S|$ if $|S|\le1/\pi$;
+\item[\textup{(b)}] $|N(S)|\ge0.9\,n$ if $|S|\ge3/\pi$.
+\end{enumerate}
+Then
+\[
+\P\bigl(\mathcal U(n,s)\text{ fails}\bigr)\le6\,n^{-K}+3\,e^{-0.009\,n}.
+\]
+\end{lemma}
+
+\begin{proof}
+Fix a type, say $\{A,C\}$ with third sector $B$, and a set
+\[
+S=\{(x_1,y_1),\dots,(x_m,y_m)\}
+\]
+of $m$ vertex-disjoint positions of this type. An agent
+$z\in B$ belongs to $N(S)$ if and only if $\defi(x_i,z)+\defi(y_i,z)<s$ for some $i$.
+Because the positions are vertex-disjoint, the $2m$ pairs $(x_i,z)$, $(y_i,z)$ are distinct
+for fixed $z$, and pairs with different $z$ are distinct. So the indicators
+$\ind\{z\in N(S)\}$, over the $n$ agents $z\in B$, are independent with probability
+\[
+\pi_m:=1-(1-\pi)^m,
+\]
+and $|N(S)|$ is binomial with parameters $n$ and $\pi_m$. The number of sets of $m$
+vertex-disjoint positions of one type is $\binom nm^2m!\le n^{2m}$.
+
+\emph{Part} (a). Let $1\le m\le1/\pi$. Since $1-\pi\le e^{-\pi}$ and
+$t\mapsto(1-e^{-t})/t$ is decreasing on $(0,1]$,
+\[
+\pi_m\ge1-e^{-\pi m}\ge(1-e^{-1})\,\pi m=:\varrho_0,\qquad 1-e^{-1}=0.63212\ldots
+\]
+Apply (C3) and then (C1) with $\varrho=\varrho_0$ and with $\delta$ defined by
+$(1-\delta)(1-e^{-1})=0.3$, that is, $\delta=0.52540\ldots$:
+\begin{align*}
+\P\bigl(|N(S)|<0.3\,n\pi m\bigr)&\le\exp\bigl(-\delta^2(1-e^{-1})\,n\pi m/2\bigr)\\
+&=\exp(-0.08724\ldots\,n\pi m)\le\exp(-0.079\,n\pi m).
+\end{align*}
+By \eqref{eq:variance-U1}, $0.079\,n\pi\ge1.027\,(K+2)\log n\ge(K+2)\log n$, so the last
+bound is at most $n^{-(K+2)m}$. The union bound over all sets $S$ of this type with
+$1\le|S|\le1/\pi$ gives at most
+\[
+\sum_{m\ge1}n^{2m}\,n^{-(K+2)m}=\sum_{m\ge1}n^{-Km}\le2\,n^{-K},
+\]
+the last step because $n^K\ge2$.
+
+\emph{Part} (b). Put $m_b:=\lceil3/\pi\rceil$. A set with $|S|\ge3/\pi$ has at least $m_b$
+elements, so by monotonicity of $N$ it is enough to treat the sets with $|S|=m_b$ (if
+there are none, (b) is vacuous). For such a set,
+$\pi_{m_b}\ge1-e^{-\pi m_b}\ge1-e^{-3}=0.95021\ldots$, and by (C3) and (C2),
+\begin{align*}
+\P\bigl(|N(S)|<0.9\,n\bigr)&\le\exp\bigl(-n\,\mathrm{KL}(0.9\,\|\,1-e^{-3})\bigr)\\
+&=\exp(-0.020879\ldots\,n)\le\exp(-0.0208\,n).
+\end{align*}
+The number of such sets is at most $n^{2m_b}$, and
+$2m_b\log n\le(6/\pi+2)\log n$. By \eqref{eq:variance-U2}, $(6/\pi)\log n\le n/100$; and,
+using $\pi\le1/2$, $\log n\le n\pi/600\le n/1200$, so $2\log n\le n/600$. The union bound
+over the sets of this type with $|S|=m_b$ gives at most
+\[
+\exp\bigl((0.01+0.001667-0.0208)\,n\bigr)\le\exp(-0.009\,n).
+\]
+
+Adding the bounds of parts (a) and (b) and multiplying by $3$ for the three position types
+gives the claim.
+\end{proof}
+
+The point of Lemma~\ref{lem:variance-expansion} is that the event $\mathcal U(n,s)$
+concerns all sets $S$ simultaneously. The set $S$ may therefore be chosen after looking at
+the instance (at an optimal assignment, or at an optimal solution of the fractional
+relaxation), and no conditioning is involved.
+
+Part (a) of the event stops at $|S|=1/\pi$. The next lemma, which is deterministic, carries
+the growth on to linear size.
+
+\begin{lemma}[Growth through the cutoff]\label{lem:variance-growth}
+Assume the hypotheses of Lemma~\ref{lem:variance-expansion} and that the event
+$\mathcal U(n,s)$ holds, and put $\lambda:=0.3\,n\pi$. Then $\lambda>1$, and for every
+nonempty set $S$ of vertex-disjoint positions of one type, with $m=|S|$:
+\begin{enumerate}
+\item[\textup{(G1)}] $|N(S)|\ge\min(\lambda m,\,0.15\,n)$;
+\item[\textup{(G2)}] if $m\ge0.15\,n$, then $|N(S)|\ge0.9\,n$.
+\end{enumerate}
+Moreover:
+\begin{enumerate}
+\item[\textup{(G3)}] if real numbers $x_0,x_1,\dots$ satisfy
+$x_{i+1}\ge\min(\lambda x_i,\,0.15\,n)$ for all $i\ge0$, then
+$x_i\ge\min(\lambda^ix_0,\,0.15\,n)$ for all $i\ge0$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+By \eqref{eq:variance-U2}, $n\pi\ge600\log2>415$, so $\lambda>1$.
+
+(G1) If $m\le1/\pi$ this is part (a) of $\mathcal U(n,s)$. If $m>1/\pi$, let
+$m_0:=\lfloor1/\pi\rfloor$. Then $2\le m_0\le m$, because $\pi\le1/2$, so $S$ has a subset
+$S'$ with exactly $m_0$ positions. The set $S'$ consists of vertex-disjoint positions and
+$|S'|\le1/\pi$, so by monotonicity and part (a),
+\[
+|N(S)|\ge|N(S')|\ge0.3\,n\pi\,\lfloor1/\pi\rfloor\ge0.3\,n\pi\,(1/\pi-1)
+=0.3\,n\,(1-\pi)\ge0.15\,n,
+\]
+the last step because $\pi\le1/2$.
+
+(G2) Since $n\pi\ge20$, we have $0.15\,n\ge3/\pi$, so $m\ge3/\pi$ and part (b) of
+$\mathcal U(n,s)$ applies.
+
+(G3) By induction on $i$. The case $i=0$ is trivial. If
+$x_i\ge\min(\lambda^ix_0,\,0.15\,n)$, then, using $\lambda\ge1$,
+\[
+x_{i+1}\ge\min(\lambda x_i,\,0.15\,n)
+\ge\min(\lambda^{i+1}x_0,\,0.15\,\lambda n,\,0.15\,n)
+=\min(\lambda^{i+1}x_0,\,0.15\,n).\qedhere
+\]
+\end{proof}
+
+There is no rounding issue in Lemmas~\ref{lem:variance-expansion}
+and~\ref{lem:variance-growth}: (a), (G1) and (G2) are real lower bounds on integer
+cardinalities, and the only integer parts taken are $\lfloor1/\pi\rfloor$ in (G1) and
+$\lceil3/\pi\rceil$ in part (b) of Lemma~\ref{lem:variance-expansion}.
+
+\subsection{The support of the fractional relaxation}\label{sec:variance-lpsupport}
+
+\begin{proposition}[Support of the fractional relaxation]\label{prop:variance-lpsupport}
+Fix $\eps\in(0,1/2)$ and $K\ge1$, put $s=q^{-1/2+\eps}$ and $\pi=s^2/2=q^{-1+2\eps}/2$, and
+let $r_B=\lceil1/(2\eps)\rceil+1$ as in \eqref{eq:variance-constants}. Let $q\ge2$ satisfy
+\eqref{eq:variance-Q1} and \eqref{eq:variance-Q2}. Then, on the event $\mathcal U(q,s)$ of
+Lemma~\ref{lem:variance-expansion} for the whole market \textup{(}$n=q$\textup{)}, every
+optimal solution $x$ of the fractional relaxation and every team $f$ with $x_f>0$ satisfy
+\[
+\Defi(f)<3\,(r_B+1)\,s .
+\]
+Consequently this holds with probability at least $1-6\,q^{-K}-3\,e^{-0.009\,q}$.
+\end{proposition}
+
+\begin{proof}
+By \eqref{eq:variance-Q1}, $n\pi=q^{2\eps}/2\ge\max(13(K+2),600)\log q$, so
+Lemma~\ref{lem:variance-expansion} applies with $n=q$, and
+Lemma~\ref{lem:variance-growth} holds on $\mathcal U(q,s)$ with
+$\lambda=0.15\,q^{2\eps}$. Assume $\mathcal U(q,s)$ from now on.
+
+Fix an optimal $x$, an optimal dual solution $u$ as in (LP), and a support team
+$f=(a,b,c)$. Recall that $u(g)\ge v(g)=3-\Defi(g)$ for every team $g$, with equality on
+the support of $x$.
+
+\emph{Step 1 (start).} For every $b'\in B$ we have $u(a,b',c)\ge v(a,b',c)$, and
+$u(f)=v(f)$. Subtracting,
+\[
+u_{b'}-u_b\ge\defi(a,b)+\defi(b,c)-\bigl[\defi(a,b')+\defi(b',c)\bigr].
+\]
+Let $\mathcal B_0:=N(\{(a,c)\})$. For $b'\in\mathcal B_0$ the bracket is below $s$, so
+\begin{equation}\label{eq:variance-B1}
+u_{b'}>u_b+\defi(a,b)+\defi(b,c)-s\qquad\text{for all }b'\in\mathcal B_0 .
+\end{equation}
+
+\emph{Step 2 (one link).} If $g=(a',b',c')$ is a support team and $b''\in B$ is $s$-close
+to the position $(a',c')$, then $u(a',b'',c')\ge v(a',b'',c')$ and $u(g)=v(g)$ give
+\begin{equation}\label{eq:variance-B2}
+u_{b''}-u_{b'}\ge\defi(a',b')+\defi(b',c')-\bigl[\defi(a',b'')+\defi(b'',c')\bigr]>-s,
+\end{equation}
+because deficits are nonnegative and the bracket is below $s$.
+
+\emph{Step 3 (growth).} Suppose that $\mathcal B_i\subseteq B$ is nonempty. Let $H_i$ be
+the bipartite graph with vertex classes $A$ and $C$ whose edges are the positions
+$(a',c')$ for which some support team $(a',b',c')$ has $b'\in\mathcal B_i$, and put
+\[
+y(a',c'):=\sum_{b'\in\mathcal B_i}x_{(a',b',c')} .
+\]
+Each team has exactly one agent in $B$ and each agent has total weight $1$, so
+$\sum_{\text{edges}}y=|\mathcal B_i|$; and for each $a'\in A$,
+$\sum_{c'}y(a',c')\le\sum_{e\ni a'}x_e=1$, and likewise at each $c'\in C$. By (M), $H_i$
+contains a matching $S_i$ with $|S_i|\ge|\mathcal B_i|$. The set $S_i$ is a set of
+vertex-disjoint positions of type $\{A,C\}$, each of which is the $(A,C)$ part of a support
+team whose agent in $B$ lies in $\mathcal B_i$. Define
+\[
+\mathcal B_{i+1}:=N(S_i).
+\]
+By \eqref{eq:variance-B2}, every $b''\in\mathcal B_{i+1}$ satisfies $u_{b''}>u_{b'}-s$ for
+some $b'\in\mathcal B_i$. With \eqref{eq:variance-B1} and induction on $i$,
+\begin{equation}\label{eq:variance-B3}
+u_{b''}>u_b+\defi(a,b)+\defi(b,c)-(i+1)\,s\qquad\text{for all }b''\in\mathcal B_i
+\text{ and all }i\ge0 .
+\end{equation}
+
+\emph{Step 4 (sizes).} Part (a) of $\mathcal U(q,s)$ with $|S|=1$ gives
+$|\mathcal B_0|\ge\lambda$. By (G1) and $|S_i|\ge|\mathcal B_i|$,
+$|\mathcal B_{i+1}|\ge\min(\lambda|\mathcal B_i|,\,0.15\,q)$, so by (G3)
+\[
+|\mathcal B_i|\ge\min(\lambda^{i+1},\,0.15\,q)\qquad\text{for all }i\ge0;
+\]
+in particular every $\mathcal B_i$ is nonempty and the construction of Step~3 can be
+continued. Put $h:=\lceil1/(2\eps)\rceil=r_B-1$. Then $2\eps(h+1)\ge1+2\eps$, so
+\[
+\lambda^{h+1}=0.15^{\,h+1}\,q^{2\eps(h+1)}\ge0.15^{\,h+1}\,q^{1+2\eps}\ge0.15\,q,
+\]
+the last inequality being \eqref{eq:variance-Q2}, that is, $q^{2\eps}\ge(20/3)^h$. Hence
+$|\mathcal B_h|\ge0.15\,q$, so $|S_h|\ge0.15\,q$, and (G2) gives
+\[
+|\mathcal B_{r_B}|=|N(S_h)|\ge0.9\,q .
+\]
+(The count is: $h=\lceil1/(2\eps)\rceil$ applications of (G1) after $\mathcal B_0$, then
+one application of (G2); in total $r_B=h+1$ steps after $\mathcal B_0$.)
+
+\emph{Step 5 (symmetry).} Lemma~\ref{lem:variance-expansion} covers all three position
+types, so the same argument with the roles of the sectors permuted gives sets
+$\mathcal A_r\subseteq A$, $\mathcal B_r\subseteq B$, $\mathcal C_r\subseteq C$, each of
+size at least $0.9\,q$, with $r=r_B$ and
+\begin{align*}
+u_{a''}&>u_a+\defi(a,b)+\defi(a,c)-(r+1)\,s&&\text{for }a''\in\mathcal A_r,\\
+u_{b''}&>u_b+\defi(a,b)+\defi(b,c)-(r+1)\,s&&\text{for }b''\in\mathcal B_r,\\
+u_{c''}&>u_c+\defi(a,c)+\defi(b,c)-(r+1)\,s&&\text{for }c''\in\mathcal C_r .
+\end{align*}
+
+\emph{Step 6 (close).} The teams whose agent in $A$ lies outside $\mathcal A_r$ carry
+total weight $q-|\mathcal A_r|\le0.1\,q$; likewise for $\mathcal B_r$ and $\mathcal C_r$.
+Since the total weight of all teams is $q>0.3\,q$, some support team $t=(a'',b'',c'')$
+lies in $\mathcal A_r\times\mathcal B_r\times\mathcal C_r$. Adding the three inequalities
+of Step~5 and using $u(t)=v(t)\le3$ and $u(f)=v(f)=3-\Defi(f)$,
+\[
+3\ge v(t)=u(t)>u(f)+2\,\Defi(f)-3(r+1)\,s=3+\Defi(f)-3(r+1)\,s,
+\]
+so $\Defi(f)<3(r_B+1)\,s$.
+
+The probability statement follows from Lemma~\ref{lem:variance-expansion} with $n=q$.
+\end{proof}
+
+The argument uses complementary slackness, so it says nothing about the optimal assignment
+when $\Dq>0$. That case needs a different argument.
+
+\subsection{The optimal assignment}\label{sec:variance-assignment}
+
+\begin{proposition}[Pairs used by an optimal assignment]\label{prop:variance-assignment}
+Fix $\eps\in(0,1/2)$ and $K\ge1$, put $s=q^{-1/2+\eps}$ and $\pi=s^2/2$, and let $r_A$ and
+$\kappa$ be as in \eqref{eq:variance-constants}. Let $q\ge2$ satisfy
+\eqref{eq:variance-Q1}. Then the probability that some optimal assignment uses a pair of
+deficit at least $(r_A+2)\,s$ is at most
+\begin{equation}\label{eq:variance-etaA}
+\eta_A:=3q^3\Bigl[6\,(q-1)^{-(K+3)}+3\,e^{-0.009\,(q-1)}+e^{-q^{2\eps}/32}
++e^{-\kappa q^{2\eps}}\Bigr].
+\end{equation}
+Since $(q-1)^{-(K+3)}\le2^{K+3}q^{-(K+3)}$, the first term of $\eta_A$ is at most
+$144\cdot2^K q^{-K}$.
+\end{proposition}
+
+\begin{proof}
+The law of the market is invariant under permutations of the three sectors, so it is
+enough to bound the probability for pairs with one agent in $A$ and one in $B$ and to
+multiply by $3$. Fix such a pair $p=(a,b)$, and write $\delta_A:=(r_A+2)\,s$. Note that
+\eqref{eq:variance-Q1} and $q\ge2$ force $q^{2\eps}\ge2400\log2$, so $q\ge3$.
+
+\emph{Step 1 (threshold; deterministic).} Let $W_0$ be the least value of
+$\Defi(\mathcal M)-\defi(p)$ over the perfect assignments $\mathcal M$ that use $p$, and
+$W_1$ the least value of $\Defi(\mathcal M)$ over the perfect assignments that do not use
+$p$; both classes are nonempty. Neither $W_0$ nor $W_1$ depends on $\defi(p)$. The least
+deficit of a perfect assignment is $\min(W_0+\defi(p),\,W_1)$. If an optimal assignment
+uses $p$, then $W_0+\defi(p)\le W_1$, that is, $\defi(p)\le\rho_p:=W_1-W_0$. Hence
+\begin{equation}\label{eq:variance-A1}
+\{\text{some optimal assignment uses $p$ and }\defi(p)\ge\delta_A\}
+\subseteq\{\rho_p\ge\delta_A\}.
+\end{equation}
+
+\emph{Step 2 (decoupling; deterministic).} For $c\in C$ let $I_c$ be the market obtained
+by removing the agents $a$, $b$ and $c$ (it has $n:=q-1$ agents in each sector), and let
+$M_c$ be an optimal assignment of $I_c$, chosen by a fixed rule (say the
+lexicographically first optimum), so that $M_c$ is a function of the pair deficits of
+$I_c$ only. A perfect assignment that uses $p$ contains the team $(a,b,c)$ for exactly one
+$c$, and the rest of it is a perfect assignment of $I_c$. Hence
+\begin{equation}\label{eq:variance-A2}
+W_0=\min_{c\in C}\bigl[\defi(a,c)+\defi(b,c)+\Defi(M_c)\bigr].
+\end{equation}
+
+\emph{Step 3 (rotations; deterministic).} Write $M_c=\{(a_j,b_j,c_j):j=1,\dots,n\}$. For
+$k\ge1$ and distinct indices $j_1,\dots,j_k$, the \emph{rotation} of $M_c$ along
+$(j_1,\dots,j_k)$ is the following set of $q$ teams: the teams of $M_c$ with index outside
+$\{j_1,\dots,j_k\}$; the team $(a_{j_1},b,c_{j_1})$; the teams
+$(a_{j_{i+1}},b_{j_i},c_{j_{i+1}})$ for $i=1,\dots,k-1$; and the team $(a,b_{j_k},c)$.
+Every agent appears exactly once (in $A$: all $a_j$ and $a$; in $C$: all $c_j$ and $c$; in
+$B$: $b$ in the team with index $j_1$, $b_{j_i}$ in the team with index $j_{i+1}$,
+$b_{j_k}$ with $a$ and $c$, and the others unmoved), so the rotation is a perfect
+assignment, and it does not use $p$, because $b$ is teamed with $a_{j_1}\ne a$. The pairs
+it uses are: the pairs $(a_j,c_j)$ for all $j$, and $(a,c)$; the pairs containing an agent
+of $B$ in the unmoved teams; and the $2(k+1)$ \emph{new pairs}
+\[
+(a_{j_1},b),\ (b,c_{j_1});\qquad
+(a_{j_{i+1}},b_{j_i}),\ (b_{j_i},c_{j_{i+1}})\quad(1\le i<k);\qquad
+(a,b_{j_k}),\ (b_{j_k},c).
+\]
+Let $\nu$ be the sum of the deficits of the new pairs. The deficit of the rotation is at
+most $\defi(a,c)+\Defi(M_c)+\nu\le\defi(a,c)+\defi(b,c)+\Defi(M_c)+\nu$, so
+\[
+W_1\le\defi(a,c)+\defi(b,c)+\Defi(M_c)+\nu\qquad
+\text{for every $c$ and every rotation of $M_c$.}
+\]
+Taking $c$ to be a minimiser in \eqref{eq:variance-A2} shows that $\rho_p\le\nu$ for every
+rotation of that $M_c$. Therefore, with
+\[
+\mathcal R(p,c):=\{\text{some rotation of $M_c$ has }\nu<\delta_A\},
+\]
+we have
+\begin{equation}\label{eq:variance-A3}
+\{\rho_p\ge\delta_A\}\subseteq\bigcup_{c\in C}\mathcal R(p,c)^{\mathrm c}.
+\end{equation}
+(The minimiser depends on the pairs at $a$ and at $b$; the union over all $q$ fixed values
+of $c$ removes that dependence.)
+
+\emph{Step 4 (three independent pieces; $c$ fixed).} On the index set $\{1,\dots,n\}$ of
+$M_c$ write $j\to l$ if $b_j$ is $s$-close to the position $(a_l,c_l)$ (the case $j=l$ is
+allowed), and define
+\begin{align*}
+L&:=\{l:\ b_l\text{ is $s$-close to }(a,c)\}=\{l:\ \defi(a,b_l)+\defi(b_l,c)<s\},\\
+J&:=\{j:\ b\text{ is $s$-close to }(a_j,c_j)\}=\{j:\ \defi(a_j,b)+\defi(b,c_j)<s\}.
+\end{align*}
+Three disjoint families of pairs are involved: the pairs of $I_c$, which determine $M_c$
+and the relation $\to$; the pairs $(a,b_l)$, $(b_l,c)$, which together with $M_c$ determine
+$L$; and the pairs $(a_j,b)$, $(b,c_j)$, which together with $M_c$ determine $J$. Hence,
+conditionally on $I_c$, the sets $L$ and $J$ are independent, and each of them contains
+each index independently with probability $\pi$. In particular, $J$ is independent of
+$(I_c,L)$, with that law.
+
+Let $\Gamma^0:=L$ and $\Gamma^{i+1}:=\Gamma^i\cup\{j:\ j\to l\text{ for some }
+l\in\Gamma^i\}$. Thus $\Gamma^i$ is the set of indices from which $L$ is reached by a path
+of the relation $\to$ with at most $i$ steps.
+
+\emph{Claim.} If $J\cap\Gamma^{r_A}\ne\emptyset$ then $\mathcal R(p,c)$ holds. Indeed, let
+$j$ be in the intersection and take a path $j=j_1\to j_2\to\dots\to j_k\in L$ with the
+fewest steps; its vertices are distinct and $k-1\le r_A$. In the rotation along
+$(j_1,\dots,j_k)$, the two new pairs at $b$ have deficits summing to less than $s$
+(because $j_1\in J$), the two new pairs at $b_{j_i}$ have deficits summing to less than
+$s$ for each $i<k$ (because $j_i\to j_{i+1}$), and the two new pairs at $b_{j_k}$ have
+deficits summing to less than $s$ (because $j_k\in L$). So
+$\nu<(k+1)\,s\le(r_A+2)\,s=\delta_A$.
+
+\emph{Step 5 (expansion on $I_c$).} The market $I_c$ has $n=q-1\ge q/2$ agents in each
+sector and independent uniform pair deficits. By \eqref{eq:variance-Q1},
+$n\pi\ge q^{2\eps}/4\ge\max(13(K+5),600)\log q$, so Lemma~\ref{lem:variance-expansion}
+applies to $I_c$ with $K+3$ in place of $K$:
+\[
+\P\bigl(\mathcal U(I_c)\text{ fails}\bigr)\le6\,(q-1)^{-(K+3)}+3\,e^{-0.009\,(q-1)},
+\]
+where $\mathcal U(I_c)$ denotes the event $\mathcal U(n,s)$ for the market $I_c$. On
+$\mathcal U(I_c)$, for any nonempty index set $R$ the positions
+$\{(a_l,c_l):l\in R\}$ are vertex-disjoint and of type $\{A,C\}$, and, identifying the
+agent $b_j$ of $I_c$ with its index $j$,
+\[
+N\bigl(\{(a_l,c_l):l\in R\}\bigr)=\{j:\ j\to l\text{ for some }l\in R\}.
+\]
+So by (G1), whenever $L\ne\emptyset$,
+\[
+|\Gamma^{i+1}|\ge\min(\lambda\,|\Gamma^i|,\,0.15\,n),\qquad\lambda=0.3\,n\pi,
+\]
+and by (G3), $|\Gamma^{r_A}|\ge\min(\lambda^{r_A}|L|,\,0.15\,n)$. (Only part (a) of the
+event and the cutoff step (G1) are used here; part (b) is not needed for
+Proposition~\ref{prop:variance-assignment}.)
+
+\emph{Step 6 (probability for fixed $p$ and $c$).} The cardinality $|L|$ is binomial with
+parameters $n$ and $\pi$, so by (C1) with $\delta=1/2$,
+\[
+\P\bigl(|L|<n\pi/2\bigr)\le e^{-n\pi/8}\le e^{-q^{2\eps}/32}.
+\]
+Let
+\[
+\mathcal G:=\mathcal U(I_c)\cap\{|L|\ge n\pi/2\},\qquad G:=\Gamma^{r_A}.
+\]
+Both $\mathcal G$ and $G$ are functions of $(I_c,L)$. On $\mathcal G$, by Step~5,
+\begin{align*}
+|G|&\ge\min\Bigl(\frac{0.3^{\,r_A}(n\pi)^{r_A+1}}2,\ 0.15\,n\Bigr),\qquad\text{hence}\\
+\pi\,|G|&\ge\min\Bigl(\frac{0.3^{\,r_A}(n\pi)^{r_A+2}}{2n},\ 0.15\,n\pi\Bigr).
+\end{align*}
+Here $n\pi\ge q^{2\eps}/4$ and
+$2\eps(r_A+1)=2\eps\lceil1/(2\eps)\rceil\ge1$, so
+$(n\pi)^{r_A+1}\ge q^{2\eps(r_A+1)}/4^{r_A+1}\ge q/4^{r_A+1}$. With $n\le q$ this gives
+\[
+\frac{0.3^{\,r_A}(n\pi)^{r_A+2}}{2n}
+=\frac{0.3^{\,r_A}}2\,(n\pi)\,\frac{(n\pi)^{r_A+1}}n
+\ge\frac{0.3^{\,r_A}}2\cdot\frac{q^{2\eps}}4\cdot\frac1{4^{r_A+1}}=\kappa\,q^{2\eps}.
+\]
+Also $0.15\,n\pi\ge0.0375\,q^{2\eps}\ge\kappa\,q^{2\eps}$, since $\kappa\le0.3/128$ for
+$r_A\ge1$. Thus $\pi\,|G|\ge\kappa\,q^{2\eps}$ on $\mathcal G$. Since $J$ is independent of
+$(I_c,L)$ and contains each index independently with probability $\pi$,
+\[
+\P\bigl(J\cap G=\emptyset\bigm|I_c,L\bigr)=(1-\pi)^{|G|}\le e^{-\pi|G|}.
+\]
+By the Claim, $\mathcal R(p,c)^{\mathrm c}\subseteq\{J\cap G=\emptyset\}$, so
+\begin{align}
+\P\bigl(\mathcal R(p,c)^{\mathrm c}\bigr)
+&\le\P(\mathcal G^{\mathrm c})
++\E\bigl[\ind_{\mathcal G}\,\P\bigl(J\cap G=\emptyset\bigm|I_c,L\bigr)\bigr]\notag\\
+&\le\P\bigl(\mathcal U(I_c)\text{ fails}\bigr)+\P\bigl(|L|<n\pi/2\bigr)
++e^{-\kappa q^{2\eps}}\notag\\
+&\le6\,(q-1)^{-(K+3)}+3\,e^{-0.009\,(q-1)}+e^{-q^{2\eps}/32}+e^{-\kappa q^{2\eps}}.
+\label{eq:variance-A4}
+\end{align}
+
+\emph{Step 7 (union bounds).} By \eqref{eq:variance-A1} and \eqref{eq:variance-A3}, for
+each of the $q^2$ pairs $p=(a,b)$ with $a\in A$ and $b\in B$,
+\[
+\P\bigl(\text{some optimal assignment uses $p$ and }\defi(p)\ge\delta_A\bigr)
+\le\sum_{c\in C}\P\bigl(\mathcal R(p,c)^{\mathrm c}\bigr),
+\]
+a sum of $q$ terms, each bounded by \eqref{eq:variance-A4}. Summing over the $q^2$ pairs of
+this type and multiplying by $3$ for the three types of pair gives $3q^3$ times the bound
+\eqref{eq:variance-A4}, which is $\eta_A$.
+
+Finally, $3q^3\cdot6\,(q-1)^{-(K+3)}\le18\cdot2^{K+3}q^{-K}=144\cdot2^Kq^{-K}$.
+\end{proof}
+
+\begin{remark}\label{rem:variance-assignment}
+(1) Uniqueness of the optimal assignment is not used in
+Proposition~\ref{prop:variance-assignment}. (2) When $1/(2\eps)$ is an integer, the set
+$\Gamma^{r_A}$ is only guaranteed to have size of order $q$ with a small constant factor,
+not $0.15\,n$; this is enough, as Step~6 shows. (3) Lemma~\ref{lem:variance-expansion} is
+applied to the $3q^3$ markets $I_c$, one for each pair $p$ and each third agent $c$; this
+is why it is invoked with $K+3$ in place of $K$.
+\end{remark}
+
+\subsection{A Poincar\'e inequality for the exponential measure}\label{sec:variance-poincare}
+
+The inequality of the next lemma, with the constant $4$, is classical
+\cite{BobkovLedoux97}. The short proof is included to keep the section self-contained and
+to make the regularity hypotheses explicit.
+
+\begin{lemma}[Poincar\'e inequality]\label{lem:variance-poincare}
+Let $\mu$ be the law of $m$ independent exponential variables of rate $1$ on
+$[0,\infty)^m$. Let $f\colon[0,\infty)^m\to\R$ be continuous, bounded, and Lipschitz in each
+coordinate separately. Then each partial derivative $\partial_if$ exists $\mu$-almost
+everywhere, and
+\[
+\Var_\mu(f)\le4\,\E_\mu\Bigl[\sum_{i=1}^m(\partial_if)^2\Bigr].
+\]
+\end{lemma}
+
+\begin{proof}
+Consider one dimension first. Let $g\colon[0,\infty)\to\R$ be bounded and Lipschitz. It is
+absolutely continuous, and $g'$ exists almost everywhere and is bounded. Put $h:=g-g(0)$.
+Since $h^2$ is absolutely continuous and $h(0)=0$, integration by parts on $[0,R]$ gives
+\[
+\int_0^Rh(x)^2e^{-x}\dd x=-h(R)^2e^{-R}+2\int_0^Rh(x)h'(x)e^{-x}\dd x .
+\]
+Let $R\to\infty$. Since $h$ is bounded the boundary term vanishes, and the Cauchy--Schwarz
+inequality gives
+\[
+\E h^2=2\,\E[hh']\le2\,(\E h^2)^{1/2}(\E h'^2)^{1/2},
+\]
+that is, $\E h^2\le4\,\E h'^2$, expectations being with respect to the exponential law of
+rate $1$. Hence
+\[
+\Var g\le\E\bigl(g-g(0)\bigr)^2\le4\,\E g'^2 .
+\]
+
+Now let $f$ be as in the statement. For every value of the other coordinates, the function
+$t\mapsto f(\dots,t,\dots)$ of the $i$-th coordinate is bounded and Lipschitz, so by the
+one-dimensional case $\Var_if\le4\,\E_i(\partial_if)^2$, where $\E_i$ is the expectation
+in the $i$-th coordinate alone and the derivative exists for almost every $t$. The set
+where $\partial_if$ fails to exist is measurable and meets every line parallel to the
+$i$-th axis in a null set, so it is $\mu$-null by Fubini's theorem. Taking expectations,
+summing over $i$ and applying (ES) gives the claim.
+\end{proof}
+
+\subsection{Gradients}\label{sec:variance-gradient}
+
+Write each pair deficit as
+\[
+\defi(p)=e^{-E_p},
+\]
+with $(E_p)$ independent exponential variables of rate $1$ indexed by the $m:=3q^2$ pairs.
+Then the deficits are independent and uniform on $[0,1]$, as required, and the value of the
+pair $p$ is $1-e^{-E_p}$. Regard $\Tq$, $\LPq$ and $\Dq$ as functions of
+$E=(E_p)\in[0,\infty)^m$, and write $\nabla$ for the gradient in these coordinates. For a
+perfect assignment $\mathcal M$ we write $p\in\mathcal M$ when $\mathcal M$ uses the pair
+$p$.
+
+\begin{lemma}[Gradients and uniqueness of the loads]\label{lem:variance-gradient}
+\begin{enumerate}
+\item[\textup{(1)}] The functions $\Tq$, $\LPq$ and $\Dq$ are continuous and bounded by
+$3q$. Each is Lipschitz in each coordinate, with constant $1$ for $\Tq$ and $\LPq$ and
+constant $2$ for $\Dq$.
+\item[\textup{(2)}] Almost surely the optimal assignment $\Mopt$ is unique, and for every
+pair $p$,
+\[
+\partial\Tq/\partial E_p=\ind\{p\in\Mopt\}\,\defi(p).
+\]
+\item[\textup{(3)}] Optimal solutions $x$ of the fractional relaxation need not be unique,
+but almost surely all of them have the same load vector $\ell^*=(\ell^*_p)$, and for every
+pair $p$,
+\[
+\partial\LPq/\partial E_p=\ell^*_p\,\defi(p).
+\]
+\item[\textup{(4)}] Consequently, almost surely,
+\begin{align*}
+|\nabla\Tq|^2&=\sum_{p\in\Mopt}\defi(p)^2\le3q,\\
+|\nabla\LPq|^2&=\sum_p(\ell^*_p)^2\,\defi(p)^2\le\sum_p\ell^*_p=3q,\\
+|\nabla\Dq|^2&\le2\,|\nabla\Tq|^2+2\,|\nabla\LPq|^2 .
+\end{align*}
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+For a point $\ell\in\R^m$ write
+\[
+\varphi_\ell(E):=\sum_p\ell_p\bigl(1-e^{-E_p}\bigr);
+\]
+it is smooth, with $\partial\varphi_\ell/\partial E_p=\ell_pe^{-E_p}=\ell_p\,\defi(p)$. The
+function $\Tq$ is the maximum of $\varphi_\ell$ over the finitely many indicator vectors
+$\ell$ of the sets of pairs used by perfect assignments. By \eqref{eq:variance-loads},
+$\LPq$ is the maximum of $\sum_ev(e)x_e=\varphi_{\ell(x)}(E)$ over $x\in\mathcal P$, that
+is, the maximum of $\varphi_\ell$ over the \emph{load polytope}
+$\mathcal L:=\{\ell(x):x\in\mathcal P\}$, a polytope in $[0,1]^m$ (the linear image of
+$\mathcal P$). Since $\ell\mapsto\varphi_\ell(E)$ is linear, $\LPq$ is the maximum of
+$\varphi_\ell$ over the finitely many vertices of $\mathcal L$.
+
+(1) If $0\le\ell_p\le1$ for all $p$ and $\sum_p\ell_p=3q$, then $\varphi_\ell$ is
+$1$-Lipschitz in each coordinate and takes values in $[0,3q]$. A maximum of finitely many
+such functions is continuous and has the same two properties; and $\Dq$ is the difference
+of two of them, with $0\le\Dq\le3q$.
+
+(2), (3) Let $V$ be a finite set of points of $\R^m$ (the indicator vectors of the
+assignments, or the vertices of $\mathcal L$). In the coordinates $X_p:=1-\defi(p)$ we
+have $\varphi_\ell=\langle X,\ell\rangle$. If the maximiser of $\varphi_\ell$ over $V$ is
+not unique at $X$, then $\langle X,\ell-\ell'\rangle=0$ for two distinct
+$\ell,\ell'\in V$; such $X$ form a finite union of hyperplanes, which is Lebesgue-null.
+The map $E\mapsto X$ is a diffeomorphism of $(0,\infty)^m$ onto $(0,1)^m$, so the
+exceptional set is null in the coordinates $E$ as well, hence of probability zero. Where
+the maximiser $\ell^*$ over $V$ is unique, it remains the unique maximiser on a
+neighbourhood (finitely many strict inequalities), so the maximum equals
+$\varphi_{\ell^*}$ there, and its partial derivatives are $\ell^*_p\,\defi(p)$. For $\Tq$,
+the vector $\ell^*$ is the indicator of the pairs used by $\Mopt$, and distinct perfect
+assignments use distinct sets of pairs, so $\Mopt$ is unique. For $\LPq$, uniqueness of the
+maximising vertex of $\mathcal L$ means that the set of optimal loads is the single point
+$\ell^*$ (the optimal face of $\mathcal L$ is the convex hull of the optimal vertices),
+that is, every optimal $x$ has $\ell(x)=\ell^*$. Non-uniqueness of $x$ itself is possible,
+because the linear map $x\mapsto\ell(x)$ from $\R^{q^3}$ to $\R^{3q^2}$ is not injective;
+it is harmless, since the objective and the gradient depend on $x$ only through $\ell(x)$.
+
+(4) follows from (2) and (3), from $\defi(p)\le1$, $0\le\ell^*_p\le1$ and
+$\sum_p\ell^*_p=3q$, and from $(u-w)^2\le2u^2+2w^2$.
+\end{proof}
+
+\begin{proposition}[Variance bound with the bad events]\label{prop:variance-badevent}
+Let $\delta_A,\delta_B>0$. Let $\mathcal G_A$ be the event that no optimal assignment uses
+a pair of deficit at least $\delta_A$, and let $\mathcal G_B$ be the event that every team
+in the support of every optimal solution of the fractional relaxation has deficit less
+than $\delta_B$. Suppose that $\P(\mathcal G_A\text{ fails})\le\eta_A$ and
+$\P(\mathcal G_B\text{ fails})\le\eta_B$. Then
+\begin{align*}
+\Var\Tq&\le4\bigl[\delta_A\,\E\Phiq+3q\,\eta_A\bigr],\\
+\Var\LPq&\le4\bigl[\delta_B\,\E\Phiq+3q\,\eta_B\bigr],\\
+\Var\Dq&\le8\bigl[(\delta_A+\delta_B)\,\E\Phiq+3q\,(\eta_A+\eta_B)\bigr].
+\end{align*}
+\end{proposition}
+
+\begin{proof}
+By Lemma~\ref{lem:variance-gradient}(1), the functions $\Tq$, $\LPq$ and $\Dq$ satisfy
+the hypotheses of Lemma~\ref{lem:variance-poincare}. That lemma, together with parts
+(2)--(4) of Lemma~\ref{lem:variance-gradient}, gives
+\begin{align*}
+\Var\Tq&\le4\,\E\sum_{p\in\Mopt}\defi(p)^2,\qquad
+\Var\LPq\le4\,\E\sum_p(\ell^*_p)^2\defi(p)^2,\\
+\Var\Dq&\le8\,\E\Bigl[\sum_{p\in\Mopt}\defi(p)^2+\sum_p(\ell^*_p)^2\defi(p)^2\Bigr].
+\end{align*}
+
+On $\mathcal G_A$, every pair used by $\Mopt$ has deficit less than $\delta_A$, so
+\[
+\sum_{p\in\Mopt}\defi(p)^2\le\delta_A\sum_{p\in\Mopt}\defi(p)=\delta_A\,\Phiq .
+\]
+Off $\mathcal G_A$ the sum is at most $3q$, by Lemma~\ref{lem:variance-gradient}(4). So
+\[
+\E\sum_{p\in\Mopt}\defi(p)^2\le\delta_A\,\E\Phiq+3q\,\eta_A .
+\]
+
+On $\mathcal G_B$: if $\ell^*_p>0$, take any optimal $x$; then $\ell_p(x)=\ell^*_p>0$, so
+some support team contains the pair $p$, and $\defi(p)$ is at most the deficit of that
+team, which is less than $\delta_B$. With $\ell^*_p\le1$ and \eqref{eq:variance-loads},
+\[
+\sum_p(\ell^*_p)^2\defi(p)^2\le\delta_B\sum_p\ell^*_p\,\defi(p)=\delta_B\,(3q-\LPq)
+\le\delta_B\,(3q-\Tq)=\delta_B\,\Phiq,
+\]
+using $\LPq\ge\Tq$. Off $\mathcal G_B$ the sum is at most $3q$. So
+\[
+\E\sum_p(\ell^*_p)^2\defi(p)^2\le\delta_B\,\E\Phiq+3q\,\eta_B .
+\]
+The three bounds follow.
+\end{proof}
+
+\subsection{Proof of Theorem~\ref{thm:variance} and the consequence for the core}
+\label{sec:variance-proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:variance}]
+Let $\eps\in(0,1/2)$, $s=q^{-1/2+\eps}$ and $q\ge q_0(\eps,K)$.
+
+(i) Proposition~\ref{prop:variance-assignment}, whose hypothesis is
+\eqref{eq:variance-Q1}, gives: off an event of probability at most $\eta_A$, no optimal
+assignment uses a pair of deficit at least
+\[
+\delta_A:=(r_A+2)\,s=\bigl(\lceil1/(2\eps)\rceil+1\bigr)\,s\le C_\eps\,s .
+\]
+Proposition~\ref{prop:variance-lpsupport}, whose hypotheses are \eqref{eq:variance-Q1} and
+\eqref{eq:variance-Q2}, gives: off an event of probability at most
+$\eta_B:=6\,q^{-K}+3\,e^{-0.009\,q}$, every support team of every optimal solution of the
+fractional relaxation has deficit less than
+\[
+\delta_B:=3\,(r_B+1)\,s=3\bigl(\lceil1/(2\eps)\rceil+2\bigr)\,s=C_\eps\,s .
+\]
+The total failure probability is at most
+\[
+\eta_A+\eta_B\le(144\cdot2^K+6)\,q^{-K}
++3q^3\Bigl[3e^{-0.009(q-1)}+e^{-q^{2\eps}/32}+e^{-\kappa q^{2\eps}}\Bigr]+3e^{-0.009q}.
+\]
+By \eqref{eq:variance-Q3} the exponentially small terms are together at most $q^{-K}$, so
+\[
+\eta_A+\eta_B\le(144\cdot2^K+7)\,q^{-K}\le150\cdot2^K q^{-K}.
+\]
+
+(ii) Take $K=2$ and apply Proposition~\ref{prop:variance-badevent} with the events and the
+values $\delta_A$, $\delta_B$, $\eta_A$, $\eta_B$ of part (i). By
+Proposition~\ref{prop:variance-fpt}, $\E\Phiq\le C_0\,q^{1/3}$, so for
+$\delta\in\{\delta_A,\delta_B\}$,
+\[
+\delta\,\E\Phiq\le C_\eps\,q^{-1/2+\eps}\cdot C_0\,q^{1/3}=C_\eps C_0\,q^{-1/6+\eps}.
+\]
+By \eqref{eq:variance-Q3} with $K=2$, the exponentially small part of $\eta_A$ and that of
+$\eta_B$ are each at most $q^{-2}$, so
+\[
+3q\,\eta_A\le3q\,(576+1)\,q^{-2}=\frac{1731}q,\qquad
+3q\,\eta_B\le3q\cdot7\,q^{-2}=\frac{21}q .
+\]
+Hence
+\begin{align*}
+\Var\Tq&\le4\,C_\eps C_0\,q^{-1/6+\eps}+\frac{6924}q,\\
+\Var\LPq&\le4\,C_\eps C_0\,q^{-1/6+\eps}+\frac{84}q,\\
+\Var\Dq&\le16\,C_\eps C_0\,q^{-1/6+\eps}+\frac{14016}q,
+\end{align*}
+which are within the stated bounds.
+\end{proof}
+
+Recall from Section~\ref{sec:model} that the core is nonempty exactly when $\Dq=0$.
+
+\begin{corollary}\label{cor:variance-core}
+Let $\eps\in(0,1/2)$. If $\E\Dq\ge q^{-1/12+\eps}$ for all large $q$, then for all large
+$q$
+\[
+\P(\text{the core is nonempty})=\P(\Dq=0)\le\frac{\Var\Dq}{(\E\Dq)^2}
+\le16\,C_\eps C_0\,q^{-\eps}+28000\,q^{-5/6-2\eps},
+\]
+which tends to $0$. In particular, $\P(\Dq=0)\to0$ whenever $\liminf_q\E\Dq>0$.
+\end{corollary}
+
+\begin{proof}
+Since $\Dq\ge0$ and $\E\Dq>0$, we have $\{\Dq=0\}\subseteq\{|\Dq-\E\Dq|\ge\E\Dq\}$, and
+Chebyshev's inequality gives $\P(\Dq=0)\le\Var\Dq/(\E\Dq)^2$. If
+$\E\Dq\ge q^{-1/12+\eps}$, then $(\E\Dq)^2\ge q^{-1/6+2\eps}$, and
+Theorem~\ref{thm:variance}(ii) with the same $\eps$ gives, for $q\ge q_0(\eps,2)$,
+\[
+\P(\Dq=0)\le16\,C_\eps C_0\,q^{-\eps}+28000\,q^{-1}\,q^{1/6-2\eps}
+=16\,C_\eps C_0\,q^{-\eps}+28000\,q^{-5/6-2\eps}.
+\]
+If $\liminf_q\E\Dq>0$, then $\E\Dq\ge q^{-1/12+1/24}$ for all large $q$, and the first part
+applies with $\eps=1/24$.
+\end{proof}
+
+\begin{remark}\label{rem:variance-vacuous}
+The restriction to $\eps<1/2$ in Corollary~\ref{cor:variance-core} loses nothing: since
+$\E\Dq\le\E\Phiq\le C_0\,q^{1/3}$, the hypothesis $\E\Dq\ge q^{-1/12+\eps}$ cannot hold for
+all large $q$ when $\eps>5/12$, so for $\eps\ge1/2$ it is vacuous.
+\end{remark}

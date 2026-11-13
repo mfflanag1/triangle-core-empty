@@ -1,0 +1,9 @@
+__pycache__/
+.DS_Store
+*.aux
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+manuscript/build*/*
+!manuscript/build/
+!manuscript/build/main.pdf

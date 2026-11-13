@@ -1,0 +1,29 @@
+% Shared macros for the consolidated manuscript. Do not redefine these in section files.
+\newcommand{\E}{\mathbb{E}}
+\renewcommand{\P}{\mathbb{P}}
+\newcommand{\Var}{\operatorname{Var}}
+\newcommand{\Cov}{\operatorname{Cov}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\ind}{\mathbf{1}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\dd}{\,\mathrm{d}}
+% the market
+\newcommand{\Tq}{T_q}                         % best total value of a perfect assignment
+\newcommand{\LPq}{\mathrm{LP}^*_q}            % optimum of the fractional relaxation
+\newcommand{\Dq}{D_q}                         % gap LP^*_q - T_q
+\newcommand{\Phiq}{\Phi_q}                    % integer deficit 3q - T_q
+\newcommand{\PhiLP}{\Phi^{\mathrm{LP}}_q}     % fractional deficit 3q - LP^*_q
+\newcommand{\Mopt}{M}                         % the optimal assignment
+\newcommand{\defi}{d}                         % deficit of a pair: d(p) = 1 - value
+\newcommand{\Defi}{\Delta}                    % deficit of a team: sum of its three pair deficits
+\newcommand{\cost}{\xi}                       % rescaled team deficit q^{2/3} Delta(e)
+% the tree
+\newcommand{\tree}{\mathbb{T}}                % the Poisson hypertree
+\newcommand{\Lam}{\Lambda}                    % intensity measure xi^2/2 d xi on [0, infty)
+\newcommand{\RDE}{\Theta}                     % the map on laws: Theta(mu) = law of min_k(xi_k - X_k' - X_k'')
+\newcommand{\disp}{\preceq_{\mathrm{disp}}}   % dispersive order
+% constants
+\newcommand{\betaint}{\beta_0}                % certified integer constant, 2.302
+\newcommand{\alphalp}{\alpha_0}               % certified bound on the tree cost, 2.2519
+\newcommand{\todo}[1]{\textbf{[TODO: #1]}}

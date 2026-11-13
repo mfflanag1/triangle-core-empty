@@ -1,0 +1,58 @@
+(1) full family
+  q= 8 K=0.6  P_PA(void)=0.76295 +- 0.00067  bound=0.76522  IT=0.74970  ok
+  q= 8 K=0.8  P_PA(void)=0.53990 +- 0.00079  bound=0.55065  IT=0.50504  ok
+  q= 8 K=1.0  P_PA(void)=0.31611 +- 0.00074  bound=0.34272  IT=0.26314  ok
+  q= 8 K=1.3  P_PA(void)=0.09469 +- 0.00046  bound=0.14161  IT=0.05299  ok
+  q= 8 K=1.6  P_PA(void)=0.01730 +- 0.00021  bound=0.06662  IT=0.00413  ok
+  q= 8 K=2.0  P_PA(void)=0.00079 +- 0.00004  bound=0.10366  IT=0.00002  ok
+  q=12 K=0.6  P_PA(void)=0.66456 +- 0.00086  bound=0.66766  IT=0.64917  ok
+  q=12 K=0.8  P_PA(void)=0.39480 +- 0.00089  bound=0.40417  IT=0.35905  ok
+  q=12 K=1.0  P_PA(void)=0.17696 +- 0.00070  bound=0.19405  IT=0.13518  ok
+  q=12 K=1.3  P_PA(void)=0.02918 +- 0.00031  bound=0.04707  IT=0.01228  ok
+  q=12 K=1.6  P_PA(void)=0.00220 +- 0.00009  bound=0.01211  IT=0.00027  ok
+  q=16 K=0.6  P_PA(void)=0.58001 +- 0.00090  bound=0.58200  IT=0.56212  ok
+  q=16 K=0.8  P_PA(void)=0.28810 +- 0.00083  bound=0.29551  IT=0.25524  ok
+  q=16 K=1.0  P_PA(void)=0.09766 +- 0.00054  bound=0.10859  IT=0.06942  ok
+  q=16 K=1.3  P_PA(void)=0.00842 +- 0.00017  bound=0.01498  IT=0.00284  ok
+  q=16 K=1.6  P_PA(void)=0.00026 +- 0.00003  bound=0.00195  IT=0.00002  ok
+  q=24 K=0.6  P_PA(void)=0.43846 +- 0.00143  bound=0.44154  IT=0.42146  ok
+  q=24 K=0.8  P_PA(void)=0.15155 +- 0.00104  bound=0.15692  IT=0.12897  ok
+  q=24 K=1.0  P_PA(void)=0.02938 +- 0.00049  bound=0.03331  IT=0.01831  ok
+  q=24 K=1.3  P_PA(void)=0.00062 +- 0.00007  bound=0.00141  IT=0.00015  ok
+  q=32 K=0.6  P_PA(void)=0.33369 +- 0.00167  bound=0.33452  IT=0.31600  ok
+  q=32 K=0.8  P_PA(void)=0.08038 +- 0.00096  bound=0.08285  IT=0.06517  ok
+  q=32 K=1.0  P_PA(void)=0.00846 +- 0.00032  bound=0.01004  IT=0.00483  ok
+(2) star of one agent (q^2 teams)
+  q= 8 K=1.0  P(void)=0.86025 +- 0.00025  bound=0.86520  ok
+  q= 8 K=1.5  P(void)=0.63147 +- 0.00034  bound=0.67275  ok
+  q= 8 K=2.0  P(void)=0.37554 +- 0.00034  bound=0.53082  ok
+  q= 8 K=3.0  P(void)=0.06772 +- 0.00018  bound=2.26059  ok
+  q= 8 K=4.0  P(void)=0.00477 +- 0.00005  bound=124658.50695  ok
+  q=16 K=1.0  P(void)=0.85944 +- 0.00025  bound=0.86238  ok
+  q=16 K=1.5  P(void)=0.62777 +- 0.00034  bound=0.65623  ok
+  q=16 K=2.0  P(void)=0.37108 +- 0.00034  bound=0.47804  ok
+  q=16 K=3.0  P(void)=0.06896 +- 0.00018  bound=1.02058  ok
+  q=16 K=4.0  P(void)=0.00599 +- 0.00005  bound=4368.37322  ok
+  q=32 K=1.0  P(void)=0.85764 +- 0.00035  bound=0.85950  ok
+  q=32 K=1.5  P(void)=0.62069 +- 0.00049  bound=0.63977  ok
+  q=32 K=2.0  P(void)=0.35936 +- 0.00048  bound=0.42951  ok
+  q=32 K=3.0  P(void)=0.06219 +- 0.00024  bound=0.45267  ok
+  q=32 K=4.0  P(void)=0.00499 +- 0.00007  bound=142.07490  ok
+  q=64 K=1.0  P(void)=0.85561 +- 0.00064  bound=0.85696  ok
+  q=64 K=1.5  P(void)=0.61335 +- 0.00089  bound=0.62559  ok
+  q=64 K=2.0  P(void)=0.34693 +- 0.00087  bound=0.39079  ok
+  q=64 K=3.0  P(void)=0.05398 +- 0.00041  bound=0.22092  ok
+  q=64 K=4.0  P(void)=0.00336 +- 0.00011  bound=6.91251  ok
+(3) q teams through one pair, exact
+  q=   8 K=1.0 exact=0.98047464 bound=0.98072210 ok
+  q=   8 K=2.0 exact=0.87014657 bound=0.88433735 ok
+  q=   8 K=4.0 exact=0.42340383 bound=1.06893911 ok
+  q=  32 K=1.0 exact=0.99502190 bound=0.99504238 ok
+  q=  32 K=2.0 exact=0.96499817 bound=0.96653455 ok
+  q=  32 K=4.0 exact=0.81767201 bound=0.91464101 ok
+  q= 128 K=1.0 exact=0.99873549 bound=0.99873717 ok
+  q= 128 K=2.0 exact=0.99070746 bound=0.99085587 ok
+  q= 128 K=4.0 exact=0.94489755 bound=0.95699382 ok
+  q=1024 K=1.0 exact=0.99983963 bound=0.99983967 ok
+  q=1024 K=2.0 exact=0.99877184 bound=0.99877610 ok
+  q=1024 K=4.0 exact=0.99165743 bound=0.99209265 ok

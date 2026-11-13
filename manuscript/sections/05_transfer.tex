@@ -1,0 +1,1075 @@
+\section{From independent teams to the pair-additive market}\label{sec:transfer}
+
+Theorem~\ref{thm:iid} is a statement about the independent-team model. This section carries it
+to the market and proves the integer lower bound that enters Theorem~\ref{thm:main}.
+
+\begin{theorem}\label{thm:integer}
+In the market, for every $\beta\le\betaint=2.302$,
+\[
+\P\bigl(\Phiq\le\beta\,q^{1/3}\bigr)\longrightarrow0\qquad(q\to\infty).
+\]
+In particular $\Phiq\ge\betaint\,q^{1/3}$ with high probability. No rate is obtained.
+The method reaches $\beta=2.30224$; see the note after Table~\ref{tab:transfer-constants}.
+\end{theorem}
+
+The proof has three parts. The first is a comparison inequality
+(Theorem~\ref{thm:transfer}): the expected number of cheap perfect assignments in the market,
+restricted to a good event of the near-tight hypergraph, is at most $e^{o(q)}$ times the same
+expectation in the independent-team model on a slightly larger event, plus a negligible term.
+The second is that the good event is typical in the market
+(Proposition~\ref{prop:transfer-typical}). The third is that the first-moment bound behind
+Theorem~\ref{thm:iid} survives the enlargement of the event, with explicit constants
+(Proposition~\ref{prop:transfer-interface}). The parts are assembled in
+Section~\ref{sec:transfer-assembly}.
+
+Two features of the comparison should be kept in mind. A cheap assignment uses some teams of
+rescaled cost above the truncation level $K$, and their costs are not a function of the
+near-tight hypergraph; so it is not enough to compare the laws of the near-tight hypergraph in
+the two models. The comparison is made for the conditional law of the near-tight teams outside
+a candidate assignment $N$, given the values of all pairs of $N$
+(Lemma~\ref{lem:transfer-planted}). In that form the comparison factor contains a term that is
+exponential in the number of near-tight teams sharing a pair with $N$. This number is not
+controlled by any event of the near-tight hypergraph alone; the term is removed in expectation
+in the independent-team model (Lemma~\ref{lem:transfer-touch}), and this is what forces the
+enlargement of the good event.
+
+\subsection{Setting and notation}\label{sec:transfer-setting}
+
+Throughout the section $K\ge1$ is a truncation level, $B\ge1$ is the number of bins,
+$\eta=K/B$ is the bin width, and
+\[
+I_b=\bigl((b-1)\eta,\,b\eta\bigr],\qquad
+\lambda_b=\Lam(I_b)=\frac{\eta^3(3b^2-3b+1)}{6}\qquad(1\le b\le B),
+\]
+as in Section~\ref{sec:iid}; $\lambda_{\max}=\max_b\lambda_b=\lambda_B$ and
+$\sum_b\lambda_b=K^3/6$. We always assume $q^{2/3}\ge K$ and put
+\[
+t=Kq^{-2/3}\le1,\qquad p_b=\frac{\lambda_b}{q^2},\qquad p=\sum_{b}p_b=\frac{K^3}{6q^2}\le\frac16 .
+\]
+By \eqref{eq:model-oneteam}, in the market and in the independent-team model alike,
+$p_b=\P(\cost_e\in I_b)$ and $p=\P(\cost_e\le K)$ for every team $e$, and
+$p_b\ge p_1=\eta^3/(6q^2)$. A team with $\cost_e\le K$ is called \emph{near-tight}. As in
+Section~\ref{sec:model-iid}, $\P$, $\E$ refer to the market and $\P'$, $\E'$ to the
+independent-team model; random objects of the independent-team model carry a prime.
+
+\emph{Configurations.} A \emph{labelled team} is a pair $(e,b)$ of a team and a bin. A
+\emph{configuration} is a finite set $h$ of labelled teams in which every team occurs at most
+once; $|h|$ is its number of teams, and we write $e\in h$ if $e$ occurs in $h$ and $b_e$ for
+its label. The \emph{binned near-tight hypergraph} is the random configuration
+\[
+H=\bigl\{(e,b):\ \cost_e\in I_b\bigr\},
+\]
+and $H'$ is the same object in the independent-team model. For a configuration $h$ let
+$\operatorname{pairs}(h)$ be the set of pairs contained in some team of $h$, and for a pair
+$\pi$ let $\operatorname{mult}_h(\pi)$ be the number of teams of $h$ containing $\pi$. The
+\emph{pair-sharing excess} of $h$ is
+\[
+s(h)=3|h|-|\operatorname{pairs}(h)|=\sum_{\pi\in\operatorname{pairs}(h)}\bigl(\operatorname{mult}_h(\pi)-1\bigr).
+\]
+It is nondecreasing in $h$: a further team adds $3$ to $3|h|$ and at most $3$ to
+$|\operatorname{pairs}(h)|$. For a set $\mathcal G$ of configurations and $\tau>0$,
+$\mathcal G^{(\tau)}$ denotes the set of configurations $h'$ for which there is
+$h\in\mathcal G$ with $|h\,\triangle\,h'|\le\tau q$, the symmetric difference being that of
+sets of labelled teams.
+
+\emph{Cheap assignments.} As in Section~\ref{sec:iid}, for a perfect assignment $N$ put
+$\cost(N)=\sum_{e\in N}\cost_e$, so that the deficit of $N$ is $q^{-2/3}\cost(N)$, and for
+$\beta>0$
+\[
+Z_\beta=\#\bigl\{N\ \text{a perfect assignment}:\ \cost(N)<\beta q\bigr\}.
+\]
+By \eqref{eq:model-T}, $\{\Phiq<\beta q^{1/3}\}=\{Z_\beta\ge1\}$. The variable $\Phiq$ is the
+minimum of finitely many variables with continuous laws, so $\P(\Phiq=\beta q^{1/3})=0$ and
+\begin{equation}\label{eq:transfer-Zevent}
+\P\bigl(\Phiq\le\beta q^{1/3}\bigr)=\P(Z_\beta\ge1).
+\end{equation}
+
+\emph{Geometry of a perfect assignment.} Let $N$ be a perfect assignment.
+\begin{itemize}
+\item[(G1)] Two distinct teams share at most one pair: if they agree in two sectors they
+differ in the third, and then only the pair inside the two common sectors is shared.
+\item[(G2)] A team $f\notin N$ contains at most one pair of $N$. If $f=(a,y,z)$ and both
+$\{a,y\}$ and $\{y,z\}$ are pairs of $N$, then the team of $N$ at $y$ contains $a$ and $z$, so
+it is $f$; the other two cases are the same.
+\item[(G3)] Let $\partial N$ be the set of teams outside $N$ that contain a pair of $N$. Each
+of the $3q$ pairs of $N$ lies in $q$ teams, one of which belongs to $N$, and by (G2) no team
+outside $N$ is counted for two pairs. Hence $|\partial N|=3q(q-1)$.
+\end{itemize}
+The $q$ teams of $N$ are disjoint, so they use $3q$ distinct pairs. We write $\defi_N$ for the
+vector of the $3q$ deficits of these pairs and $\cost_N=(\cost_e)_{e\in N}$, a function of
+$\defi_N$. In the market the coordinates of $\cost_N$ are independent with the law of
+$q^{2/3}$ times a sum of three independent uniform variables; in the independent-team model
+$\cost'_N$ has the same law. Let
+\[
+H^-=\{(e,b)\in H:\ e\notin N\}
+\]
+be the binned set of near-tight teams outside $N$; $H$ is a function of $(\cost_N,H^-)$.
+
+For a configuration $h^-$ none of whose teams lies in $N$, the excess of $h^-$ \emph{relative
+to} $N$ counts the pairs of $N$ as already used:
+\[
+s(h^-;N)=3|h^-|-\bigl|\operatorname{pairs}(h^-)\setminus\operatorname{pairs}(N)\bigr| ,
+\]
+where $\operatorname{pairs}(N)$ is the set of the $3q$ pairs of $N$. By (G2) every pair of
+$\operatorname{pairs}(h^-)\cap\operatorname{pairs}(N)$ lies in a team of $h^-\cap\partial N$,
+and every such team contains exactly one pair of $N$. Therefore
+\begin{equation}\label{eq:transfer-excess-touch}
+s(h^-;N)=s(h^-)+\bigl|\operatorname{pairs}(h^-)\cap\operatorname{pairs}(N)\bigr|
+\le s(h^-)+|h^-\cap\partial N| .
+\end{equation}
+We also allow $N=\emptyset$, with $\operatorname{pairs}(\emptyset)=\emptyset$, no conditioning,
+and $s(h;\emptyset)=s(h)$.
+
+\emph{Constants of the comparison.}
+\begin{equation}\label{eq:transfer-constants}
+C_1=\frac{36K^5}{\eta^6},\qquad W_q=C_1\,q^{2/3},\qquad
+\Gamma_q=\frac{3q^3(q-1)\,t^5}{40}\le\frac{3}{40}K^5q^{2/3}.
+\end{equation}
+Since $\eta\le K\le q^{2/3}$, $W_q\ge36$.
+
+\subsection{The comparison theorem}\label{sec:transfer-statement}
+
+\begin{theorem}[Comparison]\label{thm:transfer}
+Let $K\ge1$, $B\ge1$, $\beta>0$, $\tau>0$ and $\zeta\in(0,\tfrac13)$. Put
+$s_0=q^{2/3+\zeta}$, and let $\mathcal G=\mathcal G_q$ be arbitrary sets of configurations.
+For every
+\begin{equation}\label{eq:transfer-q0}
+q\ \ge\ q_0(K,B,\tau)=\max\Bigl\{K^{3/2},\ \frac1\tau,\ \Bigl(\frac{eK^3C_1}{\tau}\Bigr)^{12}\Bigr\},
+\end{equation}
+\begin{multline}\label{eq:transfer-comparison}
+\E\bigl[Z_\beta;\ H\in\mathcal G,\ s(H)\le s_0,\ |H|\le K^3q\bigr]\\
+\le e^{R_q}\Bigl(\E'\bigl[Z_\beta;\ H'\in\mathcal G^{(2\tau)}\bigr]
++3\,\E'[Z_\beta]\,e^{-(\tau/4)\,q\ln q}\Bigr),
+\end{multline}
+where
+\begin{equation}\label{eq:transfer-Rq}
+R_q=\Gamma_q+2K^6+s_0\ln W_q+\tfrac12K^3W_q=O\bigl(q^{2/3+\zeta}\ln q\bigr)=o(q).
+\end{equation}
+Consequently, for all sufficiently large $q$ (depending on $K$, $B$, $\beta$, $\tau$, $\zeta$),
+\begin{multline}\label{eq:transfer-union}
+\P(Z_\beta\ge1)\le\P(H\notin\mathcal G)+\P\bigl(s(H)>s_0\bigr)+\P\bigl(|H|>K^3q\bigr)\\
++e^{R_q}\,\E'\bigl[Z_\beta;\ H'\in\mathcal G^{(2\tau)}\bigr]+e^{-(\tau/5)\,q\ln q}.
+\end{multline}
+\end{theorem}
+
+The four terms of $R_q$ have separate origins: $\Gamma_q$ is the correction in the bound for
+the probability that a family of teams has no near-tight member
+(Lemma~\ref{lem:transfer-void}); $2K^6$ accounts for the teams left out of that family;
+$s_0\ln W_q$ is the price of the pair-sharings inside $H$ (Lemma~\ref{lem:transfer-excess});
+and $\tfrac12K^3W_q$ is the price of the near-tight teams that share a pair with the candidate
+assignment (Lemma~\ref{lem:transfer-touch}). The number of profiles, the binning and the
+truncation at $K$ do not appear: they stay inside the first moment of the independent-team
+model. The proof of Theorem~\ref{thm:transfer} is in Section~\ref{sec:transfer-proofT}, after
+four lemmas.
+
+The plain first moment is the same in both models and is used only as a crude bound.
+
+\begin{lemma}[Plain first moment]\label{lem:transfer-plain}
+For every $\beta>0$ and $q\ge1$,
+\[
+\E[Z_\beta]=\E'[Z_\beta]\le\frac{(q!)^2\,(\beta q^{1/3})^{3q}}{(3q)!}
+\le e^2(q+1)^2\Bigl(\frac{\beta^3e}{27}\Bigr)^{q}.
+\]
+For $\beta\le2.31$ the last bracket is at most $e^{0.22}$.
+\end{lemma}
+
+\begin{proof}
+Fix a perfect assignment $N$. In the market $q^{-2/3}\cost(N)$ is the sum of the $3q$ independent
+uniform deficits of the pairs of $N$; in the independent-team model it is the sum of $q$
+independent team deficits, each a sum of three independent uniform variables. The two laws
+coincide. The set $\{x\in[0,1]^{3q}:\sum x_i\le y\}$ is contained in the simplex
+$\{x\ge0:\sum x_i\le y\}$, of volume $y^{3q}/(3q)!$; take $y=\beta q^{1/3}$. There are $(q!)^2$
+perfect assignments. The second inequality follows from $q!\le e(q+1)(q/e)^q$ and
+$(3q)!\ge(3q/e)^{3q}$. Finally $2.31^3e/27<1.241<e^{0.22}$.
+\end{proof}
+
+\subsection{The pair-sharing excess}\label{sec:transfer-excess}
+
+\begin{lemma}[Factor per unit of excess]\label{lem:transfer-excess}
+Let $N$ be a perfect assignment or $N=\emptyset$, and let $h^-$ be a configuration none of
+whose teams lies in $N$. Then, almost surely,
+\[
+\P\bigl(\cost_f\in I_{b_f}\ \text{for all }f\in h^-\ \bigm|\ \defi_N\bigr)
+\le W_q^{\,s(h^-;N)}\prod_{f\in h^-}p_{b_f}.
+\]
+\end{lemma}
+
+\begin{proof}
+Call $f\in h^-$ \emph{isolated} if none of its three pairs is a pair of $N$ or a pair of
+another team of $h^-$. Let $I$ be the set of isolated teams and $R$ the set of the others. The
+$3|I|$ pairs of the teams of $I$ are distinct and belong neither to
+$\operatorname{pairs}(R)$ nor to $\operatorname{pairs}(N)$. Hence the events
+$\{\cost_f\in I_{b_f}\}$, $f\in I$, are independent of each other, of $\defi_N$ and of the
+deficits of the pairs of $R$, and each has probability $p_{b_f}$. Let
+$Q_R=\operatorname{pairs}(R)\setminus\operatorname{pairs}(N)$. If $\cost_f\le K$ for every
+$f\in R$ then $\defi(\pi)\le t$ for every $\pi\in Q_R$; this event has probability
+$t^{|Q_R|}$ and is independent of $\defi_N$. Therefore the left side is at most
+\[
+\prod_{f\in I}p_{b_f}\cdot t^{|Q_R|}.
+\]
+Write $s=s(h^-;N)$. Isolated teams contribute nothing to $s$, so $s=3|R|-|Q_R|$. Counting the
+$3|R|$ incidences between teams of $R$ and their pairs,
+\[
+s=\#\bigl\{(f,\pi):\ f\in R,\ \pi\in\operatorname{pairs}(N),\ \pi\subset f\bigr\}
++\sum_{\pi\in Q_R}\bigl(\operatorname{mult}_R(\pi)-1\bigr).
+\]
+Every team of $R$ contains a pair of $N$ or a pair of $Q_R$ of multiplicity at least $2$ (a
+team sharing a pair with a non-isolated team is itself not isolated). The number of teams of
+the first kind is at most the first term. The number of the second kind is at most
+$\sum_{\pi:\operatorname{mult}_R(\pi)\ge2}\operatorname{mult}_R(\pi)\le
+2\sum_{\pi\in Q_R}(\operatorname{mult}_R(\pi)-1)$. Hence $|R|\le2s$. Using
+$p_b\ge\eta^3/(6q^2)$ and $|Q_R|=3|R|-s$,
+\begin{align*}
+\frac{t^{|Q_R|}}{\prod_{f\in R}p_{b_f}}
+&\le\bigl(Kq^{-2/3}\bigr)^{3|R|-s}\Bigl(\frac{6q^2}{\eta^3}\Bigr)^{|R|}
+=\Bigl(\frac{6K^3}{\eta^3}\Bigr)^{|R|}K^{-s}q^{2s/3}\\
+&\le\Bigl(\frac{36K^5}{\eta^6}\,q^{2/3}\Bigr)^{s}=W_q^{\,s},
+\end{align*}
+because $6K^3/\eta^3\ge1$ and $|R|\le2s$.
+\end{proof}
+
+The bound is uniform in $\defi_N$; this is what allows conditioning on the exact values of the
+pairs of $N$. The power of $q$ cannot be improved: for two teams sharing a pair,
+$\P(\text{both near-tight})/p^2=(t^5/20)/(t^3/6)^2=\tfrac95q^{2/3}/K$.
+
+\subsection{The void bound}\label{sec:transfer-void}
+
+The next lemma bounds the probability that a family of teams contains no near-tight team. It
+is an inequality of Janson type, and the proof is the argument of Boppana and
+Spencer~\cite{BoppanaSpencer89}: a union bound, exact independence of events on disjoint sets
+of pairs, and one application of Harris's inequality~\cite{Harris60}.
+
+\begin{lemma}[Void bound]\label{lem:transfer-void}
+In the market, for every family $\mathcal F$ of teams,
+\[
+\P\bigl(\cost_e>K\ \text{for all }e\in\mathcal F\bigr)\le\exp\bigl(-|\mathcal F|\,p+\Gamma_q\bigr).
+\]
+\end{lemma}
+
+\begin{proof}
+For a team $e$ let $B_e=\{\Defi(e)\le t\}$, so $\P(B_e)=p$. As a subset of the cube
+$[0,1]^{3q^2}$ of pair deficits, $B_e$ is decreasing (a down-set), and it depends only on the
+three pairs of $e$. Write $e\sim f$ if $e\ne f$ and $e$, $f$ share a pair. Enumerate
+$\mathcal F$ as $e_1,\dots,e_n$ and write $B_i=B_{e_i}$. Fix $i$ and put
+\[
+\mathcal D=\bigcap_{j<i,\ e_j\sim e_i}B_j^{c},\qquad
+\mathcal I=\bigcap_{j<i,\ e_j\not\sim e_i}B_j^{c}.
+\]
+Since $B_i\cap\mathcal I\cap\mathcal D^{c}\subset\bigcup_{j<i,\,e_j\sim e_i}(B_i\cap B_j\cap\mathcal I)$,
+\begin{align*}
+\P(B_i\cap\mathcal D\cap\mathcal I)
+&\ge\P(B_i\cap\mathcal I)-\sum_{j<i,\ e_j\sim e_i}\P(B_i\cap B_j\cap\mathcal I)\\
+&\ge\P(B_i)\,\P(\mathcal I)-\sum_{j<i,\ e_j\sim e_i}\P(B_i\cap B_j)\,\P(\mathcal I).
+\end{align*}
+For the first term: the teams $e_j$ entering $\mathcal I$ contain none of the three pairs of
+$e_i$, so $\mathcal I$ is independent of $B_i$. For the second: $B_i\cap B_j$ is a decreasing
+event and $\mathcal I$, an intersection of complements of decreasing events, is increasing, so
+$\P(B_i\cap B_j\cap\mathcal I)\le\P(B_i\cap B_j)\P(\mathcal I)$ by Harris's inequality for the
+product measure of the pair deficits. If $\P(\mathcal D\cap\mathcal I)>0$, then, since
+$\P(\mathcal D\cap\mathcal I)\le\P(\mathcal I)$,
+\[
+\P(B_i\mid\mathcal D\cap\mathcal I)\ \ge\ \frac{\P(B_i\cap\mathcal D\cap\mathcal I)}{\P(\mathcal I)}
+\ \ge\ p-\sum_{j<i,\ e_j\sim e_i}\P(B_i\cap B_j),
+\]
+and therefore
+\begin{align*}
+\P\Bigl(B_i^{c}\Bigm|\bigcap_{j<i}B_j^{c}\Bigr)&\le1-p+\sum_{j<i,\ e_j\sim e_i}\P(B_i\cap B_j)\\
+&\le\exp\Bigl(-p+\sum_{j<i,\ e_j\sim e_i}\P(B_i\cap B_j)\Bigr).
+\end{align*}
+Multiplying over $i$ (if some conditioning event has probability $0$, the probability in the
+lemma is $0$) gives
+\[
+\P\Bigl(\bigcap_{i\le n}B_i^{c}\Bigr)\le\exp\bigl(-np+\Gamma_{\mathcal F}\bigr),\qquad
+\Gamma_{\mathcal F}=\sum_{\{e,f\}\subset\mathcal F,\ e\sim f}\P(B_e\cap B_f).
+\]
+It remains to bound $\Gamma_{\mathcal F}$ by its value for the family of all teams. A team
+shares a pair with $3(q-1)$ others, by (G1), so there are $3q^3(q-1)/2$ unordered pairs
+$\{e,f\}$ with $e\sim f$. For such a pair let $x$ be the deficit of the common pair; given
+$x\le t$, each team is near-tight if its other two pair deficits have sum at most $t-x$, which
+has probability $(t-x)^2/2$, independently for the two teams. Hence
+\begin{equation}\label{eq:transfer-two}
+\P(B_e\cap B_f)=\int_0^t\Bigl(\frac{(t-x)^2}{2}\Bigr)^{2}\dd x=\frac{t^5}{20}\qquad(e\sim f),
+\end{equation}
+and $\Gamma_{\mathcal F}\le\tfrac32q^3(q-1)\cdot t^5/20=\Gamma_q$.
+\end{proof}
+
+The proof never conditions on an event $B_i$. So no correlation inequality is needed for the
+conditional law of the pair deficits given $\Defi(e)\le t$, which is not positively associated.
+
+\subsection{The planted comparison}\label{sec:transfer-planted}
+
+\begin{lemma}[Planted comparison]\label{lem:transfer-planted}
+Let $N$ be a perfect assignment and $h^-$ a configuration none of whose teams lies in $N$.
+Then, almost surely,
+\[
+\P\bigl(H^-=h^-\bigm|\defi_N\bigr)\le\rho(h^-,N)\,\P'\bigl(H'^-=h^-\bigr),
+\]
+where
+\[
+\rho(h^-,N)=\exp\Bigl(\Gamma_q+\frac{K^3(|h^-|+q)}{2q}+\frac{K^6}{36q}\Bigr)\,W_q^{\,s(h^-;N)} .
+\]
+\end{lemma}
+
+The factor $\rho$ does not depend on the values of the pairs of $N$.
+
+\begin{proof}
+Let $\mathcal F$ be the set of teams none of whose pairs lies in
+$\operatorname{pairs}(h^-)\cup\operatorname{pairs}(N)$. It contains no team of $N$ and no team
+of $h^-$, so $\{H^-=h^-\}\subset E_1\cap E_2$ with
+\[
+E_1=\{\cost_f\in I_{b_f}\ \text{for all }f\in h^-\},\qquad
+E_2=\{\cost_f>K\ \text{for all }f\in\mathcal F\}.
+\]
+$E_1$ and $\defi_N$ are functions of the deficits of the pairs in
+$\operatorname{pairs}(h^-)\cup\operatorname{pairs}(N)$, and $E_2$ is a function of the other
+pair deficits. Hence $\P(E_1\cap E_2\mid\defi_N)=\P(E_1\mid\defi_N)\,\P(E_2)$.
+Lemma~\ref{lem:transfer-excess} bounds the first factor and Lemma~\ref{lem:transfer-void} the
+second. At most $3(|h^-|+q)$ pairs are excluded and each pair lies in $q$ teams, so
+$|\mathcal F|\ge q^3-3q(|h^-|+q)$ and
+\[
+|\mathcal F|\,p\ \ge\ q^3p-\frac{K^3(|h^-|+q)}{2q}.
+\]
+Thus
+\[
+\P\bigl(H^-=h^-\bigm|\defi_N\bigr)\le W_q^{\,s(h^-;N)}\prod_{f\in h^-}p_{b_f}\cdot
+\exp\Bigl(-q^3p+\frac{K^3(|h^-|+q)}{2q}+\Gamma_q\Bigr).
+\]
+In the independent-team model the $q^3-q$ teams outside $N$ are independent, so
+\[
+\P'\bigl(H'^-=h^-\bigr)=\prod_{f\in h^-}p_{b_f}\cdot(1-p)^{q^3-q-|h^-|}
+\ge\prod_{f\in h^-}p_{b_f}\cdot\exp\bigl(-q^3p-q^3p^2\bigr),
+\]
+because $\ln(1-p)\ge-p-p^2$ for $0\le p\le\tfrac12$; and $q^3p^2=K^6/(36q)$. Dividing gives the
+claim.
+\end{proof}
+
+In the independent-team model $\cost'_N$ and $H'^-$ are independent, and $\cost'_N$ has the law
+of $\cost_N$. So for every measurable $G\ge0$,
+\begin{equation}\label{eq:transfer-planted-exp}
+\begin{aligned}
+\E\bigl[G(\cost_N,H^-)\bigr]
+&=\E\Bigl[\sum_{h^-}G(\cost_N,h^-)\,\P\bigl(H^-=h^-\bigm|\defi_N\bigr)\Bigr]\\
+&\le\E'\bigl[G(\cost'_N,H'^-)\,\rho(H'^-,N)\bigr].
+\end{aligned}
+\end{equation}
+The costs of all teams of $N$, below and above $K$, are carried along exactly and have the same
+law on both sides. No separate union bound over the teams above $K$ is needed in the
+comparison.
+
+\subsection{Teams sharing a pair with the candidate assignment}\label{sec:transfer-touch}
+
+Fix a perfect assignment $N$ and let
+\[
+A_N=\bigl\{\cost(N)<\beta q\bigr\},\qquad
+X_N=\bigl|H'^-\cap\partial N\bigr|,
+\]
+the number of near-tight teams of $\partial N$ in the independent-team model. Apply
+\eqref{eq:transfer-planted-exp} to
+\[
+G=\ind_{A_N}\cdot\ind\{H\in\mathcal G\}\cdot\ind\{s(H)\le s_0\}\cdot\ind\{|H|\le K^3q\},
+\]
+a function of $(\cost_N,H^-)$. On the support of $G$ we have $|h^-|\le|H|\le K^3q$ and, by
+\eqref{eq:transfer-excess-touch} and the monotonicity of $s$,
+$s(h^-;N)\le s(H)+|h^-\cap\partial N|\le s_0+|h^-\cap\partial N|$. Since $W_q\ge1$ and
+$\tfrac12K^3(K^3+1)+K^6/(36q)\le2K^6$,
+\begin{multline}\label{eq:transfer-rho}
+\E\bigl[\ind_{A_N};\ H\in\mathcal G,\ s(H)\le s_0,\ |H|\le K^3q\bigr]\\
+\le e^{\Gamma_q+2K^6+s_0\ln W_q}\ \E'\bigl[\ind_{A_N}\,\ind\{H'\in\mathcal G\}\,W_q^{X_N}\bigr].
+\end{multline}
+
+The weight $W_q^{X_N}$ cannot be dropped by restricting to an event of $H$. In the market,
+given that a team of $N$ is near-tight, each of the $q-1$ other teams through one of its pairs
+is near-tight with probability of order $q^{-4/3}$, not $q^{-2}$; for a cheap assignment the
+number of near-tight teams in $\partial N$ is of order $q^{2/3}$ and not of order $1$. The
+weight is removed on the side of the independent-team model, where $\partial N$ is a fixed
+family of independent teams.
+
+\begin{lemma}[Exponential moment]\label{lem:transfer-touch}
+Let $N$ be a perfect assignment, $\mathcal G$ a set of configurations and $\tau>0$. For
+$q\ge q_0(K,B,\tau)$ as in \eqref{eq:transfer-q0},
+\begin{multline*}
+\E'\bigl[\ind_{A_N}\,\ind\{H'\in\mathcal G\}\,W_q^{X_N}\bigr]\\
+\le e^{K^3W_q/2}\Bigl(\E'\bigl[\ind_{A_N}\,\ind\{H'\in\mathcal G^{(2\tau)}\}\bigr]
++3\,\P'(A_N)\,e^{-(\tau/4)\,q\ln q}\Bigr).
+\end{multline*}
+\end{lemma}
+
+\begin{proof}
+In the independent-team model the three objects $\cost'_N$, $H'_{\partial}=H'^-\cap\partial N$
+and $H'_{\mathrm{free}}=\{(e,b)\in H':e\notin N\cup\partial N\}$ are independent, because $N$,
+$\partial N$ and the remaining teams are fixed disjoint families. The variable
+$X_N=|H'_\partial|$ is binomial with parameters $3q(q-1)$ and $p$, by (G3). The configuration
+$H'_0=H'\setminus H'_\partial$ is a function of $(\cost'_N,H'_{\mathrm{free}})$, hence
+independent of $X_N$, and $|H'\triangle H'_0|=X_N$. So if $H'\in\mathcal G$ and
+$X_N\le\tau q$ then $H'_0\in\mathcal G^{(\tau)}$, and if $H'_0\in\mathcal G^{(\tau)}$ and
+$X_N\le\tau q$ then $H'\in\mathcal G^{(2\tau)}$. Splitting according to $X_N\le\tau q$ or
+$X_N>\tau q$ and using the independence twice,
+\begin{align*}
+\E'\bigl[\ind_{A_N}\ind\{H'\in\mathcal G\}W_q^{X_N}\bigr]
+&\le\E'\bigl[\ind_{A_N}\ind\{H'_0\in\mathcal G^{(\tau)}\}\bigr]\,\E'\bigl[W_q^{X_N}\bigr]\\
+&\qquad+\P'(A_N)\,\E'\bigl[W_q^{X_N};\,X_N>\tau q\bigr],\\
+\E'\bigl[\ind_{A_N}\ind\{H'_0\in\mathcal G^{(\tau)}\}\bigr]
+&\le\E'\bigl[\ind_{A_N}\ind\{H'\in\mathcal G^{(2\tau)}\}\bigr]+\P'(A_N)\,\P'(X_N>\tau q).
+\end{align*}
+Now $\E'[W_q^{X_N}]=(1+(W_q-1)p)^{3q(q-1)}\le\exp(3q^2pW_q)=\exp(K^3W_q/2)$. For the tail put
+$a=K^3W_q/2\ge3q(q-1)pW_q$. Then
+\[
+\E'\bigl[W_q^{X_N};\,X_N>\tau q\bigr]\le\sum_{x>\tau q}\binom{3q(q-1)}{x}(pW_q)^x
+\le\sum_{x>\tau q}\frac{a^x}{x!}.
+\]
+Let $r_q=ea/(\tau q)=eK^3C_1/(2\tau q^{1/3})$. By \eqref{eq:transfer-q0},
+$q^{1/12}\ge eK^3C_1/\tau$, so $r_q\le\tfrac12q^{-1/4}<1$. For $x>\tau q$ the ratio of
+consecutive terms of the last sum is $a/(x+1)\le r_q/e\le1/e$, and its first term, at
+$x_1=\lfloor\tau q\rfloor+1$, is $a^{x_1}/x_1!\le(ea/x_1)^{x_1}\le r_q^{x_1}\le r_q^{\tau q}$.
+Hence
+\begin{align*}
+\E'\bigl[W_q^{X_N};\,X_N>\tau q\bigr]&\le\frac{1}{1-e^{-1}}\,r_q^{\tau q}\le2\,r_q^{\tau q}\\
+&\le2\cdot2^{-\tau q}\,e^{-(\tau/4)\,q\ln q}\le e^{-(\tau/4)\,q\ln q},
+\end{align*}
+the last step because $\tau q\ge1$. Since $W_q\ge1$, also
+$\P'(X_N>\tau q)\le e^{-(\tau/4)q\ln q}$. Inserting the second display into the first, the two
+error terms are at most $e^{K^3W_q/2}\,\P'(A_N)\,e^{-(\tau/4)q\ln q}$ each, which gives the
+claim (with $2$ in place of $3$).
+\end{proof}
+
+\subsection{Proof of Theorem~\ref{thm:transfer}}\label{sec:transfer-proofT}
+
+Sum \eqref{eq:transfer-rho} over all perfect assignments $N$ and apply
+Lemma~\ref{lem:transfer-touch} to each term:
+\begin{align*}
+\E\bigl[Z_\beta;\ &H\in\mathcal G,\ s(H)\le s_0,\ |H|\le K^3q\bigr]\\
+&=\sum_N\E\bigl[\ind_{A_N};\ H\in\mathcal G,\ s(H)\le s_0,\ |H|\le K^3q\bigr]\\
+&\le e^{\Gamma_q+2K^6+s_0\ln W_q}\sum_N\E'\bigl[\ind_{A_N}\ind\{H'\in\mathcal G\}W_q^{X_N}\bigr]\\
+&\le e^{R_q}\sum_N\Bigl(\E'\bigl[\ind_{A_N}\ind\{H'\in\mathcal G^{(2\tau)}\}\bigr]
++3\,\P'(A_N)\,e^{-(\tau/4)q\ln q}\Bigr).
+\end{align*}
+Since $\sum_N\ind_{A_N}=Z_\beta$, this is \eqref{eq:transfer-comparison}. The estimate of $R_q$
+in \eqref{eq:transfer-Rq} follows from \eqref{eq:transfer-constants}:
+\begin{equation}\label{eq:transfer-Rq-explicit}
+R_q\le\tfrac{3}{40}K^5q^{2/3}+2K^6+q^{2/3+\zeta}\ln\bigl(C_1q^{2/3}\bigr)+\tfrac12K^3C_1\,q^{2/3},
+\end{equation}
+and $\zeta<\tfrac13$.
+
+For \eqref{eq:transfer-union}, the event $\{H\in\mathcal G,\ s(H)\le s_0,\ |H|\le K^3q\}$ is a
+function of $H$, so
+\begin{multline*}
+\P(Z_\beta\ge1)\le\P(H\notin\mathcal G)+\P\bigl(s(H)>s_0\bigr)+\P\bigl(|H|>K^3q\bigr)\\
++\E\bigl[Z_\beta;\ H\in\mathcal G,\ s(H)\le s_0,\ |H|\le K^3q\bigr],
+\end{multline*}
+and by Lemma~\ref{lem:transfer-plain} and $R_q=o(q)$,
+$3e^{R_q}\E'[Z_\beta]e^{-(\tau/4)q\ln q}\le e^{-(\tau/5)q\ln q}$ for all large $q$. \qed
+
+\subsection{Typicality in the market}\label{sec:transfer-typical}
+
+The \emph{binned star} of an agent $v$ in a configuration $h$ is the vector
+$d_v(h)=(d_{v,1},\dots,d_{v,B})\in\N^B$, where $d_{v,b}$ is the number of teams of $h$ with
+label $b$ that contain $v$; $|d_v|=\sum_bd_{v,b}$ is the degree of $v$. As in
+Section~\ref{sec:iid}, the \emph{reference star} is a vector $D=(D_1,\dots,D_B)$ of
+independent Poisson variables with means $\lambda_1,\dots,\lambda_B$, and $\gamma$ is its law
+on $\N^B$.
+
+\begin{proposition}[Typicality]\label{prop:transfer-typical}
+In the market, for fixed $K\ge1$, $B\ge1$ and $\zeta>0$:
+\begin{itemize}
+\item[(a)] $\P(|H|>K^3q)\le1/q$;
+\item[(b)] $\P\bigl(s(H)>q^{2/3+\zeta}\bigr)\le\tfrac{3}{40}K^5q^{-\zeta}$;
+\item[(c)] for each of the three sectors $S$ and every function $\psi:\N^B\to\R$ with
+$|\psi(d)|\le c\,(1+|d|)^m$ for some constants $c$, $m$,
+\[
+\frac1q\sum_{v\in S}\psi\bigl(d_v(H)\bigr)\longrightarrow\E\,\psi(D)\qquad\text{in probability, }D\sim\gamma .
+\]
+\end{itemize}
+\end{proposition}
+
+\begin{proof}
+(a) $\E|H|=q^3p=K^3q/6=:\mu$. The indicators of $\{\cost_e\le K\}$ and $\{\cost_f\le K\}$ are
+independent unless $e\sim f$, there are $3q^3(q-1)$ ordered pairs with $e\sim f$, and for these
+the covariance is at most $t^5/20$ by \eqref{eq:transfer-two}. So
+$\Var|H|\le\mu+2\Gamma_q$, and by Chebyshev's inequality
+\[
+\P\bigl(|H|>6\mu\bigr)\le\frac{\mu+2\Gamma_q}{25\mu^2}
+\le\frac{6}{25K^3q}+\frac{27}{125\,K\,q^{4/3}}\le\frac1q .
+\]
+
+(b) $s(H)=\sum_\pi(\operatorname{mult}_H(\pi)-1)^+\le\sum_\pi\binom{\operatorname{mult}_H(\pi)}{2}=Y$,
+where $Y$ is the number of unordered pairs of near-tight teams that share a pair (by (G1) each
+such pair of teams is counted once). By \eqref{eq:transfer-two}, $\E Y=\Gamma_q$ exactly, and
+Markov's inequality gives the claim.
+
+(c) The three sectors play symmetric roles; fix one of them, $S$, and an agent $a$ of $S$.
+Its teams are the triples $(a,y,z)$ with $y$ and $z$ in the other two sectors. Let $X_b=d_{a,b}(H)$ and let
+$k=(k_1,\dots,k_B)\in\N^B$, $|k|=\sum_bk_b$. The joint factorial moment
+$\E\prod_b(X_b)_{k_b}$ is the sum, over ordered $|k|$-tuples of distinct teams at $a$ of which
+the first $k_1$ are assigned bin $1$, the next $k_2$ bin $2$, and so on, of the probability
+that every team of the tuple lies in its assigned bin. The pairs $\{y,z\}$ of the teams of a
+tuple are distinct, so the excess of the tuple, as a configuration, is
+\[
+s=2|k|-\#\{\text{values of }y\}-\#\{\text{values of }z\}.
+\]
+There are $(q)_{|k|}^2$ tuples with $s=0$; their teams share no pair, each such tuple has
+probability exactly $\prod_ip_{b_i}$, and their total contribution is
+$\prod_b\lambda_b^{k_b}\,(1-O(|k|^2/q))$. For $s\ge1$ there are at most
+$|k|^{2|k|}q^{2|k|-s}$ tuples (choose which positions share a value of $y$ and which share a
+value of $z$, then the $2|k|-s$ values), each of probability at most
+$W_q^{\,s}\prod_ip_{b_i}$ by Lemma~\ref{lem:transfer-excess} with $N=\emptyset$. Their total
+contribution is at most
+\[
+|k|^{2|k|}\prod_b\lambda_b^{k_b}\sum_{s\ge1}\Bigl(\frac{W_q}{q}\Bigr)^{s}=O\bigl(q^{-1/3}\bigr),
+\]
+since $W_q/q=C_1q^{-1/3}$. Hence every joint factorial moment of $(X_b)$ converges to
+$\prod_b\lambda_b^{k_b}$, the corresponding moment of $\gamma$.
+
+Now let $a\ne a'$ be two agents of $S$, with bin counts $(X_b)$ and $(X'_b)$, and consider the
+mixed factorial moment $\E\prod_b(X_b)_{k_b}\prod_b(X'_b)_{k'_b}$. It is a sum over pairs of
+tuples, one at $a$ and one at $a'$. A team at $a$ and a team at $a'$ share a pair exactly when
+they have the same $(y,z)$. Write the excess of the union of the two tuples as $s_1+s_2+s_3$,
+where $s_1$, $s_2$ are the excesses of the two tuples and $s_3$ is the number of pairs
+$\{y,z\}$ used by both. Suppose $s_3\ge1$, and let the $s_3$ teams at $a'$ whose pair
+$\{y,z\}$ is also used at $a$ have $r$ distinct values of $y$ and $c$ distinct values of $z$.
+These $r+c$ values are determined by the tuple at $a$ and the pattern of coincidences, so the
+number of pairs of tuples with given $(s_1,s_2,s_3,r,c)$ is at most a constant (depending on
+$|k|$, $|k'|$) times
+\[
+q^{2|k|-s_1}\cdot q^{2|k'|-s_2-(r+c)} .
+\]
+The $s_3$ teams in question are distinct teams at $a'$ on $r+c$ values, so their excess is
+$2s_3-r-c$, which is at most $s_2$ by monotonicity; together with $r,c\ge1$ this gives
+$r+c\ge\max(2,\,2s_3-s_2)$. Each pair of tuples has probability at most
+$W_q^{\,s_1+s_2+s_3}\prod p_{b_i}\prod p_{b'_i}$ by Lemma~\ref{lem:transfer-excess}, so the
+contribution of a class $(s_1,s_2,s_3,r,c)$ is $O(q^{\omega})$ with
+\[
+\omega=-\frac{s_1+s_2}{3}-(r+c)+\frac{2s_3}{3}.
+\]
+If $2s_3-s_2\le2$ then
+$\omega\le-\frac{s_2}{3}-2+\frac23\bigl(1+\frac{s_2}{2}\bigr)=-\frac43$; if $2s_3-s_2>2$ then
+$\omega\le-\frac{s_2}{3}-(2s_3-s_2)+\frac{2s_3}{3}=-\frac23(2s_3-s_2)<-\frac43$. If $s_3=0$ and
+$s_1+s_2\ge1$ then $r=c=0$ and $\omega\le-\frac13$. So the pairs of tuples of
+positive excess contribute $O(q^{-1/3})$ in total. The pairs of tuples of excess $0$ number
+$(q)_{|k|}^2(q)_{|k'|}^2(1-O(q^{-2}))$ and have product probability. Hence the mixed factorial
+moments converge to $\prod_b\lambda_b^{k_b}\prod_b\lambda_b^{k'_b}$.
+
+A product of Poisson laws is determined by its moments. Therefore
+$(d_a(H),d_{a'}(H))$ converges in distribution to $\gamma\otimes\gamma$, and all moments of the
+degrees $|d_a(H)|$, $|d_{a'}(H)|$ are bounded uniformly in $q$. Let
+$|\psi(d)|\le c(1+|d|)^m$. By uniform integrability, $\E\psi(d_a(H))\to\E\psi(D)$,
+$\Var\psi(d_a(H))$ stays bounded, and $\Cov\bigl(\psi(d_a(H)),\psi(d_{a'}(H))\bigr)\to0$. By
+exchangeability of the agents of $S$,
+\[
+\Var\Bigl(\frac1q\sum_{v\in S}\psi\bigl(d_v(H)\bigr)\Bigr)
+\le\frac{\Var\psi(d_a(H))}{q}+\Cov\bigl(\psi(d_a(H)),\psi(d_{a'}(H))\bigr)\longrightarrow0,
+\]
+and Chebyshev's inequality gives (c).
+\end{proof}
+
+Only stars of depth one and a law of large numbers over agents, without a rate, are used here;
+Theorem~\ref{thm:localconv} is not needed for the integer bound.
+
+\begin{remark}[Numerical evidence, floating point]\label{rem:transfer-numerics}
+The scripts \texttt{lemmaC/\allowbreak round3/\allowbreak sc/\allowbreak cmp.py} and \texttt{cmp2.py} (same folder) simulate both models for
+$16\le q\le48$ and $0.8\le K\le2$, without bins. The mean of $Y$ agrees with $\Gamma_q$ in all
+$16$ cells within sampling error; the probability that $H$ is empty lies between its value in
+the independent-team model and the bound of Lemma~\ref{lem:transfer-void}, and nearly attains
+the latter (for $q=32$, $K=0.8$: $0.0822$ against $0.0829$); the ratio of the probabilities of
+$\{|H|=n,\ s(H)=0\}$ in the two models stays below the factor of
+Lemma~\ref{lem:transfer-planted} with $N=\emptyset$, after one apparent exceedance was
+resolved as sampling noise by a larger run. None of this is used in the proofs, and the sizes
+are far from the range in which the comparison is effective
+(Remark~\ref{rem:transfer-size}).
+\end{remark}
+
+\subsection{The robust form of the first moment}\label{sec:transfer-robust}
+
+Theorem~\ref{thm:transfer} asks for a bound on $\E'[Z_\beta;\,H'\in\mathcal G^{(2\tau)}]$, where
+$\mathcal G$ is typical \emph{in the market} and the event has been enlarged by $2\tau q$
+teams. The typical set $\mathcal T_\delta$ of Section~\ref{sec:iid} is defined through a
+distance between the empirical law of the stars and $\gamma$ that carries the weight $1+|d|$.
+It is not suited to this: adding one team at an agent of degree $|d|$ can move that distance
+by as much as $(3+2|d|)/q$, so the set is not stable under changes of $\tau q$ teams. The
+first moment, however, depends on the stars only through two families of averages, and each of
+them changes by a bounded amount when one team is changed. The good set is defined through
+these. In addition, the compactness step of Section~\ref{sec:iid}
+(Lemma~\ref{lem:iid-limit}), which gives no explicit constants, is replaced by an explicit estimate (Lemma~\ref{lem:transfer-Q}), so that the size
+of the admissible enlargement $\tau$ is explicit.
+
+\subsubsection*{Notation and imported statements}
+
+The notation of Section~\ref{sec:iid} is used: the tilt $\theta>0$; the integrals
+\[
+\kappa_b=\int_{I_b}e^{-\theta x}\,\tfrac12x^2\dd x,\qquad
+J=\int_K^\infty e^{-\theta x}\,\tfrac12x^2\dd x
+=e^{-\theta K}\Bigl(\frac{K^2}{2\theta}+\frac{K}{\theta^2}+\frac{1}{\theta^3}\Bigr);
+\]
+vectors $u=(u_1,\dots,u_B,u_\infty)$ and $\mu=(\mu_1,\dots,\mu_B,\eps)$ in $\R^{B+1}$, indexed
+by the $B$ bins and the \emph{high option} $\infty$, with
+$\langle\mu,u\rangle=\sum_b\mu_bu_b+\eps u_\infty$; the vector $\ind$ of ones; and
+\[
+\ell_b=\ln\frac{\kappa_b}{\lambda_b}\quad(1\le b\le B),\qquad \ell_\infty=\ln J .
+\]
+We add $\ell_{\max}=\max(\max_b|\ell_b|,\,|\ell_\infty|)$ and write $\|\cdot\|_1$ for the
+$\ell^1$ norm on $\R^{B+1}$. Four points of notation differ from Section~\ref{sec:iid}. The
+labelled low hypergraph $G$ of that section is the binned near-tight hypergraph of the
+independent-team model, here $H'$. Its probability $\P$ is here $\P'$. The Legendre
+functional, written $H$ there, is written $\mathsf H$ here, where $H$ is the hypergraph.
+Degree arrays, written $D$ there, are written $\mathbf D$ here, to keep them apart from the
+reference star $D$.
+
+For a star $d\in\N^B$ let
+\[
+L_u(d)=\ln\Bigl(e^{u_\infty}+\sum_{b=1}^Bd_b\,e^{u_b}\Bigr),
+\]
+that is, $\ln(w_\infty+\sum_bd_bw_b)$ with the weights $w=e^u$. The \emph{functional mean} is
+$\Phi(u)=\E L_u(D)$, $D\sim\gamma$, as in Definition~\ref{def:iid-psi0}. For a configuration
+$h$, its \emph{degree array} is $\mathbf D(h)=(d_v(h))_v$, the family of the binned stars of
+all $3q$ agents; $n_b$ is the number of teams with label $b$ and $\nu_b=n_b/q$ is the
+\emph{bin density}. The three sectors are numbered $s=1,2,3$, with agent sets $V_1,V_2,V_3$,
+and
+\[
+\widehat\Phi_s(u;\mathbf D)=\frac1q\sum_{v\in V_s}L_u(d_v)
+\]
+is the empirical mean of $L_u$ over the stars of sector $s$. We write $\nu_b(h)$ and
+$\widehat\Phi_s(u;h)$ for the same quantities of $\mathbf D(h)$. A \emph{profile} for
+$\mathbf D$ is a vector $\mu$ with $q\mu_b\in\N$, $0\le\mu_b\le\nu_b$ and
+$\eps=1-\sum_b\mu_b\ge0$: the assignment uses $q\mu_b$ teams of bin $b$ and $q\eps$ teams above
+$K$. With $h(x)=-x\ln x-(1-x)\ln(1-x)$ and $g(x,y)=y\,h(x/y)$ for $0\le x\le y$
+($g(0,0)=0$), the exponent \eqref{eq:iid-Xi} of the first moment is
+\begin{multline}\label{eq:transfer-Xi}
+\Xi(\mu;\mathbf D)=\theta\beta+\sum_{s=1}^3\inf_{u\in\R^{B+1}}\bigl[\widehat\Phi_s(u;\mathbf D)-\langle\mu,u\rangle\bigr]
+-2\sum_bg(\mu_b,\nu_b)\\
++\sum_b\mu_b\ell_b+\eps\,\ell_\infty+2\eps\ln\eps-2\eps .
+\end{multline}
+Further,
+\[
+\mathcal P=\Bigl\{\mu:\ 0\le\mu_b\le\lambda_b,\ \eps\ge0,\ \sum_b\mu_b+\eps=1\Bigr\},
+\]
+\[
+\mathsf H(\mu)=\inf_{u\in\R^{B+1}}\bigl[\Phi(u)-\langle\mu,u\rangle\bigr],\qquad
+S_0(\mu)=\sum_b\lambda_b\,h\Bigl(\frac{\mu_b}{\lambda_b}\Bigr)-\eps\ln\eps+\eps ,
+\]
+and $\Psi_0=\Psi_0(K,B,\theta,u_0)$ is the functional of Definition~\ref{def:iid-psi0},
+defined for every weight vector $u_0\in\R^{B+1}$.
+
+Four statements are imported from Section~\ref{sec:iid}. Each of them concerns the reference
+star or the independent-team model.
+\begin{itemize}
+\item[(I1)] \emph{First moment on a set of degree arrays}
+(Lemma~\ref{lem:iid-exponent}). For every set $\mathcal T$ of degree arrays and
+$q^{2/3}\ge K$,
+\begin{equation}\label{eq:transfer-I1}
+\E'\bigl[Z_\beta;\ \mathbf D(H')\in\mathcal T\bigr]\le c_q\,(q+1)^{B+2}
+\sup_{\mathbf D\in\mathcal T,\ \mu}\Bigl[\prod_b(n_b+1)^2\cdot e^{\,q\,\Xi(\mu;\mathbf D)}\Bigr],
+\end{equation}
+where the supremum is over $\mathbf D\in\mathcal T$ and profiles $\mu$ for $\mathbf D$, and
+$c_q=e^2e^{K^6/(36q(1-p))}(1-p)^{-q}\le e^2\exp(K^{9/2}/30+K^{3/2}/5)$. The factor
+$\prod_b(n_b+1)^2$ depends on the degree array and stays inside the supremum. This bound
+holds for an arbitrary set $\mathcal T$; it contains the tilting inequality
+$\ind\{\cost(N)<\beta q\}\le e^{\theta(\beta q-\cost(N))}$, the union bound over the teams
+above $K$, the simplicity conditioning, the choice-function bound and the count of profiles.
+\item[(I2)] \emph{Legendre facts} (Subsection~\ref{subsec:iid-concave} and
+Lemma~\ref{lem:iid-legendre}(i)). $\Phi$ is finite, convex and differentiable on
+$\R^{B+1}$; $\Phi(u+c\ind)=\Phi(u)+c$; $\nabla\Phi(u)\in\mathcal P$ for every $u$; and if
+$\mu'=\nabla\Phi(\bar u)$ then $\mathsf H(\mu')=\Phi(\bar u)-\langle\mu',\bar u\rangle$.
+\item[(I3)] \emph{Tangent bound} (Proposition~\ref{prop:iid-tangent-bound}). For every
+$u_0\in\R^{B+1}$ and every $\mu\in\mathcal P$,
+\[
+3\mathsf H(\mu)-2S_0(\mu)+\langle\ell,\mu\rangle\le\Psi_0(K,B,\theta,u_0).
+\]
+\item[(I4)] \emph{Certified value} (Proposition~\ref{prop:iid-certificate}). For $K=5$,
+$B=50$, $\theta=1.6712$ and the weight vector $u_0=u^\ast$ listed there,
+$\Psi_0\le-3.84751328322$. Hence $\Psi_0\le-3.84751328$, the form used below, and
+$-\Psi_0/\theta\ge2.30224586$ (this needs the eleven-decimal bound). The enclosure is certified in interval
+arithmetic by the script
+\texttt{lemmaC/\allowbreak round3/\allowbreak final/\allowbreak certI/\allowbreak certify\_rigorous.py}
+(Section~\ref{sec:certificates}).
+\end{itemize}
+Not imported: the typical set $\mathcal T_\delta$ of \eqref{eq:iid-typical}, the statement that
+it is typical in the independent-team model (Lemma~\ref{lem:iid-typical}) and the compactness
+step (Lemma~\ref{lem:iid-limit}). In particular Theorem~\ref{thm:iid} and
+Proposition~\ref{prop:iid-criterion} are not used as statements; the argument below runs
+parallel to their proof, with a different typical set.
+
+We record the size of the prefactor in \eqref{eq:transfer-I1}. If $\nu_b(\mathbf D)\le M$ for
+all $b$ and all $\mathbf D\in\mathcal T$, then $n_b+1\le q(1+M)$, and $q+1\le2q$, so
+\begin{equation}\label{eq:transfer-prefactor}
+\begin{gathered}
+\E'\bigl[Z_\beta;\ \mathbf D(H')\in\mathcal T\bigr]\le c_{K,B}\,(1+M)^{2B}\,q^{3B+2}
+\exp\Bigl(q\sup_{\mathbf D\in\mathcal T,\ \mu}\Xi(\mu;\mathbf D)\Bigr),\\
+c_{K,B}=e^2\,2^{B+2}\exp\bigl(K^{9/2}/30+K^{3/2}/5\bigr).
+\end{gathered}
+\end{equation}
+
+By \eqref{eq:transfer-Xi} and \eqref{eq:transfer-I1} the degree array enters the first moment
+only through
+\begin{itemize}
+\item[(F1)] the bin densities $\nu_b$, in $g$, in the constraint $\mu_b\le\nu_b$ and in the
+prefactor; and
+\item[(F2)] the three functions $u\mapsto\widehat\Phi_s(u;\mathbf D)$, through the infima.
+\end{itemize}
+Both are averages over agents of a function of the binned star: $d\mapsto d_b$ and
+$d\mapsto L_u(d)$.
+
+\subsubsection*{The good set}
+
+For $A>0$ let $U_A=\{u\in\R^{B+1}:\max u-\min u\le A\}$. For $\delta_1,\delta_2,A>0$ define
+\begin{multline}\label{eq:transfer-good}
+\mathcal T(\delta_1,\delta_2;A)=\Bigl\{\mathbf D:\ \sum_b|\nu_b(\mathbf D)-\lambda_b|\le\delta_1
+\ \text{ and }\\
+\sup_{u\in U_A}\bigl|\widehat\Phi_s(u;\mathbf D)-\Phi(u)\bigr|\le\delta_2\ \text{ for }s=1,2,3\Bigr\},
+\end{multline}
+\[
+\mathcal G_q(\delta_1,\delta_2;A)=\bigl\{\text{configurations }h:\ \mathbf D(h)\in\mathcal T(\delta_1,\delta_2;A)\bigr\}.
+\]
+
+\begin{lemma}[Stability]\label{lem:transfer-stability}
+Let $h$, $h'$ be configurations with $|h\,\triangle\,h'|\le k$. Then
+$\sum_b|n_b(h)-n_b(h')|\le k$, and for every $u\in U_A$ and $s\in\{1,2,3\}$,
+\[
+\bigl|\widehat\Phi_s(u;h)-\widehat\Phi_s(u;h')\bigr|\le\frac kq\ln\bigl(1+e^A\bigr)\le\frac kq\,(A+\ln2).
+\]
+Consequently, for every $\tau>0$,
+\begin{equation}\label{eq:transfer-enlarged}
+\mathcal G_q(\delta_1,\delta_2;A)^{(2\tau)}\subset
+\mathcal G_q\bigl(\delta_1+2\tau,\ \delta_2+2\tau(A+\ln2);\ A\bigr).
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Pass from $h$ to $h'$ by removing the labelled teams of $h\setminus h'$ and then adding those
+of $h'\setminus h$, one at a time; every intermediate set is a configuration. Each step changes
+one $n_b$ by $1$ and, in each sector, one star in one coordinate by $1$. If
+$S=e^{u_\infty}+\sum_bd_be^{u_b}$, then adding a team of bin $b$ changes $\ln S$ by
+$\ln(1+e^{u_b}/S)\le\ln(1+e^{u_b-u_\infty})\le\ln(1+e^A)$, because $S\ge e^{u_\infty}$ and
+$u\in U_A$; removing a team is the same step read backwards. So each step changes
+$\widehat\Phi_s(u;\cdot)$ by at most $q^{-1}\ln(1+e^A)$. For \eqref{eq:transfer-enlarged} take
+$k=2\tau q$ and use the triangle inequality in both conditions of \eqref{eq:transfer-good}.
+\end{proof}
+
+\begin{lemma}[Box Legendre identity]\label{lem:transfer-box}
+Let $\mu\in\R^{B+1}$ with $\sum_b\mu_b+\eps=1$ and let $A>0$. The function
+$u\mapsto\Phi(u)-\langle\mu,u\rangle$ attains its minimum over $U_A$ at some $\bar u$, and with
+$\mu'=\nabla\Phi(\bar u)\in\mathcal P$,
+\[
+\Phi(\bar u)-\langle\mu,\bar u\rangle=\mathsf H(\mu')-\frac A2\,\|\mu-\mu'\|_1 .
+\]
+\end{lemma}
+
+\begin{proof}
+By (I2) the function $f(u)=\Phi(u)-\langle\mu,u\rangle$ is convex, differentiable and
+invariant under $u\mapsto u+c\ind$. The set $U_A$ is convex and invariant under the same
+shifts, and $U_A\cap\{\sum u=0\}$ is compact. So a minimiser $\bar u$ of $f$ over $U_A$ exists,
+and $\langle\nabla f(\bar u),v-\bar u\rangle\ge0$ for all $v\in U_A$. Here
+$\nabla f(\bar u)=\mu'-\mu=:z$, and the coordinates of $z$ sum to $0$. Thus
+$\langle z,\bar u\rangle=\min_{v\in U_A}\langle z,v\rangle$. For $v\in U_A$ and
+$c=(\max v+\min v)/2$, every coordinate of $v-c\ind$ has absolute value at most $A/2$, so
+$\langle z,v\rangle=\langle z,v-c\ind\rangle\ge-\tfrac A2\|z\|_1$, with equality for
+$v=-\tfrac A2\operatorname{sign}(z)\in U_A$. Hence
+$\langle\mu'-\mu,\bar u\rangle=-\tfrac A2\|\mu-\mu'\|_1$. Finally, by (I2),
+$\mathsf H(\mu')=\Phi(\bar u)-\langle\mu',\bar u\rangle$, and so
+$f(\bar u)=\mathsf H(\mu')+\langle\mu'-\mu,\bar u\rangle$.
+\end{proof}
+
+\begin{lemma}[Entropy modulus]\label{lem:transfer-entropy}
+Let $\varphi(x)=-x\ln x$ on $[0,\infty)$, $\varphi(0)=0$. If $a,b\in[0,M]$ and
+$c'\ge1+\ln^+M$, then
+\[
+\varphi(a)-\varphi(b)\le c'\,|a-b|+e^{-1-c'}.
+\]
+\end{lemma}
+
+\begin{proof}
+If $a\ge b$: $\varphi$ is concave with $\varphi(0)=0$, hence subadditive, so
+$\varphi(a)-\varphi(b)\le\varphi(a-b)$, and
+$\sup_{z\ge0}[\varphi(z)-c'z]=e^{-1-c'}$, attained at $z=e^{-1-c'}$. If $a<b$:
+$\varphi(a)-\varphi(b)=\int_a^b(1+\ln x)\dd x\le(b-a)(1+\ln^+b)\le c'(b-a)$.
+\end{proof}
+
+The next lemma is the quantitative replacement for Lemma~\ref{lem:iid-limit}.
+
+\begin{lemma}[Explicit exponent on the good set]\label{lem:transfer-Q}
+Let $u_0\in\R^{B+1}$, $c'\ge1$, $\delta_1',\delta_2'>0$ and $A>0$ satisfy
+\begin{equation}\label{eq:transfer-A}
+A\ \ge\ \frac{8c'+4+2\ell_{\max}}{3},\qquad c'\ \ge\ 1+\ln^+\bigl(\lambda_{\max}+\delta_1'\bigr).
+\end{equation}
+Then for every $\mathbf D\in\mathcal T(\delta_1',\delta_2';A)$ and every profile $\mu$ for
+$\mathbf D$,
+\[
+\Xi(\mu;\mathbf D)\le\theta\beta+\Psi_0(K,B,\theta,u_0)+3\delta_2'+4c'\delta_1'+(6B+2)\,e^{-1-c'}.
+\]
+\end{lemma}
+
+\begin{proof}
+Take $\bar u$ and $\mu'$ from Lemma~\ref{lem:transfer-box} for this $\mu$. The same vector
+$\bar u\in U_A$ is admissible in each of the three infima of \eqref{eq:transfer-Xi}, so by the
+definition of $\mathcal T(\delta_1',\delta_2';A)$ and Lemma~\ref{lem:transfer-box},
+\begin{align*}
+\sum_{s=1}^3\inf_u\bigl[\widehat\Phi_s(u;\mathbf D)-\langle\mu,u\rangle\bigr]
+&\le3\bigl[\Phi(\bar u)-\langle\mu,\bar u\rangle\bigr]+3\delta_2'\\
+&=3\mathsf H(\mu')-\frac{3A}{2}\|\mu-\mu'\|_1+3\delta_2' .
+\end{align*}
+Since $\mu'\in\mathcal P$, (I3) gives
+$3\mathsf H(\mu')\le\Psi_0+2S_0(\mu')-\langle\ell,\mu'\rangle$. Write $\eps'$ for the last
+coordinate of $\mu'$, so that $S_0(\mu')=\sum_bg(\mu'_b,\lambda_b)+\varphi(\eps')+\eps'$, and
+put
+\[
+\widetilde S(\mu,\nu)=\sum_bg(\mu_b,\nu_b)+\varphi(\eps)+\eps ,
+\]
+so that the entropy terms of \eqref{eq:transfer-Xi} are $-2\widetilde S(\mu,\nu)$. Then
+\begin{equation}\label{eq:transfer-Q1}
+\Xi(\mu;\mathbf D)-\theta\beta-\Psi_0-3\delta_2'
+\le2\bigl[S_0(\mu')-\widetilde S(\mu,\nu)\bigr]+\langle\ell,\mu-\mu'\rangle-\frac{3A}{2}\|\mu-\mu'\|_1 .
+\end{equation}
+Since $g(x,y)=\varphi(x)+\varphi(y-x)-\varphi(y)$,
+\begin{multline*}
+g(\mu'_b,\lambda_b)-g(\mu_b,\nu_b)
+=\bigl[\varphi(\mu'_b)-\varphi(\mu_b)\bigr]+\bigl[\varphi(\lambda_b-\mu'_b)-\varphi(\nu_b-\mu_b)\bigr]\\
++\bigl[\varphi(\nu_b)-\varphi(\lambda_b)\bigr].
+\end{multline*}
+All six arguments lie in $[0,\lambda_{\max}+\delta_1']$, because $\mu'_b\le\lambda_b$,
+$\mu_b\le\nu_b$ and $\nu_b\le\lambda_b+\delta_1'$. With $z_b=|\mu_b-\mu'_b|$,
+$d_b=|\nu_b-\lambda_b|$ and Lemma~\ref{lem:transfer-entropy} (with
+$M=\lambda_{\max}+\delta_1'$), the three brackets are at most $c'z_b+e^{-1-c'}$,
+$c'(z_b+d_b)+e^{-1-c'}$ and $c'd_b+e^{-1-c'}$, so
+\[
+g(\mu'_b,\lambda_b)-g(\mu_b,\nu_b)\le c'(2z_b+2d_b)+3e^{-1-c'}.
+\]
+For the high coordinate, with $z_\infty=|\eps-\eps'|$ and $\eps,\eps'\in[0,1]$,
+Lemma~\ref{lem:transfer-entropy} (with $M=1$) gives
+$\varphi(\eps')+\eps'-\varphi(\eps)-\eps\le(c'+1)z_\infty+e^{-1-c'}$. Also
+$\langle\ell,\mu-\mu'\rangle\le\ell_{\max}\|\mu-\mu'\|_1$,
+$\sum_bz_b+z_\infty=\|\mu-\mu'\|_1$ and $\sum_bd_b\le\delta_1'$. Hence the right side of
+\eqref{eq:transfer-Q1} is at most
+\[
+\Bigl(4c'+2+\ell_{\max}-\frac{3A}{2}\Bigr)\|\mu-\mu'\|_1+4c'\delta_1'+(6B+2)\,e^{-1-c'},
+\]
+and the first coefficient is at most $0$ by \eqref{eq:transfer-A}.
+\end{proof}
+
+Lemma~\ref{lem:transfer-Q} needs no compactness and no continuity of $\mathsf H$ at the
+boundary of its domain. Its error is continuous in $(\delta_1',\delta_2')$ and tends to $0$ as
+$c'\to\infty$ and then $\delta_1',\delta_2'\to0$; this is the statement that the exponent of
+the first moment moves continuously with the star profile, with an explicit modulus.
+
+In \eqref{eq:transfer-A} one may use $\ell_{\max}\le\theta K$ whenever $-\theta K\le\ln J\le0$:
+indeed $\kappa_b/\lambda_b$ is the mean of $e^{-\theta x}$ under the probability measure with
+density $x^2/(2\lambda_b)$ on $I_b\subset[0,K]$, so $-\theta K\le\ell_b\le0$.
+
+\begin{proposition}[First moment on the enlarged good set]\label{prop:transfer-interface}
+Let $K\ge1$, $B\ge1$, $\theta>0$, $u_0\in\R^{B+1}$ and $\beta>0$ be such that
+\[
+m:=-\bigl(\theta\beta+\Psi_0(K,B,\theta,u_0)\bigr)>0 .
+\]
+Let $c'\ge1$, $A\ge(8c'+4+2\ell_{\max})/3$ and $\delta_1,\delta_2,\tau>0$ be such that
+\begin{equation}\label{eq:transfer-Err}
+\begin{gathered}
+c'\ge1+\ln^+\bigl(\lambda_{\max}+\delta_1+2\tau\bigr),\\
+\mathrm{Err}:=3\bigl(\delta_2+2\tau(A+\ln2)\bigr)+4c'(\delta_1+2\tau)+(6B+2)\,e^{-1-c'}<m .
+\end{gathered}
+\end{equation}
+Put $\mathcal G_q=\mathcal G_q(\delta_1,\delta_2;A)$. Then:
+\begin{itemize}
+\item[(i)] $\P(H\in\mathcal G_q)\to1$ in the market;
+\item[(ii)] $\mathcal G_q^{(2\tau)}\subset\mathcal G_q\bigl(\delta_1+2\tau,\ \delta_2+2\tau(A+\ln2);\ A\bigr)$;
+\item[(iii)] for $q^{2/3}\ge K$,
+\[
+\E'\bigl[Z_\beta;\ H'\in\mathcal G_q^{(2\tau)}\bigr]\le C\,q^{3B+2}\,e^{-(m-\mathrm{Err})\,q},
+\]
+\[
+C=c_{K,B}\,\bigl(1+\lambda_{\max}+\delta_1+2\tau\bigr)^{2B},
+\]
+with $c_{K,B}$ as in \eqref{eq:transfer-prefactor}. The constant $C$ depends on $K$, $B$ and
+$\delta_1+2\tau$, and not on $q$.
+\end{itemize}
+For every $\beta<-\Psi_0/\theta$ such constants exist: take $c'$ large, then $A$, then
+$\delta_1,\delta_2,\tau$ small.
+\end{proposition}
+
+\begin{proof}
+(ii) is \eqref{eq:transfer-enlarged}.
+
+(iii) Let $\delta_1'=\delta_1+2\tau$ and $\delta_2'=\delta_2+2\tau(A+\ln2)$. By (ii),
+$\{H'\in\mathcal G_q^{(2\tau)}\}\subset\{\mathbf D(H')\in\mathcal T(\delta_1',\delta_2';A)\}$.
+On $\mathcal T(\delta_1',\delta_2';A)$ every bin density is at most
+$\lambda_{\max}+\delta_1'$, so \eqref{eq:transfer-prefactor} applies with
+$M=\lambda_{\max}+\delta_1'$, and by Lemma~\ref{lem:transfer-Q} the supremum of $\Xi$ is at
+most $\theta\beta+\Psi_0+\mathrm{Err}=-(m-\mathrm{Err})$.
+
+(i) For $u\in U_A$ the vector $u-(\max u)\ind$ lies in the cube $[-A,0]^{B+1}$, and
+$\widehat\Phi_s$ and $\Phi$ change by the same constant under $u\mapsto u+c\ind$. So the
+supremum over $U_A$ in \eqref{eq:transfer-good} is at most the supremum over the cube. For $u$
+in the cube and $d\in\N^B$ we have $-A\le u_\infty\le L_u(d)\le\ln(1+|d|)$, hence
+$|L_u(d)|\le A+|d|$; moreover $\E L_u(D)=\Phi(u)$, and
+$|L_u(d)-L_{u'}(d)|\le\|u-u'\|_\infty$ for all $d$, because the gradient of $u\mapsto L_u(d)$ is
+a probability vector. Hence $\widehat\Phi_s(\cdot\,;\mathbf D)$ and $\Phi$ are $1$-Lipschitz in
+the supremum norm. Let $\mathcal N$ be a finite subset of the cube such that every point of
+the cube is within supremum distance $\delta_2/4$ of $\mathcal N$; it does not depend on $q$.
+Apply Proposition~\ref{prop:transfer-typical}(c) in each of the three sectors to the finitely
+many functions $L_u$, $u\in\mathcal N$, and $d\mapsto d_b$, $1\le b\le B$, whose mean under
+$\gamma$ is $\lambda_b$ and whose average over the agents of a sector is $\nu_b$. With
+probability tending to $1$ in the market,
+$|\widehat\Phi_s(u;H)-\Phi(u)|\le\delta_2/2$ for all $u\in\mathcal N$ and all $s$, and
+$|\nu_b(H)-\lambda_b|\le\delta_1/B$ for all $b$. On this event the supremum over the cube of
+$|\widehat\Phi_s-\Phi|$ is at most $\delta_2/2+2\cdot\delta_2/4=\delta_2$ and
+$\sum_b|\nu_b-\lambda_b|\le\delta_1$, that is, $H\in\mathcal G_q$.
+
+For the last assertion, $\mathrm{Err}\to(6B+2)e^{-1-c'}$ as $\delta_1,\delta_2,\tau\to0$ with
+$c'$ and $A$ fixed, and this limit is below $m$ for $c'$ large.
+\end{proof}
+
+\subsubsection*{Constants}
+
+At the certified parameters of (I4), $K=5$, $B=50$, $\eta=\tfrac1{10}$, $\theta=1.6712$, one
+has $\lambda_{\max}=7351/6000$, $\ln J\in[-6.10637801,\,-6.10637800]$ and therefore
+$\ell_{\max}\le\theta K=8.356$. (In floating point $\ell_{\max}=|\ell_{50}|\approx8.2718$.) The
+box size is taken as $A=(8c'+4+2\theta K)/3$, which satisfies \eqref{eq:transfer-A}.
+Table~\ref{tab:transfer-constants} lists three admissible choices of the constants of
+Proposition~\ref{prop:transfer-interface}, with $\Psi_0$ replaced by its certified upper bound
+$-3.84751328$.
+
+\begin{table}[ht]
+\caption{Constants for Proposition~\ref{prop:transfer-interface} at $K=5$, $B=50$,
+$\theta=1.6712$. Here $m=-(\theta\beta+\Psi_0)$ and $A=(8c'+4+2\theta K)/3$.}\label{tab:transfer-constants}
+{\footnotesize\setlength{\tabcolsep}{2.5pt}
+\begin{tabular}{@{}lllllllll@{}}
+\toprule
+$\beta$ & $m\ge$ & $c'$ & $A$ & $\delta_1$ & $\delta_2$ & $\tau$ & $\mathrm{Err}\le$ & $m-\mathrm{Err}\ge$ \\
+\midrule
+$2.30$ & $3.7532\cdot10^{-3}$ & $14$ & $44.2374$ & $10^{-5}$ & $2\cdot10^{-4}$ & $5\cdot10^{-6}$ & $3.1603\cdot10^{-3}$ & $5.929\cdot10^{-4}$ \\
+$2.302$ & $4.108\cdot10^{-4}$ & $17$ & $52.2374$ & $10^{-6}$ & $2\cdot10^{-5}$ & $2.5\cdot10^{-7}$ & $2.460\cdot10^{-4}$ & $1.648\cdot10^{-4}$ \\
+$2.30224$ & $9.79\cdot10^{-6}$ & $21$ & $62.9040$ & $5\cdot10^{-9}$ & $5\cdot10^{-7}$ & $5\cdot10^{-10}$ & $2.28\cdot10^{-6}$ & $7.5\cdot10^{-6}$ \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\emph{Provenance of the rows.} The rows $\beta=2.30$ and $\beta=2.302$ are evaluated by the
+hardened script \path{lemmaC/round3/final/certI/constants_rigorous.py}. The row
+$\beta=2.30224$ was evaluated in exact rational arithmetic by a referee's script,
+\path{lemmaC/round3/v13/exact_budget.py}, and is not used in the sequel: every later
+statement uses $\betaint=2.302$.
+
+
+The values of $A$ in the table are rounded up in the last digit. What the computations
+certify is the following. For the first two rows, the script
+\texttt{lemmaC/\allowbreak round3/\allowbreak final/\allowbreak certI/\allowbreak constants\_rigorous.py} checks, in interval arithmetic with
+verified exponential and logarithm, that $|\ln J|<\theta K$, that
+$c'\ge1+\ln^+(\lambda_{\max}+\delta_1+2\tau)$, and that
+$\theta\beta-3.84751328+\mathrm{Err}<0$ with the stated bounds; the constant $-3.84751328$ is
+asserted there, in exact rational arithmetic, to be at least the exact upper endpoint of the
+enclosure of $\Psi_0$ produced by \texttt{certify\_rigorous.py}. For the third row (and again
+for the first two) the script
+\texttt{lemmaC/\allowbreak round3/\allowbreak v13/\allowbreak exact\_budget.py} checks the same
+inequalities in exact rational arithmetic, with rational bounds for $\ln2$ and for the
+exponential. Details are in Section~\ref{sec:certificates}. Since
+$\{\Phiq\le\beta q^{1/3}\}$ increases with $\beta$, the second row alone suffices for
+Theorem~\ref{thm:integer} as stated; the first shows a larger margin and the third shows how the admissible $\tau$ shrinks as $\beta$
+approaches $-\Psi_0/\theta$. For the consequence $\Phiq\ge\betaint q^{1/3}$ with high
+probability, which is what Theorem~\ref{thm:main} uses, the second row suffices.
+
+\begin{remark}[What the good set uses]\label{rem:transfer-good}
+(1) In the exponent the enlargement costs $2\tau\,(3(A+\ln2)+4c')$, which is about
+$382\,\tau$ in the first row of Table~\ref{tab:transfer-constants}. So the method tolerates $\tau$ up to about
+$10^{-5}$ there, and nothing near $2\tau=1$. The explicit $\tau$ is small because
+Lemma~\ref{lem:transfer-entropy} is used with the same constant in every bin; it has not been
+optimised, and its size plays no role in Theorem~\ref{thm:integer}.
+(2) The good set uses two families of averages over the agents of a sector, of
+$d\mapsto d_b$ (one-team increment $1$) and of $d\mapsto L_u(d)$, $u\in U_A$ (one-team
+increment at most $A+\ln2$). Both are bounded by $A+|d|$ after normalisation, so
+Proposition~\ref{prop:transfer-typical}(c) applies. There is no condition on the maximal
+degree and no truncation of stars. A statistic with unbounded one-team increments, such as the
+mean of the squared degree, is typical by Proposition~\ref{prop:transfer-typical}(c) but is not
+stable in the sense of Lemma~\ref{lem:transfer-stability}.
+(3) $Z_\beta$ counts every perfect assignment with $\cost(N)<\beta q$, whatever mix of teams
+below and above $K$ it uses; the independent-team model has exactly $q^3$ teams with the exact
+one-team law of the market. No Poisson number of teams is introduced: ``Poisson'' refers only
+to the limit law $\gamma$ of a star.
+\end{remark}
+
+\subsection{Proof of Theorem~\ref{thm:integer}}\label{sec:transfer-assembly}
+
+It suffices to treat $\beta=\betaint=2.302$, because $\{\Phiq\le\beta q^{1/3}\}$ increases with
+$\beta$; the argument is the same for every $\beta$ with $m>0$.
+
+\emph{Order of choices.}
+\begin{enumerate}
+\item $K=5$, $B=50$ (so $\eta=\tfrac1{10}$), $\theta=1.6712$ and the weight vector
+$u_0=u^\ast$ of (I4). This fixes $\Psi_0\le-3.84751328$, $\lambda_{\max}=7351/6000$,
+$\ell_{\max}\le\theta K$, and the constants of the comparison,
+$C_1=36K^5/\eta^6=1.125\cdot10^{11}$ and $W_q=C_1q^{2/3}$.
+\item $\beta<-\Psi_0/\theta$, which gives the margin $m=-(\theta\beta+\Psi_0)>0$.
+\item $c'$, and then $A=(8c'+4+2\theta K)/3$.
+\item $\delta_1,\delta_2,\tau>0$ satisfying \eqref{eq:transfer-Err}
+(Table~\ref{tab:transfer-constants}, second row). This fixes the good set
+$\mathcal G_q=\mathcal G_q(\delta_1,\delta_2;A)$.
+\item $\zeta=\tfrac16$, so $s_0=q^{5/6}$.
+\item $q\to\infty$.
+\end{enumerate}
+
+\emph{The chain.} By \eqref{eq:transfer-Zevent},
+$\P(\Phiq\le\beta q^{1/3})=\P(Z_\beta\ge1)$. By
+Theorem~\ref{thm:transfer} with these $K$, $B$, $\beta$, $\tau$, $\zeta$ and
+$\mathcal G=\mathcal G_q$ (inequality \eqref{eq:transfer-comparison} and the union bound
+preceding \eqref{eq:transfer-union}), for $q\ge q_0(K,B,\tau)$,
+\begin{multline}\label{eq:transfer-chain}
+\P(Z_\beta\ge1)\le\P(H\notin\mathcal G_q)+\P\bigl(s(H)>q^{5/6}\bigr)+\P\bigl(|H|>K^3q\bigr)\\
++e^{R_q}\,\E'\bigl[Z_\beta;\ H'\in\mathcal G_q^{(2\tau)}\bigr]
++3\,e^{R_q}\,\E'[Z_\beta]\,e^{-(\tau/4)\,q\ln q},
+\end{multline}
+where, by \eqref{eq:transfer-Rq-explicit},
+\[
+R_q\le\tfrac{3}{40}K^5q^{2/3}+2K^6+q^{5/6}\ln\bigl(C_1q^{2/3}\bigr)+\tfrac12K^3C_1\,q^{2/3}
+=O\bigl(q^{5/6}\ln q\bigr).
+\]
+The five terms are bounded as follows.
+\begin{itemize}
+\item $\P(H\notin\mathcal G_q)\to0$, without a rate, by
+Proposition~\ref{prop:transfer-interface}(i), which rests on
+Proposition~\ref{prop:transfer-typical}(c).
+\item $\P(s(H)>q^{5/6})\le\tfrac{3}{40}K^5q^{-1/6}$ by
+Proposition~\ref{prop:transfer-typical}(b).
+\item $\P(|H|>K^3q)\le1/q$ by Proposition~\ref{prop:transfer-typical}(a).
+\item By Proposition~\ref{prop:transfer-interface}(iii),
+\[
+e^{R_q}\,\E'\bigl[Z_\beta;\ H'\in\mathcal G_q^{(2\tau)}\bigr]
+\le C\,q^{3B+2}\exp\bigl(R_q-(m-\mathrm{Err})\,q\bigr)\longrightarrow0,
+\]
+because $R_q=o(q)$ and $m-\mathrm{Err}>0$. All factors $e^{o(q)}$ of the first moment (the
+number of profiles, the binomial and factorial corrections, the cost of the simplicity
+conditioning and the factor $(1-p)^{-q}$) are contained in $C\,q^{3B+2}$.
+\item By Lemma~\ref{lem:transfer-plain}, since $\beta\le2.31$,
+\[
+3\,e^{R_q}\,\E'[Z_\beta]\,e^{-(\tau/4)\,q\ln q}
+\le3e^2(q+1)^2\exp\bigl(R_q+0.22\,q-\tfrac{\tau}{4}\,q\ln q\bigr)\longrightarrow0,
+\]
+because $\tau>0$.
+\end{itemize}
+Hence $\P(\Phiq\le\beta q^{1/3})\to0$. \qed
+
+\emph{Every excluded event.} In the market: $\{H\notin\mathcal G_q\}$,
+$\{s(H)>q^{5/6}\}$ and $\{|H|>K^3q\}$, the first three terms of \eqref{eq:transfer-chain}. In
+the independent-team model: for each candidate assignment $N$, the event $\{X_N>\tau q\}$ that
+more than $\tau q$ near-tight teams share a pair with $N$; it is excluded inside
+Lemma~\ref{lem:transfer-touch} and produces the last term of \eqref{eq:transfer-chain}. The
+teams above $K$ are handled by the union bound inside (I1). The exceptional event
+$\{D(G)\notin\mathcal T_\delta\}$ of Proposition~\ref{prop:iid-criterion} (stars not typical in
+the independent-team model) does not appear: typicality is needed only in the market.
+
+\begin{remark}[How large $q$ must be]\label{rem:transfer-size}
+Theorem~\ref{thm:integer} is asymptotic only. The proof gives no information for any $q$ that
+could be simulated, or whose decimal expansion could be written down in a paper of this
+length. Take the first row of Table~\ref{tab:transfer-constants} ($\beta=2.30$,
+$\tau=5\cdot10^{-6}$, $m-\mathrm{Err}\ge5.9\cdot10^{-4}$).
+(1) The term $\tfrac12K^3C_1q^{2/3}=7.0\cdot10^{12}\,q^{2/3}$ of $R_q$ is below
+$(m-\mathrm{Err})\,q$ only for $q>1.6\cdot10^{48}$.
+(2) Lemma~\ref{lem:transfer-touch} is stated for $q\ge(eK^3C_1/\tau)^{12}$, which is about
+$10^{227}$.
+(3) The binding requirement is in the last term of \eqref{eq:transfer-chain}. The tail bound in
+the proof of Lemma~\ref{lem:transfer-touch} is $2r_q^{\tau q}=
+2\exp\bigl(-\tfrac{\tau}{3}\,q\ln q+\tau q\ln(eK^3C_1/(2\tau))\bigr)$, and it has to beat the
+plain first moment, which is bounded only by $(\beta^3e/27)^q=e^{0.203\,q}$. This needs
+$\tfrac{\tau}{3}\ln q>0.203$, that is $\ln q>1.2\cdot10^{5}$, or $q$ above about
+$10^{52{,}900}$. (With the rate $\tau/4$ used in the statement of the lemma the threshold is
+higher still.) For the second and third rows of the table the same requirement reads
+$\ln q>2.4\cdot10^{6}$ and $\ln q>1.2\cdot10^{9}$.
+The slow convergence is already visible in the typicality step: by
+\eqref{eq:transfer-constants}, the expected number of pair-sharings per near-tight team is
+$2\Gamma_q/\E|H|\le\tfrac{9}{10}K^2q^{-1/3}$, which at $K=5$ is below $0.1$ only for $q$ above
+about $10^{7}$.
+\end{remark}

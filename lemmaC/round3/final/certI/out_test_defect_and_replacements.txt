@@ -1,0 +1,26 @@
+mpmath 1.3.0, backend python, N = 100000 per family
+
+A. defect of iv.exp / iv.log
+  prec  80 iv.exp: lower endpoint above the true value 0 times, upper endpoint below it 21 times, of 100000; worst relative violation 1.99e-28 (2^-prec = 8.3e-25)  [5s]
+     witness x = -0.29859454521010687 (= -0x1.31c2c4b9c3ff0p-2 exactly): iv.exp(x) upper endpoint = 0.74186013921160060481265813992695; rigorous 200-bit enclosure of the true value: [0.74186013921160060481265814002347, 0.74186013921160060481265814002347]; violation proved: True
+  prec  80 iv.log: lower endpoint above the true value 0 times, upper endpoint below it 1 times, of 1000000; worst relative violation 3.04e-30 (2^-prec = 8.3e-25)  [41s]
+     witness x = 1.3531278307468926 (= 0x1.5a6695e45d861p+0 exactly): iv.log(x) upper endpoint = 0.30241882421347077019025792287843; rigorous 200-bit enclosure of the true value: [0.30241882421347077019025792287935, 0.30241882421347077019025792287935]; violation proved: True
+  prec 120 iv.exp: lower endpoint above the true value 0 times, upper endpoint below it 15 times, of 100000; worst relative violation 3.80e-40 (2^-prec = 7.5e-37)  [5s]
+  prec 120 iv.log: lower endpoint above the true value 0 times, upper endpoint below it 0 times, of 1000000; worst relative violation 0.00e+00 (2^-prec = 7.5e-37)  [41s]
+
+B. replacements at prec 80 (as used by certify_rigorous.py and constants_rigorous.py)
+  rexp on points: 0 failures of 100000; largest relative width 1.41e-17; 159 us per call
+  rexp on intervals of relative width 1e-12..1e-1: 0 failures of 60000 point checks
+  rlog on points: 0 failures of 100000; largest relative width 2.32e-17; 333 us per call
+  rlog on intervals of relative width 1e-12..1e-1: 0 failures of 60000 point checks
+
+C. iv + - * / at prec 80 against exact rationals (points and wide intervals of either sign; corners and one interior pair)
+  0 failures of 468775 containment checks
+
+D. Euler's constant
+  rigorous enclosure [0.57721566490088, 0.57721566491124] contains the 600-bit value: True; width 1.03e-11
+  iv.euler (80 bits) contains it: True  (not used by the hardened scripts; its fixed-point routine carries no proof of directed rounding)
+
+E. decimal hand-off
+  dec_le / dec_ge: 0 failures of 20000 (exact rational comparison)
+  old routine iv.nstr(endpoint, 12): printed upper bound below the upper endpoint in 10055 of 20000 cases; printed lower bound above the lower endpoint in 9945

@@ -1,0 +1,4 @@
+reference L*=-3.849435 at beta=0.55729
+trial  0 kind 0: L0-L*=-2.775e+00 -> L-L*=-8.106e-02 e=2.37349 Sigma=+0.0377 max|u-u*|(xi<5)=1.95e+01
+trial  1 kind 1: L0-L*=-1.948e+00 -> L-L*=-8.195e-01 e=1.82696 Sigma=-1.6145 max|u-u*|(xi<5)=1.04e+02
+trial  2 kind 2: L0-L*=-1.941e-01 -> L-L*=-2.357e-08 e=2.30248 Sigma=-0.0000 max|u-u*|(xi<5)=5.45e-03

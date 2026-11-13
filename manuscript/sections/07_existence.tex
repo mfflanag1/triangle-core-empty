@@ -1,0 +1,665 @@
+\section{Existence and cost of a fixed point}\label{sec:existence}
+
+Theorem~\ref{thm:process} turns a fixed point $\mu$ of the recursion map $\RDE$ into an
+invariant perfect matching on the Poisson hypertree of cost $9\,\E X$, $X\sim\mu$. This
+section supplies the fixed point and bounds its cost.
+
+\begin{theorem}[existence and cost]\label{thm:existence}
+\begin{enumerate}
+\item[(i)] The map $\RDE$ has a fixed point: there is a probability law $\mu$ on $\R$ with
+$\RDE(\mu)=\mu$.
+\item[(ii)] Every fixed point $\mu$ of $\RDE$ satisfies $9\,\E X\le\alphalp=2.2519$, where
+$X\sim\mu$.
+\end{enumerate}
+\end{theorem}
+
+\begin{corollary}\label{cor:existence-matching}
+There is an invariant random perfect matching $M$ on the Poisson hypertree $\tree$ with cost
+$c(M)\le\alphalp=2.2519$.
+\end{corollary}
+
+\begin{proof}
+Theorem~\ref{thm:existence} and Theorem~\ref{thm:process}.
+\end{proof}
+
+Uniqueness of the fixed point is neither needed nor claimed. The proof has three parts. The
+map $\RDE$ preserves the class of laws with increasing failure rate and is monotone on it for
+the dispersive order (Theorem~\ref{thm:mono}); the dispersive order ignores shifts, which is
+what makes it suitable for a map under which a shift by $a$ becomes a shift by $-2a$. A cost
+functional $c(\cdot)$ that equals $9\,\E X$ at a fixed point is antitone for the same order
+(Lemma~\ref{lem:existence-cost}). Hence every law below a fixed point gives an upper bound on
+its cost, the iterates of $\RDE$ started from $\delta_0$ are such laws, and they converge
+below an explicit super-solution, which gives existence. Part (ii) is then reduced to one
+inequality for one explicit law, $c(\tilde Q_{10})\le2.2519$, and that inequality is the
+computer-assisted step (Proposition~\ref{prop:existence-certificate}).
+
+\subsection{Increasing failure rate and the dispersive order}\label{subsec:existence-ifr}
+
+Throughout, $E,E_1,E_2$ are independent standard exponential variables.
+
+\begin{definition}\label{def:existence-Q}
+$\mathcal{Q}$ is the set of concave nondecreasing functions $Q:(0,\infty)\to\R$ such that
+$\E|Q(E)|^n<\infty$ for every $n\ge1$. For $Q\in\mathcal{Q}$, $\mu_Q$ is the law of $Q(E)$.
+For $Q_0,Q_1\in\mathcal{Q}$ write
+\[
+  Q_0\disp Q_1\quad\text{if and only if}\quad Q_1-Q_0\text{ is nondecreasing on }(0,\infty).
+\]
+\end{definition}
+
+The function $\theta\mapsto Q(\theta)$ is the quantile function of $\mu_Q$ in the exponential
+scale: $Q(\theta)$ is the quantile of order $1-e^{-\theta}$. For $x\in\R$ put
+$a_Q(x)=\inf\{\theta>0:Q(\theta)>x\}\in[0,\infty]$. Since $Q$ is continuous and nondecreasing,
+$\{Q>x\}=(a_Q(x),\infty)$ and
+\begin{equation}\label{eq:existence-survival}
+  \P(Q(E)>x)=\exp(-a_Q(x)),\qquad x\in\R ,
+\end{equation}
+with the convention $e^{-\infty}=0$. The function $a_Q$ is convex: if
+$a_Q(x_0),a_Q(x_1)<\infty$, $\lambda\in(0,1)$ and $\theta_j>a_Q(x_j)$, then by concavity
+$Q((1-\lambda)\theta_0+\lambda\theta_1)\ge(1-\lambda)Q(\theta_0)+\lambda Q(\theta_1)
+>(1-\lambda)x_0+\lambda x_1$, so
+$a_Q((1-\lambda)x_0+\lambda x_1)\le(1-\lambda)\theta_0+\lambda\theta_1$; now let
+$\theta_j\downarrow a_Q(x_j)$. So the survival function of $\mu_Q$ is log-concave: $\mu_Q$ has
+\emph{increasing failure rate} (IFR). The class $\mathcal{Q}$ contains $Q\equiv0$, for which
+$\mu_Q=\delta_0$, and functions that are constant on a half-line $[\theta_N,\infty)$, for which
+$\mu_Q$ has an atom of mass $e^{-\theta_N}$ at its upper end. Conversely, a law with moments of every
+order and survival function $\exp(-G)$, where $G$ is a convex increasing bijection of $\R$ onto
+$(0,\infty)$, is $\mu_Q$ for the concave increasing function $Q=G^{-1}\in\mathcal{Q}$.
+
+The relation $\disp$ is the dispersive order of the laws $\mu_{Q_0},\mu_{Q_1}$
+\cite{ShakedShanthikumar07}, written on quantile functions. It is reflexive and transitive, it
+ignores additive constants ($Q\disp Q+a\disp Q$ for every $a\in\R$), and $0\disp Q$ for every
+$Q\in\mathcal{Q}$. The set $\mathcal{Q}$ is convex, and if $Q_0\disp Q_1$ then
+$Q_0\disp Q_\tau\disp Q_1$ for $Q_\tau=Q_0+\tau(Q_1-Q_0)$, $\tau\in[0,1]$.
+
+\begin{lemma}[the map on quantile functions]\label{lem:existence-map}
+Let $Q\in\mathcal{Q}$, $Y=Q(E_1)+Q(E_2)$, $t_Q=-2\sup Q\in[-\infty,\infty)$ and
+\begin{equation}\label{eq:existence-g}
+  g_Q(t)=\tfrac16\,\E\bigl(t+Q(E_1)+Q(E_2)\bigr)_+^3,\qquad t\in\R .
+\end{equation}
+\begin{enumerate}
+\item[(i)] $g_Q$ is finite, convex, nondecreasing and twice continuously differentiable, with
+$g_Q'(t)=\tfrac12\E(t+Y)_+^2$ and $g_Q''(t)=\E(t+Y)_+$. It vanishes on $(-\infty,t_Q]$ and is
+an increasing bijection of $(t_Q,\infty)$ onto $(0,\infty)$, with $g_Q'>0$ there.
+\item[(ii)] The infimum defining $\RDE(\mu_Q)$ is almost surely finite and attained, and
+$\RDE(\mu_Q)$ has survival function $\exp(-g_Q)$. Let
+\[
+  \RDE(Q):=\bigl(g_Q|_{(t_Q,\infty)}\bigr)^{-1}:(0,\infty)\to(t_Q,\infty).
+\]
+Then $\RDE(Q)$ is concave, increasing and twice continuously differentiable,
+$\RDE(Q)\in\mathcal{Q}$, and $\RDE(\mu_Q)=\mu_{\RDE(Q)}$.
+\item[(iii)] Shift law: $\RDE(Q+a)=\RDE(Q)-2a$ for $a\in\R$. Scaling law:
+$\RDE(aQ)(\theta)=a\,\RDE(Q)(\theta/a^3)$ for $a>0$.
+\item[(iv)] Let $s_Q(\theta)=g_Q'(\RDE(Q)(\theta))$ be the slope of $g_Q$ at level
+$\theta>0$. Then $s_Q$ is positive, continuous and nondecreasing, $s_{Q+a}=s_Q$, and
+$\RDE(Q)'(\theta)=1/s_Q(\theta)$. Consequently, for $Q_0,Q_1\in\mathcal{Q}$,
+\[
+  \RDE(Q_0)\disp\RDE(Q_1)\quad\text{if and only if}\quad s_{Q_1}\le s_{Q_0}\text{ on }(0,\infty).
+\]
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(i) $Y$ has moments of every order, so $g_Q$ is finite and differentiation under the
+expectation gives the two derivatives and their continuity. Convexity follows from that of
+$t\mapsto(t+y)_+^3$. Since $Q$ is nondecreasing and $E$ has full support in $(0,\infty)$, the
+essential supremum of $Y$ is $2\sup Q$; so $\P(Y>-t)>0$ if and only if $t>t_Q$, which gives the
+vanishing of $g_Q$ on $(-\infty,t_Q]$ and $g_Q'>0$ on $(t_Q,\infty)$. Finally $g_Q(t)\to0$ as
+$t\downarrow t_Q$ by continuity (or dominated convergence if $t_Q=-\infty$), and
+$g_Q(t)\to\infty$ as $t\to\infty$ by monotone convergence.
+
+(ii) As in the proof of Lemma~\ref{lem:tree-G}, with $Y_k=X_k'+X_k''$ and $(X_k',X_k'')$
+independent with law $\mu_Q\otimes\mu_Q$, the number $N(x)$ of indices $k$ with
+$\xi_k-Y_k\le x$ is a Poisson variable with mean $g_Q(x)<\infty$. So almost surely finitely
+many points lie below every level, the infimum is attained and finite, and
+$\P(\inf_k(\xi_k-Y_k)>x)=\P(N(x)=0)=\exp(-g_Q(x))$. On the other hand, for $t>t_Q$,
+$\P(\RDE(Q)(E)>t)=\P(E>g_Q(t))=\exp(-g_Q(t))$, and for $t\le t_Q$ both survival functions equal
+one. So $\RDE(\mu_Q)=\mu_{\RDE(Q)}$. The inverse of a convex increasing $C^2$ function with
+positive derivative is concave, increasing and $C^2$. For the moments, the two tail bounds in
+the proof of Lemma~\ref{lem:tree-G}(iii) use only the formula $\exp(-g_Q)$ for the survival
+function of the output and the moments of $Y_+$: with $p=\P(Y>-m)>0$ they give
+$\P(\RDE(Q)(E)>x)\le\exp(-p(x-m)^3/6)$ for $x>m$ and
+$\E\,\RDE(Q)(E)_-^n\le\E Y_+^{n+3}/((n+1)(n+2)(n+3))$.
+
+(iii) $g_{Q+a}(t)=g_Q(t+2a)$, and $g_{aQ}(t)=\tfrac16\E(t+aY)_+^3=a^3g_Q(t/a)$; invert.
+
+(iv) $g_Q'$ is positive, continuous and nondecreasing on $(t_Q,\infty)$ and $\RDE(Q)$ is
+continuous and increasing, so $s_Q$ has the three properties. The identity $s_{Q+a}=s_Q$
+follows from $g_{Q+a}(t)=g_Q(t+2a)$. The derivative of the inverse function is
+$\RDE(Q)'(\theta)=1/g_Q'(\RDE(Q)(\theta))$. Both $\RDE(Q_j)$ are continuously differentiable,
+so $\RDE(Q_1)-\RDE(Q_0)$ is nondecreasing if and only if $1/s_{Q_1}\ge1/s_{Q_0}$.
+\end{proof}
+
+We write $\RDE$ both for the map on laws and for the map $Q\mapsto\RDE(Q)$ on $\mathcal{Q}$;
+by (ii) they agree. For $Q\in\mathcal{Q}$ put
+\begin{equation}\label{eq:existence-Gamma}
+  \Gamma(Q)=\E\,\RDE(Q)(E)+2\,\E\,Q(E),\qquad c(Q)=3\,\Gamma(Q).
+\end{equation}
+By the shift law, $\Gamma(Q+a)=\Gamma(Q)$ for every $a\in\R$. (The letter $c$ is also used for
+the cost \eqref{eq:tree-cost} of a matching; part (iii) of the next lemma says that the two
+agree at a fixed point.)
+
+\begin{lemma}[fixed points are IFR]\label{lem:existence-fixed}
+\begin{enumerate}
+\item[(i)] If $\mu$ is a fixed point of $\RDE$ and $G$ is the function \eqref{eq:tree-G}, then
+$Q^*:=G^{-1}$ belongs to $\mathcal{Q}$, $\mu=\mu_{Q^*}$ and $\RDE(Q^*)=Q^*$.
+\item[(ii)] If $Q\in\mathcal{Q}$ and $\RDE(Q)=Q$, then $\mu_Q$ is a fixed point of $\RDE$.
+\item[(iii)] If $Q^*\in\mathcal{Q}$, $\RDE(Q^*)=Q^*$ and $X\sim\mu_{Q^*}$, then
+$\Gamma(Q^*)=3\,\E X$ and $c(Q^*)=9\,\E X$, the cost of the matching of
+Theorem~\ref{thm:process}.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(i) By Lemma~\ref{lem:tree-G}(i), $G$ is a convex increasing $C^2$ bijection of $\R$ onto
+$(0,\infty)$ and $\P(X>x)=\exp(-G(x))$. So $G(X)$ is a standard exponential variable, $X$ has
+the law of $Q^*(E)$ with $Q^*=G^{-1}$ concave and increasing, and all moments are finite by
+Lemma~\ref{lem:tree-G}(iii). Since $X',X''$ have law $\mu_{Q^*}$, $g_{Q^*}=G$ and therefore
+$\RDE(Q^*)=G^{-1}=Q^*$. (ii) is Lemma~\ref{lem:existence-map}(ii). (iii)
+$\Gamma(Q^*)=\E\,\RDE(Q^*)(E)+2\,\E Q^*(E)=3\,\E Q^*(E)=3\,\E X$.
+\end{proof}
+
+\subsection{Monotonicity}\label{subsec:existence-mono}
+
+A function $f:\R^d\to[0,\infty)$ is \emph{log-concave} if
+$f((1-\lambda)u+\lambda w)\ge f(u)^{1-\lambda}f(w)^{\lambda}$ for all $u,w$ and
+$\lambda\in(0,1)$. Indicators of convex sets are log-concave and products of log-concave
+functions are log-concave. Pr\'ekopa's theorem \cite{Prekopa73} states that if $f$ is
+log-concave on $\R^{d}\times\R^{d'}$ then $u\mapsto\int_{\R^{d'}}f(u,w)\dd w$ is log-concave
+on $\R^d$ (it may take the value $+\infty$; in the applications below it is finite).
+
+\begin{lemma}[log-concavity of the truncated moments]\label{lem:existence-logconcave}
+Let $Q\in\mathcal{Q}$, $X=Q(E)$ and, for $k\ge0$ and $u\in\R$,
+\[
+  M_k(u)=\frac{1}{k!}\,\E(u+X)_+^k,\qquad M_0(u)=\P(X>-u).
+\]
+Then every $M_k$ is log-concave, and $M_2/M_1$ is nondecreasing on the open half-line
+$\{M_1>0\}=(-\sup Q,\infty)$.
+\end{lemma}
+
+\begin{proof}
+By \eqref{eq:existence-survival}, $M_0(u)=\exp(-a_Q(-u))$ with $a_Q$ convex with values in
+$[0,\infty]$; so $M_0$ is log-concave. This covers laws with an atom at the upper end and the
+law $\delta_0$, for which $M_0=\ind_{(0,\infty)}$. For $k\ge0$,
+\[
+  M_{k+1}(u)=\int_{-\infty}^uM_k(w)\dd w=\int_\R M_k(w)\,\ind\{w\le u\}\dd w ,
+\]
+because $(u+x)_+^{k+1}/(k+1)!=\int_{-\infty}^u(w+x)_+^k/k!\dd w$. If $M_k$ is log-concave then
+$(u,w)\mapsto M_k(w)\ind\{w\le u\}$ is log-concave on $\R^2$, and $M_{k+1}$ is log-concave by
+Pr\'ekopa's theorem. By induction all $M_k$ are log-concave. $M_1$ and $M_2$ are positive
+exactly on $(-\sup Q,\infty)$. On that half-line $M_2$ is continuously differentiable with
+$M_2'=M_1$ and $\ln M_2$ is concave, so $(\ln M_2)'=M_1/M_2$ is positive and nonincreasing.
+Hence $M_2/M_1$ is nondecreasing.
+\end{proof}
+
+\begin{theorem}[monotonicity]\label{thm:mono}
+Let $Q_0,Q_1\in\mathcal{Q}$. If $Q_0\disp Q_1$, then
+$\RDE(Q_0)\disp\RDE(Q_1)$.
+\end{theorem}
+
+\begin{proof}
+Let $\Delta=Q_1-Q_0$, which is nondecreasing, and $Q_\tau=Q_0+\tau\Delta\in\mathcal{Q}$ for
+$\tau\in[0,1]$. By Lemma~\ref{lem:existence-map}(iv) it is enough to show that
+$\tau\mapsto s_{Q_\tau}(\theta)$ is nonincreasing for every $\theta>0$. Write
+$X^j=Q_\tau(E_j)$, $Y=X^1+X^2$ and $g_\tau=g_{Q_\tau}$.
+
+\emph{Derivatives in $\tau$.} The functions $y\mapsto y_+^3$ and $y\mapsto y_+^2$ are
+continuously differentiable, $|Q_\tau(E_j)|\le|Q_0(E_j)|+|Q_1(E_j)|$, and all these variables
+have moments of every order. So by dominated convergence, and by the symmetry between $E_1$
+and $E_2$,
+\[
+  \partial_\tau g_\tau(t)=\E\bigl[(t+Y)_+^2\,\Delta(E_1)\bigr],\qquad
+  \partial_\tau g_\tau'(t)=2\,\E\bigl[(t+Y)_+\,\Delta(E_1)\bigr],
+\]
+and these, together with $g_\tau'(t)$ and $g_\tau''(t)$, are jointly continuous in
+$(\tau,t)$. Thus $(\tau,t)\mapsto g_\tau(t)$ and $(\tau,t)\mapsto g_\tau'(t)$ are continuously
+differentiable.
+
+\emph{Derivative of the slope at a level.} Fix $\theta>0$ and let $t=t(\tau)=\RDE(Q_\tau)(\theta)$,
+so that $g_\tau(t)=\theta$ and $g_\tau'(t)>0$. By the implicit function theorem $t(\tau)$ is
+continuously differentiable with $\partial_\tau t=-\partial_\tau g_\tau(t)/g_\tau'(t)$. Hence
+$s_{Q_\tau}(\theta)=g_\tau'(t(\tau))$ is continuously differentiable in $\tau$ and
+\begin{align}
+  \frac{\dd}{\dd\tau}s_{Q_\tau}(\theta)
+  &=\partial_\tau g_\tau'(t)-g_\tau''(t)\,\frac{\partial_\tau g_\tau(t)}{g_\tau'(t)}\notag\\
+  &=2\,\E(t+Y)_+\cdot\Bigl(\E^{(1)}[\Delta(E_1)]-\E^{(2)}[\Delta(E_1)]\Bigr),\label{eq:existence-dslope}
+\end{align}
+where $\E^{(k)}$ is the expectation under the probability measure $\P^{(k)}$ with density
+$(t+Y)_+^k/\E(t+Y)_+^k$ with respect to $\P$; note that $\E(t+Y)_+^k>0$ because
+$g_\tau'(t)>0$.
+
+\emph{Sign.} Let $M_k$ be the functions of Lemma~\ref{lem:existence-logconcave} for the law of
+$X^2=Q_\tau(E_2)$. Conditioning on $E_1$, $\E[(t+Y)_+^k\mid E_1=e]=k!\,M_k(t+Q_\tau(e))$, so
+under $\P^{(k)}$ the variable $E_1$ has density
+\[
+  p_k(e)=\frac{k!\,e^{-e}\,M_k(t+Q_\tau(e))}{\E(t+Y)_+^k},\qquad e>0 .
+\]
+The densities $p_1$ and $p_2$ are positive on the same set
+$I=\{e>0:t+Q_\tau(e)>-\sup Q_\tau\}$, which is an up-set because $Q_\tau$ is nondecreasing. On
+$I$ the ratio $r=p_2/p_1$ is a positive multiple of $(M_2/M_1)(t+Q_\tau(e))$, which is
+nondecreasing in $e$ by Lemma~\ref{lem:existence-logconcave}. Now $\E^{(1)}[r(E_1)]=1$,
+$\E^{(2)}[\Delta(E_1)]=\E^{(1)}[\Delta(E_1)\,r(E_1)]$, and all the expectations involved are
+finite because $\Delta(E_1)$ has moments of every order under $\P$. With $E_1'$ an independent
+copy of $E_1$ under $\P^{(1)}$,
+\[
+  \E^{(2)}[\Delta(E_1)]-\E^{(1)}[\Delta(E_1)]
+  =\tfrac12\,\E^{(1)}\bigl[(\Delta(E_1)-\Delta(E_1'))\,(r(E_1)-r(E_1'))\bigr]\ge0 ,
+\]
+since $\Delta$ and $r$ are both nondecreasing. So the bracket in \eqref{eq:existence-dslope}
+is at most $0$, $\tau\mapsto s_{Q_\tau}(\theta)$ is nonincreasing, and
+$s_{Q_1}(\theta)\le s_{Q_0}(\theta)$ for every $\theta>0$.
+\end{proof}
+
+\begin{remark}\label{rem:existence-mono}
+No preservation of the dispersive order under convolution is used. Only the slope-at-level
+function of the output has to be compared, and for that the log-concavity of $M_2$, which is
+what the IFR property of one summand provides, is enough. Restricting to IFR laws costs
+nothing: every output of $\RDE$ is IFR by Lemma~\ref{lem:existence-map}(ii).
+\end{remark}
+
+\subsection{Cost comparison}\label{subsec:existence-cost}
+
+\begin{lemma}[cost comparison]\label{lem:existence-cost}
+If $Q_0,Q_1\in\mathcal{Q}$ and $Q_0\disp Q_1$, then $\Gamma(Q_0)\ge\Gamma(Q_1)$, that is,
+$c(Q_0)\ge c(Q_1)$.
+\end{lemma}
+
+\begin{proof}
+$\Gamma$ is invariant under shifts, so we may assume $\E Q_0(E)=\E Q_1(E)=0$. Then
+$Q_1(E)=Q_0(E)+\Delta(E)$ with $\Delta$ nondecreasing and $\E\Delta(E)=0$. Let $\varphi$ be a
+convex continuously differentiable function with $\varphi'$ of polynomial growth, and $a\in\R$.
+By convexity,
+\[
+  \E\varphi(Q_1(E)+a)\ge\E\varphi(Q_0(E)+a)+\E\bigl[\varphi'(Q_0(E)+a)\,\Delta(E)\bigr]
+  \ge\E\varphi(Q_0(E)+a),
+\]
+because $\E[\varphi'(Q_0(E)+a)\Delta(E)]$ is the covariance of two nondecreasing functions of
+$E$, which is nonnegative. Apply this with $\varphi(y)=(t+y)_+^3/6$, first to $E_1$
+conditionally on $E_2$ with $a=Q_1(E_2)$, then to $E_2$ conditionally on $E_1$ with
+$a=Q_0(E_1)$:
+\begin{align*}
+  g_{Q_1}(t)=\E\varphi(Q_1(E_1)+Q_1(E_2))&\ge\E\varphi(Q_0(E_1)+Q_1(E_2))\\
+  &\ge\E\varphi(Q_0(E_1)+Q_0(E_2))=g_{Q_0}(t).
+\end{align*}
+So $g_{Q_1}\ge g_{Q_0}$ pointwise, hence $\RDE(Q_1)\le\RDE(Q_0)$ pointwise on $(0,\infty)$, and
+$\Gamma(Q_1)=\E\,\RDE(Q_1)(E)\le\E\,\RDE(Q_0)(E)=\Gamma(Q_0)$.
+\end{proof}
+
+\begin{corollary}[laws below a fixed point]\label{cor:existence-enclosure}
+Let $Q_n=\RDE^n(0)$, $n\ge0$, be the iterates of $\RDE$ started from the law $\delta_0$, and
+$c_n=c(Q_n)$.
+\begin{enumerate}
+\item[(i)] $Q_0\disp Q_1\disp Q_2\disp\cdots$ and $c_0\ge c_1\ge c_2\ge\cdots$.
+\item[(ii)] Let $Q^*\in\mathcal{Q}$ with $\RDE(Q^*)=Q^*$. For every $Q\in\mathcal{Q}$ with
+$Q\disp Q^*$ we have $\RDE(Q)\disp Q^*$ and $c(Q^*)\le c(Q)$. In particular $Q_n\disp Q^*$ and
+$c(Q^*)\le c_n$ for every $n$.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+(i) $0\disp Q_1$; apply Theorem~\ref{thm:mono} repeatedly, then
+Lemma~\ref{lem:existence-cost}. (ii) $\RDE(Q)\disp\RDE(Q^*)=Q^*$ by Theorem~\ref{thm:mono}, and
+$c(Q^*)\le c(Q)$ by Lemma~\ref{lem:existence-cost}. Since $0\disp Q^*$, induction gives
+$Q_n\disp Q^*$.
+\end{proof}
+
+Here $g_{0}(t)=t_+^3/6$, so $Q_1(\theta)=(6\theta)^{1/3}$, the law with survival function
+$\exp(-x^3/6)$ on $[0,\infty)$, and $c_0=3\,\E(6E)^{1/3}=3\cdot6^{1/3}\,\Gamma(4/3)$ with
+$\Gamma(\cdot)$ here the Gamma function. By Lemma~\ref{lem:existence-fixed} and
+Corollary~\ref{cor:existence-enclosure}(ii), every fixed point of $\RDE$ has
+$9\,\E X\le c_n$ for every $n$.
+
+\subsection{The scaling law and a super-solution}\label{subsec:existence-super}
+
+\begin{lemma}[super-solution]\label{lem:existence-super}
+Let $R(\theta)=\ln\theta$ for $0<\theta\le1$ and $R(\theta)=3(\theta^{1/3}-1)$ for
+$\theta\ge1$. Then $R\in\mathcal{Q}$, and there is a finite $a\ge1$ with
+$\RDE(aR)\disp aR$.
+\end{lemma}
+
+The multiplier $a$ is obtained from a supremum that is shown to be finite; no numerical value
+is claimed or needed.
+
+\begin{proof}
+\emph{The law of $R(E)$.} $R$ is continuously differentiable with $R'(\theta)=1/\theta$ on
+$(0,1]$ and $R'(\theta)=\theta^{-2/3}$ on $[1,\infty)$, positive and nonincreasing; so $R$ is
+concave and increasing. $R(E)$ has moments of every order, and for every $\lambda>0$
+\begin{equation}\label{eq:existence-expmoment}
+  \E e^{\lambda R(E)}=\int_0^1\theta^{\lambda}e^{-\theta}\dd\theta
+  +\int_1^\infty e^{3\lambda(\theta^{1/3}-1)-\theta}\dd\theta<\infty .
+\end{equation}
+
+\emph{Reduction by scaling.} For a differentiable $Q$ put $\ell_Q(\theta)=\theta Q'(\theta)$.
+Then $\ell_R(\theta)=\max(1,\theta^{1/3})$ and $\ell_{aR}=a\,\ell_R$. By the scaling law,
+$\RDE(aR)'(\theta)=a^{-2}\RDE(R)'(\theta/a^3)$, so
+$\ell_{\RDE(aR)}(\theta)=a\,\ell_{\RDE(R)}(\theta/a^3)$. Both $aR$ and $\RDE(aR)$ are
+continuously differentiable, so
+\begin{equation}\label{eq:existence-super-red}
+  \RDE(aR)\disp aR\iff\ell_{\RDE(R)}(\vartheta)\le\ell_R(a^3\vartheta)\ \text{ for all }\vartheta>0 .
+\end{equation}
+
+\emph{Log-concavity.} Let $Y=R(E_1)+R(E_2)$ and $M_k(t)=\E(t+Y)_+^k/k!$, so that $g_R=M_3$,
+$g_R'=M_2$, and
+\[
+  \ell_{\RDE(R)}(\vartheta)=\frac{\vartheta}{s_R(\vartheta)}=\frac{M_3(t)}{M_2(t)}
+  \qquad\text{at the point $t$ with }g_R(t)=\vartheta .
+\]
+Since $\sup R=\infty$, $t$ ranges over $\R$ and every $M_k$ is positive on $\R$. Let
+$m_0(u)=\P(R(E)>-u)$, which is log-concave by Lemma~\ref{lem:existence-logconcave}. The area
+of the triangle $\{u_1>-x_1,\ u_2>-x_2,\ u_1+u_2\le t\}$ is $(t+x_1+x_2)_+^2/2$, so
+\[
+  M_2(t)=\int_{\R^2}m_0(u_1)\,m_0(u_2)\,\ind\{u_1+u_2\le t\}\dd u_1\dd u_2 .
+\]
+The integrand is log-concave on $\R^3$, so $M_2$ is log-concave by Pr\'ekopa's theorem
+\cite{Prekopa73}, and then so is $M_3(t)=\int_\R M_2(w)\ind\{w\le t\}\dd w$. The law of $Y$ has
+a density, so $M_0(t)=\P(Y>-t)$ is continuous, $M_1$ is $C^1$ with $M_1'=M_0$, $M_2$ is $C^2$
+and $M_3$ is $C^3$, with $M_{k+1}'=M_k$. Log-concavity of the $C^2$ functions $M_3$ and $M_2$
+means $M_3''M_3\le(M_3')^2$ and $M_2''M_2\le(M_2')^2$, that is,
+\begin{equation}\label{eq:existence-ratios}
+  \frac{M_3}{M_2}\le\frac{M_2}{M_1}\le\frac{M_1}{M_0}\qquad\text{on }\R,
+\end{equation}
+and $M_1/M_2=(\ln M_2)'$ is nonincreasing.
+
+\emph{Small levels.} Let $\kappa=\lim_{t\to-\infty}M_1(t)/M_2(t)\in(0,\infty]$, which exists by
+monotonicity. Suppose $\kappa<\infty$. Then $(\ln M_2)'\le\kappa$ on $\R$, so
+$M_2(t)\ge M_2(0)\,e^{\kappa t}$ for $t\le0$. But for $\lambda>\kappa$,
+$(t+y)_+^2\le2\lambda^{-2}e^{\lambda(t+y)}$, so by \eqref{eq:existence-expmoment}
+\[
+  M_2(t)\le\lambda^{-2}\bigl(\E e^{\lambda R(E)}\bigr)^2e^{\lambda t},
+\]
+which is smaller than $M_2(0)e^{\kappa t}$ for $t$ sufficiently negative: a contradiction. So
+$M_2/M_1\to0$ as $t\to-\infty$, and by \eqref{eq:existence-ratios} there is $t_1$ with
+$M_3/M_2\le1$ on $(-\infty,t_1]$. With $\vartheta_1=g_R(t_1)>0$ this says
+$\ell_{\RDE(R)}\le1$ on $(0,\vartheta_1]$.
+
+\emph{Large levels.} Choose $t_0\ge\max(t_1,0)$ with $M_0(t_0)\ge1/2$, and put
+$\vartheta_0=g_R(t_0)\ge\vartheta_1$. For $t\ge t_0$, by \eqref{eq:existence-ratios},
+$M_3/M_2\le M_1/M_0\le2\,\E(t+Y)_+\le2(t+\E|Y|)$. By Jensen's inequality
+$\vartheta=g_R(t)\ge(t+\E Y)_+^3/6$, so $t\le(6\vartheta)^{1/3}+\E|Y|$. Hence
+$\ell_{\RDE(R)}(\vartheta)\le2(6\vartheta)^{1/3}+4\,\E|Y|$ for $\vartheta\ge\vartheta_0$. As
+$\ell_{\RDE(R)}$ is continuous on $[\vartheta_1,\vartheta_0]$,
+\[
+  A:=\sup_{\vartheta\ge\vartheta_1}\ell_{\RDE(R)}(\vartheta)\,\vartheta^{-1/3}<\infty .
+\]
+
+\emph{Conclusion.} Take $a=\max(1,A)$. For $\vartheta\le\vartheta_1$,
+$\ell_{\RDE(R)}(\vartheta)\le1\le\ell_R(a^3\vartheta)$. For $\vartheta\ge\vartheta_1$,
+$\ell_{\RDE(R)}(\vartheta)\le A\vartheta^{1/3}\le(a^3\vartheta)^{1/3}\le\ell_R(a^3\vartheta)$.
+By \eqref{eq:existence-super-red}, $\RDE(aR)\disp aR$.
+\end{proof}
+
+\subsection{Proof of existence}\label{subsec:existence-proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:existence}(i)]
+Let $Q_n=\RDE^n(0)$ and let $a,R$ be as in Lemma~\ref{lem:existence-super}.
+
+\emph{Bounds on the slopes.} $Q_n\disp Q_{n+1}$ by
+Corollary~\ref{cor:existence-enclosure}(i). Also $Q_n\disp aR$ for every $n$: this holds for
+$Q_0=0$, and if $Q_n\disp aR$ then $Q_{n+1}=\RDE(Q_n)\disp\RDE(aR)\disp aR$ by
+Theorem~\ref{thm:mono} and Lemma~\ref{lem:existence-super}. All the functions involved are
+continuously differentiable (Lemma~\ref{lem:existence-map}(ii)), so
+\[
+  0\le Q_n'(\theta)\le Q_{n+1}'(\theta)\le a\,R'(\theta),\qquad\theta>0,\ n\ge0 .
+\]
+Let $q_\infty(\theta)=\lim_nQ_n'(\theta)$, which is nonincreasing in $\theta$ and at most
+$aR'(\theta)$, and put
+\[
+  \bar Q_n(\theta)=Q_n(\theta)-Q_n(1)=\int_1^\theta Q_n'(\vartheta)\dd\vartheta,\qquad
+  Q_\infty(\theta)=\int_1^\theta q_\infty(\vartheta)\dd\vartheta .
+\]
+By monotone convergence $\bar Q_n\to Q_\infty$ pointwise, and since $R(1)=0$,
+$|\bar Q_n|\le a|R|$ and $|Q_\infty|\le a|R|$. So $Q_\infty$ is concave, nondecreasing and has
+moments of every order: $Q_\infty\in\mathcal{Q}$.
+
+\emph{Passage to the limit.} Write $g_n=g_{\bar Q_n}$ and $g_\infty=g_{Q_\infty}$. By dominated
+convergence, with dominating variables $(|t|+a|R(E_1)|+a|R(E_2)|)^k$, $k=3,2$, we get
+$g_n\to g_\infty$ and $g_n'\to g_\infty'$ pointwise on $\R$. These functions are nondecreasing
+and the limits are continuous, so the convergence is locally uniform. Fix $\theta>0$ and let
+$t_n=\RDE(\bar Q_n)(\theta)$, $t_\infty=\RDE(Q_\infty)(\theta)$. For $\eps>0$,
+$g_\infty(t_\infty-\eps)<\theta<g_\infty(t_\infty+\eps)$, so
+$g_n(t_\infty-\eps)<\theta<g_n(t_\infty+\eps)$ for large $n$, that is, $|t_n-t_\infty|<\eps$.
+Hence $t_n\to t_\infty$ and, by locally uniform convergence,
+$s_{\bar Q_n}(\theta)=g_n'(t_n)\to g_\infty'(t_\infty)=s_{Q_\infty}(\theta)>0$.
+
+\emph{The limit is a fixed point up to a shift.} By Lemma~\ref{lem:existence-map}(iv),
+$Q_{n+1}'(\theta)=1/s_{Q_n}(\theta)=1/s_{\bar Q_n}(\theta)$. Letting $n\to\infty$,
+\[
+  q_\infty(\theta)=\frac{1}{s_{Q_\infty}(\theta)}=\RDE(Q_\infty)'(\theta),\qquad\theta>0 .
+\]
+So $q_\infty$ is continuous, $Q_\infty$ is continuously differentiable with
+$Q_\infty'=\RDE(Q_\infty)'$, and $\RDE(Q_\infty)=Q_\infty+k$ for a constant $k\in\R$. Let
+$Q^*=Q_\infty+k/3$. By the shift law, $\RDE(Q^*)=\RDE(Q_\infty)-2k/3=Q_\infty+k/3=Q^*$. By
+Lemma~\ref{lem:existence-fixed}(ii), $\mu_{Q^*}$ is a fixed point of $\RDE$.
+\end{proof}
+
+No continuity of the cost along the iteration is needed for part (ii): the fixed point just
+constructed, like every other, is covered by Corollary~\ref{cor:existence-enclosure}(ii).
+
+\subsection{One-sided rounding and the certified bound}\label{subsec:existence-rounding}
+
+By Corollary~\ref{cor:existence-enclosure}, the cost of every fixed point is at most $c_n$ for
+every $n$. The numbers $c_n$ are explicit iterated integrals, but the iterates $Q_n$ have no
+closed form for $n\ge2$. Theorem~\ref{thm:mono} and Lemma~\ref{lem:existence-cost} make
+rounding safe provided it goes one way: an iterate may be replaced by any element of
+$\mathcal{Q}$ below it in the dispersive order.
+
+\begin{definition}[rounded law]\label{def:existence-rounded}
+Let $N\ge0$, $0<\theta_0<\dots<\theta_N$ and $0<\hat s_0\le\dots\le\hat s_N$. The \emph{rounded
+law} with these parameters is the continuous piecewise linear function
+$\tilde Q:(0,\infty)\to\R$ with $\tilde Q(\theta_N)=0$, slope $1/\hat s_0$ on $(0,\theta_0]$,
+slope $1/\hat s_i$ on $(\theta_{i-1},\theta_i]$ for $1\le i\le N$, and slope $0$ on
+$(\theta_N,\infty)$.
+\end{definition}
+
+The slopes are nonincreasing because the $\hat s_i$ are nondecreasing, so $\tilde Q$ is
+concave, nondecreasing and bounded: $\tilde Q\in\mathcal{Q}$. In terms of laws,
+$X=\tilde Q(E)$ is supported on $[x_{\min},0]$, where $x_N=0$,
+$x_{i-1}=x_i-(\theta_i-\theta_{i-1})/\hat s_i$ and $x_{\min}=x_0-\theta_0/\hat s_0$; it has an
+atom of mass $e^{-\theta_N}$ at $0$, the upper end of its support; and
+$\P(X>x)=\exp(-\tilde G(x))$ for $x<0$, where $\tilde G$ is convex and piecewise linear with
+$\tilde G(x_i)=\theta_i$, slope $\hat s_i$ on $(x_{i-1},x_i]$, slope $\hat s_0$ on
+$(x_{\min},x_0]$ and $\tilde G=0$ on $(-\infty,x_{\min}]$.
+
+\begin{lemma}[safety of the rounding]\label{lem:existence-rounding}
+Let $Q\in\mathcal{Q}$ and $g=g_Q$. Let $t_0<\dots<t_N$ be real numbers and let
+$0<\theta_0<\dots<\theta_N$ and $0<\hat s_0\le\dots\le\hat s_N$ satisfy
+\[
+  \theta_i\le g(t_i)\qquad\text{and}\qquad\hat s_i\ge g'(t_i),\qquad 0\le i\le N .
+\]
+Then the rounded law $\tilde Q$ with parameters $(\theta_i,\hat s_i)$ satisfies
+$\tilde Q\in\mathcal{Q}$ and $\tilde Q\disp\RDE(Q)$.
+\end{lemma}
+
+\begin{proof}
+By Lemma~\ref{lem:existence-map}(iv), $s_Q$ is nondecreasing and $\RDE(Q)'=1/s_Q$. Since
+$g(t_i)\ge\theta_i>0$ and $g$ is increasing on $\{g>0\}$, $\RDE(Q)(\theta_i)\le t_i$, and
+therefore $s_Q(\theta_i)=g'(\RDE(Q)(\theta_i))\le g'(t_i)\le\hat s_i$. For $\theta$ in
+$(\theta_{i-1},\theta_i)$, or in $(0,\theta_0)$ if $i=0$,
+$s_Q(\theta)\le s_Q(\theta_i)\le\hat s_i$, so
+$\RDE(Q)'(\theta)=1/s_Q(\theta)\ge1/\hat s_i=\tilde Q'(\theta)$. For $\theta>\theta_N$,
+$\tilde Q'(\theta)=0\le\RDE(Q)'(\theta)$. Both functions are locally absolutely continuous, so
+$\RDE(Q)-\tilde Q$ is nondecreasing on $(0,\infty)$.
+\end{proof}
+
+No tail estimate is used: below $\theta_0$ the slope bound at $\theta_0$ is valid for all
+smaller levels, and above $\theta_N$ the rounded slope is $0$, which is the atom at the top.
+The monotonicity of the $\hat s_i$ is what keeps $\tilde Q$ concave; it can always be enforced
+by replacing $\hat s_i$ with the running maximum $\max_{j\le i}\hat s_j$, which is still at
+least $g'(t_i)$.
+
+\begin{lemma}[the chain]\label{lem:existence-chain}
+Let $\tilde Q_0=0$ and, for $n\ge0$, let $\tilde Q_{n+1}$ be a rounded law whose parameters
+satisfy the hypotheses of Lemma~\ref{lem:existence-rounding} with $Q=\tilde Q_n$ and some
+points $t_0<\dots<t_N$. Then for every $Q^*\in\mathcal{Q}$ with $\RDE(Q^*)=Q^*$ and every
+$n\ge0$,
+\[
+  \tilde Q_n\disp Q^*\qquad\text{and}\qquad c(Q^*)\le c(\tilde Q_n) .
+\]
+\end{lemma}
+
+\begin{proof}
+$\tilde Q_0=0\disp Q^*$. If $\tilde Q_n\disp Q^*$, then
+$\tilde Q_{n+1}\disp\RDE(\tilde Q_n)\disp\RDE(Q^*)=Q^*$ by Lemma~\ref{lem:existence-rounding}
+and Theorem~\ref{thm:mono}. The cost bound is Lemma~\ref{lem:existence-cost}.
+\end{proof}
+
+Theorem~\ref{thm:mono} is applied here to laws with an atom at the upper end and to
+$\delta_0$; its proof covers them, through Lemma~\ref{lem:existence-logconcave}.
+
+\subsubsection*{Enclosures for a rounded law}
+
+To use Lemma~\ref{lem:existence-rounding} one needs a lower bound on $g$ and an upper bound on
+$g'$ at finitely many points, and to bound $c(\tilde Q)$ one needs in addition a lower bound
+on $g'$. For a rounded law these come from a lattice. Let $\tilde Q$ be a rounded law,
+$X=\tilde Q(E)$, $\tilde\mu$ its law, $\bar F(x)=\P(X>x)$ and $g=g_{\tilde Q}$. Fix $h>0$, let
+$K_{\min}=\lfloor x_{\min}/h\rfloor$ and, for $K_{\min}\le k\le-1$,
+\[
+  C_k=[kh,(k+1)h),\qquad \bar F_k=\bar F(kh),\qquad J_k=\frac1h\int_{C_k}\bar F(x)\dd x ,
+\]
+and $\bar F_0=\bar F(0-)=e^{-\theta_N}$. The mass and the first moment of $\tilde\mu$ on a cell
+are
+\[
+  p_k=\tilde\mu(C_k)=\bar F_k-\bar F_{k+1},\qquad
+  D_k=\int_{C_k}(x-kh)\,\tilde\mu(\dd x)=h\,(J_k-\bar F_{k+1})\ge0
+\]
+(integration by parts), and for the atom put $p_0=e^{-\theta_N}$, $D_0=0$. Let
+$\nu_j=J_{j-1}-J_j\ge0$ for $K_{\min}\le j\le0$, with the conventions $J_{K_{\min}-1}=1$ and
+$J_0=0$. Write $\varphi_j(u)=u_+^j/j!$ and $(a*b)_m=\sum_{k+k'=m}a_kb_{k'}$ for sequences
+indexed by $K_{\min},\dots,0$.
+
+\begin{lemma}[lattice enclosures]\label{lem:existence-enclosures}
+For every real $t$:
+\begin{enumerate}
+\item[(a)] (tangent planes)
+\begin{align*}
+  g(t)&\ge\sum_m(p*p)_m\,\varphi_3(t+mh)+2\sum_m(D*p)_m\,\varphi_2(t+mh),\\
+  g'(t)&\ge\sum_m(p*p)_m\,\varphi_2(t+mh)+2\sum_m(D*p)_m\,\varphi_1(t+mh);
+\end{align*}
+\item[(b)] (chords) $g'(t)\le\sum_m(\nu*\nu)_m\,\varphi_2(t+mh)$.
+\item[(c)] $\E\tilde Q(E)=K_{\min}h+h\sum_{k=K_{\min}}^{-1}J_k$. Moreover, for any points
+$0<t_0<\dots<t_{N'}$ and numbers $\vartheta_i\le g(t_i)$ and $0<a_i\le g'(t_i)$, with
+$d_i=t_{i+1}-t_i$,
+\[
+  \E\,\RDE(\tilde Q)(E)=\int_0^\infty e^{-g(t)}\dd t
+  \le t_0+\sum_{i<N'}e^{-\vartheta_i}\,\frac{1-e^{-a_id_i}}{a_i}+\frac{e^{-\vartheta_{N'}}}{a_{N'}}.
+\]
+\end{enumerate}
+All terms in (a) and (b) are nonnegative. So (a) remains true when $p$ and $D$ are replaced by
+termwise lower bounds that are nonnegative, and (b) remains true when $\nu$ is replaced by
+termwise upper bounds.
+\end{lemma}
+
+\begin{proof}
+(a) $g(t)=\E\varphi_3(t+X'+X'')$ with $X',X''$ independent with law $\tilde\mu$. The function
+$\varphi_3$ is convex and continuously differentiable with $\varphi_3'=\varphi_2\ge0$. So for
+$x\in C_k$ and $x'\in C_{k'}$,
+\[
+  \varphi_3(t+x+x')\ge\varphi_3(t+(k+k')h)+\varphi_2(t+(k+k')h)\bigl((x-kh)+(x'-k'h)\bigr).
+\]
+Integrate over $C_k\times C_{k'}$ against $\tilde\mu\otimes\tilde\mu$ and sum over $k,k'$, the
+atom being included as the one-point cell $k=0$. The same argument with $\varphi_2$ and
+$\varphi_2'=\varphi_1$ gives the bound for $g'(t)=\E\varphi_2(t+X'+X'')$.
+
+(b) $\varphi_2$ is convex, so for $x\in C_k$ and $w=(x-kh)/h\in[0,1)$,
+$\varphi_2(c+x)\le(1-w)\varphi_2(c+kh)+w\,\varphi_2(c+(k+1)h)$. Integrating over $C_k$ against
+$\tilde\mu$ gives the weight $p_k-D_k/h=\bar F_k-J_k$ at $kh$ and the weight
+$D_k/h=J_k-\bar F_{k+1}$ at $(k+1)h$. Adding the two contributions at a lattice point $jh$
+gives $J_{j-1}-J_j$ for $K_{\min}<j<0$; at $j=K_{\min}$ it gives $\bar F_{K_{\min}}-J_{K_{\min}}
+=1-J_{K_{\min}}$, because $K_{\min}h\le x_{\min}$; at $j=0$ it gives $J_{-1}-\bar F_0$ plus the
+atom $\bar F_0$, that is, $J_{-1}$. So $\E\varphi_2(c+X)\le\sum_j\nu_j\varphi_2(c+jh)$ for
+every $c$. Apply this in $X'$ for fixed $X''$ and then in $X''$.
+
+(c) $X\le0$ and $\bar F=1$ below $x_{\min}\ge K_{\min}h$, so
+$\E X=-\int_{K_{\min}h}^0(1-\bar F(x))\dd x=K_{\min}h+h\sum_kJ_k$. Since $\sup\tilde Q=0$,
+$t_{\tilde Q}=0$, so $\RDE(\tilde Q)(E)$ is positive with survival function $\exp(-g(t))$,
+$t>0$, and its mean is $\int_0^\infty e^{-g}$. On $[0,t_0]$ use $e^{-g}\le1$. On
+$[t_i,t_{i+1}]$ and on $[t_{N'},\infty)$ use convexity:
+$g(t)\ge g(t_i)+g'(t_i)(t-t_i)\ge\vartheta_i+a_i(t-t_i)$, and integrate.
+\end{proof}
+
+\subsubsection*{The computation}
+
+The script \texttt{lemmaC/round3/cert/cert.py}, run with the arguments
+\texttt{12 4000 8000 10}, uses the lattice width $h=2^{-12}$ and produces rounded laws
+$\tilde Q_1,\dots,\tilde Q_{10}$ from $\tilde Q_0=0$. At stage $n=0,1,\dots,10$ it does the
+following with $\tilde Q=\tilde Q_n$ and $g=g_{\tilde Q_n}$ (for $n=0$ the law is $\delta_0$:
+there are no cells, $p_0=1$ and $\nu_0=1$).
+\begin{enumerate}
+\item It computes double-precision numbers $p_k^{\mathrm{lo}}\in[0,p_k]$,
+$D_k^{\mathrm{lo}}\in[0,D_k]$ and $\nu_j^{\mathrm{hi}}\ge\nu_j$ for all cells, and an upper
+bound for $\E\tilde Q(E)$ from Lemma~\ref{lem:existence-enclosures}(c), all from the
+parameters of $\tilde Q$ by outward-rounded interval arithmetic.
+\item It computes the three convolutions
+$p^{\mathrm{lo}}*p^{\mathrm{lo}}$, $D^{\mathrm{lo}}*p^{\mathrm{lo}}$ and
+$\nu^{\mathrm{hi}}*\nu^{\mathrm{hi}}$, the first two rounded down and the third rounded up.
+\item It chooses points $0<t_0<\dots<t_N$, multiples of $2^{-20}$, about $12\,000$ of them.
+The choice is made in plain floating point and has no bearing on validity.
+\item It evaluates the three sums of Lemma~\ref{lem:existence-enclosures}(a),(b) at every
+$t_i$, the first two rounded down and the third rounded up. This gives numbers
+$\theta_i\le g(t_i)$, $a_i\le g'(t_i)$ and $\hat s_i\ge g'(t_i)$. Points at which the
+$\theta_i$ fail to be positive and strictly increasing are discarded, and the program checks
+that the remaining $\theta_i$ are positive and strictly increasing and that $a_i>0$.
+\item It evaluates the bound of Lemma~\ref{lem:existence-enclosures}(c), with the points
+$t_i$ and the numbers $\theta_i$, $a_i$ of step 4, in interval arithmetic and prints an upper
+bound for
+$c(\tilde Q_n)=3\bigl(\E\,\RDE(\tilde Q_n)(E)+2\,\E\tilde Q_n(E)\bigr)$. The internal bound is an upper
+endpoint; the printed six-decimal figure is that endpoint rounded to nearest
+(Remark~\ref{rem:certificates-digits}).
+\item If $n<10$, it replaces $\hat s_i$ by the running maximum $\max_{j\le i}\hat s_j$, checks
+that the result is positive and nondecreasing, and takes $(\theta_i,\hat s_i)$ as the
+parameters of $\tilde Q_{n+1}$.
+\end{enumerate}
+By steps 4 and 6 and Lemma~\ref{lem:existence-rounding}, each $\tilde Q_{n+1}$ satisfies the
+hypotheses of Lemma~\ref{lem:existence-chain}. The arithmetic (the interval enclosures of
+step 1, including the exponential; the error bound for the floating-point sums of nonnegative
+terms in steps 2 and 4; the directed rounding) is described in
+Section~\ref{sec:certificates}.
+
+\begin{proposition}[computer-assisted]\label{prop:existence-certificate}
+Let $\tilde Q_0=0$ and let $\tilde Q_1,\dots,\tilde Q_{10}$ be the rounded laws produced by
+the run just described. For $0\le n\le9$ the parameters of $\tilde Q_{n+1}$ satisfy the
+hypotheses of Lemma~\ref{lem:existence-rounding} with $Q=\tilde Q_n$, and
+\[
+  c(\tilde Q_{10})\le2.2519 .
+\]
+\end{proposition}
+
+What the computation certifies is exactly this: the one-sided inequalities
+$\theta_i\le g_{\tilde Q_n}(t_i)$ and $\hat s_i\ge g_{\tilde Q_n}'(t_i)$ at every retained
+mesh point of every stage $n\le9$, and an upward-rounded bound $u\ge c(\tilde Q_{10})$ at
+stage $10$. The log of the run (\texttt{lemmaC/round3/cert/run\_B\_h12.log}) prints $u$ to six
+decimal places, rounded to nearest, as $2.251887$; hence $u<2.2518875<2.2519$, which is the
+form in which the bound is quoted. The parameters of $\tilde Q_1,\dots,\tilde Q_{10}$ are
+stored in \texttt{lemmaC/round3/v10/B\_stage1.npz} to \texttt{B\_stage10.npz}.
+
+\begin{proof}[Proof of Theorem~\ref{thm:existence}(ii)]
+Let $\mu$ be a fixed point and $X\sim\mu$. By Lemma~\ref{lem:existence-fixed}, $\mu=\mu_{Q^*}$
+with $Q^*\in\mathcal{Q}$, $\RDE(Q^*)=Q^*$ and $9\,\E X=c(Q^*)$. By
+Proposition~\ref{prop:existence-certificate} the laws $\tilde Q_0,\dots,\tilde Q_{10}$ satisfy
+the hypotheses of Lemma~\ref{lem:existence-chain}, so
+$c(Q^*)\le c(\tilde Q_{10})\le2.2519=\alphalp$.
+\end{proof}
+
+\begin{remark}[floating-point values; evidence only]\label{rem:existence-float}
+Nothing in this remark is used in a proof. In floating point, without rounding of the laws,
+the costs $c_n=c(Q_n)$ of the exact iterates are
+\[
+\begin{array}{c|ccccc}
+ n & 1 & 2 & 3 & 4 & 5\\\hline
+ c_n & 3.41528213 & 2.66021540 & 2.39808802 & 2.30169894 & 2.26786005
+\end{array}
+\]
+\[
+\begin{array}{c|ccccc}
+ n & 6 & 7 & 8 & 9 & 10\\\hline
+ c_n & 2.25596056 & 2.25179199 & 2.25033206 & 2.24982093 & 2.24964199
+\end{array}
+\]
+and $c_0=3\cdot6^{1/3}\,\Gamma(4/3)=4.86795\ldots$\,. The differences $c_n-c_{n+1}$ decrease
+geometrically with ratio about $0.35$, and the limit is numerically $2.2495456$. The upper
+bounds for $c(\tilde Q_n)$ printed by the certified run at stages $n=0,\dots,10$ are
+$4.867955$, $3.415996$, $2.661760$, $2.400021$, $2.303815$, $2.270053$, $2.258185$,
+$2.254029$, $2.252574$, $2.252065$, $2.251887$; for $n\ge1$ each exceeds the corresponding
+$c_n$ by between $0.0007$ and $0.0023$, the loss caused by the one-sided rounding. Only the
+last of these bounds is used. Against the integer constant $\betaint=2.302$ of
+Theorem~\ref{thm:integer} the quoted bound leaves $\betaint-\alphalp=0.0501$.
+\end{remark}

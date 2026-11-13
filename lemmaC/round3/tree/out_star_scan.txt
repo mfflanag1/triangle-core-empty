@@ -1,0 +1,8 @@
+beta=0.5 e=2.43368 Sigma=0.207501 ann_same_rho=0.349777 ann_at_e=0.372373 norm=1 it=86 diff=9.35797e-10 rho0=0.72705
+beta=0.54 e=2.338 Sigma=0.0584492 ann_same_rho=0.223491 ann_at_e=0.25205 norm=1 it=87 diff=9.15213e-10 rho0=0.761079
+beta=0.58 e=2.26027 Sigma=-0.0719876 ann_same_rho=0.115932 ann_at_e=0.150611 norm=1 it=88 diff=8.86336e-10 rho0=0.789635
+beta=0.6 e=2.22676 Sigma=-0.131284 ann_same_rho=0.0680597 ann_at_e=0.105801 norm=1 it=88 diff=9.50084e-10 rho0=0.802217
+beta=0.62 e=2.19624 Sigma=-0.187106 ann_same_rho=0.0236258 ann_at_e=0.0644099 norm=1 it=89 diff=8.32985e-10 rho0=0.813824
+beta=0.64 e=2.16838 Sigma=-0.239765 ann_same_rho=-0.0176925 ann_at_e=0.026099 norm=1 it=89 diff=8.79172e-10 rho0=0.824552
+beta=0.66 e=2.14285 Sigma=-0.289536 ann_same_rho=-0.0561832 ann_at_e=-0.00943075 norm=1 it=89 diff=9.21654e-10 rho0=0.834488
+beta=0.7 e=2.09779 Sigma=-0.381377 ann_same_rho=-0.125681 ann_at_e=-0.0731829 norm=1 it=89 diff=9.95207e-10 rho0=0.852275

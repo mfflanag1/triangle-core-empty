@@ -1,0 +1,160 @@
+{"q": 24, "idx": 0, "core": false}
+{"q": 24, "idx": 1, "core": false}
+{"q": 24, "idx": 2, "core": false}
+{"q": 24, "idx": 3, "core": false}
+{"q": 24, "idx": 4, "core": false}
+{"q": 24, "idx": 5, "core": false}
+{"q": 24, "idx": 6, "core": false}
+{"q": 24, "idx": 7, "core": false}
+{"q": 24, "idx": 8, "core": false}
+{"q": 24, "idx": 9, "core": false}
+{"q": 24, "idx": 10, "core": false}
+{"q": 24, "idx": 11, "core": false}
+{"q": 24, "idx": 12, "core": false}
+{"q": 24, "idx": 13, "core": false}
+{"q": 24, "idx": 14, "core": true, "deficit": 7.763136749696429, "cheb_r_scaled": 0.013558626013096611, "width_mean": 1.4391097770624806, "width_geomean": 1.3586598064150486, "lp_vertices_distinct": 65, "lp_solves": 92, "tight_union": 100, "tight_per_vertex": 46.0, "secs": 16.98533296585083}
+{"q": 24, "idx": 15, "core": false}
+{"q": 24, "idx": 16, "core": false}
+{"q": 24, "idx": 17, "core": false}
+{"q": 24, "idx": 18, "core": false}
+{"q": 24, "idx": 19, "core": false}
+{"q": 24, "idx": 20, "core": false}
+{"q": 24, "idx": 21, "core": false}
+{"q": 24, "idx": 22, "core": false}
+{"q": 24, "idx": 23, "core": false}
+{"q": 24, "idx": 24, "core": false}
+{"q": 24, "idx": 25, "core": true, "deficit": 6.682284028744732, "cheb_r_scaled": 0.03014167862941813, "width_mean": 2.5357364330594265, "width_geomean": 2.444674690198398, "lp_vertices_distinct": 86, "lp_solves": 92, "tight_union": 117, "tight_per_vertex": 46.0, "secs": 17.848418951034546}
+{"q": 24, "idx": 26, "core": false}
+{"q": 24, "idx": 27, "core": false}
+{"q": 24, "idx": 28, "core": true, "deficit": 7.993595551221873, "cheb_r_scaled": 0.0077817974893487725, "width_mean": 1.5150821052959513, "width_geomean": 1.4373137203120012, "lp_vertices_distinct": 82, "lp_solves": 92, "tight_union": 95, "tight_per_vertex": 46.0, "secs": 14.386405229568481}
+{"q": 24, "idx": 29, "core": false}
+{"q": 24, "idx": 30, "core": false}
+{"q": 24, "idx": 31, "core": false}
+{"q": 24, "idx": 32, "core": false}
+{"q": 24, "idx": 33, "core": false}
+{"q": 24, "idx": 34, "core": false}
+{"q": 24, "idx": 35, "core": true, "deficit": 7.407477854130576, "cheb_r_scaled": 0.05323893762325752, "width_mean": 2.6702481744520647, "width_geomean": 2.5402529942946748, "lp_vertices_distinct": 83, "lp_solves": 92, "tight_union": 160, "tight_per_vertex": 46.0, "secs": 15.615659952163696}
+{"q": 24, "idx": 36, "core": false}
+{"q": 24, "idx": 37, "core": false}
+{"q": 24, "idx": 38, "core": false}
+{"q": 24, "idx": 39, "core": false}
+{"q": 24, "idx": 40, "core": false}
+{"q": 24, "idx": 41, "core": false}
+{"q": 24, "idx": 42, "core": false}
+{"q": 24, "idx": 43, "core": false}
+{"q": 24, "idx": 44, "core": false}
+{"q": 24, "idx": 45, "core": false}
+{"q": 24, "idx": 46, "core": false}
+{"q": 24, "idx": 47, "core": false}
+{"q": 24, "idx": 48, "core": false}
+{"q": 24, "idx": 49, "core": false}
+{"q": 24, "idx": 50, "core": false}
+{"q": 24, "idx": 51, "core": false}
+{"q": 24, "idx": 52, "core": false}
+{"q": 24, "idx": 53, "core": true, "deficit": 7.498884015664345, "cheb_r_scaled": 0.014527726434534613, "width_mean": 2.8591352707837863, "width_geomean": 2.7892490500517253, "lp_vertices_distinct": 82, "lp_solves": 92, "tight_union": 114, "tight_per_vertex": 46.0, "secs": 14.565057754516602}
+{"q": 24, "idx": 54, "core": false}
+{"q": 24, "idx": 55, "core": false}
+{"q": 24, "idx": 56, "core": false}
+{"q": 24, "idx": 57, "core": false}
+{"q": 24, "idx": 58, "core": false}
+{"q": 24, "idx": 59, "core": false}
+{"q": 24, "idx": 60, "core": false}
+{"q": 24, "idx": 61, "core": false}
+{"q": 24, "idx": 62, "core": false}
+{"q": 24, "idx": 63, "core": false}
+{"q": 24, "idx": 64, "core": false}
+{"q": 24, "idx": 65, "core": false}
+{"q": 24, "idx": 66, "core": false}
+{"q": 24, "idx": 67, "core": false}
+{"q": 24, "idx": 68, "core": false}
+{"q": 24, "idx": 69, "core": false}
+{"q": 24, "idx": 70, "core": false}
+{"q": 24, "idx": 71, "core": false}
+{"q": 24, "idx": 72, "core": false}
+{"q": 24, "idx": 73, "core": false}
+{"q": 24, "idx": 74, "core": false}
+{"q": 24, "idx": 75, "core": false}
+{"q": 24, "idx": 76, "core": false}
+{"q": 24, "idx": 77, "core": false}
+{"q": 24, "idx": 78, "core": false}
+{"q": 24, "idx": 79, "core": false}
+{"q": 24, "idx": 80, "core": false}
+{"q": 24, "idx": 81, "core": false}
+{"q": 24, "idx": 82, "core": false}
+{"q": 24, "idx": 83, "core": false}
+{"q": 24, "idx": 84, "core": false}
+{"q": 24, "idx": 85, "core": true, "deficit": 7.47693814150044, "cheb_r_scaled": 0.0014291173879046608, "width_mean": 0.5998949426159169, "width_geomean": 0.4432982688534772, "lp_vertices_distinct": 62, "lp_solves": 92, "tight_union": 73, "tight_per_vertex": 46.0, "secs": 14.691879034042358}
+{"q": 24, "idx": 86, "core": false}
+{"q": 24, "idx": 87, "core": false}
+{"q": 24, "idx": 88, "core": false}
+{"q": 24, "idx": 89, "core": false}
+{"q": 24, "idx": 90, "core": true, "deficit": 8.128124581724627, "cheb_r_scaled": 0.008210941140725458, "width_mean": 1.9738617987235185, "width_geomean": 1.9159061688220727, "lp_vertices_distinct": 74, "lp_solves": 92, "tight_union": 101, "tight_per_vertex": 46.0, "secs": 16.21849799156189}
+{"q": 24, "idx": 91, "core": true, "deficit": 7.477088377557919, "cheb_r_scaled": 0.010549914772743967, "width_mean": 1.5733628041328394, "width_geomean": 1.54276413844889, "lp_vertices_distinct": 84, "lp_solves": 92, "tight_union": 89, "tight_per_vertex": 46.0, "secs": 16.11929702758789}
+{"q": 24, "idx": 92, "core": false}
+{"q": 24, "idx": 93, "core": false}
+{"q": 24, "idx": 94, "core": false}
+{"q": 24, "idx": 95, "core": false}
+{"q": 24, "idx": 96, "core": false}
+{"q": 24, "idx": 97, "core": false}
+{"q": 24, "idx": 98, "core": false}
+{"q": 24, "idx": 99, "core": true, "deficit": 6.405628508059962, "cheb_r_scaled": 0.003194213999064913, "width_mean": 0.6268963380030864, "width_geomean": 0.48739068946035075, "lp_vertices_distinct": 83, "lp_solves": 92, "tight_union": 75, "tight_per_vertex": 46.0, "secs": 14.680538892745972}
+{"q": 24, "idx": 100, "core": true, "deficit": 6.196328344030803, "cheb_r_scaled": 0.01742561320329622, "width_mean": 2.8553494249530598, "width_geomean": 2.5248027630520355, "lp_vertices_distinct": 92, "lp_solves": 92, "tight_union": 163, "tight_per_vertex": 46.0, "secs": 15.447249174118042}
+{"q": 24, "idx": 101, "core": false}
+{"q": 24, "idx": 102, "core": false}
+{"q": 24, "idx": 103, "core": false}
+{"q": 24, "idx": 104, "core": false}
+{"q": 24, "idx": 105, "core": false}
+{"q": 24, "idx": 106, "core": false}
+{"q": 24, "idx": 107, "core": false}
+{"q": 24, "idx": 108, "core": true, "deficit": 6.4911885747560945, "cheb_r_scaled": 0.0176567786240877, "width_mean": 1.5730083098963155, "width_geomean": 1.3953835299040636, "lp_vertices_distinct": 87, "lp_solves": 92, "tight_union": 127, "tight_per_vertex": 46.0, "secs": 14.024671792984009}
+{"q": 24, "idx": 109, "core": false}
+{"q": 24, "idx": 110, "core": true, "deficit": 6.964777310407342, "cheb_r_scaled": 0.05578516361573893, "width_mean": 3.917924331710935, "width_geomean": 3.701123181089783, "lp_vertices_distinct": 84, "lp_solves": 92, "tight_union": 173, "tight_per_vertex": 46.0, "secs": 15.097152948379517}
+{"q": 24, "idx": 111, "core": false}
+{"q": 24, "idx": 112, "core": false}
+{"q": 24, "idx": 113, "core": false}
+{"q": 24, "idx": 114, "core": false}
+{"q": 24, "idx": 115, "core": false}
+{"q": 24, "idx": 116, "core": false}
+{"q": 24, "idx": 117, "core": false}
+{"q": 24, "idx": 118, "core": false}
+{"q": 24, "idx": 119, "core": false}
+{"q": 24, "idx": 120, "core": false}
+{"q": 24, "idx": 121, "core": false}
+{"q": 24, "idx": 122, "core": false}
+{"q": 24, "idx": 123, "core": true, "deficit": 8.140502101265206, "cheb_r_scaled": 0.0011142545846938143, "width_mean": 0.66976307731676, "width_geomean": 0.509430031323549, "lp_vertices_distinct": 64, "lp_solves": 92, "tight_union": 74, "tight_per_vertex": 46.0, "secs": 16.280537843704224}
+{"q": 24, "idx": 124, "core": false}
+{"q": 24, "idx": 125, "core": false}
+{"q": 24, "idx": 126, "core": false}
+{"q": 24, "idx": 127, "core": false}
+{"q": 24, "idx": 128, "core": false}
+{"q": 24, "idx": 129, "core": true, "deficit": 6.969861123287373, "cheb_r_scaled": 0.019284720558404862, "width_mean": 1.7833473282226415, "width_geomean": 1.6986636088116713, "lp_vertices_distinct": 86, "lp_solves": 92, "tight_union": 100, "tight_per_vertex": 46.0, "secs": 16.980742931365967}
+{"q": 24, "idx": 130, "core": false}
+{"q": 24, "idx": 131, "core": false}
+{"q": 24, "idx": 132, "core": false}
+{"q": 24, "idx": 133, "core": false}
+{"q": 24, "idx": 134, "core": false}
+{"q": 24, "idx": 135, "core": false}
+{"q": 24, "idx": 136, "core": false}
+{"q": 24, "idx": 137, "core": false}
+{"q": 24, "idx": 138, "core": false}
+{"q": 24, "idx": 139, "core": false}
+{"q": 24, "idx": 140, "core": false}
+{"q": 24, "idx": 141, "core": false}
+{"q": 24, "idx": 142, "core": false}
+{"q": 24, "idx": 143, "core": false}
+{"q": 24, "idx": 144, "core": true, "deficit": 7.389174858087614, "cheb_r_scaled": 0.020572357703067364, "width_mean": 2.263212681606263, "width_geomean": 2.2139943529687627, "lp_vertices_distinct": 87, "lp_solves": 92, "tight_union": 116, "tight_per_vertex": 46.0, "secs": 18.16700005531311}
+{"q": 24, "idx": 145, "core": false}
+{"q": 24, "idx": 146, "core": false}
+{"q": 24, "idx": 147, "core": false}
+{"q": 24, "idx": 148, "core": true, "deficit": 6.864767904727216, "cheb_r_scaled": 0.004171794401306373, "width_mean": 1.3162762501426146, "width_geomean": 1.1871570135101668, "lp_vertices_distinct": 59, "lp_solves": 92, "tight_union": 86, "tight_per_vertex": 46.0, "secs": 18.8371160030365}
+{"q": 24, "idx": 149, "core": false}
+{"q": 24, "idx": 150, "core": false}
+{"q": 24, "idx": 151, "core": false}
+{"q": 24, "idx": 152, "core": false}
+{"q": 24, "idx": 153, "core": false}
+{"q": 24, "idx": 154, "core": true, "deficit": 7.0839875694792624, "cheb_r_scaled": 0.00454956305464437, "width_mean": 2.268378729862386, "width_geomean": 2.215614014630315, "lp_vertices_distinct": 79, "lp_solves": 92, "tight_union": 94, "tight_per_vertex": 46.0, "secs": 17.187575817108154}
+{"q": 24, "idx": 155, "core": false}
+{"q": 24, "idx": 156, "core": false}
+{"q": 24, "idx": 157, "core": false}
+{"q": 24, "idx": 158, "core": false}
+{"q": 24, "idx": 159, "core": false}
