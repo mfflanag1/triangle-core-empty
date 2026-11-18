@@ -623,13 +623,12 @@ hypotheses of Lemma~\ref{lem:existence-rounding} with $Q=\tilde Q_n$, and
 \]
 \end{proposition}
 
-What the computation certifies is exactly this: the one-sided inequalities
-$\theta_i\le g_{\tilde Q_n}(t_i)$ and $\hat s_i\ge g_{\tilde Q_n}'(t_i)$ at every retained
-mesh point of every stage $n\le9$, and an upward-rounded bound $u\ge c(\tilde Q_{10})$ at
-stage $10$. The log of the run (\texttt{lemmaC/round3/cert/run\_B\_h12.log}) prints $u$ to six
-decimal places, rounded to nearest, as $2.251887$; hence $u<2.2518875<2.2519$, which is the
-form in which the bound is quoted. The parameters of $\tilde Q_1,\dots,\tilde Q_{10}$ are
-stored in \texttt{lemmaC/round3/v10/B\_stage1.npz} to \texttt{B\_stage10.npz}.
+At every retained mesh point and stage $n\le9$, the computation verifies
+$\theta_i\le g_{\tilde Q_n}(t_i)$ and $\hat s_i\ge g'_{\tilde Q_n}(t_i)$. At stage~10
+it compares the exact binary rational upper endpoint for $c(\tilde Q_{10})$ with
+$22519/10000$ (Remark~\ref{rem:certificates-digits}). The ten sets of breakpoints
+and slopes are deposited with the fine-run log in the certificate package
+(Section~\ref{sec:certificates}).
 
 \begin{proof}[Proof of Theorem~\ref{thm:existence}(ii)]
 Let $\mu$ be a fixed point and $X\sim\mu$. By Lemma~\ref{lem:existence-fixed}, $\mu=\mu_{Q^*}$

@@ -2,7 +2,14 @@
 
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage{booktabs}
-\usepackage{hyperref}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={Asymptotic core emptiness in a random three-sided assignment market}}
+% Allow long mathematical displays a little more room on the letter page.
+\addtolength{\textwidth}{3pc}
+\addtolength{\oddsidemargin}{-1.5pc}
+\addtolength{\evensidemargin}{-1.5pc}
+\setlength{\emergencystretch}{1em}
 
 \theoremstyle{plain}
 \newtheorem{theorem}{Theorem}[section]
@@ -21,30 +28,25 @@
   \IfFileExists{sections/#1.tex}{\input{sections/#1}}{%
     \section*{[Section file \texttt{\detokenize{#1}} not yet written]}}}
 
-\title{The core of a random three-sided assignment market is empty}
-\author{Draft --- author to be determined}
-\date{12 November 2026}
+\title[Asymptotic core emptiness]{Asymptotic core emptiness in a random three-sided assignment market}
+\date{17 November 2026}
 
 \begin{document}
 
 \begin{abstract}
-Take three sectors of $q$ agents each. Every pair of agents from different sectors has an
-independent value, uniform on $[0,1]$, and a team of one agent from each sector is worth the sum
-of its three pair values. We show that the core of the resulting three-sided assignment game is
-empty with probability tending to $1$ as $q\to\infty$. The core is nonempty exactly when the gap
-$\Dq$ between the optimum of the fractional relaxation of the assignment problem and the value of
-the best assignment is zero, and we prove that $\E\Dq\ge(0.050-o(1))\,q^{1/3}$ and that
-$\Dq/\E\Dq\to1$ in probability. The proof compares two constants on the scale $q^{1/3}$. With
-high probability every assignment falls short of the trivial bound $3q$ by at least
-$\betaint q^{1/3}$, $\betaint=2.302$, by a first moment conditioned on the local stars of all
-agents. The fractional
-optimum falls short in expectation by at most $(\alphalp+o(1))q^{1/3}$, $\alphalp=2.2519$,
-because a random
-perfect matching on the limiting Poisson hypertree, built from a solution of a recursive
-distributional equation, can be carried to the finite market as a fractional solution. The
-solution exists by a monotonicity property of the recursion in the dispersive order. Both
-constants rest on computations in interval arithmetic. All statements are asymptotic and say
-nothing at any size that can be simulated.
+In a market with three sectors of $q$ agents each, cross-sector pairs have independent
+uniform values on $[0,1]$. A team earns the sum of its three pair values. The minimum subsidy that makes the grand coalition
+stable equals the gap $\Dq$ between the fractional and integral assignment optima.
+Its expectation is at least $(0.0501-o(1))q^{1/3}$, and $\Dq/\E\Dq$ converges to one
+in probability. The probability of a nonempty core lies between $e^{-Cq}$ and
+$e^{-c q^{1/3}}$ for some $c,C>0$ and all sufficiently large $q$. Thus the expected
+total subsidy grows, while the expected subsidy per agent vanishes.
+We also identify the mean-square limit of the fractional deficit divided by $q^{1/3}$.
+It is the minimum expected root cost of an invariant perfect matching on the limiting
+Poisson hypertree. A recursive matching gives an upper bound of $2.2519$ for this
+minimum. A first moment conditioned on the teams incident to each agent gives an
+integer deficit of at least $2.302q^{1/3}$ with high probability. Two interval computations
+certify the separation.
 \end{abstract}
 
 \maketitle
@@ -63,13 +65,11 @@ nothing at any size that can be simulated.
 \inputsection{11_certificates}
 \inputsection{12_discussion}
 
-% One entry per citation key of NOTATION.md. Details are given only where a project file
-% records them; everything else is marked TODO. Surnames and years without further details
-% come from the citation keys themselves.
+\appendix
+\inputsection{a_support}
+\inputsection{b_certificates}
+
 \begin{thebibliography}{99}
-% Details below were taken from Crossref records on 12 November 2026 unless marked otherwise.
-% "Opened" status of each source is recorded in Section~\ref{sec:intro}; a Crossref record is
-% not a reading of the paper.
 
 \bibitem{Aldous92}
 D.~Aldous, \emph{Asymptotics in the random assignment problem}, Probab.\ Theory Related
@@ -88,6 +88,10 @@ D.~Aldous and J.~M. Steele, \emph{The objective method: probabilistic combinator
 optimization and local weak convergence}, in: Probability on Discrete Structures,
 Encyclopaedia Math.\ Sci., Springer, 2004, pp.~1--72. doi:10.1007/978-3-662-09444-0\_1.
 
+\bibitem{AtayNunez19}
+A.~Atay and M.~N\'u\~nez, \emph{Multi-sided assignment games on $m$-partite graphs},
+Ann.\ Oper.\ Res.\ \textbf{279} (2019), 271--290. doi:10.1007/s10479-019-03256-5.
+
 \bibitem{BobkovLedoux97}
 S.~Bobkov and M.~Ledoux, \emph{Poincar\'e's inequalities and Talagrand's concentration
 phenomenon for the exponential distribution}, Probab.\ Theory Related Fields \textbf{107}
@@ -103,14 +107,23 @@ S.~Boucheron, G.~Lugosi and P.~Massart, \emph{Concentration Inequalities: A Nona
 Theory of Independence}, Oxford University Press, 2013.
 doi:10.1093/acprof:oso/9780199535255.001.0001.
 
+\bibitem{DanielssonFederico25}
+J.~L. Danielsson and L.~Federico, \emph{Minimal $H$-factors and covers},
+J.\ Appl.\ Probab.\ \textbf{62} (2025), 136--152. doi:10.1017/jpr.2024.72.
+
 \bibitem{DevlinKahn17}
 P.~Devlin and J.~Kahn, \emph{Perfect fractional matchings in $k$-out hypergraphs}, Electron.\
 J.\ Combin.\ \textbf{24}(3) (2017), P3.60. arXiv:1703.03513.
 
+\bibitem{FKNP21}
+K.~Frankston, J.~Kahn, B.~Narayanan and J.~Park,
+\emph{Thresholds versus fractional expectation-thresholds},
+Ann.\ of Math.\ \textbf{194} (2021), 475--495. doi:10.4007/annals.2021.194.2.2.
+
 \bibitem{FPT20}
 A.~Frieze, W.~Pegden and T.~Tkocz, \emph{On random multi-dimensional assignment problems},
 Discrete Appl.\ Math.\ \textbf{287} (2020), 1--9. doi:10.1016/j.dam.2020.07.013.
-arXiv:1901.07167.
+Theorem numbers refer to the authors' version, arXiv:1901.07167v1.
 
 \bibitem{FriezeSorkin15}
 A.~Frieze and G.~B. Sorkin, \emph{Efficient algorithms for three-dimensional axial and planar
@@ -134,7 +147,7 @@ Computation (EC'15), pp.~279--280. doi:10.1145/2764468.2764531.
 \bibitem{HesslerWastlund08}
 M.~Hessler and J.~W\"astlund, \emph{Concentration of the cost of a random matching problem},
 preprint dated 20 August 2008, \url{https://www.math.chalmers.se/~wastlund/martingale.pdf}.
-\todo{published version, if any}
+
 
 \bibitem{Kahn19}
 J.~Kahn, \emph{Asymptotics for Shamir's problem}, Adv.\ Math.\ \textbf{422} (2023), 109019.
@@ -142,8 +155,7 @@ doi:10.1016/j.aim.2023.109019. arXiv:1909.06834.
 
 \bibitem{Kallenberg21}
 O.~Kallenberg, \emph{Foundations of Modern Probability}, 3rd ed., Springer, 2021.
-doi:10.1007/978-3-030-61871-1. \todo{theorem numbers for the extension theorems and for
-L\'evy's upward theorem}
+doi:10.1007/978-3-030-61871-1. Theorems~8.23, 8.24 and 9.24.
 
 \bibitem{KanekoWooders82}
 M.~Kaneko and M.~H. Wooders, \emph{Cores of partitioning games}, Math.\ Social Sci.\
@@ -157,8 +169,7 @@ pp.~1916--1924. arXiv:1407.2576.
 
 \bibitem{LastPenrose17}
 G.~Last and M.~Penrose, \emph{Lectures on the Poisson Process}, Cambridge University Press,
-2017. doi:10.1017/9781316104477. \todo{theorem numbers for marking, mapping, restriction,
-simplicity and Mecke's formula}
+2017. doi:10.1017/9781316104477. Theorems~4.1, 5.1, 5.2 and 5.6, and Proposition~6.9.
 
 \bibitem{Lucas95}
 W.~F. Lucas, \emph{Core theory for multiple-sided assignment games}, Duke Math.\ J.\
@@ -173,8 +184,7 @@ arXiv:cond-mat/0407623.
 
 \bibitem{Prekopa73}
 A.~Pr\'ekopa, \emph{On logarithmic concave measures and functions}, Acta Sci.\ Math.\
-(Szeged) \textbf{34} (1973), 335--343. \todo{no Crossref record found; check the details
-against the journal}
+(Szeged) \textbf{34} (1973), 335--343.
 
 \bibitem{Quint91}
 T.~Quint, \emph{The core of an $m$-sided assignment game}, Games Econom.\ Behav.\ \textbf{3}
@@ -187,6 +197,11 @@ Springer, 2007. doi:10.1007/978-0-387-34675-5.
 \bibitem{ShapleyShubik71}
 L.~S. Shapley and M.~Shubik, \emph{The assignment game I: the core}, Internat.\ J.\ Game
 Theory \textbf{1} (1971), 111--130. doi:10.1007/BF01753437.
+
+\bibitem{Stuart97}
+H.~W. Stuart, Jr., \emph{The supplier--firm--buyer game and its $m$-sided
+generalization}, Math.\ Social Sci.\ \textbf{34} (1997), 21--27.
+doi:10.1016/S0165-4896(96)00830-X.
 
 \end{thebibliography}
 

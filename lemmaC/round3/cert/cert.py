@@ -14,11 +14,29 @@ Rigorous parts
 Plain floating point (no effect on validity): the choice of mesh points t_i.
 """
 import sys, time, math
+from fractions import Fraction
 import numpy as np
 from mpmath import iv
 
-HEXP = int(sys.argv[1]); N1 = int(sys.argv[2]); N2 = int(sys.argv[3]); STAGES = int(sys.argv[4])
+if __name__ == '__main__' and len(sys.argv) not in (5, 6):
+    raise SystemExit("usage: cert.py HEXP N1 N2 STAGES [outprefix]")
+HEXP, N1, N2, STAGES = map(int, sys.argv[1:5])
 PREFIX = sys.argv[5] if len(sys.argv) > 5 else None
+
+# Diagnostic scripts import the arithmetic at coarse spacings for quadrature checks.
+if __name__ == '__main__':
+    if not __debug__:
+        raise SystemExit("the certificate requires Python assertions; run without -O")
+    if HEXP not in (10, 12):
+        raise SystemExit("the certificate supports only HEXP=10 or HEXP=12")
+    if min(N1, N2) < 1 or STAGES < 0:
+        raise SystemExit("mesh sizes must be positive and the stage count nonnegative")
+
+CANONICAL_BOUNDS = {
+    (10, 1500, 2500, 8): Fraction("2.2574"),
+    (12, 4000, 8000, 10): Fraction("2.2519"),
+}
+
 TH_MIN, TH_MAX = 1e-6, 32.0
 EPS, TINY = 1e-9, 1e-290
 TGRID = 2.0 ** 20
@@ -229,9 +247,17 @@ def main():
         ET_hi = mean_T_hi(t, glo, gplo)
         c_hi = f_hi(3 * (iv.mpf(ET_hi) + 2 * iv.mpf(EX_hi)))
         print("stage %d: lattice cells %d (support width <= %.4f), mesh %d points, levels [%.3g, %.4g], "
-              "sum p_lo = %.12f, sum nu_hi = %.12f, E Q~ <= %.9f, E T(Q~) <= %.9f, CERTIFIED c* <= 3*Gamma(Q~_%d) <= %.6f   [%.0fs]"
+              "sum p_lo = %.12f, sum nu_hi = %.12f, E Q~ upper %.9f, E T(Q~) upper %.9f, c* upper endpoint (stage %d, nearest 6 decimals) %.6f   [%.0fs]"
               % (n, len(p_lo) - 1, width, len(t), glo[0], glo[-1], p_lo.sum(), nu_hi.sum(), EX_hi, ET_hi, n, c_hi, time.time() - tic), flush=True)
         if n == STAGES:
+            exact_upper = Fraction.from_float(float(c_hi))
+            target = CANONICAL_BOUNDS.get((HEXP, N1, N2, STAGES))
+            if target is not None:
+                if exact_upper > target:
+                    raise ArithmeticError(f"final upper endpoint {exact_upper} exceeds {target}")
+                print(f"certified final bound: c* <= {exact_upper} <= {target}", flush=True)
+            else:
+                print(f"certified final bound: c* <= {exact_upper}", flush=True)
             break
         theta = glo; shat = np.maximum.accumulate(gphi)
         assert np.all(shat > 0) and np.all(np.diff(shat) >= 0)

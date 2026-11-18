@@ -1,7 +1,6 @@
 """evidence only: rexp against 400-bit mp.exp; iv +,-,*,/ against exact rationals."""
 import sys, random, time
 sys.argv = ['cert.py', '4', '10', '10', '1']
-sys.path.insert(0, '/Users/maxf/projects/economics-research/game-theory/coopgpt/average_case_protection_2026-11-09/lemmaC/round3/cert')
 import cert
 from cert import iv, rexp
 from mpmath import mp

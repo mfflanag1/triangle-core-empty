@@ -1,0 +1,17 @@
+python-flint 0.9.0, FLINT 3.6.0, 128 bits, 256 Simpson panels per octave
+Interval endpoints below are outward-rounded to multiples of 10^-10.
+Psi0: [-3.8475164396, -3.8475163483]
+unperturbed exponent: [-0.0004140396, -0.0004139483]
+transfer error: [0.0002459951, 0.0002459952]
+market exponent at beta=2.302: [-0.0001680444, -0.0001679531]
+fixed-witness unperturbed exponent at beta=2.30225: [0.0000037604, 0.0000038517]
+Exact dyadic market exponent upper endpoint: -117046289145076831995371439838111362905/696898287454081973172991196020261297061888
+
+python-flint 0.9.0, FLINT 3.6.0, 160 bits, 384 Simpson panels per octave
+Interval endpoints below are outward-rounded to multiples of 10^-10.
+Psi0: [-3.8475164048, -3.8475163831]
+unperturbed exponent: [-0.0004140048, -0.0004139831]
+transfer error: [0.0002459951, 0.0002459952]
+market exponent at beta=2.302: [-0.0001680096, -0.0001679879]
+fixed-witness unperturbed exponent at beta=2.30225: [0.0000037952, 0.0000038169]
+Exact dyadic market exponent upper endpoint: -502814090713581688650267870300219932059937410843/2993155353253689176481146537402947624255349848014848

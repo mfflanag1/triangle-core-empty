@@ -377,12 +377,18 @@ $\tfrac12K^3(K^3+1)+K^6/(36q)\le2K^6$,
 \le e^{\Gamma_q+2K^6+s_0\ln W_q}\ \E'\bigl[\ind_{A_N}\,\ind\{H'\in\mathcal G\}\,W_q^{X_N}\bigr].
 \end{multline}
 
-The weight $W_q^{X_N}$ cannot be dropped by restricting to an event of $H$. In the market,
-given that a team of $N$ is near-tight, each of the $q-1$ other teams through one of its pairs
-is near-tight with probability of order $q^{-4/3}$, not $q^{-2}$; for a cheap assignment the
-number of near-tight teams in $\partial N$ is of order $q^{2/3}$ and not of order $1$. The
-weight is removed on the side of the independent-team model, where $\partial N$ is a fixed
-family of independent teams.
+In the market, conditional on the pair deficits of $N$, the expected number of near-tight
+teams in $\partial N$ is
+\[
+ \frac{q-1}{2}\sum_{\pi\in\operatorname{pairs}(N)}(t-\defi(\pi))_+^2.
+\]
+Indeed, each such team shares one pair $\pi$ with $N$ and uses two fresh uniform
+deficits. For fixed $K>\beta/3$ this conditional mean is of order $q^{2/3}$ on $A_N$.
+To see the lower bound, the mean deficit of the $3q$ pairs of $N$ on $A_N$ is at most
+$(\beta/3)q^{-2/3}$, so Jensen's inequality applies to $z\mapsto(t-z)_+^2$ with
+$t=Kq^{-2/3}$. The upper bound follows from $(t-\defi(\pi))_+^2\le t^2$.
+We handle the weight $W_q^{X_N}$ in the independent-team model, where the teams in
+$\partial N$ are independent of the costs on $N$.
 
 \begin{lemma}[Exponential moment]\label{lem:transfer-touch}
 Let $N$ be a perfect assignment, $\mathcal G$ a set of configurations and $\tau>0$. For
@@ -551,12 +557,12 @@ moments converge to $\prod_b\lambda_b^{k_b}\prod_b\lambda_b^{k'_b}$.
 A product of Poisson laws is determined by its moments. Therefore
 $(d_a(H),d_{a'}(H))$ converges in distribution to $\gamma\otimes\gamma$, and all moments of the
 degrees $|d_a(H)|$, $|d_{a'}(H)|$ are bounded uniformly in $q$. Let
-$|\psi(d)|\le c(1+|d|)^m$. By uniform integrability, $\E\psi(d_a(H))\to\E\psi(D)$,
-$\Var\psi(d_a(H))$ stays bounded, and $\Cov\bigl(\psi(d_a(H)),\psi(d_{a'}(H))\bigr)\to0$. By
-exchangeability of the agents of $S$,
+$|\psi(d)|\le c(1+|d|)^m$ and put $Y_v=\psi(d_v(H))$. Uniform integrability gives
+$\E Y_a\to\E\psi(D)$, bounded $\Var Y_a$, and $\Cov(Y_a,Y_{a'})\to0$ for distinct
+agents $a,a'$ in $S$. By exchangeability,
 \[
-\Var\Bigl(\frac1q\sum_{v\in S}\psi\bigl(d_v(H)\bigr)\Bigr)
-\le\frac{\Var\psi(d_a(H))}{q}+\Cov\bigl(\psi(d_a(H)),\psi(d_{a'}(H))\bigr)\longrightarrow0,
+\Var\Bigl(\frac1q\sum_{v\in S}Y_v\Bigr)
+=\frac{\Var Y_a}{q}+\frac{q-1}{q}\Cov(Y_a,Y_{a'})\longrightarrow0,
 \]
 and Chebyshev's inequality gives (c).
 \end{proof}

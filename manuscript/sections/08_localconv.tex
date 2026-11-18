@@ -420,9 +420,13 @@ exactly two tree pairs contains their common agent $b$, and the two tree teams t
 belong to the same embedding; so $|F_2|\le2(P_2+P_2')$. Three tree pairs are impossible as
 before.
 
-\emph{Steps 3 to 5.} Harris' inequality applies as before, and the density of $\mu_2$ with
-respect to $\nu_{K,r,X}\otimes\nu_{K,r,X'}$ on $\mathcal T_r\times\mathcal T_r$ is bounded
-below by a function $\underline f_2$ with
+\emph{Steps 3 to 5.} Write $\nu_2=\nu_{K,r,X}\otimes\nu_{K,r,X'}$. The disjoint
+embeddings of Step~1 contribute a submeasure of $\mu_2$. Applying Harris' inequality and
+integrating their costs as in \eqref{eq:localconv-lower} gives, for every measurable $A$,
+\[
+\mu_2(A)\ \ge\ \int_A(\underline f_2)_+\,\dd\nu_2,
+\]
+where $\underline f_2$ satisfies
 \begin{align*}
 (1-\underline f_2)_+\le{}&\frac{2(|E|+|E'|)(V+V')}{q}+\frac{(m+m')\lambda^2}{q^2}
 +2(P_2+P_2')Kq^{-2/3}\\
@@ -430,6 +434,9 @@ below by a function $\underline f_2$ with
 \end{align*}
 The last three terms have mean at most twice the corresponding terms of $\eps_1$. For the
 first, $2(|E|+|E'|)(V+V')\le(V+V')^2\le2V^2+2V'^2$, with mean at most $4Q_r$.
+As in Step~5 of Theorem~\ref{thm:localconv}, the submeasure bound gives
+$d_{\mathrm{TV}}(\mu_2,\nu_2)\le\int(1-\underline f_2)_+\,\dd\nu_2$.
+Overlapping balls can share an exact cost and contribute a singular part to $\mu_2$.
 \end{proof}
 
 \begin{corollary}\label{cor:localconv-prob}

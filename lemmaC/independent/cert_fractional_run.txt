@@ -1,0 +1,13 @@
+python-flint 0.9.0, FLINT 3.6.0, precision 176 bits, grid 2^-12, coefficients 2^-70
+Stage  0:      0 cells,  24542 mesh points, cost <= 4.867955
+Stage  1:  24547 cells,  38210 mesh points, cost <= 3.415694
+Stage  2:  38861 cells,  40220 mesh points, cost <= 2.660937
+Stage  3:  40904 cells,  41069 mesh points, cost <= 2.398917
+Stage  4:  41772 cells,  41362 mesh points, cost <= 2.302569
+Stage  5:  42072 cells,  41467 mesh points, cost <= 2.268745
+Stage  6:  42179 cells,  41503 mesh points, cost <= 2.256851
+Stage  7:  42216 cells,  41516 mesh points, cost <= 2.252684
+Stage  8:  42230 cells,  41521 mesh points, cost <= 2.251225
+Stage  9:  42235 cells,  41522 mesh points, cost <= 2.250714
+Stage 10:  42236 cells,  41522 mesh points, cost <= 2.250535
+Exact upper endpoint 10135505296350745/4503599627370496 <= 22519/10000

@@ -105,29 +105,36 @@ $\sum_{i\in S}p_i\ge\sum_j p(e_j)\ge\sum_j v(e_j)=v(S)$.
 \end{proof}
 
 \begin{proposition}\label{prop:model-core}
-The core is nonempty if and only if $\Dq=0$.
+For $q\ge2$, $\Dq$ is the minimum subsidy that, when added to the grand coalition's
+worth with every proper coalition's worth held fixed, gives a nonempty core. For every
+$q\ge1$ the original core is nonempty if and only if $\Dq=0$.
 \end{proposition}
 
 \begin{proof}
-Let $p$ be in the core. By Lemma~\ref{lem:model-coreform}, $p$ is feasible for the dual
-\eqref{eq:model-dual} and has total $\Tq$. By weak duality $\LPq\le\sum_i p_i=\Tq\le\LPq$, so
-$\Dq=0$.
+For $q\ge2$ every team is a proper coalition. A subsidised core allocation
+must pay each agent a nonnegative amount and each team at least its value.
+Conversely, any such payments cover the worth of every proper coalition
+by summing over its disjoint teams, as in Lemma~\ref{lem:model-coreform}.
+It remains to find the smallest total payment.
 
-Conversely, let $\Dq=0$ and let $u$ be an optimal solution of \eqref{eq:model-dual}, so that
-$\sum_i u_i=\LPq=\Tq$ and $u(e)\ge v(e)\ge0$ for every team. The vector $u$ may have negative
-entries, and we shift it sector by sector. Put $m_A=\min_{a\in A}u_a$ and define $m_B$, $m_C$ in
-the same way. Every triple is a team, so $s:=m_A+m_B+m_C=\min_e u(e)\ge0$. Define
-\[
-p_a=u_a-m_A+\tfrac{s}{3},\qquad p_b=u_b-m_B+\tfrac{s}{3},\qquad p_c=u_c-m_C+\tfrac{s}{3}.
-\]
-Then $p_i\ge s/3\ge0$ for every agent, $p(e)=u(e)-s+s=u(e)\ge v(e)$ for every team, and, since
-each sector has $q$ agents, $\sum_i p_i=\sum_i u_i-qs+qs=\Tq$. By
-Lemma~\ref{lem:model-coreform}, $p$ is in the core.
+By weak duality in \eqref{eq:model-dual}, that total is at least $\LPq$.
+Choose an optimal dual vector $u$. For each sector $X\in\{A,B,C\}$ put
+$m_X=\min_{i\in X}u_i$. Since every triple is available,
+$s=m_A+m_B+m_C=\min_e u(e)\ge0$.
+For $i\in X$, set $p_i=u_i-m_X+s/3$. Then $p_i\ge0$ and $p(e)=u(e)$ for every
+team. Each sector has $q$ agents, so $\sum_i p_i=\sum_i u_i=\LPq$.
+The least subsidy above the market's own worth $\Tq$ is therefore $\LPq-\Tq$.
+For $q=1$ the only team is the grand coalition, its fractional weight is one,
+and its value can be distributed in any nonnegative shares.
 \end{proof}
 
-Thus the statement ``the core is empty'' is the statement $\Dq>0$: the optimal assignment is
-not an optimal solution of the fractional relaxation. From here on the game plays no role, and
-the paper is about the random variable $\Dq$.
+A blocking team can be identified directly. For any payoff vector $p$ with
+$\sum_i p_i=\Tq$ and any optimal fractional assignment $x$, the unit loads give
+\[
+ \sum_e x_e\bigl(v(e)-p(e)\bigr)=\LPq-\Tq=\Dq .
+\]
+Since $\sum_e x_e=q$, at least one team has $v(e)-p(e)\ge\Dq/q$. If $\Dq>0$,
+its members can divide this gain so that each receives more than under $p$.
 
 \subsection{Deficits and the scaling}\label{sec:model-scaling}
 

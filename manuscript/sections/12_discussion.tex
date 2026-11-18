@@ -1,10 +1,11 @@
 \section{Discussion}\label{sec:discussion}
 
-\subsection{What the theorem says and does not say}\label{sec:discussion-scope}
+\subsection{Market size and the cost of stability}\label{sec:discussion-scope}
 
-Theorem~\ref{thm:main} is a statement about the limit $q\to\infty$. It gives no bound for
-any particular $q$, and none can be extracted from the proof at a size of practical
-interest.
+Theorem~\ref{thm:main} gives an expected cost of stability of order $q^{1/3}$ in total
+and $q^{-2/3}$ per agent. The explicit lower bound
+\eqref{eq:proofmain-planted} applies at each size. The upper bound on the probability
+of a nonempty core uses an asymptotic separation of the two optima.
 
 \emph{The thresholds in the proof are astronomically large.} In the comparison between the
 market and the independent-team model, the error term is negligible only when $\ln q$
@@ -16,41 +17,29 @@ team of rescaled cost at most $K$ shares a pair with about $\tfrac{9}{10}K^2q^{-
 such teams, and for $K=6$ this number stays above $1$ until $q$ is about $3\cdot10^4$. Below
 such sizes the near-tight hypergraph of the market is far from a tree.
 
-\emph{The constants of the proof are not visible at sizes that can be simulated.} In the
-market, the measured value of $\PhiLP/q^{1/3}$ is between $2.53$ and $2.56$ for $q\le48$, and at $q=2000$
-the fractional optimum restricted to teams of rescaled cost at most $6$, which is an upper
-bound on $\PhiLP$, is still $2.31\,q^{1/3}$ (Table~\ref{tab:discussion-market}; raising the
-cut-off to $7$ changed it by about $10^{-4}$). That is far from the limiting bound
-$\alphalp=2.2519$. So the two inequalities
-that the proof compares, $\Phiq\ge\betaint q^{1/3}$ and $\E\PhiLP\le(\alphalp+o(1))q^{1/3}$,
-do not describe the market at any size we could compute.
+\emph{What the finite-market computations measure.}
+At $q=16,24,32,48$, the unrestricted sample means of $\PhiLP/q^{1/3}$
+range from $2.535$ to $2.565$ (Table~\ref{tab:discussion-market}).
+At $q=2000$, restricting the LP to teams with rescaled cost at most $6$ gives a
+sample mean of $2.313$. Removing feasible teams can only increase a minimisation
+optimum. Thus the restricted computation supplies upper bounds on the unrestricted
+values of those instances. Raising the cutoff to $7$ changed the reported value
+by about $10^{-4}$. A lower bound for an unrestricted instance would require, for
+example, dual prices feasible also on the omitted teams.
 
-\emph{The conclusion, by contrast, is visible early.} The measured probability of a nonempty
-core is $0.37$ at $q=16$, $0.12$ at $q=24$, $0.04$ at $q=32$ and $0.002$ at $q=48$
-(Table~\ref{tab:discussion-core}), and the measured mean gap grows over the same range. The
-theorem therefore agrees with the data in its conclusion, while its proof describes a regime
-that begins many orders of magnitude later. Nothing proved here explains the behaviour at
-small $q$.
-
-\emph{Further limits.}
-\begin{itemize}
-\item The constant $0.050$ in part (i) is the difference of two certified bounds and is not
-claimed to be sharp. In the independent-team model the measured gap is about $0.09$ to
-$0.115$ times $q^{1/3}$ for $q\le40$ and rising.
-\item The proof gives only a polynomial rate in part (iii): by Chebyshev's inequality, part
-(i) and Theorem~\ref{thm:variance}, $\P(\Dq=0)\le\Var\Dq/(\E\Dq)^2=O(q^{-5/6+\eps})$.
-\item The theorem is for independent uniform pair values, three sectors of equal size, and
-teams that need all three pairs.
-\item The proof imports Theorem~2(b) of \cite{FPT20}, and two of its steps are
-computer-assisted (Section~\ref{sec:certificates}).
-\end{itemize}
+Table~\ref{tab:discussion-core} records $366$ nonempty cores in $1{,}000$ instances
+at $q=16$ and $2$ in $1{,}000$ at $q=48$. These frequencies show that exact stability
+can already be rare at moderate sizes. The constants and thresholds in the proof
+do not explain the size of those frequencies. The bound $0.0501$ on the
+asymptotic mean gap comes from subtracting two one-sided estimates. The numerical
+size of the limiting fractional cost and the sharp integer constant are discussed
+in Section~\ref{sec:discussion-open}.
 
 \subsection{Numerical evidence}\label{sec:discussion-numerics}
 
-\emph{Everything in this subsection is floating-point simulation. None of it is used in any
-proof, and none of it has been checked by a person.} Linear programmes were solved in double
-precision; integer optima were computed by branch and bound and are reported only where the
-solver closed the instance. Standard errors are given where the data files record them.
+The following tables report floating-point computations. The LPs used double precision.
+Integer optima were computed by branch and bound and are reported for instances on which
+the solver closed its optimality gap. Standard errors are given where the data files record them.
 
 \begin{table}[ht]
 \caption{Floating point. The market: share of instances with a nonempty core, with $95\%$
@@ -82,10 +71,11 @@ $q$ & instances & nonempty & share & $95\%$ interval \\
 \end{table}
 
 An independent sample gave shares $0.353$, $0.134$, $0.037$ and $0$ of $211$ at
-$q=16,24,32,48$. Among the curves fitted to Table~\ref{tab:discussion-core}, the stretched
-exponential $\exp(-0.0115\,(q-2)^{1.68})$ fits best without an extra parameter (deviance
+$q=16,24,32,48$. Among the curves fitted to Table~\ref{tab:discussion-core}, the curve $\exp(-0.0115\,(q-2)^{1.68})$ fits best without an extra parameter (deviance
 $20.3$ on $13$ degrees of freedom); a pure exponential in $q$ fits badly (deviance $1505$ on
-$14$). The fits are descriptive and cover $q\le48$ only.
+$14$). The lower bound $e^{-Cq}$ in Theorem~\ref{thm:main}(iii) rules out
+$\exp(-a q^{1.68})$ for fixed $a>0$ as an asymptotic law. An exponential in $q$ remains
+possible asymptotically despite its poor fit on this range.
 
 \begin{table}[ht]
 \caption{Floating point. The market: integer and fractional deficits divided by $q^{1/3}$,
@@ -111,15 +101,14 @@ $q$ & instances & $\Phiq/q^{1/3}$ & $\PhiLP/q^{1/3}$ & $\E\Dq$ & $\P(\Dq>0)$ \\
 \end{tabular}
 \end{table}
 
-In the market the fractional constant keeps falling with $q$. Its excess over $2.2$ is
-between about $1$ and $1.5$ times $q^{-1/3}$ from $q=16$ to $q=2000$, which is compatible
-with a limit near the tree values and a correction of order $q^{-1/3}$, as the slow
-disappearance of pair-sharing suggests. The integer
-optimum of the market was not computed beyond $q=48$. In the instances with $\Dq>0$ the
-optimal fractional solution found by the solver has non-integral weights at a share $0.71$,
-$0.77$, $0.83$, $0.87$ of the agents for $q=16,24,32,48$; so the fractional optimum is not a
-small perturbation of an assignment. The standard deviation of $\Dq$ is
-about $0.05$ for $q$ between $16$ and $48$, in line with Theorem~\ref{thm:variance}.
+The integer optimum in Table~\ref{tab:discussion-market} was computed only through
+$q=48$. Among instances with $\Dq>0$, the solver's optimal fractional allocation
+has nonintegral weights at a share $0.71,0.77,0.83,0.87$ of agents at
+$q=16,24,32,48$, respectively. Corollary~\ref{cor:proofmain-participation} proves a positive asymptotic
+lower bound on the share in each sector for whom every team weight is below $0.99$,
+simultaneously for all optimal assignments. The observed standard deviation of $\Dq$ is
+about $0.05$ over this range. The lower block of the table uses restricted LPs,
+so it cannot establish a convergence rate for the unrestricted fractional cost.
 
 \begin{table}[ht]
 \caption{Floating point. The independent-team model, teams of rescaled cost at most $6$:
@@ -145,20 +134,13 @@ $q$ & instances & constant & instances & mean & constant & integral \\
 \end{tabular}
 \end{table}
 
-In the independent-team model there is no pair-sharing and the constants are close to their
-limits already at small $q$. The fractional constant rises from $2.165$ to $2.200$ and fits
-give a limit between $2.20$ and $2.22$; a second code found $2.184\pm0.012$ at $q=1000$,
-$2.202$ at $q=2000$ and $2.196$ at $q=4000$ (two and one instances). All of these are below
-$\alphalp=2.2519$ and below the floating-point cost $2.2495$ of the matching defined by the
-fixed point. This is consistent with $\alphalp$ as an upper bound for the limiting
-fractional constant, which Theorems~\ref{thm:lp} and~\ref{thm:existence} prove for the
-market; the corresponding statement for the independent-team model is not proved in this
-paper. The
-integer constant rises from $2.253$ to $2.311$ over $q=16,\dots,40$, and fits give a limit of
-$2.32$ or more; a second code found $2.32\pm0.03$ at $q=32$. This is consistent with
-$\betaint=2.302$ as a lower bound for the limit. The finite-size values at $q\le32$ lie below
-$2.302$; the theorems concern the limit only. The comparison was run as a test that could
-have refuted the proof's architecture, and it did not.
+In the independent-team model the restricted fractional costs in
+Table~\ref{tab:discussion-iid} are close to $2.20$ at the larger sizes. An independent
+implementation found $2.184\pm0.012$ at $q=1000$, $2.202$ at $q=2000$ and $2.196$
+at $q=4000$, with at most two instances per size. The estimates for the integer cost
+in the table rise from $2.253$ at $q=16$ to $2.311$ at $q=40$. These experiments concern
+a different dependence structure from the pair-additive market of
+Theorem~\ref{thm:lp-limit}.
 
 \subsection{The matching on the tree is not a function of the tree}
 \label{sec:discussion-endogeny}
@@ -191,28 +173,31 @@ the tree is a measurable function of the tree and its costs
 
 \subsection{Open problems}\label{sec:discussion-open}
 
-\emph{The constants.} Do $\Phiq/q^{1/3}$ and $\PhiLP/q^{1/3}$ converge, and to what? For the
-integer problem we prove $\liminf\ge2.302$ in probability; the star-conditioned first moment
-cannot give more than about $2.3025$, and the simulations suggest a limit of $2.32$ or more.
-For the fractional problem we prove $\limsup\E\PhiLP/q^{1/3}\le2.2519$, the fixed point costs
-$2.2495$ numerically, and the simulations of the independent-team model suggest a limit near
-$2.20$. If that is right, the matching built from the recursion is not the cheapest invariant
-matching on $\tree$. Is the fractional limit equal to the infimum of $c(m)$ over invariant
-perfect matchings on $\tree$, and what is that infimum? The plain first moment gives the lower bound $3e^{-1/3}=2.1496$ for the integer
-problem only; no lower bound for the fractional constant is proved in this paper.
+\emph{The constants.}
+Theorem~\ref{thm:lp-limit} identifies the limiting fractional deficit as an attained
+minimum $\gamma_{\mathrm{LP}}$ on the Poisson hypertree. Its value lies in
+$[6^{1/3}\Gamma(4/3),\,2.2519]$. Does the recursive matching of
+Theorem~\ref{thm:process} attain the minimum? Its estimated cost is $2.2495$.
+For the finite integer problem, Theorem~\ref{thm:integer} gives the lower bound
+$2.302$ with high probability on the $q^{1/3}$ scale. Convergence of the normalised
+integer deficit to a constant would give the limiting subsidy by subtraction.
 
-\emph{The rate.} The proof gives $\P(\text{core nonempty})=O(q^{-5/6+\eps})$. The data for
-$q\le48$ decay much faster, like a stretched or plain exponential in $q$. What is the true
-rate? A Chebyshev argument cannot give more than a polynomial rate.
+\emph{The probability of stability.}
+For all sufficiently large $q$, Theorem~\ref{thm:main}(iii) places
+$-\log\P(\Dq=0)$ between $cq^{1/3}$ and $Cq$. What is its order?
+The lower bound on the probability uses an event on which every team of one assignment
+is cheaper than every competing team. Core nonemptiness permits other configurations.
 
-\emph{Other sector graphs and more sectors.} Here every pair of sectors interacts. If one of
-the three types of pair is removed, the sector graph is a path, and for sector graphs that
-are trees the core is expected to be nonempty always \todo{cite the deterministic result for
-tree sector graphs}. With four or more sectors and pair-additive values on a cyclic sector
-graph, nothing is known; the scaling of the optimum for the four-sector model with values on
-all pairs is itself not treated in \cite{FPT20}. Unequal sector sizes are a further case:
-for independent values on triples, the figures reported in \cite{Lucas95} suggest that the
-core is nonempty with probability tending to $1$ when one side stays small.
+\emph{Other sector graphs.}
+Removing the interaction between $A$ and $C$ gives the full-team path model of
+Stuart \cite{Stuart97}. Optimal $A$--$B$ and $B$--$C$ assignments can be joined at
+each agent in $B$. Adding their bilateral core payments gives total payments equal
+to the joint assignment's value and covers the worth of every triple. This proves
+core existence for every size. The same joining argument along a rooted tree works
+for equal-sized sectors, nonnegative pair values and full-team production. Atay and
+N\'u\~nez \cite{AtayNunez19} treat the version with productive smaller connected
+coalitions. The corresponding large-market probabilities for other cyclic sector
+graphs and for unequal sector sizes are natural questions.
 
 \emph{Other value laws.} The proof uses the uniform law through the density of a pair
 deficit near zero and through the imported bound of \cite{FPT20}. Pair values with a bounded
@@ -226,6 +211,5 @@ small: the plain first moment gives $2.1496$, the star-conditioned one $2.3022$,
 bounds $c_n$ on the tree cost fall below $2.302$ only from the fourth iterate on
 ($c_4=2.3017$, $c_5=2.2679$ in floating point; the certified bounds are below $2.302$ from
 stage $5$ on). A proof without computation would need an analytic bound on a five-fold
-iterated integral, or a different argument for either constant. Short of that, the two
-certificates should be re-implemented in a second interval library, and the scripts read by
-a person.
+iterated integral, or a different argument for either constant. Appendix~\ref{sec:certificates-detail}
+records independent implementations of both numerical bounds using Arb real balls.

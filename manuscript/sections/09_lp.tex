@@ -1,9 +1,12 @@
-\section{The fractional optimum is bounded by the tree}\label{sec:lp}
+\section{The fractional optimum and its tree limit}\label{sec:lp}
 
-This section proves that the cost of any invariant perfect matching on the Poisson
-hypertree is an asymptotic upper bound for the fractional deficit of the market. The tree
-and invariance are those of Section~\ref{sec:tree}; balls, the truncated tree $\tree_K$ and
-the bound $\eps_1(q,K,r)$ are those of Section~\ref{sec:localconv}; $C_0$ is the constant of
+The fractional deficit, divided by $q^{1/3}$, converges to the minimum expected root cost
+of an invariant perfect matching on the Poisson hypertree (Theorem~\ref{thm:lp-limit}).
+We first carry a matching from the tree to the finite market to obtain the upper bound.
+For the converse we root finite optimal fractional assignments at a uniform agent and show
+that their weight is preserved in a local limit. The tree and its invariance are defined
+in Section~\ref{sec:tree}. The balls, the truncated tree $\tree_K$ and the error
+$\eps_1(q,K,r)$ are those of Section~\ref{sec:localconv}, and $C_0$ is defined in
 \eqref{eq:variance-C0}.
 
 \subsection{Statement}\label{sec:lp-statement}
@@ -48,8 +51,8 @@ integers $r\ge1$ and $q\ge r^{3/2}$ and every $\eta\in(0,1)$,
 with $\eps_1$ as in Theorem~\ref{thm:localconv}.
 \end{theorem}
 
-If $c(m)=\infty$ there is nothing to prove, and we assume $c(m)<\infty$. The proof has five
-steps. The conditional expectation of $m$ given the tree is a fractional perfect matching
+The finite-market estimate uses only truncated costs and holds also when $c(m)=\infty$.
+For the asymptotic conclusion it suffices to consider $c(m)<\infty$. The proof has five steps. The conditional expectation of $m$ given the tree is a fractional perfect matching
 that all three agents of a team compute alike (Lemma~\ref{lem:lp-conditional}). Conditioning
 further on a ball of finite radius, and taking the minimum over the three agents of a team,
 gives a fractional packing of finite range whose cost is at most $c(m)$ and whose slack is
@@ -511,3 +514,125 @@ $R_i$ had the same size in $\{\lfloor\Sigma\rfloor,\lceil\Sigma\rceil\}$, the lo
 differed from $1$ by at most $1.1\cdot10^{-15}$, and the chain of inequalities for the cost
 held. This is evidence only and is not used in the proof.
 \end{remark}
+
+\subsection{The variational limit}\label{sec:lp-limit}
+
+\begin{theorem}[Fractional limit]\label{thm:lp-limit}
+There is an invariant perfect matching on the Poisson hypertree $\tree$ of minimum
+expected root cost. Writing
+\[
+\gamma_{\mathrm{LP}}=\min\{c(m):m\text{ is an invariant perfect matching on }\tree\},
+\]
+we have
+\[
+\lim_{q\to\infty}\E\left[\left(\frac{\PhiLP}{q^{1/3}}-\gamma_{\mathrm{LP}}\right)^2\right]=0,
+\qquad
+6^{1/3}\Gamma(4/3)\ \le\ \gamma_{\mathrm{LP}}\ \le\ \alphalp .
+\]
+\end{theorem}
+
+\begin{proof}
+Put $a_q=q^{-1/3}\E\PhiLP$. Since $\PhiLP\le\Phiq$, \eqref{eq:variance-C0} gives
+$a_q\le C_0$. Take a subsequence along which $a_q\to L=\liminf_{q\to\infty}a_q$.
+In each market mark every team $e$ with its weight $x^{(q)}_e$ in an optimal fractional
+assignment. Break ties measurably, for example by fixing an order on the finitely many
+vertices of the feasible polytope and taking the first optimum. Choose a uniform agent
+$o_q$ independently after marking the market. Each team occurs at three of the $3q$
+possible roots, hence
+\begin{equation}\label{eq:lp-limit-rootcost}
+\E\sum_{e\ni o_q}\cost_e x^{(q)}_e
+=\frac{1}{q}\,\E\sum_e q^{2/3}\Defi(e)x^{(q)}_e=a_q .
+\end{equation}
+
+\emph{A marked subsequential limit.}
+For integer $K,r\ge1$, record $B_r(H_q(K),o_q)$ with its additional team weights.
+Give finite rooted shapes the discrete topology. On a shape with $n$ teams the marks
+range over $([0,K]\times[0,1])^n$ modulo its finite group of rooted sector-preserving
+automorphisms. This quotient is compact and metrizable, and the countable disjoint
+union over shapes is Polish. By Theorem~\ref{thm:localconv}, the laws after forgetting the
+weights converge in total variation to those of $B_r(\tree_K,o)$. In particular, finitely
+many shapes carry probability arbitrarily close to one, uniformly along the subsequence.
+Compactness on these shapes gives tightness with the weights included. The joint laws of
+the countably many balls are also tight in their product space: for the $j$th ball choose
+a compact set with exceptional probability less than $\eps 2^{-j}$ and take the product.
+Pass to a weakly convergent further subsequence by Prokhorov's theorem.
+
+For $K\le K'$ and $r\le r'$, restriction of the larger ball to the smaller one deletes
+teams of cost above $K$ and takes the radius-$r$ ball in the resulting graph.
+On each shape this operation is continuous wherever no cost equals $K$. The Poisson
+costs have no atom at any fixed cutoff. Thus the restriction identities of the finite
+balls hold almost surely in the limit, simultaneously for all integer indices. After
+forgetting the weights these consistent balls have exactly the law of the Poisson tree,
+since the joint law of any finite group of them is determined by a single larger ball.
+Almost surely their costs distinguish incident teams, so their weights agree on overlaps
+and define a single decoration $x=(x_e)$ on $(\tree,o,\xi)$. In the rank coding of
+Remark~\ref{rem:tree-balls} each team address and its weight can be read in every
+sufficiently large ball.
+
+\emph{Invariance of the decoration.}
+Fix an integer $K\ge1$. Consider ordered triples $(a,e,b)$ with $a,b$ distinct agents of
+the same team $e$ and $\xi_e\le K$. In every finite marked market, summing a test function
+over such triples starting at the uniform root has the same expectation as summing it
+with the endpoints reversed. This follows by summing over all roots, for each realization
+of the marked market. It counts a separate triple for each shared team.
+
+To pass this identity to the limit, first take a bounded continuous function of the
+radius-$r$ ball at the starting agent at an integer cutoff $J\ge K$, with the team and
+the other endpoint distinguished. Both resulting sums can be evaluated on the
+radius-$(r+1)$ ball at cutoff $J$ around the original root. On a fixed shape these sums
+are continuous away from costs equal to $K$. Their absolute values are at most
+$2\|f\|_\infty N_{q,K}$, where $N_{q,K}$ is the number of teams at $o_q$ of cost at most $K$.
+This count converges in law to a Poisson variable of mean $K^3/6$ by
+Theorem~\ref{thm:localconv}. Its expectation is also $K^3/6$ for all sufficiently large
+$q$, by \eqref{eq:model-oneteam} and the $q^2$ incident teams. Convergence of both the
+laws and the means of these nonnegative counts gives uniform integrability, as is seen
+by subtracting $\E(N_{q,K}\wedge h)$ from $\E N_{q,K}$ and letting $h\to\infty$.
+Thus expectations of the two sums converge and the identity holds on the limit tree.
+
+At fixed $K$ the two sums define finite measures on rooted decorated trees with a
+distinguished outgoing triple. Bounded continuous tests determine their laws on every
+finite doubly rooted ball (including the distinguished team). These balls, as $r,J$
+increase, generate the full decorated doubly rooted $\sigma$-field by the rank coding.
+The two finite measures therefore agree for every nonnegative measurable test. Let
+$K\to\infty$ by monotone convergence. In the tree adjacent agents have a unique shared
+team, so the resulting identity is precisely \eqref{eq:lp-mt}.
+
+\emph{The limiting weights cover every agent.}
+For the root in either model let $S_K$ and $C_K$ be the sums of $x_e$ and $\xi_e x_e$,
+respectively, over incident teams of cost at most $K$, using $x^{(q)}$ in the market.
+These are continuous functions of the decorated radius-one ball at cutoff $K$ on each
+shape. The finite-market bounds $S_K\le1$ and $C_K\le K$ pass to the limit; consequently
+their expectations converge as well, by applying bounded continuous truncations.
+In the finite market the root has total weight one, and the mass on teams above $K$ is
+at most their total cost at the root divided by $K$. By \eqref{eq:lp-limit-rootcost},
+the limit tree therefore satisfies
+\[
+0\le 1-\E S_K\le L/K,\qquad \E C_K\le L .
+\]
+As $K\to\infty$, monotone convergence and $S_K\le1$ give
+$\sum_{e\ni o}x_e=1$ almost surely and $c(x)=\E\sum_{e\ni o}\xi_e x_e\le L$.
+Invariance and Lemma~\ref{lem:tree-null} transfer the load identity at the root to every
+agent almost surely. We have obtained an invariant fractional perfect matching.
+
+By Theorem~\ref{thm:decomp} there is an invariant integral perfect matching $m_*$ of cost
+$c(m_*)=c(x)$. Theorem~\ref{thm:lp} applies to every such matching and yields
+\[
+\inf_m c(m)\ \le\ c(m_*)\ \le\ L
+\ \le\ \limsup_{q\to\infty}a_q\ \le\ \inf_m c(m).
+\]
+This proves attainment and convergence of the means. The matching provided by
+Theorems~\ref{thm:process} and~\ref{thm:existence} costs at most $\alphalp$.
+Every perfect matching incurs at least the cheapest incident team cost at the root.
+That cost has survival function $\exp(-t^3/6)$ for $t\ge0$, by the Poisson intensity
+$\Lam$. Its mean is $\int_0^\infty e^{-t^3/6}\dd t=6^{1/3}\Gamma(4/3)$.
+
+Finally, in the exponential coordinates of Lemmas~\ref{lem:variance-poincare}
+and~\ref{lem:variance-gradient}, write $\ell_p$ for the optimal fractional load on pair
+$p$. Since $0\le\ell_p\defi(p)\le1$, those lemmas give
+\[
+\Var\PhiLP
+\le 4\,\E\sum_p\bigl(\ell_p\defi(p)\bigr)^2
+\le 4\,\E\sum_p\ell_p\defi(p)=4\,\E\PhiLP=O(q^{1/3}).
+\]
+After division by $q^{2/3}$ this variance tends to zero, proving convergence in mean square.
+\end{proof}

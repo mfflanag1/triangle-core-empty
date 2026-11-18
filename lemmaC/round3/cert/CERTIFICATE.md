@@ -1,12 +1,10 @@
 # Certificate: c* < 2.30 (rigorous upper bound on the cost of every fixed point)
 
-Round 3, line `cert`. Written and run by one agent in one sitting; no second reader yet.
-Labels: **complete** = I would defend it to a referee; **assumed** = taken from elsewhere.
+Round 3 certificate for the recursive distributional equation. Sections 1–7 give the construction and its original checks. Section 8 reproduces the archived runs.
 
 ## 0. Result
 
-**Certified: every fixed point Q* = T(Q*) has c* = 9·E X ≤ 2.251887 < 2.30** (run B, stage 10).
-A coarser run of under a minute (run A) already gives c* ≤ 2.257381 at stage 8 and 2.274755 at stage 5.
+**Every fixed point Q* = T(Q*) has c* = 9·E X ≤ 2.2519.** Run B checks this bound at stage 10 by comparing the final upper endpoint with the exact rational 22519/10000. Run A checks the coarser bound 11287/5000 = 2.2574 at stage 8.
 
 | stage n | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 10 |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -15,8 +13,7 @@ A coarser run of under a minute (run A) already gives c* ≤ 2.257381 at stage 8
 | reference c_n without rounding (referee's code, floating) | 4.86795 | 3.41528 | 2.66022 | 2.39809 | 2.30170 | 2.26786 | 2.25596 | | | limit 2.24954561 |
 | floating c_n in ROUTES.md (low by about 1e-4 according to the referee) | 4.86795 | 3.41521 | 2.66013 | 2.39798 | 2.30163 | 2.26777 | 2.25584 | 2.25169 | 2.25027 | 2.24963 |
 
-Each certified entry is an upper bound on 3·Γ(Q̃_n) for an explicit law Q̃_n, hence on c*. Every
-entry from stage 5 on is below 2.30 in both runs.
+The two run rows display upper endpoints rounded to the nearest six decimals. Each unrounded endpoint bounds 3·Γ(Q̃_n) for an explicit law Q̃_n, hence c*. The saved logs include the exact final endpoints. Both runs give a bound below 2.30 from stage 5.
 
 What the certificate rests on:
 
@@ -27,8 +24,7 @@ What the certificate rests on:
 3. Trust in the four basic operations and the comparisons of `mpmath.iv` (outward-rounded interval
    arithmetic; its `exp` is **not** used, see section 5) and in IEEE-754 binary64 round-to-nearest
    for `+` and `×` in numpy/BLAS.
-4. The code `cert.py` (about 245 lines) does what sections 1 to 5 say. It has been tested (section 6) but
-   not read by anyone else.
+4. The implementation in `cert.py` and the exact final comparison using Python's `fractions.Fraction`. Section 6 describes the numerical checks.
 
 ## 1. The rounded scheme
 
@@ -122,7 +118,7 @@ g(t) ≥ g(t_i) + g'(t_i)(t − t_i) ≥ θ_i + a_i(t − t_i). ∎
 4. `evalsums` (float64): the three sums of Lemmas R3, R4 at every t_i, giving θ_i = g^lo(t_i),
    a_i = g'^lo(t_i), ŝ_i = g'^hi(t_i).
 5. `mean_T_hi` (interval arithmetic): the bound of Lemma R5; then
-   3·(E T upper + 2·E Q̃ upper) in interval arithmetic, rounded up. This is the printed number.
+   3·(E T upper + 2·E Q̃ upper) in interval arithmetic, rounded up to a binary64 value. The final check reads that value as an exact binary rational.
 6. Next law: parameters θ_i and running maximum of ŝ_i.
 
 Stage 0 is the same code with the one-point law δ_0.
@@ -195,27 +191,27 @@ Run A: lattice ≤ 9862 cells, 4000 levels: under 1 min for eight stages. Run B:
    By the defect above its enclosures may be too narrow by a relative amount of order 1e−28. This
    cannot matter numerically unless a margin there is of that size, but for a strict certificate
    each `iv.exp`/`iv.log` result should be widened by a few ulps (or replaced as here).
-4. `cert.py` has not been read by a second person or model. The mesh choice is deterministic but
-   may differ across BLAS builds; any mesh is valid, and run A's parameters are saved in `stages/`.
+4. The mesh choice may differ across BLAS builds. The enclosures apply to any chosen mesh satisfying the arithmetic assertions. The recorded parameters of both runs are in `stages/`.
 5. No LEDGER, CLAIMS or research-handoff entry was made from this line (writes confined to `cert/`).
 
 ## 8. Files and reproduction
 
-`cert.py` (certificate), `run_A_h10.log`, `run_B_h12.log` (logs), `stages/A_stage{1..8}.npz`
-(parameters θ, ŝ, t of run A), `check_float.py`, `check_float_A.log`, `test_small.py`,
+`cert.py` (certificate), `run_A_h10.log`, `run_B_h12.log` (logs), `stages/A_stage{1..8}.npz` and `stages/B_stage{1..10}.npz`
+(mesh points `t`, lower levels `theta`, and upper slopes `shat` for every transition), `check_float.py`, `check_float_A.log`, `test_small.py`,
 `test_small.log`, `check_monotone.py`, `check_monotone.log`, `test_rexp.py` (checks of `rexp` and of interval `+ − × ÷`), `old_ivexp/` (logs
 of the first version, which used `iv.exp`; superseded, identical numbers).
 
 ```
-P=/Users/maxf/miniforge3/bin/python3
-$P cert.py 10 1500 2500 8 stages/A   # run A, under 1 min
-$P cert.py 12 4000 8000 10           # run B, about 4 min
-$P check_float.py stages/A 8         # 7 s
-$P test_small.py 4                   # 5 s
-$P test_rexp.py                      # 15 s
+python3 cert.py 10 1500 2500 8 stages/A
+python3 cert.py 12 4000 8000 10 stages/B
+python3 check_float.py stages/A 8
+python3 test_small.py 4
+python3 test_rexp.py
 ```
 
-## 9. Confidence
+Run from this directory with mpmath 1.3.0 (Python backend) and NumPy. The two recorded runs used NumPy 2.2.6. The certificate CLI accepts HEXP 10 and 12 and requires Python assertions. A successful canonical run prints the exact binary rational upper endpoint and its comparison with the stated target. The optional prefix selects where the compressed arrays are written. Choose a fresh prefix when comparing to the archive.
+
+## 9. Confidence in the original run
 
 Given Theorem M and Lemma 3: 93% that the statement "c* ≤ 2.2575" (run A) is correctly certified,
 and the same for 2.2519 (run B); the residual is an unnoticed slip in the code or in

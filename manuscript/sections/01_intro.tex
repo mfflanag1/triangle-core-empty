@@ -2,90 +2,106 @@
 
 \subsection{The problem}\label{sec:intro-problem}
 
-In the two-sided assignment game of buyers and sellers the core is never empty: the linear
-programme behind the optimal assignment has an integral optimal solution, and its dual
-solutions are the core payoffs \cite{ShapleyShubik71}. With three sides
-this fails. A three-sided assignment game can
-have an empty core, and the core is nonempty exactly when the fractional relaxation of the
-three-dimensional assignment problem has an integral optimal solution. How often this happens
-in a large random market has been an open question; the only figures found in the sources
-we searched concern very
-small markets, or markets with one small side, with independent team values
-\cite{Lucas95}.
+In the two-sided assignment game, an integral optimal assignment and its dual prices
+support a core allocation \cite{ShapleyShubik71}. With three sectors the answer depends
+on how the sectors interact. In Stuart's supplier--firm--buyer game, a team earns a
+supplier--firm value plus a firm--buyer value \cite{Stuart97}. Two optimal bilateral
+assignments can be joined through the firm in each team. Adding a supplier--buyer
+interaction couples all three bilateral assignments around a cycle. How often can the
+gains in such a market be divided so that every coalition receives at least what it
+could earn on its own?
 
-We study the following market. There are three sectors of $q$ agents. Every pair of agents
-from different sectors has a value, and the $3q^2$ pair values are independent and uniform on
-$[0,1]$. A team consists of one agent from each sector and is worth the sum of its three pair
-values. A coalition is worth the best total value of disjoint teams that it can form. This is
-the model of Frieze, Pegden and Tkocz \cite{FPT20}, read as a market: they showed that the
-best assignment falls short of the trivial upper bound $3q$ by an amount of order $q^{1/3}$.
+We study three sectors of $q$ agents each. The $3q^2$ cross-sector pair values are
+independent and uniform on $[0,1]$. A team contains one agent from each sector and earns
+the sum of its three pair values. A coalition can form any collection of disjoint teams.
+Let $\Tq$ denote the greatest total value of an assignment and $\LPq$ its fractional
+relaxation. An outside subsidy augments the grand coalition's budget. A coalition that
+leaves can earn only what its own teams produce. The smallest subsidy that permits a
+stable division is $\Dq=\LPq-\Tq$ (Proposition~\ref{prop:model-core}).
+When $\Dq>0$, every division of $\Tq$ leaves a team that could pay all three members
+more by forming on its own.
 
-Let $\Tq$ be the value of the best perfect assignment, $\LPq$ the optimum of the fractional
-relaxation, and $\Dq=\LPq-\Tq\ge0$ the gap. The core is nonempty if and only if $\Dq=0$
-(Proposition~\ref{prop:model-core}). Full definitions are in Section~\ref{sec:model}.
+\newpage
+\subsection{The main results}\label{sec:intro-main}
 
-\subsection{The main theorem}\label{sec:intro-main}
-
+Write $\Phiq=3q-\Tq$ and $\PhiLP=3q-\LPq$ for the integer and fractional deficits.
 Throughout, $\betaint=2.302$ and $\alphalp=2.2519$.
 
 \begin{theorem}\label{thm:main}
-In the random three-sided market with independent uniform pair values, as $q\to\infty$:
+In the random three-sided market with independent uniform pair values, the following hold.
 \begin{enumerate}
-\item[(i)] $\E\Dq\ \ge\ (\betaint-\alphalp-o(1))\,q^{1/3}\ \ge\ (0.050-o(1))\,q^{1/3}$; in
-particular $\E\Dq\to\infty$.
-\item[(ii)] $\Dq/\E\Dq\to1$ in probability.
-\item[(iii)] $\P(\text{the core is nonempty})=\P(\Dq=0)\to0$.
+\item[(i)] $\E\Dq\ge(\betaint-\alphalp-o(1))\,q^{1/3}=(0.0501-o(1))\,q^{1/3}$.
+\item[(ii)] $\Dq/\E\Dq\to1$ in probability as $q\to\infty$.
+\item[(iii)] There are constants $c,C>0$ such that, for all sufficiently large $q$,
+\[
+ e^{-Cq}\ \le\ \P(\text{the core is nonempty})=\P(\Dq=0)\ \le\ e^{-c q^{1/3}} .
+\]
 \end{enumerate}
 \end{theorem}
 
-So the core of the random three-sided assignment market is empty with probability tending to
-$1$. The theorem is asymptotic. The proof gives no bound at any size that can be simulated,
-and the thresholds implicit in it are astronomically large (Section~\ref{sec:discussion}).
-Two steps of the proof are computer-assisted (Sections~\ref{sec:intro-computer}
-and~\ref{sec:certificates}).
+Since $\Dq\le\Phiq$ and $\E\Phiq=O(q^{1/3})$ by Frieze, Pegden and Tkocz
+\cite{FPT20}, the expected aggregate subsidy is of order $q^{1/3}$. Dividing by the
+$3q$ agents gives an expected subsidy per agent of order $q^{-2/3}$. The core is
+therefore empty with probability tending to one even as the per-agent cost of
+stability vanishes.
 
-\subsection{The four ingredients}\label{sec:intro-ingredients}
+The fractional deficit also has a limit on this scale. The teams with rescaled cost
+$q^{2/3}\Defi(e)$ below a fixed level converge locally around a uniform agent to
+a Poisson hypertree $\tree$. For an invariant random perfect matching $m$ on $\tree$,
+let $c(m)$ be the expected cost of the team covering its root. Invariance under
+re-rooting is made precise in Definition~\ref{def:tree-invariant}. We prove in
+Theorem~\ref{thm:lp-limit} that
+\[
+  \frac{\PhiLP}{q^{1/3}}\ \xrightarrow{L^2}
+  \gamma_{\mathrm{LP}}=\min_m c(m),\qquad
+  6^{1/3}\Gamma(4/3)\le\gamma_{\mathrm{LP}}\le2.2519.
+\]
+The minimum is attained. Identifying its value more precisely would require recognising
+or constructing a cheapest invariant matching.
 
-Write $\Phiq=3q-\Tq$ and $\PhiLP=3q-\LPq$ for the integer and the fractional deficit, so that
-$\Dq=\Phiq-\PhiLP$. Both are of order $q^{1/3}$. The theorem follows from four statements.
+\subsection{How the two optima separate}\label{sec:intro-ingredients}
 
-\emph{The gap is asymptotically deterministic} (Theorem~\ref{thm:variance},
-Section~\ref{sec:variance}). For every $\eps\in(0,\tfrac12)$, with high probability the
-optimal assignment
-uses no pair of deficit above $C_\eps q^{-1/2+\eps}$, and no team in the support of an optimal
-fractional solution has deficit above $C_\eps q^{-1/2+\eps}$. With a Poincar\'e inequality this
-gives $\Var\Dq=O(q^{-1/6+\eps})$. Hence $\P(\Dq=0)\to0$ as soon as $\E\Dq$ stays bounded away
-from zero; far less than (i) is needed for (iii).
+\emph{Lower bound for the integer optimum.}
+With high probability every perfect assignment has deficit at least $\betaint q^{1/3}$
+(Theorem~\ref{thm:integer}). We first condition a count of cheap assignments on the
+local costs seen by the agents in an independent-team model (Theorem~\ref{thm:iid}).
+The comparison inequality of Theorem~\ref{thm:transfer} transfers the bound to the
+market with shared pair values.
 
-\emph{An integer lower bound} (Theorem~\ref{thm:integer}, Sections~\ref{sec:iid}
-and~\ref{sec:transfer}). With high probability every perfect assignment has total deficit at
-least $\betaint q^{1/3}$, that is, $\Phiq\ge\betaint q^{1/3}$. The bound is first proved in the
-model with independent team deficits (Theorem~\ref{thm:iid}) and then carried to the market by
-a comparison inequality (Theorem~\ref{thm:transfer}).
-
-\emph{A fractional upper bound from the tree} (Theorem~\ref{thm:lp},
-Sections~\ref{sec:localconv} and~\ref{sec:lp}). Let $\tree$ be the Poisson hypertree, the
-local limit of the hypergraph of near-tight teams, and let $m$ be any invariant random perfect
-matching on $\tree$, with $c(m)$ the expected cost of the root's team. Then
-$\limsup_q\E\PhiLP/q^{1/3}\le c(m)$.
-
-\emph{A cheap matching on the tree} (Theorems~\ref{thm:process} and~\ref{thm:existence},
-Sections~\ref{sec:tree} and~\ref{sec:existence}). Let $(\xi_k)$ be a Poisson process of
-intensity $\tfrac12\xi^2\dd\xi$ on $[0,\infty)$. A law $\mu$ on $\R$ is a fixed point of the
-map $\RDE$ if
+\emph{An invariant matching of small cost.}
+Let $(\xi_k)$ be a Poisson process with intensity $\tfrac12\xi^2\dd\xi$ on $[0,\infty)$.
+For a fixed point $\mu$ of the distributional recursion $\RDE$, we have
 \begin{equation}\label{eq:intro-rde}
-X\ \overset{d}{=}\ \min_k\bigl(\xi_k-X_k'-X_k''\bigr),
+ X\ \overset{d}{=}\ \min_k(\xi_k-X'_k-X''_k),
 \end{equation}
-where $X$ and all $X_k'$, $X_k''$ have law $\mu$ and are independent of each other and of
-$(\xi_k)$. A fixed point defines an invariant perfect matching on $\tree$ of cost $9\,\E X$.
-A fixed point exists, and every fixed point has $9\,\E X\le\alphalp$.
+where the inputs $X'_k,X''_k$ are independent with law $\mu$, independent of
+$(\xi_k)$, and $X$ has law $\mu$. A fixed point exists. Each fixed point defines
+an invariant perfect matching of cost $9\E X\le\alphalp$
+(Theorems~\ref{thm:process} and~\ref{thm:existence}).
 
-Given these, the proof of Theorem~\ref{thm:main} takes a few lines
-(Section~\ref{sec:proofmain}). The last two ingredients give
-$\E\PhiLP\le(\alphalp+o(1))q^{1/3}$. The second, with $\Phiq\ge0$, gives
-$\E\Phiq\ge(\betaint-o(1))q^{1/3}$. Subtracting gives (i). Chebyshev's inequality with the
-variance bound gives $\P(|\Dq-\E\Dq|>t\,\E\Dq)\le\Var\Dq/(t\,\E\Dq)^2\to0$ for every fixed
-$t>0$, which is (ii), and (iii) is the case $t=1/2$.
+\emph{The fractional optimum.} Theorem~\ref{thm:lp} transports any finite-cost invariant
+matching to finite fractional allocations, giving $\limsup_q\E\PhiLP/q^{1/3}\le c(m)$.
+For the reverse direction, mark each team in a finite market with its weight under an
+optimal fractional allocation. The expected mass at the root on teams costing more
+than $K$ rescaled units is at most $\E\PhiLP/(Kq^{1/3})$. This tends uniformly to zero
+as $K$ grows, so a subsequential limit retains full coverage. On a tree such a
+fractional allocation is the marginal of an invariant perfect matching of the same
+cost (Theorem~\ref{thm:decomp}). Together these arguments give Theorem~\ref{thm:lp-limit}.
+
+\emph{Probability of a nonempty core.} Subtracting the fractional cost bound from the
+integer lower bound gives the positive gap in mean. A Poincar\'e inequality for the
+pair loads gives $\Var\Dq\le8\E\Phiq$, enough for relative concentration. For the
+probability bound in Theorem~\ref{thm:main}(iii), the square root of each optimum
+deficit is a Lipschitz function of independent Gaussian variables, with a Lipschitz
+constant independent of $q$. Their means are separated by order $q^{1/6}$. Gaussian
+concentration makes equality unlikely. A complementary construction forces a given
+perfect assignment to be the unique fractional optimum. Summing over the disjoint events
+for all such assignments gives the lower bound (Section~\ref{sec:proofmain}).
+
+The separate support estimates of Theorem~\ref{thm:variance} yield absolute
+concentration, $\Var\Dq=O(q^{-1/6+\eps})$. They also show that with high probability
+every used integer pair and every team supporting an optimal fractional allocation
+have deficit $O_\eps(q^{-1/2+\eps})$ for each fixed $\eps\in(0,1/2)$.
 
 \subsection{Overview of the proof}\label{sec:intro-overview}
 
@@ -110,8 +126,9 @@ the same value: every invariant fractional perfect matching on $\tree$ is the ma
 invariant random integral perfect matching of the same cost (Theorem~\ref{thm:decomp}). The
 difference between $\LPq$ and $\Tq$ is that the finite market cannot realise the cheap
 integral matchings of the tree, and this is not visible in any neighbourhood of bounded size.
-In simulations the fractional optimum is fractional at most agents, so rounding it would need
-of order $q$ repairs (Section~\ref{sec:discussion}).
+Corollary~\ref{cor:proofmain-participation} shows that, with high probability, every optimal
+fractional assignment has a positive fraction of agents in each sector who assign less
+than $99\%$ of their weight to any one team.
 
 \emph{The recursion is unstable under shifts.} The fixed-point equation \eqref{eq:intro-rde}
 is the three-sided analogue of the recursion behind the limit of the random two-sided
@@ -184,67 +201,40 @@ cost of the fixed point is $2.2495456$.
 
 \subsection{Related work}\label{sec:intro-related}
 
-The statements in this subsection are limited to sources that were opened in full text during
-the project, and say so where a source was not opened. The literature search was done by AI
-agents; its queries and gaps are recorded with the project files. It did not cover Google
-Scholar, SSRN or dissertation databases, and a paper with an unusual title could have been
-missed.
+\emph{Assignment markets.} Core existence in partitioning and multi-sided assignment
+games is studied by Kaneko and Wooders \cite{KanekoWooders82} and Quint \cite{Quint91}.
+Stuart \cite{Stuart97} proves nonemptiness under local additivity, which includes the
+three-sector path with full-team production. Atay and N\'u\~nez \cite{AtayNunez19}
+prove balancedness on a tree of sectors in a related game in which smaller connected
+coalitions may also produce. Lucas \cite{Lucas95} reports small-market probabilities
+and unbalanced-market results for independent triple values. In two-sided random
+markets, work on price dispersion and the size of the core includes
+\cite{HassidimRomm15,KSS18}. Our question concerns exact core existence in a balanced
+market with three pair interactions.
 
-\emph{The model.} Frieze, Pegden and Tkocz \cite{FPT20} study exactly the cost array
-$W_{ijk}=a_{ij}+b_{ik}+c_{jk}$ with independent uniform entries, in minimisation form. Their
-Theorem~2 shows that the expected optimum is at least $c_1n^{1/3}$ and that a greedy algorithm
-achieves expected cost at most $c_2n^{1/3}$. The paper contains nothing on the fractional
-relaxation, on duality or on the core. We use its Theorem~2(b) in the form: independent
-uniform pair costs, bound in expectation. Several agents read this from the arXiv version;
-the final text should quote the published statement. \todo{quote Theorem 2(b) of the
-published version of FPT20 verbatim}
+\emph{Random assignment costs.} Frieze, Pegden and Tkocz \cite{FPT20} study the same
+pair-additive array in minimisation form. Their Theorem~2 gives the order $q^{1/3}$ of
+the expected integer cost. Its greedy upper bound in expectation is the input used in
+Proposition~\ref{prop:variance-fpt}. For minimum-weight factors in the complete graph,
+Danielsson and Federico \cite{DanielssonFederico25} establish concentration
+for factors containing a cycle. For costs independent across teams, Martin, M\'ezard
+and Rivoire \cite{MMR05} study multi-index matching by the cavity method.
+Frieze and Sorkin \cite{FriezeSorkin15} give algorithmic bounds for independent
+exponential costs. Frankston, Kahn, Narayanan and Park \cite[Corollary~1.8]{FKNP21}
+establish that the expected axial assignment cost in dimension $d$ is
+$\Theta(q^{-(d-2)})$ in that model. The shared-pair dependence in our market changes
+the cost scale. We compare the fractional and integer constants on that scale.
 
-\emph{Random cores.} Lucas \cite{Lucas95} reports results of Crowley and Graham for
-three-sided games with independent uniform values on triples, not pair-additive values: the
-probability of a nonempty core is $209/240$ for two agents per side and about $73\%$ for
-three, and it tends to $1$ when one side stays fixed and the others grow. The balanced limit
-is not treated there. The primary sources behind these figures were not opened. For two
-sides, Hassidim and Romm \cite{HassidimRomm15} prove an approximate law of one price in
-random assignment games with bounded values; the core is always nonempty there, and the
-question is its size. A related paper of Kanoria, Saban and Sethuraman on the size of the
-core in two-sided markets \cite{KSS18} was opened in part. The papers \cite{KanekoWooders82} and \cite{Quint91} on
-cores of partitioning and multi-sided games were not opened (the first at abstract level
-only); no statement here rests on them.
-
-\emph{Multi-dimensional assignment with independent costs.} Martin, M\'ezard and Rivoire
-\cite{MMR05} treat costs that are independent over hyperedges by the cavity method. They
-report that the replica-symmetric equations are inconsistent beyond two dimensions and do not
-discuss a linear-programming relaxation. Frieze and Sorkin \cite{FriezeSorkin15} bound the
-optimum for independent exponential costs and remark that even its scaling is not known. The
-search found no source that compares the fractional and the integer optimum for a random
-three-dimensional assignment problem.
-
-\emph{Fractional and integral matchings in random hypergraphs.} At the level of thresholds
-the two notions are close in the random $r$-uniform hypergraph. Kahn \cite{Kahn19} shows that
-a perfect matching appears once the number of edges exceeds $(1+\eps)(n/r)\log n$. A result
-of Krivelevich, known to us only as restated in \cite{DevlinKahn17} (the original was not
-opened), says that at the first time without isolated vertices the random hypergraph has a
-perfect fractional matching with high probability. Devlin and Kahn \cite{DevlinKahn17} study
-perfect fractional matchings in $k$-out hypergraphs, including the $r$-partite case. These
-are first-order statements about existence; our result concerns the constant on the scale
-$q^{1/3}$ in a weighted problem.
-
-\emph{The two-dimensional analogue.} For minimum matching on the complete graph with
-exponential costs, Hessler and W\"astlund \cite{HesslerWastlund08} show that a relaxed
-problem and the integer problem have expected costs within $O(\log n/n)$ of each other, less
-than the standard deviation of either. The search found no result on the probability that the
-fractional matching optimum is integral in that setting.
-
-\emph{Methods.} The use of a limiting tree, recursive distributional equations and invariant
-(unimodular) random networks follows the objective method
-\cite{Aldous92,Aldous01,AldousSteele04,AldousLyons07}. The dispersive order is treated in
-\cite{ShakedShanthikumar07}, and the variance bound uses the Poincar\'e inequality for the
-exponential measure \cite{BobkovLedoux97}; see also \cite{BLM13}. Balanced matrices
-\cite{FHO74} appear only in remarks. None of the works cited in this paragraph, nor
-\cite{BoppanaSpencer89}, \cite{Harris60} and \cite{Prekopa73}, was opened during the project:
-the attributions are from the agents' recollection, and the statements used from them are
-either proved in the text or are standard. They must be checked against the sources before
-any submission.
+\emph{Fractional matching and the local limit.} Kahn \cite{Kahn19} studies perfect
+matching thresholds in random uniform hypergraphs, and Devlin and Kahn
+\cite{DevlinKahn17} study fractional perfect matchings in random $k$-out hypergraphs.
+Our separation concerns the weights of perfect assignments. In a two-dimensional
+weighted problem Hessler and W\"astlund \cite{HesslerWastlund08} bound the expected
+difference between the relaxed and integral random matching costs. The passage
+between finite networks and invariant processes on their local limits follows the
+objective method \cite{Aldous92,Aldous01,AldousSteele04,AldousLyons07}. Here it gives
+an exact variational formula for the fractional limit and an obstruction to constructing
+cheap integral matchings as measurable functions of the marked tree.
 
 \subsection{What is computer-assisted}\label{sec:intro-computer}
 
@@ -260,7 +250,7 @@ Both computations use interval arithmetic with outward rounding, and the second 
 floating-point sums with a proved error bound. Their trusted base is the four basic
 operations of the interval library and, for the second, IEEE arithmetic in the summations.
 During the work the library's interval exponential and logarithm were found not to be strict
-enclosures; neither certificate uses them. Section~\ref{sec:certificates} states exactly what
+enclosures; neither certificate uses them. Appendix~\ref{sec:certificates-detail} states exactly what
 each program certifies, how to reproduce it, and which independent recomputations were made.
 Everything else in the paper is a written proof. All numerical values labelled as floating
 point, in remarks and in Section~\ref{sec:discussion}, are evidence and are not used in any
